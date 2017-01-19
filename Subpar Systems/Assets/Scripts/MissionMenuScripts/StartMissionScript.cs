@@ -19,7 +19,15 @@ public class StartMissionScript : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("TestLevel");
+            if (GameControlScript.control.EnoughPlayersSelected())
+            {
+                SceneManager.LoadScene("TestLevel");
+            }
+            else
+            {
+                //replace with proper warning
+                Debug.Log("Not enough players selected to start mission");
+            }
         }
     }
 }
