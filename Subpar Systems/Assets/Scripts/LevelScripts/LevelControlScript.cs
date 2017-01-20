@@ -8,6 +8,8 @@ public class LevelControlScript : MonoBehaviour {
 
     public Transform TileParent;
 
+    public Transform characterParent;
+
     public Camera mainCamera;
     private float cameraMoveSpeed = 0.25f;
 
@@ -51,7 +53,7 @@ public class LevelControlScript : MonoBehaviour {
         rowLength = row1.Length;
 
         CreateMap(map, rowLength);
-        GameControlScript.control.SpawnCharacters(spawn1, spawn2, spawn3, spawn4);
+        SpawnCharacters(spawn1, spawn2, spawn3, spawn4);
 
     }
 	
@@ -78,6 +80,47 @@ public class LevelControlScript : MonoBehaviour {
         {
             mainCamera.transform.localPosition += new Vector3(cameraMoveSpeed, -cameraMoveSpeed, 0);
         }
+    }
+
+    //Spawns 4 characters in correct places
+    public void SpawnCharacters(Vector2 place1, Vector2 place2, Vector2 place3, Vector2 place4)
+    {
+        int selected = 0;
+        for (int i = 0; i < GameControlScript.control.GetChosen().Capacity; ++i)
+        {
+            if (GameControlScript.control.GetChosen()[i])
+            {
+                if (selected == 0)
+                {
+                    Transform character = (Transform)Instantiate(GameControlScript.control.GetCharacters()[i], place1, Quaternion.identity);
+                    character.SetParent(characterParent);
+                    selected += 1;
+                }
+                else if (selected == 1)
+                {
+                    Transform character = (Transform)Instantiate(GameControlScript.control.GetCharacters()[i], place2, Quaternion.identity);
+                    character.SetParent(characterParent);
+                    selected += 1;
+                }
+                else if (selected == 2)
+                {
+                    Transform character = (Transform)Instantiate(GameControlScript.control.GetCharacters()[i], place3, Quaternion.identity);
+                    character.SetParent(characterParent);
+                    selected += 1;
+                }
+                else if (selected == 3)
+                {
+                    Transform character = (Transform)Instantiate(GameControlScript.control.GetCharacters()[i], place4, Quaternion.identity);
+                    character.SetParent(characterParent);
+                    selected += 1;
+                }
+            }
+        }
+    }
+
+    public void BroadcastRefreshActionsToCharacters()
+    {
+        BroadcastMessage("RefreshActions");
     }
 
     public void CreateMap(int[][] map, int sizeOfSecondaryArrays)

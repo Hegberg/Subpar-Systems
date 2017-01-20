@@ -45,7 +45,7 @@ public class TurnControlScript : MonoBehaviour {
     {
         playerTurn = true;
         Debug.Log("Player Turn Started");
-        GameControlScript.control.BroadcastRefreshActionsToCharacters();
+        LevelControlScript.control.BroadcastRefreshActionsToCharacters();
     }
 
     IEnumerator RevertTurn()

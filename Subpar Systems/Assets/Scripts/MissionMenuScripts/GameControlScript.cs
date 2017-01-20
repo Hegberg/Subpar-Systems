@@ -30,7 +30,7 @@ public class GameControlScript : MonoBehaviour {
     private float tileWidth = 2.0f;
     private float tileHeight = 2.0f;
 
-    public Transform characterParent;
+    //public Transform characterParent;
 
     // Use this for initialization
     void Start () {
@@ -42,8 +42,6 @@ public class GameControlScript : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-
-        DontDestroyOnLoad(this.gameObject);
 
         //add character prefabs
         characters.Add(blue);
@@ -109,47 +107,6 @@ public class GameControlScript : MonoBehaviour {
         }
     }
 
-    //Spawns 4 characters in correct places
-    public void SpawnCharacters(Vector2 place1, Vector2 place2, Vector2 place3, Vector2 place4)
-    {
-        int selected = 0;
-        for (int i = 0; i < chosen.Capacity; ++i)
-        {
-            if (chosen[i])
-            {
-                if (selected == 0)
-                {
-                    Transform character = (Transform)Instantiate(characters[i], place1, Quaternion.identity);
-                    character.SetParent(characterParent);
-                    selected += 1;
-                }
-                else if (selected == 1)
-                {
-                    Transform character = (Transform)Instantiate(characters[i], place2, Quaternion.identity);
-                    character.SetParent(characterParent);
-                    selected += 1;
-                }
-                else if (selected == 2)
-                {
-                    Transform character = (Transform)Instantiate(characters[i], place3, Quaternion.identity);
-                    character.SetParent(characterParent);
-                    selected += 1;
-                }
-                else if (selected == 3)
-                {
-                    Transform character = (Transform)Instantiate(characters[i], place4, Quaternion.identity);
-                    character.SetParent(characterParent);
-                    selected += 1;
-                }
-            }
-        }
-    }
-
-    public void BroadcastRefreshActionsToCharacters()
-    {
-        BroadcastMessage("RefreshActions");
-    }
-
     public bool EnoughPlayersSelected()
     {
         return selectedCharacters == maxCharacters;
@@ -168,5 +125,15 @@ public class GameControlScript : MonoBehaviour {
     public float GetTileHeight()
     {
         return tileHeight;
+    }
+
+    public List<bool> GetChosen()
+    {
+        return chosen;
+    }
+
+    public List<Object> GetCharacters()
+    {
+        return characters;
     }
 }
