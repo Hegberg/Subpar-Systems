@@ -18,8 +18,17 @@ public class GameControlScript : MonoBehaviour {
     public Transform red;
     public Transform yellow;
 
+    private static List<Object> tiles = new List<Object>();
+
+    public Transform earth;
+    public Transform water;
+    public Transform mountian;
+
     private int maxCharacters = 4;
     private int selectedCharacters = 0;
+
+    private float tileWidth = 2.0f;
+    private float tileHeight = 2.0f;
 
     // Use this for initialization
     void Start () {
@@ -32,7 +41,7 @@ public class GameControlScript : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
-        //add prefabs to list
+        //add character prefabs
         characters.Add(blue);
         characters.Add(brown);
         characters.Add(green);
@@ -42,7 +51,12 @@ public class GameControlScript : MonoBehaviour {
         characters.Add(red);
         characters.Add(yellow);
 
-        for(int i = 0; i < characters.Capacity; ++i)
+        //add tile prefabs
+        tiles.Add(earth);
+        tiles.Add(water);
+        tiles.Add(mountian);
+
+        for (int i = 0; i < characters.Capacity; ++i)
         {
             chosen.Add(false);
         }
@@ -53,7 +67,7 @@ public class GameControlScript : MonoBehaviour {
 		
 	}
 
-    //select character in list player clicked on to join team
+    //character selected in list to join team
     public void SelectCharacter(string nameSelected)
     {
         int selected = -1;
@@ -91,16 +105,45 @@ public class GameControlScript : MonoBehaviour {
         }
     }
 
-    //Definitly need to change for future use, but is just for testing right now
-    public void SpawnCharacters()
+    //Spawns 4 characters in correct places
+    public void SpawnCharacters(Vector2 place1, Vector2 place2, Vector2 place3, Vector2 place4)
     {
+        /*
+        Transform character1 = (Transform)Instantiate(characters[0], place1, Quaternion.identity);
+        Transform character2 = (Transform)Instantiate(characters[1], place2, Quaternion.identity);
+        Transform character3 = (Transform)Instantiate(characters[2], place3, Quaternion.identity);
+        Transform character4 = (Transform)Instantiate(characters[3], place4, Quaternion.identity);
+        */
+
         int selected = 0;
-        for (int i = 0; i < characters.Capacity; ++i)
+        for (int i = 0; i < chosen.Capacity; ++i)
         {
             if (chosen[i])
             {
-                Transform character = (Transform)Instantiate(characters[i], new Vector3(0 + (selected * 2), 0, 0), Quaternion.identity);
-                selected += 1;
+                if (selected == 0)
+                {
+                    Instantiate(characters[i], place1, Quaternion.identity);
+                    selected += 1;
+                }
+                else if (selected == 1)
+                {
+                    Instantiate(characters[i], place2, Quaternion.identity);
+                    selected += 1;
+                }
+                else if (selected == 2)
+                {
+                    Transform character3 = (Transform)Instantiate(characters[i], Vector2.zero, Quaternion.identity);
+                    Debug.Log(character3.position.ToString());
+                    character3.position = place3;
+                    //character3.position = new Vector3(4,0,1);
+                    Debug.Log(character3.position.ToString());
+                    selected += 1;
+                }
+                else if (selected == 3)
+                {
+                    Instantiate(characters[i], place4, Quaternion.identity);
+                    selected += 1;
+                }
             }
         }
     }
@@ -108,5 +151,20 @@ public class GameControlScript : MonoBehaviour {
     public bool EnoughPlayersSelected()
     {
         return selectedCharacters == maxCharacters;
+    }
+
+    public List<Object> GetTiles()
+    {
+        return tiles;
+    }
+
+    public float GetTileWidth()
+    {
+        return tileWidth;
+    }
+
+    public float GetTileHeight()
+    {
+        return tileHeight;
     }
 }
