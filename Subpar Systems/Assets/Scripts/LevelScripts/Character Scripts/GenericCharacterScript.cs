@@ -32,6 +32,12 @@ public class GenericCharacterScript : MonoBehaviour {
         hasMoved = false;
     }
 
+    public void RemoveActions()
+    {
+        hasAttacked = true;
+        hasMoved = true;
+    } 
+
     public void SetHasMoved(bool moved)
     {
         hasMoved = moved;

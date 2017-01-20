@@ -13,8 +13,13 @@ public class LevelControlScript : MonoBehaviour {
     public Camera mainCamera;
     private float cameraMoveSpeed = 0.25f;
 
-    //need the amount of lists allocated to be the amount of rows added
-    private int[][] map =  new int[6][];
+    private float maxCameraY = 0f;
+    private float maxCameraX = 0f;
+    private float minCameraY = 0f;
+    private float minCameraX = 0f;
+
+    private List<int[]> map = new List<int[]>();
+
     //rows need to be same length
     private int[] row1 = { 2, 0, 1, 1, 1, 0 };
     private int[] row2 = { 2, 0, 0, 1, 0, 0 };
@@ -22,6 +27,9 @@ public class LevelControlScript : MonoBehaviour {
     private int[] row4 = { 1, 1, 0, 0, 2, 2 };
     private int[] row5 = { 0, 0, 0, 0, 2, 2 };
     private int[] row6 = { 0, 0, 0, 0, 0, 2 };
+    private int[] row7 = { 0, 0, 0, 0, 0, 2 };
+    private int[] row8 = { 0, 0, 0, 0, 0, 2 };
+    private int[] row9 = { 0, 0, 0, 0, 0, 2 };
 
     private int rowLength;
 
@@ -42,13 +50,18 @@ public class LevelControlScript : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-        
-        map[0] = row1;
-        map[1] = row2;
-        map[2] = row3;
-        map[3] = row4;
-        map[4] = row5;
-        map[5] = row6;
+
+        //need to add all rows to map
+        map.Add(row1);
+        map.Add(row2);
+        map.Add(row3);
+        map.Add(row4);
+        map.Add(row5);
+        map.Add(row6);
+        map.Add(row7);
+        map.Add(row8);
+        map.Add(row9);
+
 
         rowLength = row1.Length;
 
@@ -64,19 +77,23 @@ public class LevelControlScript : MonoBehaviour {
 
     private void CameraMove()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) && 
+            mainCamera.transform.position.x > minCameraX && mainCamera.transform.position.y > minCameraY)
         {
             mainCamera.transform.localPosition += new Vector3(-cameraMoveSpeed, -cameraMoveSpeed, 0);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow) &&
+            mainCamera.transform.position.x < maxCameraX && mainCamera.transform.position.y < maxCameraY)
         {
             mainCamera.transform.localPosition += new Vector3(cameraMoveSpeed, cameraMoveSpeed, 0);
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
+        else if (Input.GetKey(KeyCode.UpArrow) &&
+            mainCamera.transform.position.x > minCameraX && mainCamera.transform.position.y < maxCameraY)
         {
             mainCamera.transform.localPosition += new Vector3(-cameraMoveSpeed, cameraMoveSpeed, 0);
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow) &&
+            mainCamera.transform.position.x < maxCameraX && mainCamera.transform.position.y > minCameraY)
         {
             mainCamera.transform.localPosition += new Vector3(cameraMoveSpeed, -cameraMoveSpeed, 0);
         }
@@ -123,19 +140,42 @@ public class LevelControlScript : MonoBehaviour {
         BroadcastMessage("RefreshActions");
     }
 
-    public void CreateMap(int[][] map, int sizeOfSecondaryArrays)
+    public void BroadcastRemoveActionsToCharacters()
     {
+        BroadcastMessage("RemoveActions");
+    }
+
+    public void CreateMap(List<int[]> map, int sizeOfSecondaryArrays)
+    {
+        minCameraX = 0f;
+        minCameraY = 0f;
+
         //0 is earth, 1 is water, 2 is mountian
         //start at bottom row and build up
-        for (int i = map.Length - 1; i >= 0; --i)
+        for (int i = map.Count - 1; i >= 0; --i)
         {
             for (int j = 0; j < sizeOfSecondaryArrays; ++j)
             {
                 Transform tile = (Transform)Instantiate(GameControlScript.control.GetTiles()[map[i][j]], 
                     new Vector3(0 + (j * GameControlScript.control.GetTileWidth()), 
-                    0 + (((map.Length-1)-i) * GameControlScript.control.GetTileWidth()), 0), Quaternion.identity);
+                    0 + (((map.Count - 1) - i) * GameControlScript.control.GetTileWidth()), 0), Quaternion.identity);
                 tile.SetParent(TileParent);
+                //set max camera postion based on map size
+                if(tile.position.x > maxCameraX)
+                {
+                    maxCameraX = tile.position.x;
+                }
+                if(tile.position.y > maxCameraY)
+                {
+                    maxCameraY = tile.position.y;
+                }
             }
         }
+
+        //set camera limits to be local to preexisting camera position
+        maxCameraX += mainCamera.transform.position.x - 3;
+        maxCameraY += mainCamera.transform.position.y - 4;
+        minCameraX += mainCamera.transform.position.x - 4;
+        minCameraY += (mainCamera.transform.position.x ) + 2;
     }
 }

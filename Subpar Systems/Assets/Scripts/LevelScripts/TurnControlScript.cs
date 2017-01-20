@@ -39,6 +39,7 @@ public class TurnControlScript : MonoBehaviour {
     {
         StartCoroutine(RevertTurn());
         Debug.Log("Player Turn Ended");
+        LevelControlScript.control.BroadcastRemoveActionsToCharacters();
     }
 
     public void StartTurn()
