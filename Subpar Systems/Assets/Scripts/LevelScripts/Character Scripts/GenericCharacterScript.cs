@@ -5,6 +5,7 @@ using UnityEngine;
 public class GenericCharacterScript : MonoBehaviour {
 
     private bool hasMoved = false;
+    private bool hasAttacked = false;
 
     // Use this for initialization
     void Start () {
@@ -23,6 +24,12 @@ public class GenericCharacterScript : MonoBehaviour {
         {
             TurnControlScript.control.SetPlayerSelected(this.gameObject);
         }
+    }
+
+    public void RefreshActions()
+    {
+        hasAttacked = false;
+        hasMoved = false;
     }
 
     public void SetHasMoved(bool moved)

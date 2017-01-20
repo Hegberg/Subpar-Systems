@@ -30,6 +30,8 @@ public class GameControlScript : MonoBehaviour {
     private float tileWidth = 2.0f;
     private float tileHeight = 2.0f;
 
+    public Transform characterParent;
+
     // Use this for initialization
     void Start () {
 		if (control == null)
@@ -40,6 +42,8 @@ public class GameControlScript : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+
+        DontDestroyOnLoad(this.gameObject);
 
         //add character prefabs
         characters.Add(blue);
@@ -64,8 +68,8 @@ public class GameControlScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+    }
 
     //character selected in list to join team
     public void SelectCharacter(string nameSelected)
@@ -108,13 +112,6 @@ public class GameControlScript : MonoBehaviour {
     //Spawns 4 characters in correct places
     public void SpawnCharacters(Vector2 place1, Vector2 place2, Vector2 place3, Vector2 place4)
     {
-        /*
-        Transform character1 = (Transform)Instantiate(characters[0], place1, Quaternion.identity);
-        Transform character2 = (Transform)Instantiate(characters[1], place2, Quaternion.identity);
-        Transform character3 = (Transform)Instantiate(characters[2], place3, Quaternion.identity);
-        Transform character4 = (Transform)Instantiate(characters[3], place4, Quaternion.identity);
-        */
-
         int selected = 0;
         for (int i = 0; i < chosen.Capacity; ++i)
         {
@@ -122,30 +119,35 @@ public class GameControlScript : MonoBehaviour {
             {
                 if (selected == 0)
                 {
-                    Instantiate(characters[i], place1, Quaternion.identity);
+                    Transform character = (Transform)Instantiate(characters[i], place1, Quaternion.identity);
+                    character.SetParent(characterParent);
                     selected += 1;
                 }
                 else if (selected == 1)
                 {
-                    Instantiate(characters[i], place2, Quaternion.identity);
+                    Transform character = (Transform)Instantiate(characters[i], place2, Quaternion.identity);
+                    character.SetParent(characterParent);
                     selected += 1;
                 }
                 else if (selected == 2)
                 {
-                    Transform character3 = (Transform)Instantiate(characters[i], Vector2.zero, Quaternion.identity);
-                    Debug.Log(character3.position.ToString());
-                    character3.position = place3;
-                    //character3.position = new Vector3(4,0,1);
-                    Debug.Log(character3.position.ToString());
+                    Transform character = (Transform)Instantiate(characters[i], place3, Quaternion.identity);
+                    character.SetParent(characterParent);
                     selected += 1;
                 }
                 else if (selected == 3)
                 {
-                    Instantiate(characters[i], place4, Quaternion.identity);
+                    Transform character = (Transform)Instantiate(characters[i], place4, Quaternion.identity);
+                    character.SetParent(characterParent);
                     selected += 1;
                 }
             }
         }
+    }
+
+    public void BroadcastRefreshActionsToCharacters()
+    {
+        BroadcastMessage("RefreshActions");
     }
 
     public bool EnoughPlayersSelected()

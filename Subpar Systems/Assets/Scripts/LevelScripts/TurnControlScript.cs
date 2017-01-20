@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnControlScript : MonoBehaviour {
 
     public static TurnControlScript control;
 
+    public Transform characterParent;
+
     private bool playerTurn = true;
     private bool isPlayerSelected = false;
     private GameObject playerSelected;
+
+    public Button endTurn;
 
     // Use this for initialization
     void Start () {
@@ -20,12 +25,34 @@ public class TurnControlScript : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+
+        Button btn = endTurn.GetComponent<Button>();
+        btn.onClick.AddListener(EndTurn);
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void EndTurn()
+    {
+        StartCoroutine(RevertTurn());
+        Debug.Log("Player Turn Ended");
+    }
+
+    public void StartTurn()
+    {
+        playerTurn = true;
+        Debug.Log("Player Turn Started");
+        GameControlScript.control.BroadcastRefreshActionsToCharacters();
+    }
+
+    IEnumerator RevertTurn()
+    {
+        yield return new WaitForSeconds(2);
+        StartTurn();
+    }
 
     public void MovePlayer(Vector2 positionToMoveto)
     {
