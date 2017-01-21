@@ -20,18 +20,15 @@ public class LevelControlScript : MonoBehaviour {
 
     private List<int[]> map = new List<int[]>();
 
-    //rows need to be same length
-    private int[] row1 = { 2, 0, 1, 1, 1, 0 };
-    private int[] row2 = { 2, 0, 0, 1, 0, 0 };
-    private int[] row3 = { 2, 0, 0, 0, 0, 2 };
+    private int[] row1 = { 2, 0, 1, 1, 1, 0, 0, 1 };
+    private int[] row2 = { 2, 0, 0, 1, 0, 0, 2, 2 };
+    private int[] row3 = { 2, 0, 0, 0, 0, 2, 2, 2 };
     private int[] row4 = { 1, 1, 0, 0, 2, 2 };
     private int[] row5 = { 0, 0, 0, 0, 2, 2 };
     private int[] row6 = { 0, 0, 0, 0, 0, 2 };
     private int[] row7 = { 0, 0, 0, 0, 0, 2 };
     private int[] row8 = { 0, 0, 0, 0, 0, 2 };
     private int[] row9 = { 0, 0, 0, 0, 0, 2 };
-
-    private int rowLength;
 
     //some reason haveing the order 0,2,4,6 makes it so the 3rd one can't be clicked, no idea why but this out of order order works fine
     private Vector2 spawn1 = new Vector2(6.0f, 0);
@@ -62,10 +59,7 @@ public class LevelControlScript : MonoBehaviour {
         map.Add(row8);
         map.Add(row9);
 
-
-        rowLength = row1.Length;
-
-        CreateMap(map, rowLength);
+        CreateMap(map);
         SpawnCharacters(spawn1, spawn2, spawn3, spawn4);
 
     }
@@ -77,7 +71,23 @@ public class LevelControlScript : MonoBehaviour {
 
     private void CameraMove()
     {
-        if (Input.GetKey(KeyCode.LeftArrow) && 
+        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow) && mainCamera.transform.position.x > minCameraX)
+        {
+            mainCamera.transform.localPosition += new Vector3(-cameraMoveSpeed, 0, 0);
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow) && mainCamera.transform.position.y > minCameraY)
+        {
+            mainCamera.transform.localPosition += new Vector3(0, -cameraMoveSpeed, 0);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow) && mainCamera.transform.position.y < maxCameraY)
+        {
+            mainCamera.transform.localPosition += new Vector3(0, cameraMoveSpeed, 0);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow) && mainCamera.transform.position.x < maxCameraX)
+        {
+            mainCamera.transform.localPosition += new Vector3(cameraMoveSpeed, 0, 0);
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow) && 
             mainCamera.transform.position.x > minCameraX && mainCamera.transform.position.y > minCameraY)
         {
             mainCamera.transform.localPosition += new Vector3(-cameraMoveSpeed, -cameraMoveSpeed, 0);
@@ -145,7 +155,7 @@ public class LevelControlScript : MonoBehaviour {
         BroadcastMessage("RemoveActions");
     }
 
-    public void CreateMap(List<int[]> map, int sizeOfSecondaryArrays)
+    public void CreateMap(List<int[]> map)
     {
         minCameraX = 0f;
         minCameraY = 0f;
@@ -154,7 +164,7 @@ public class LevelControlScript : MonoBehaviour {
         //start at bottom row and build up
         for (int i = map.Count - 1; i >= 0; --i)
         {
-            for (int j = 0; j < sizeOfSecondaryArrays; ++j)
+            for (int j = 0; j < map[i].Length; ++j)
             {
                 Transform tile = (Transform)Instantiate(GameControlScript.control.GetTiles()[map[i][j]], 
                     new Vector3(0 + (j * GameControlScript.control.GetTileWidth()), 
