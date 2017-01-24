@@ -18,7 +18,7 @@ public class GameControlScript : MonoBehaviour {
     public Transform red;
     public Transform yellow;
 
-    private static List<Object> tiles = new List<Object>();
+    private static List<GameObject> tiles = new List<GameObject>();
 
     public Transform earth;
     public Transform water;
@@ -51,9 +51,9 @@ public class GameControlScript : MonoBehaviour {
         characters.Add(yellow);
 
         //add tile prefabs
-        tiles.Add(earth);
-        tiles.Add(water);
-        tiles.Add(mountian);
+        tiles.Add(earth.gameObject);
+        tiles.Add(water.gameObject);
+        tiles.Add(mountian.gameObject);
 
         for (int i = 0; i < characters.Capacity; ++i)
         {
@@ -109,7 +109,7 @@ public class GameControlScript : MonoBehaviour {
         return selectedCharacters == maxCharacters;
     }
 
-    public List<Object> GetTiles()
+    public List<GameObject> GetTiles()
     {
         return tiles;
     }

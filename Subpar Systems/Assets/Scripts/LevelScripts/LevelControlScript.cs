@@ -36,8 +36,9 @@ public class LevelControlScript : MonoBehaviour {
     private Vector2 spawn3 = new Vector2(1.28f, 0.40f);
     private Vector2 spawn4 = new Vector2(0.64f, 0.40f);
 
-    private float tileWidth = 0.64f;
-    private float tileHeight = 0.32f;
+    //private float tileWidth = 0.64f;
+    private float tileWidth;
+    private float tileHeight;
 
     // Use this for initialization
     void Start () {
@@ -153,29 +154,38 @@ public class LevelControlScript : MonoBehaviour {
 
         //0 is earth, 1 is water, 2 is mountian
         //start at bottom row and build up
-
+        
         bool offset = false;
         for (int i = map.Count - 1; i >= 0; --i)
         {
             for (int j = 0; j < map[i].Length; ++j)
             {
+                List<GameObject> tiles = GameControlScript.control.GetTiles();
+
+                GameObject oneTile = tiles[map[i][j]];
+
+                tileWidth = oneTile.GetComponent<Renderer>().bounds.size.x;
+                tileHeight = oneTile.GetComponent<Renderer>().bounds.size.y;
+
                 if (!offset)
                 {
                     fuckThomasX = (j * tileWidth);
-                    //fuckThomasY = (-i * GameControlScript.control.GetTileHeight());
                 }
                 else
                 {
                     fuckThomasX = (j * tileWidth) + (tileWidth / 2);
-                    //fuckThomasY = (-i * GameControlScript.control.GetTileHeight()) + (GameControlScript.control.GetTileHeight() / 2);
                 }
-                fuckThomasY = ((map.Count - i) * (tileHeight/2));
+                fuckThomasY = ((map.Count - i) * (((tileHeight*2)/3) /2));
                 fuckThomasZ += 0.01f;
-                Transform tile = (Transform)Instantiate(GameControlScript.control.GetTiles()[map[i][j]],
+
+                Transform tile = (Transform)Instantiate(oneTile.transform,
                     new Vector3(fuckThomasX,
                     fuckThomasY,
                     fuckThomasZ),
                     Quaternion.identity);
+
+                
+
                 tile.SetParent(TileParent);
                 //set max camera postion based on map size
                 if (tile.position.x > maxCameraX)
@@ -189,6 +199,7 @@ public class LevelControlScript : MonoBehaviour {
             }
             offset = !offset;
         }
+        
 
         //angled generation commented out
         /*
@@ -196,8 +207,8 @@ public class LevelControlScript : MonoBehaviour {
         {
             for (int j = 0; j < map[i].Length; ++j)
             {
-                fuckThomasX = (j * GameControlScript.control.GetTileWidth());
-                fuckThomasY = (-i * GameControlScript.control.GetTileHeight()) - (j * (GameControlScript.control.GetTileHeight() / 2));
+                fuckThomasX = (j * (tileWidth)/2);
+                fuckThomasY = (-i * tileHeight) - (j * (tileHeight / 2));
                 fuckThomasZ -= 0.01f;
                 Transform tile = (Transform)Instantiate(GameControlScript.control.GetTiles()[map[i][j]],
                     new Vector3(fuckThomasX,
