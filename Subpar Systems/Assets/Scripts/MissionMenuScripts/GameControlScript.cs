@@ -27,9 +27,6 @@ public class GameControlScript : MonoBehaviour {
     private int maxCharacters = 4;
     private int selectedCharacters = 0;
 
-    private float tileWidth = 2.0f;
-    private float tileHeight = 2.0f;
-
     //public Transform characterParent;
 
     // Use this for initialization
@@ -117,6 +114,7 @@ public class GameControlScript : MonoBehaviour {
         return tiles;
     }
 
+    /*
     public float GetTileWidth()
     {
         return tileWidth;
@@ -126,6 +124,7 @@ public class GameControlScript : MonoBehaviour {
     {
         return tileHeight;
     }
+    */
 
     public List<bool> GetChosen()
     {

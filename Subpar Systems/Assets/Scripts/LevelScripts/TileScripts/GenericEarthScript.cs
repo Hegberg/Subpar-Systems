@@ -19,6 +19,8 @@ public class GenericEarthScript : TileScript {
     {
         if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetIsPlayerSelected())
         {
+            //need to return correct tile or coordinates, 
+            //but implement A* and not just teleport player with move player script
             TurnControlScript.control.MovePlayer(gameObject.transform.position);
         }
     }

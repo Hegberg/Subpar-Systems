@@ -11,7 +11,7 @@ public class LevelControlScript : MonoBehaviour {
     public Transform characterParent;
 
     public Camera mainCamera;
-    private float cameraMoveSpeed = 0.25f;
+    private float cameraMoveSpeed = 0.05f;
 
     private float maxCameraY = 0f;
     private float maxCameraX = 0f;
@@ -20,21 +20,24 @@ public class LevelControlScript : MonoBehaviour {
 
     private List<int[]> map = new List<int[]>();
 
-    private int[] row1 = { 2, 0, 1, 1, 1, 0, 0, 1 };
-    private int[] row2 = { 2, 0, 0, 1, 0, 0, 2, 2 };
-    private int[] row3 = { 2, 0, 0, 0, 0, 2, 2, 2 };
-    private int[] row4 = { 1, 1, 0, 0, 2, 2 };
-    private int[] row5 = { 0, 0, 0, 0, 2, 2 };
-    private int[] row6 = { 0, 0, 0, 0, 0, 2 };
-    private int[] row7 = { 0, 0, 0, 0, 0, 2 };
-    private int[] row8 = { 0, 0, 0, 0, 0, 2 };
-    private int[] row9 = { 0, 0, 0, 0, 0, 2 };
+    private int[] row1 = { 2, 0, 1, 1, 1, 0 };
+    private int[] row2 = {   2, 0, 1, 1, 0, 0 };
+    private int[] row3 = { 2, 0, 0, 0, 0, 2 };
+    private int[] row4 = {   1, 1, 0, 0, 1, 2 };
+    private int[] row5 = { 0, 1, 0, 0, 1, 1 };
+    private int[] row6 = {   0, 0, 0, 0, 1, 2 };
+    private int[] row7 = { 0, 0, 0, 0, 0, 1 };
+    private int[] row8 = {   0, 0, 0, 0, 0, 2 };
+    private int[] row9 = { 0, 0, 0, 0, 0, 1 };
 
     //some reason haveing the order 0,2,4,6 makes it so the 3rd one can't be clicked, no idea why but this out of order order works fine
-    private Vector2 spawn1 = new Vector2(6.0f, 0);
-    private Vector2 spawn2 = new Vector2(0.0f, 0);
-    private Vector2 spawn3 = new Vector2(4.0f, 0);
-    private Vector2 spawn4 = new Vector2(2.0f, 0);
+    private Vector2 spawn1 = new Vector2(1.92f, 0.40f);
+    private Vector2 spawn2 = new Vector2(0.0f, 0.40f);
+    private Vector2 spawn3 = new Vector2(1.28f, 0.40f);
+    private Vector2 spawn4 = new Vector2(0.64f, 0.40f);
+
+    private float tileWidth = 0.64f;
+    private float tileHeight = 0.32f;
 
     // Use this for initialization
     void Start () {
@@ -71,41 +74,25 @@ public class LevelControlScript : MonoBehaviour {
 
     private void CameraMove()
     {
-        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow) && mainCamera.transform.position.x > minCameraX)
+        if (Input.GetKey(KeyCode.LeftArrow) && 
+            mainCamera.transform.position.x > minCameraX)
         {
             mainCamera.transform.localPosition += new Vector3(-cameraMoveSpeed, 0, 0);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow) && mainCamera.transform.position.y > minCameraY)
-        {
-            mainCamera.transform.localPosition += new Vector3(0, -cameraMoveSpeed, 0);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow) && mainCamera.transform.position.y < maxCameraY)
-        {
-            mainCamera.transform.localPosition += new Vector3(0, cameraMoveSpeed, 0);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow) && mainCamera.transform.position.x < maxCameraX)
+        if (Input.GetKey(KeyCode.RightArrow) &&
+            mainCamera.transform.position.x < maxCameraX )
         {
             mainCamera.transform.localPosition += new Vector3(cameraMoveSpeed, 0, 0);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && 
-            mainCamera.transform.position.x > minCameraX && mainCamera.transform.position.y > minCameraY)
+        if (Input.GetKey(KeyCode.UpArrow) &&
+            mainCamera.transform.position.y < maxCameraY)
         {
-            mainCamera.transform.localPosition += new Vector3(-cameraMoveSpeed, -cameraMoveSpeed, 0);
+            mainCamera.transform.localPosition += new Vector3(0, cameraMoveSpeed, 0);
         }
-        else if (Input.GetKey(KeyCode.RightArrow) &&
-            mainCamera.transform.position.x < maxCameraX && mainCamera.transform.position.y < maxCameraY)
+        if (Input.GetKey(KeyCode.DownArrow) &&
+            mainCamera.transform.position.y > minCameraY)
         {
-            mainCamera.transform.localPosition += new Vector3(cameraMoveSpeed, cameraMoveSpeed, 0);
-        }
-        else if (Input.GetKey(KeyCode.UpArrow) &&
-            mainCamera.transform.position.x > minCameraX && mainCamera.transform.position.y < maxCameraY)
-        {
-            mainCamera.transform.localPosition += new Vector3(-cameraMoveSpeed, cameraMoveSpeed, 0);
-        }
-        else if (Input.GetKey(KeyCode.DownArrow) &&
-            mainCamera.transform.position.x < maxCameraX && mainCamera.transform.position.y > minCameraY)
-        {
-            mainCamera.transform.localPosition += new Vector3(cameraMoveSpeed, -cameraMoveSpeed, 0);
+            mainCamera.transform.localPosition += new Vector3(0, -cameraMoveSpeed, 0);
         }
     }
 
@@ -160,32 +147,81 @@ public class LevelControlScript : MonoBehaviour {
         minCameraX = 0f;
         minCameraY = 0f;
 
+        float fuckThomasX = 0.0f;
+        float fuckThomasY = 0.0f;
+        float fuckThomasZ = 0.0f;
+
         //0 is earth, 1 is water, 2 is mountian
         //start at bottom row and build up
+
+        bool offset = false;
         for (int i = map.Count - 1; i >= 0; --i)
         {
             for (int j = 0; j < map[i].Length; ++j)
             {
-                Transform tile = (Transform)Instantiate(GameControlScript.control.GetTiles()[map[i][j]], 
-                    new Vector3(0 + (j * GameControlScript.control.GetTileWidth()), 
-                    0 + (((map.Count - 1) - i) * GameControlScript.control.GetTileWidth()), 0), Quaternion.identity);
+                if (!offset)
+                {
+                    fuckThomasX = (j * tileWidth);
+                    //fuckThomasY = (-i * GameControlScript.control.GetTileHeight());
+                }
+                else
+                {
+                    fuckThomasX = (j * tileWidth) + (tileWidth / 2);
+                    //fuckThomasY = (-i * GameControlScript.control.GetTileHeight()) + (GameControlScript.control.GetTileHeight() / 2);
+                }
+                fuckThomasY = ((map.Count - i) * (tileHeight/2));
+                fuckThomasZ += 0.01f;
+                Transform tile = (Transform)Instantiate(GameControlScript.control.GetTiles()[map[i][j]],
+                    new Vector3(fuckThomasX,
+                    fuckThomasY,
+                    fuckThomasZ),
+                    Quaternion.identity);
                 tile.SetParent(TileParent);
                 //set max camera postion based on map size
-                if(tile.position.x > maxCameraX)
+                if (tile.position.x > maxCameraX)
                 {
                     maxCameraX = tile.position.x;
                 }
-                if(tile.position.y > maxCameraY)
+                if (tile.position.y > maxCameraY)
+                {
+                    maxCameraY = tile.position.y;
+                }
+            }
+            offset = !offset;
+        }
+
+        //angled generation commented out
+        /*
+        for (int i = 0; i < map.Count; ++i)
+        {
+            for (int j = 0; j < map[i].Length; ++j)
+            {
+                fuckThomasX = (j * GameControlScript.control.GetTileWidth());
+                fuckThomasY = (-i * GameControlScript.control.GetTileHeight()) - (j * (GameControlScript.control.GetTileHeight() / 2));
+                fuckThomasZ -= 0.01f;
+                Transform tile = (Transform)Instantiate(GameControlScript.control.GetTiles()[map[i][j]],
+                    new Vector3(fuckThomasX,
+                    fuckThomasY,
+                    fuckThomasZ),
+                    Quaternion.identity);
+                tile.SetParent(TileParent);
+                //set max camera postion based on map size
+                if (tile.position.x > maxCameraX)
+                {
+                    maxCameraX = tile.position.x;
+                }
+                if (tile.position.y > maxCameraY)
                 {
                     maxCameraY = tile.position.y;
                 }
             }
         }
+        */
 
         //set camera limits to be local to preexisting camera position
-        maxCameraX += mainCamera.transform.position.x - 3;
-        maxCameraY += mainCamera.transform.position.y - 4;
-        minCameraX += mainCamera.transform.position.x - 4;
-        minCameraY += (mainCamera.transform.position.x ) + 2;
+        maxCameraX += -1.0f;
+        maxCameraY += -0.5f;
+        minCameraX += 1.0f;
+        minCameraY += 0.5f;
     }
 }
