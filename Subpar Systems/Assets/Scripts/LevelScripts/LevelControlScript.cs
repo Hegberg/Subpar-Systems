@@ -10,9 +10,6 @@ public class LevelControlScript : MonoBehaviour {
 
     public Transform characterParent;
 
-    public Camera mainCamera;
-    private float cameraMoveSpeed = 0.05f;
-
     private float maxCameraY = 0f;
     private float maxCameraX = 0f;
     private float minCameraY = 0f;
@@ -76,36 +73,12 @@ public class LevelControlScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        CameraMove();
+        
 	}
 
     public void CheckAjacentTiles()
     {
         //need to implement
-    }
-
-    private void CameraMove()
-    {
-        if (Input.GetKey(KeyCode.LeftArrow) && 
-            mainCamera.transform.position.x > minCameraX)
-        {
-            mainCamera.transform.localPosition += new Vector3(-cameraMoveSpeed, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.RightArrow) &&
-            mainCamera.transform.position.x < maxCameraX )
-        {
-            mainCamera.transform.localPosition += new Vector3(cameraMoveSpeed, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.UpArrow) &&
-            mainCamera.transform.position.y < maxCameraY)
-        {
-            mainCamera.transform.localPosition += new Vector3(0, cameraMoveSpeed, 0);
-        }
-        if (Input.GetKey(KeyCode.DownArrow) &&
-            mainCamera.transform.position.y > minCameraY)
-        {
-            mainCamera.transform.localPosition += new Vector3(0, -cameraMoveSpeed, 0);
-        }
     }
 
     public void BroadcastRefreshActionsToCharacters()
@@ -225,5 +198,25 @@ public class LevelControlScript : MonoBehaviour {
         maxCameraY += -0.5f;
         minCameraX += 1.0f;
         minCameraY += 0.5f;
+    }
+
+    public float GetCameraMinX()
+    {
+        return minCameraX;
+    }
+
+    public float GetCameraMinY()
+    {
+        return minCameraY;
+    }
+
+    public float GetCameraMaxX()
+    {
+        return maxCameraX;
+    }
+
+    public float GetCameraMaxY()
+    {
+        return maxCameraY;
     }
 }

@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour {
 
-    private float cameraMoveSpeed = 0.05f;
-    private float maxCameraY = 0f;
-    private float maxCameraX = 0f;
-    private float minCameraY = 0f;
-    private float minCameraX = 0f;
+    private float cameraMoveSpeed = 0.25f;
 
     //http://tinypixel-studios.com/log-2-pixel-perfect-tutorial-for-unity-5
     void Awake()
@@ -21,7 +17,7 @@ public class CameraScript : MonoBehaviour {
         Camera.main.orthographicSize = (1.0f * ResolutionHeight) / 2 / currentPixelsToUnits/ scale;
     }
 
-    void update()
+    void Update()
     {
         CameraMove();
     }
@@ -29,22 +25,22 @@ public class CameraScript : MonoBehaviour {
     private void CameraMove()
     {
         if (Input.GetKey(KeyCode.LeftArrow) &&
-            transform.position.x > minCameraX)
+            transform.position.x > LevelControlScript.control.GetCameraMinX())
         {
             transform.localPosition += new Vector3(-cameraMoveSpeed, 0, 0);
         }
         if (Input.GetKey(KeyCode.RightArrow) &&
-            transform.position.x < maxCameraX)
+            transform.position.x < LevelControlScript.control.GetCameraMaxX())
         {
             transform.localPosition += new Vector3(cameraMoveSpeed, 0, 0);
         }
         if (Input.GetKey(KeyCode.UpArrow) &&
-            transform.position.y < maxCameraY)
+            transform.position.y < LevelControlScript.control.GetCameraMaxY())
         {
             transform.localPosition += new Vector3(0, cameraMoveSpeed, 0);
         }
         if (Input.GetKey(KeyCode.DownArrow) &&
-            transform.position.y > minCameraY)
+            transform.position.y > LevelControlScript.control.GetCameraMinY())
         {
             transform.localPosition += new Vector3(0, -cameraMoveSpeed, 0);
         }
