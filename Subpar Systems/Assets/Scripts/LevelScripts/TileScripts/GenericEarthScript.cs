@@ -5,6 +5,7 @@ using UnityEngine;
 public class GenericEarthScript : TileScript {
 
     private GameObject occupingObject;
+	private List<int> tilePosition = new List<int>();
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,7 @@ public class GenericEarthScript : TileScript {
 		
 	}
 
-    void CheckAdjacentTiles()
+ 	void CheckAdjacentTiles()
     {
 
     }
@@ -28,6 +29,11 @@ public class GenericEarthScript : TileScript {
         {
             //need to return correct tile or coordinates, 
             //but implement A* and not just teleport player with move player script
+			AStarScript.control.findShitestPath (LevelControlScript.control.GetAStarMap(), 
+				TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
+				TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
+				tilePosition [0],
+				tilePosition [1]);
             GameObject player = TurnControlScript.control.GetPlayerSelected();
             TurnControlScript.control.MovePlayer(gameObject);
             occupingObject = player;
@@ -38,4 +44,14 @@ public class GenericEarthScript : TileScript {
     {
         occupingObject = setTo;
     }
+
+	public void SetTilePosition(List<int> position)
+	{
+		tilePosition = position;
+	}
+
+	public List<int> GetTilePosition()
+	{
+		return tilePosition;
+	}
 }

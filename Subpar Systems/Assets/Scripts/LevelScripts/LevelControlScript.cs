@@ -137,6 +137,13 @@ public class LevelControlScript : MonoBehaviour {
                 Transform tile = (Transform)Instantiate(oneTile.transform,tempVector, Quaternion.identity);
                 tile.SetParent(TileParent);
 
+				//Check to see if it is an earth tile if it is add it to set tile location
+				if (map[i][j] == 0) {
+					List<int> tempTilePosition = new List<int> ();
+					tempTilePosition.Add (i);
+					tempTilePosition.Add (j);
+					tile.gameObject.GetComponent<GenericEarthScript> ().SetTilePosition (tempTilePosition);
+				}
                 tempList.Add(tile.gameObject);
 
                 //spawn character code
@@ -231,4 +238,9 @@ public class LevelControlScript : MonoBehaviour {
     {
         return maxCameraY;
     }
+
+	public List<List<GameObject>> GetAStarMap()
+	{
+		return aStarMap;
+	}
 }
