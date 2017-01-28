@@ -7,6 +7,8 @@ public class GenericCharacterScript : MonoBehaviour {
     private bool hasMoved = false;
     private bool hasAttacked = false;
 
+    private GameObject tileOccuping;
+
     // Use this for initialization
     void Start () {
 		
@@ -41,5 +43,15 @@ public class GenericCharacterScript : MonoBehaviour {
     public void SetHasMoved(bool moved)
     {
         hasMoved = moved;
+    }
+
+    public GameObject GetTileOccuping()
+    {
+        return tileOccuping;
+    }
+
+    public void SetTileOccuping(GameObject setTo)
+    {
+        tileOccuping = setTo;
     }
 }

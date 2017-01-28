@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GenericEarthScript : TileScript {
 
+    private GameObject occupingObject;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,16 +19,28 @@ public class GenericEarthScript : TileScript {
     //since characters can move on earth, send coordinates to move back
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetIsPlayerSelected())
+        if (Input.GetMouseButtonDown(0) && (TurnControlScript.control.GetPlayerSelected() != null) && (occupingObject == null))
         {
             //need to return correct tile or coordinates, 
             //but implement A* and not just teleport player with move player script
-            TurnControlScript.control.MovePlayer(gameObject.transform.position);
+            GameObject player = TurnControlScript.control.GetPlayerSelected();
+            TurnControlScript.control.MovePlayer(gameObject);
+            occupingObject = player;
         }
     }
 
     public override bool CanPlayerMoveHere()
     {
         return true;
+    }
+
+    public bool GetOccupingObject()
+    {
+        return occupingObject;
+    }
+
+    public void SetOccupingObject(GameObject setTo)
+    {
+        occupingObject = setTo;
     }
 }

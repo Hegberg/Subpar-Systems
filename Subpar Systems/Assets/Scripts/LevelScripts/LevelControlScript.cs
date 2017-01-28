@@ -31,10 +31,12 @@ public class LevelControlScript : MonoBehaviour {
     private int[] row9 = { 0, 0, 0, 0, 0, 1 };
 
     //some reason haveing the order 0,2,4,6 makes it so the 3rd one can't be clicked, no idea why but this out of order order works fine
-    private Vector2 spawn1 = new Vector2(1.92f, 0.40f);
-    private Vector2 spawn2 = new Vector2(0.0f, 0.40f);
-    private Vector2 spawn3 = new Vector2(1.28f, 0.40f);
-    private Vector2 spawn4 = new Vector2(0.64f, 0.40f);
+    private int[] spawn1 = { 8, 0 };
+    private int[] spawn2 = { 8, 1 };
+    private int[] spawn3 = { 8, 2 };
+    private int[] spawn4 = { 8, 3 };
+
+    private List<int[]> spawnLocations = new List<int[]>();
 
     //private float tileWidth = 0.64f;
     private float tileWidth;
@@ -63,8 +65,12 @@ public class LevelControlScript : MonoBehaviour {
         map.Add(row8);
         map.Add(row9);
 
+        spawnLocations.Add(spawn1);
+        spawnLocations.Add(spawn2);
+        spawnLocations.Add(spawn3);
+        spawnLocations.Add(spawn4);
+
         CreateMap(map);
-        SpawnCharacters(spawn1, spawn2, spawn3, spawn4);
 
     }
 	
@@ -72,6 +78,11 @@ public class LevelControlScript : MonoBehaviour {
 	void Update () {
         CameraMove();
 	}
+
+    public void CheckAjacentTiles()
+    {
+        //need to implement
+    }
 
     private void CameraMove()
     {
@@ -97,42 +108,6 @@ public class LevelControlScript : MonoBehaviour {
         }
     }
 
-    //Spawns 4 characters in correct places
-    public void SpawnCharacters(Vector2 place1, Vector2 place2, Vector2 place3, Vector2 place4)
-    {
-        int selected = 0;
-        for (int i = 0; i < GameControlScript.control.GetChosen().Capacity; ++i)
-        {
-            if (GameControlScript.control.GetChosen()[i])
-            {
-                if (selected == 0)
-                {
-                    Transform character = (Transform)Instantiate(GameControlScript.control.GetCharacters()[i], place1, Quaternion.identity);
-                    character.SetParent(characterParent);
-                    selected += 1;
-                }
-                else if (selected == 1)
-                {
-                    Transform character = (Transform)Instantiate(GameControlScript.control.GetCharacters()[i], place2, Quaternion.identity);
-                    character.SetParent(characterParent);
-                    selected += 1;
-                }
-                else if (selected == 2)
-                {
-                    Transform character = (Transform)Instantiate(GameControlScript.control.GetCharacters()[i], place3, Quaternion.identity);
-                    character.SetParent(characterParent);
-                    selected += 1;
-                }
-                else if (selected == 3)
-                {
-                    Transform character = (Transform)Instantiate(GameControlScript.control.GetCharacters()[i], place4, Quaternion.identity);
-                    character.SetParent(characterParent);
-                    selected += 1;
-                }
-            }
-        }
-    }
-
     public void BroadcastRefreshActionsToCharacters()
     {
         BroadcastMessage("RefreshActions");
@@ -154,7 +129,8 @@ public class LevelControlScript : MonoBehaviour {
 
         //0 is earth, 1 is water, 2 is mountian
         //start at bottom row and build up
-        
+
+        int characterSpawning = 0;
         bool offset = false;
         for (int i = map.Count - 1; i >= 0; --i)
         {
@@ -178,15 +154,30 @@ public class LevelControlScript : MonoBehaviour {
                 fuckThomasY = ((map.Count - i) * (((tileHeight*2)/3) /2));
                 fuckThomasZ += 0.01f;
 
-                Transform tile = (Transform)Instantiate(oneTile.transform,
-                    new Vector3(fuckThomasX,
-                    fuckThomasY,
-                    fuckThomasZ),
-                    Quaternion.identity);
+                Vector3 tempVector = new Vector3(fuckThomasX, fuckThomasY, fuckThomasZ);
 
-                
-
+                Transform tile = (Transform)Instantiate(oneTile.transform,tempVector, Quaternion.identity);
                 tile.SetParent(TileParent);
+
+                //spawn character code
+                for (int k = 0; k < spawnLocations.Count; ++k)
+                {
+                    if (spawnLocations[k][0] == i && spawnLocations[k][1] == j)
+                    {
+                        tempVector.z -= 2;
+
+                        tempVector.y += (oneTile.GetComponent<Renderer>().bounds.size.y * 2)/3;
+
+                        Transform character = (Transform)Instantiate(
+                            GameControlScript.control.GetCharacters()[characterSpawning],
+                            tempVector, Quaternion.identity);
+                        character.gameObject.GetComponent<GenericCharacterScript>().SetTileOccuping(tile.gameObject);
+                        character.SetParent(characterParent);
+                        characterSpawning += 1;
+                        break;
+                    }
+                }
+
                 //set max camera postion based on map size
                 if (tile.position.x > maxCameraX)
                 {

@@ -10,7 +10,6 @@ public class TurnControlScript : MonoBehaviour {
     public Transform characterParent;
 
     private bool playerTurn = true;
-    private bool isPlayerSelected = false;
     private GameObject playerSelected;
 
     public Button endTurn;
@@ -55,13 +54,27 @@ public class TurnControlScript : MonoBehaviour {
         StartTurn();
     }
 
-    public void MovePlayer(Vector2 positionToMoveto)
+    public void MovePlayer(GameObject tileMovingTo)
     {
-        playerSelected.transform.position = positionToMoveto;
+        //get correct position (so tile placement but slightly up so goes to middle of tile)
+        Vector3 tempTile = tileMovingTo.transform.position;
+        tempTile.y += (tileMovingTo.gameObject.GetComponent<Renderer>().bounds.size.y * 2) / 3;
+
+        playerSelected.transform.position = tempTile;
+
+        //for both lines below need those scripts called to be used for walkable tiles and characters
+        //so code doesn't break if try to create and use other scripts
+
         //character moved so set move to true so they cannot move again
         playerSelected.GetComponent<GenericCharacterScript>().SetHasMoved(true);
+        //set old tile to have nothing on it
+        GameObject prevTile = playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping();
+        prevTile.GetComponent<GenericEarthScript>().SetOccupingObject(null);
+
+        //set tile occupying to correct tile
+        playerSelected.GetComponent<GenericCharacterScript>().SetTileOccuping(tileMovingTo);
+
         //player now needs to select new player
-        SetIsPlayerSelected(false);
         playerSelected = null;
     }
 
@@ -70,20 +83,14 @@ public class TurnControlScript : MonoBehaviour {
         return playerTurn;
     }
 
-    public bool GetIsPlayerSelected()
-    { 
-        return isPlayerSelected;
-    }
-
-    public void SetIsPlayerSelected(bool selected)
-    {
-        isPlayerSelected = selected;
-    }
-
     //when new player selected, set the game object and set isPlayerSelected to true since by virtue of a player being selected it is true
     public void SetPlayerSelected(GameObject selected)
     {
         playerSelected = selected;
-        SetIsPlayerSelected(true);
+    }
+
+    public GameObject GetPlayerSelected()
+    {
+        return playerSelected;
     }
 }
