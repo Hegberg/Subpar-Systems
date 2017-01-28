@@ -27,13 +27,16 @@ public class LevelControlScript : MonoBehaviour {
     private int[] row8 = {   0, 0, 0, 0, 0, 2 };
     private int[] row9 = { 0, 0, 0, 0, 0, 1 };
 
-    //some reason haveing the order 0,2,4,6 makes it so the 3rd one can't be clicked, no idea why but this out of order order works fine
+    //private int numOfRows = 9;
+
     private int[] spawn1 = { 8, 0 };
     private int[] spawn2 = { 8, 1 };
     private int[] spawn3 = { 8, 2 };
     private int[] spawn4 = { 8, 3 };
 
     private List<int[]> spawnLocations = new List<int[]>();
+
+    private List<List<GameObject>> aStarMap = new List<List<GameObject>>();
 
     //private float tileWidth = 0.64f;
     private float tileWidth;
@@ -103,6 +106,8 @@ public class LevelControlScript : MonoBehaviour {
         //0 is earth, 1 is water, 2 is mountian
         //start at bottom row and build up
 
+        List<GameObject> tempList = new List<GameObject>();
+
         int characterSpawning = 0;
         bool offset = false;
         for (int i = map.Count - 1; i >= 0; --i)
@@ -131,6 +136,8 @@ public class LevelControlScript : MonoBehaviour {
 
                 Transform tile = (Transform)Instantiate(oneTile.transform,tempVector, Quaternion.identity);
                 tile.SetParent(TileParent);
+
+                tempList.Add(tile.gameObject);
 
                 //spawn character code
                 for (int k = 0; k < spawnLocations.Count; ++k)
@@ -162,8 +169,13 @@ public class LevelControlScript : MonoBehaviour {
                 }
             }
             offset = !offset;
+
+            //fill new list
+            aStarMap.Add(tempList);
+            tempList.Clear();
         }
-        
+
+        aStarMap.Reverse();
 
         //angled generation commented out
         /*
