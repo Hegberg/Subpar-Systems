@@ -29,16 +29,6 @@ public class GenericEarthScript : TileScript {
         }
     }
 
-    public override bool CanPlayerMoveHere()
-    {
-        return true;
-    }
-
-    public bool GetOccupingObject()
-    {
-        return occupingObject;
-    }
-
     public void SetOccupingObject(GameObject setTo)
     {
         occupingObject = setTo;

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TileScript : MonoBehaviour {
 
-    private bool playerCanMoveHere;
-
 	// Use this for initialization
 	void Start () {
 		
@@ -16,18 +14,8 @@ public class TileScript : MonoBehaviour {
 		
 	}
 
-    /*
-    void OnMouseOver()
+    public void CheckAdjacentTiles()
     {
-        if(Input.GetMouseButtonDown(0) && TurnControlScript.control.GetIsPlayerSelected())
-        {
-            
-        }
-    }
-    */
 
-    public virtual bool CanPlayerMoveHere()
-    {
-        return false;
     }
 }

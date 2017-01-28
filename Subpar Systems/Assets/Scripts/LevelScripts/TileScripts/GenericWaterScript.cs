@@ -13,9 +13,4 @@ public class GenericWaterScript : TileScript {
 	void Update () {
 		
 	}
-
-    public override bool CanPlayerMoveHere()
-    {
-        return false;
-    }
 }

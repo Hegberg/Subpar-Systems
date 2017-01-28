@@ -163,7 +163,7 @@ public class LevelControlScript : MonoBehaviour {
                 for (int k = 0; k < spawnLocations.Count; ++k)
                 {
                     if (spawnLocations[k][0] == i && spawnLocations[k][1] == j)
-                    {
+                    {   
                         tempVector.z -= 2;
 
                         tempVector.y += (oneTile.GetComponent<Renderer>().bounds.size.y * 2)/3;

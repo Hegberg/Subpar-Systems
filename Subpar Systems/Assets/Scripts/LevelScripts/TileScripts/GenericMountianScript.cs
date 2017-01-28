@@ -13,9 +13,4 @@ public class GenericMountianScript : TileScript {
 	void Update () {
 		
 	}
-
-    public override bool CanPlayerMoveHere()
-    {
-        return false;
-    }
 }
