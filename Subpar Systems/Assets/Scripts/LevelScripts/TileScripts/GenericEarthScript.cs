@@ -24,11 +24,13 @@ public class GenericEarthScript : TileScript {
         {
             //need to return correct tile or coordinates, 
             //but implement A* and not just teleport player with move player script
-			AStarScript.control.findShitestPath (LevelControlScript.control.GetAStarMap(), 
-				TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
-				TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
-				tilePosition [0],
-				tilePosition [1]);
+            List<GameObject> tempList = new List<GameObject>();
+
+            tempList = AStarScript.control.findShitestPath(LevelControlScript.control.GetAStarMap(), 
+				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
+				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
+				tilePosition[0],
+				tilePosition[1]);
             GameObject player = TurnControlScript.control.GetPlayerSelected();
             TurnControlScript.control.MovePlayer(gameObject);
             occupingObject = player;
