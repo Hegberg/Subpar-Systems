@@ -42,6 +42,8 @@ public class LevelControlScript : MonoBehaviour {
     private float tileWidth;
     private float tileHeight;
 
+    private float tileHeightRatio = 2.0f;
+
     // Use this for initialization
     void Start () {
 
@@ -78,11 +80,6 @@ public class LevelControlScript : MonoBehaviour {
 	void Update () {
         
 	}
-
-    public void CheckAjacentTiles()
-    {
-        //need to implement
-    }
 
     public void BroadcastRefreshActionsToCharacters()
     {
@@ -153,7 +150,7 @@ public class LevelControlScript : MonoBehaviour {
                     {   
                         tempVector.z -= 2;
 
-                        tempVector.y += (oneTile.GetComponent<Renderer>().bounds.size.y * 2)/3;
+                        tempVector.y += (oneTile.GetComponent<Renderer>().bounds.size.y / tileHeightRatio);
 
                         Transform character = (Transform)Instantiate(
                             GameControlScript.control.GetCharacters()[characterSpawning],
@@ -238,9 +235,15 @@ public class LevelControlScript : MonoBehaviour {
     {
         return maxCameraY;
     }
-
+		
 	public List<List<GameObject>> GetAStarMap()
 	{
 		return aStarMap;
 	}
+
+    public float GetTileHeightRatio()
+    {
+        return tileHeightRatio;
+    }
+
 }

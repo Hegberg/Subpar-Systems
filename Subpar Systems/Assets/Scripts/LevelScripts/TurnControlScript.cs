@@ -58,7 +58,7 @@ public class TurnControlScript : MonoBehaviour {
     {
         //get correct position (so tile placement but slightly up so goes to middle of tile)
         Vector3 tempTile = tileMovingTo.transform.position;
-        tempTile.y += (tileMovingTo.gameObject.GetComponent<Renderer>().bounds.size.y * 2) / 3;
+        tempTile.y += (tileMovingTo.gameObject.GetComponent<Renderer>().bounds.size.y / LevelControlScript.control.GetTileHeightRatio());
 
         playerSelected.transform.position = tempTile;
 
