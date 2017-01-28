@@ -16,11 +16,6 @@ public class GenericEarthScript : TileScript {
 		
 	}
 
-    void CheckAdjacentTiles()
-    {
-
-    }
-
     //since characters can move on earth, send coordinates to move back
     void OnMouseOver()
     {
