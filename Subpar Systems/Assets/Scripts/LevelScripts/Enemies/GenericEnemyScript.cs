@@ -6,6 +6,11 @@ public class GenericEnemyScript : MonoBehaviour {
 
     private GameObject tileOccuping;
 
+    private int hp = 100;
+    private int attack = 100;
+    private int movement = 3;
+    private int range = 3;
+
     // Use this for initialization
     void Start () {
 		
@@ -15,6 +20,20 @@ public class GenericEnemyScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn() && 
+            !TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetHasAttacked())
+        {
+            hp -= TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetAttack();
+            TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().SetHasAttacked(true);
+            if (hp <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
 
     void Move()
     {

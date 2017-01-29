@@ -20,7 +20,8 @@ public class GenericEarthScript : TileScript {
     //since characters can move on earth, send coordinates to move back
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && (TurnControlScript.control.GetPlayerSelected() != null) && (occupingObject == null))
+        if (Input.GetMouseButtonDown(0) && (TurnControlScript.control.GetPlayerSelected() != null) && (occupingObject == null) &&
+            !TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetHasMoved())
         {
             //need to return correct tile or coordinates, 
             //but implement A* and not just teleport player with move player script

@@ -31,7 +31,7 @@ public class TurnControlScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
     public void EndTurn()
@@ -54,6 +54,16 @@ public class TurnControlScript : MonoBehaviour {
         StartTurn();
     }
 
+    public void HighlightTile()
+    {
+        playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+            color = new Color(playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+            color.r, playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+            color.g, playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+            color.b + 200, playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+            color.a);
+    }
+
     public void MovePlayer(GameObject tileMovingTo)
     {
         //get correct position (so tile placement but slightly up so goes to middle of tile)
@@ -73,9 +83,6 @@ public class TurnControlScript : MonoBehaviour {
 
         //set tile occupying to correct tile
         playerSelected.GetComponent<GenericCharacterScript>().SetTileOccuping(tileMovingTo);
-
-        //player now needs to select new player
-        playerSelected = null;
     }
 
     public bool GetPlayerTurn()
