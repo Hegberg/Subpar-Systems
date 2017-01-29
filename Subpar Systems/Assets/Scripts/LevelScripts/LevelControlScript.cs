@@ -17,9 +17,10 @@ public class LevelControlScript : MonoBehaviour {
     private float minCameraY = 0f;
     private float minCameraX = 0f;
 
+    /*
     private List<int[]> map = new List<int[]>();
 
-    private int[] row1 = { 2, 0, 1, 1, 1, 0 };
+    private int[] row1 = { 2, 0, 1, 1, 1, 0 , 2, 2};
     private int[] row2 = {   2, 0, 1, 1, 0, 0 };
     private int[] row3 = { 2, 0, 0, 0, 0, 2 };
     private int[] row4 = {   1, 1, 0, 0, 1, 2 };
@@ -28,7 +29,31 @@ public class LevelControlScript : MonoBehaviour {
     private int[] row7 = { 0, 0, 0, 0, 0, 1 };
     private int[] row8 = {   0, 0, 0, 0, 0, 2 };
     private int[] row9 = { 0, 0, 0, 0, 0, 1 };
+    */
 
+    private List<List<List<int>>> map = new List<List<List<int>>> {
+        new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{1,0}, new List<int>{1,0},
+            new List<int>{1,0}, new List<int>{0,0}, new List<int>{2,1}, new List<int>{2,2} },
+        new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{1,0}, new List<int>{1,0},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,2}, new List<int>{2,2} },
+        new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,1}, new List<int>{2,1} },
+        new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} },
+        new List<List<int>> {new List<int>{2,0}, new List<int>{1,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} },
+        new List<List<int>> {new List<int>{1,0}, new List<int>{1,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} },
+        new List<List<int>> {new List<int>{1,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} },
+        new List<List<int>> {new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} },
+        new List<List<int>> {new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} }
+    };
+
+    //private int[][][] map2 = { new int[][] { } };
+    
     //private int numOfRows = 9;
 
     private int[] playerSpawn1 = { 8, 0 };
@@ -67,17 +92,6 @@ public class LevelControlScript : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
-        //need to add all rows to map
-        map.Add(row1);
-        map.Add(row2);
-        map.Add(row3);
-        map.Add(row4);
-        map.Add(row5);
-        map.Add(row6);
-        map.Add(row7);
-        map.Add(row8);
-        map.Add(row9);
-
         playerSpawnLocations.Add(playerSpawn1);
         playerSpawnLocations.Add(playerSpawn2);
         playerSpawnLocations.Add(playerSpawn3);
@@ -107,7 +121,7 @@ public class LevelControlScript : MonoBehaviour {
         BroadcastMessage("RemoveActions");
     }
 
-    public void CreateMap(List<int[]> map)
+    public void CreateMap(List<List<List<int>>> map)
     {
         minCameraX = 0f;
         minCameraY = 0f;
@@ -126,11 +140,11 @@ public class LevelControlScript : MonoBehaviour {
         bool offset = false;
         for (int i = map.Count - 1; i >= 0; --i)
         {
-            for (int j = 0; j < map[i].Length; ++j)
+            for (int j = 0; j < map[i].Count; ++j)
             {
                 List<GameObject> tiles = GameControlScript.control.GetTiles();
 
-                GameObject oneTile = tiles[map[i][j]];
+                GameObject oneTile = tiles[map[i][j][0]];
 
                 tileWidth = oneTile.GetComponent<Renderer>().bounds.size.x;
                 tileHeight = oneTile.GetComponent<Renderer>().bounds.size.y;
@@ -143,7 +157,10 @@ public class LevelControlScript : MonoBehaviour {
                 {
                     fuckThomasX = (j * tileWidth) + (tileWidth / 2);
                 }
-                fuckThomasY = ((map.Count - i) * (((tileHeight*2)/3) /2));
+                //sets y to level 0 height
+                fuckThomasY = ((map.Count - i) * (tileHeight /3));
+                //put y to current level if not 0
+                fuckThomasY += ((tileHeight / 3) * map[i][j][1]);
                 fuckThomasZ += 0.01f;
 
                 Vector3 tempVector = new Vector3(fuckThomasX, fuckThomasY, fuckThomasZ);
@@ -152,7 +169,7 @@ public class LevelControlScript : MonoBehaviour {
                 tile.SetParent(TileParent);
 
 				//Check to see if it is an earth tile if it is add it to set tile location
-				if (map[i][j] == 0) {
+				if (map[i][j][0] == 0) {
 					List<int> tempTilePosition = new List<int> ();
 					tempTilePosition.Add (i);
 					tempTilePosition.Add (j);
@@ -165,7 +182,7 @@ public class LevelControlScript : MonoBehaviour {
                 {
                     if (playerSpawnLocations[k][0] == i && playerSpawnLocations[k][1] == j)
                     {   
-                        tempVector.z -= 2;
+                        //tempVector.z -= 2;
 
                         tempVector.y += (oneTile.GetComponent<Renderer>().bounds.size.y / tileHeightRatio);
 
@@ -196,7 +213,7 @@ public class LevelControlScript : MonoBehaviour {
                 {
                     if (enemySpawnLocations[k][0] == i && enemySpawnLocations[k][1] == j)
                     {
-                        tempVector.z -= 2;
+                        tempVector.z -= 0.01f;
 
                         tempVector.y += (oneTile.GetComponent<Renderer>().bounds.size.y / (2 * tileHeightRatio));
 
