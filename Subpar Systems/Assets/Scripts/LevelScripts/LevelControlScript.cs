@@ -172,11 +172,12 @@ public class LevelControlScript : MonoBehaviour {
                         //determine character to spawn
                         for(int l = characterSpawning; l < charactersChosen.Count; ++l)
                         {
+                            //Debug.Log(charactersChosen[l]);
                             if (charactersChosen[l])
                             {
                                 characterSpawning = l;
+                                break;
                             }
-                            break;
                         }
 
                         Transform character = (Transform)Instantiate(
