@@ -11,6 +11,7 @@ public class TurnControlScript : MonoBehaviour {
 
     private bool playerTurn = true;
     private GameObject playerSelected;
+    private GameObject enemySelected;
 
     public Button endTurn;
 
@@ -37,6 +38,8 @@ public class TurnControlScript : MonoBehaviour {
     public void EndTurn()
     {
         StartCoroutine(RevertTurn());
+        UnHighlightPlayerTile();
+        playerSelected = null;
         Debug.Log("Player Turn Ended");
         LevelControlScript.control.BroadcastRemoveActionsToCharacters();
     }
@@ -54,14 +57,40 @@ public class TurnControlScript : MonoBehaviour {
         StartTurn();
     }
 
-    public void HighlightTile()
+    public void HighlightPlayerTile()
     {
-        playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
-            color = new Color(playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
-            color.r, playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
-            color.g, playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
-            color.b + 200, playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
-            color.a);
+        if (playerSelected != null)
+        {
+            playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+                material.color = Color.blue;
+        }
+    }
+
+    public void UnHighlightPlayerTile()
+    {
+        if (playerSelected != null)
+        {
+            playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+                material.color = Color.white;
+        }
+    }
+
+    public void HighlightEnemyTile()
+    {
+        if (enemySelected != null)
+        {
+            enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+                material.color = Color.red;
+        }
+    }
+
+    public void UnHighlightEnemyTile()
+    {
+        if (enemySelected != null)
+        {
+            enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+                material.color = Color.white;
+        }
     }
 
     public void MovePlayer(GameObject tileMovingTo)
@@ -79,10 +108,12 @@ public class TurnControlScript : MonoBehaviour {
         playerSelected.GetComponent<GenericCharacterScript>().SetHasMoved(true);
         //set old tile to have nothing on it
         GameObject prevTile = playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping();
+        UnHighlightPlayerTile();
         prevTile.GetComponent<GenericEarthScript>().SetOccupingObject(null);
 
         //set tile occupying to correct tile
         playerSelected.GetComponent<GenericCharacterScript>().SetTileOccuping(tileMovingTo);
+        HighlightPlayerTile();
     }
 
     public bool GetPlayerTurn()
@@ -93,11 +124,42 @@ public class TurnControlScript : MonoBehaviour {
     //when new player selected, set the game object and set isPlayerSelected to true since by virtue of a player being selected it is true
     public void SetPlayerSelected(GameObject selected)
     {
+        if (playerSelected != null)
+        {
+            UnHighlightPlayerTile();
+        }
         playerSelected = selected;
+        if (enemySelected != null)
+        {
+            enemySelected.GetComponent<GenericEnemyScript>().SetIsSelected(false);
+        }
+        SetEnemySelected(null);
+        if (playerSelected != null)
+        {
+            HighlightPlayerTile();
+        }
     }
 
     public GameObject GetPlayerSelected()
     {
         return playerSelected;
+    }
+
+    public void SetEnemySelected(GameObject selected)
+    {
+        if (enemySelected != null)
+        {
+            UnHighlightEnemyTile();
+        }
+        enemySelected = selected;
+        if (enemySelected != null)
+        {
+            HighlightEnemyTile();
+        }
+    }
+
+    public GameObject GetEnemySelected()
+    {
+        return enemySelected;
     }
 }

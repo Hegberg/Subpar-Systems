@@ -30,7 +30,6 @@ public class GenericCharacterScript : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn())
         {
             TurnControlScript.control.SetPlayerSelected(this.gameObject);
-            TurnControlScript.control.HighlightTile();
         }
     }
 
