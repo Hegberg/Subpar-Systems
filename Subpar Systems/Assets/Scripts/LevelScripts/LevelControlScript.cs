@@ -10,6 +10,8 @@ public class LevelControlScript : MonoBehaviour {
 
     public Transform characterParent;
 
+    public Transform enemyParent;
+
     private float maxCameraY = 0f;
     private float maxCameraX = 0f;
     private float minCameraY = 0f;
@@ -29,12 +31,21 @@ public class LevelControlScript : MonoBehaviour {
 
     //private int numOfRows = 9;
 
-    private int[] spawn1 = { 8, 0 };
-    private int[] spawn2 = { 8, 1 };
-    private int[] spawn3 = { 8, 2 };
-    private int[] spawn4 = { 8, 3 };
+    private int[] playerSpawn1 = { 8, 0 };
+    private int[] playerSpawn2 = { 8, 1 };
+    private int[] playerSpawn3 = { 8, 2 };
+    private int[] playerSpawn4 = { 8, 3 };
 
-    private List<int[]> spawnLocations = new List<int[]>();
+    private List<int[]> playerSpawnLocations = new List<int[]>();
+
+
+    //x, y, enemy type
+    private int[] enemySpawn1 = { 0, 5 , 0 };
+    private int[] enemySpawn2 = { 1, 4 , 0 };
+    private int[] enemySpawn3 = { 1, 5 , 0 };
+    private int[] enemySpawn4 = { 2, 4 , 0 };
+
+    private List<int[]> enemySpawnLocations = new List<int[]>();
 
     private List<List<GameObject>> aStarMap = new List<List<GameObject>>();
 
@@ -67,10 +78,15 @@ public class LevelControlScript : MonoBehaviour {
         map.Add(row8);
         map.Add(row9);
 
-        spawnLocations.Add(spawn1);
-        spawnLocations.Add(spawn2);
-        spawnLocations.Add(spawn3);
-        spawnLocations.Add(spawn4);
+        playerSpawnLocations.Add(playerSpawn1);
+        playerSpawnLocations.Add(playerSpawn2);
+        playerSpawnLocations.Add(playerSpawn3);
+        playerSpawnLocations.Add(playerSpawn4);
+
+        enemySpawnLocations.Add(enemySpawn1);
+        enemySpawnLocations.Add(enemySpawn2);
+        enemySpawnLocations.Add(enemySpawn3);
+        enemySpawnLocations.Add(enemySpawn4);
 
         CreateMap(map);
 
@@ -105,6 +121,7 @@ public class LevelControlScript : MonoBehaviour {
 
         List<GameObject> tempList = new List<GameObject>();
 
+        List<bool> charactersChosen = GameControlScript.control.GetChosen();
         int characterSpawning = 0;
         bool offset = false;
         for (int i = map.Count - 1; i >= 0; --i)
@@ -139,25 +156,55 @@ public class LevelControlScript : MonoBehaviour {
 					List<int> tempTilePosition = new List<int> ();
 					tempTilePosition.Add (i);
 					tempTilePosition.Add (j);
-					tile.gameObject.GetComponent<GenericEarthScript> ().SetTilePosition (tempTilePosition);
+					tile.gameObject.GetComponent<GenericEarthScript>().SetTilePosition(tempTilePosition);
 				}
                 tempList.Add(tile.gameObject);
 
                 //spawn character code
-                for (int k = 0; k < spawnLocations.Count; ++k)
+                for (int k = 0; k < playerSpawnLocations.Count; ++k)
                 {
-                    if (spawnLocations[k][0] == i && spawnLocations[k][1] == j)
+                    if (playerSpawnLocations[k][0] == i && playerSpawnLocations[k][1] == j)
                     {   
                         tempVector.z -= 2;
 
                         tempVector.y += (oneTile.GetComponent<Renderer>().bounds.size.y / tileHeightRatio);
 
+                        //determine character to spawn
+                        for(int l = characterSpawning; l < charactersChosen.Count; ++l)
+                        {
+                            if (charactersChosen[l])
+                            {
+                                characterSpawning = l;
+                            }
+                            break;
+                        }
+
                         Transform character = (Transform)Instantiate(
                             GameControlScript.control.GetCharacters()[characterSpawning],
                             tempVector, Quaternion.identity);
                         character.gameObject.GetComponent<GenericCharacterScript>().SetTileOccuping(tile.gameObject);
+                        tile.gameObject.GetComponent<GenericEarthScript>().SetOccupingObject(character.gameObject);
                         character.SetParent(characterParent);
                         characterSpawning += 1;
+                        break;
+                    }
+                }
+
+                //spawn enemy code
+                for (int k = 0; k < enemySpawnLocations.Count; ++k)
+                {
+                    if (enemySpawnLocations[k][0] == i && enemySpawnLocations[k][1] == j)
+                    {
+                        tempVector.z -= 2;
+
+                        tempVector.y += (oneTile.GetComponent<Renderer>().bounds.size.y / (2 * tileHeightRatio));
+
+                        Transform enemy = (Transform)Instantiate(
+                            GameControlScript.control.GetEnemies()[enemySpawnLocations[k][2]].transform,
+                            tempVector, Quaternion.identity);
+                        enemy.gameObject.GetComponent<GenericEnemyScript>().SetTileOccuping(tile.gameObject);
+                        tile.gameObject.GetComponent<GenericEarthScript>().SetOccupingObject(enemy.gameObject);
+                        enemy.SetParent(enemyParent);
                         break;
                     }
                 }

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GenericEnemyScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    private GameObject tileOccuping;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -22,5 +24,15 @@ public class GenericEnemyScript : MonoBehaviour {
     void Attack()
     {
 
+    }
+
+    public GameObject GetTileOccuping()
+    {
+        return tileOccuping;
+    }
+
+    public void SetTileOccuping(GameObject setTo)
+    {
+        tileOccuping = setTo;
     }
 }
