@@ -39,6 +39,7 @@ public class TurnControlScript : MonoBehaviour {
     {
         StartCoroutine(RevertTurn());
         UnHighlightPlayerTile();
+        UnHighlightEnemyTile();
         playerSelected = null;
         Debug.Log("Player Turn Ended");
         LevelControlScript.control.BroadcastRemoveActionsToCharacters();

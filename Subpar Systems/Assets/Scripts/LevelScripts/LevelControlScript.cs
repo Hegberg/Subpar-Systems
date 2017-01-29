@@ -33,13 +33,13 @@ public class LevelControlScript : MonoBehaviour {
 
     private List<List<List<int>>> map = new List<List<List<int>>> {
         new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{1,0}, new List<int>{1,0},
-            new List<int>{1,0}, new List<int>{0,0}, new List<int>{2,1}, new List<int>{2,2} },
+            new List<int>{1,0}, new List<int>{0,1}, new List<int>{2,1}, new List<int>{2,2} },
         new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{1,0}, new List<int>{1,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,2}, new List<int>{2,2} },
+            new List<int>{0,1}, new List<int>{0,2}, new List<int>{2,2}, new List<int>{2,2} },
         new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,1}, new List<int>{2,1} },
+            new List<int>{0,1}, new List<int>{0,2}, new List<int>{2,2}, new List<int>{2,1} },
         new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} },
+            new List<int>{0,1}, new List<int>{0,1}, new List<int>{2,1}, new List<int>{2,0} },
         new List<List<int>> {new List<int>{2,0}, new List<int>{1,0}, new List<int>{0,0}, new List<int>{0,0},
             new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} },
         new List<List<int>> {new List<int>{1,0}, new List<int>{1,0}, new List<int>{0,0}, new List<int>{0,0},
@@ -182,7 +182,7 @@ public class LevelControlScript : MonoBehaviour {
                 {
                     if (playerSpawnLocations[k][0] == i && playerSpawnLocations[k][1] == j)
                     {   
-                        //tempVector.z -= 2;
+                        tempVector.z -= 0.01f;
 
                         tempVector.y += (oneTile.GetComponent<Renderer>().bounds.size.y / tileHeightRatio);
 
