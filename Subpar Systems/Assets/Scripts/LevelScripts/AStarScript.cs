@@ -93,7 +93,7 @@ public class AStarScript : MonoBehaviour {
 		List<int> currentNode = new List<int> ();
 		List<int> neighborNode = new List<int> ();
 		int lowestFScore;
-		while(!openSet.Count == 0)
+		while(!(openSet.Count == 0))
 		{
 			//Clear the current node
 			currentNode.Clear();
@@ -137,11 +137,11 @@ public class AStarScript : MonoBehaviour {
 
 						//INSERT SOMETHING ABOUT GENERATION COUNTER
 
-						int tentativeGScore = gScore [currentNode] + ReturnCostTile(ReturnDirection, currentNodeRow, currentNodeIndex, goalRow, gIndex);
+						int tentativeGScore = gScore [currentNode] + ReturnCostTile(ReturnDirection(currentNodeRow, currentNodeIndex, goalRow, gIndex));
 
 						//Add the neighbor to the openset if it not there
 						//Also check to see if the tentativeGScore is less than the one current stored for neighbor
-						if (!openSet.Find(neighborNode)) {
+						if (!openSet.Contains(neighborNode)) {
 							openSet.Add (neighborNode);
 						} 
 						else if (tentativeGScore >= gScore [neighborNode]) 
@@ -189,7 +189,8 @@ public class AStarScript : MonoBehaviour {
 		}//end for loop
 
 		//Return back the proper order
-		return finalPath.Reverse;
+		finalPath.Reverse();
+		return finalPath;
 
 	}//end ReconstructPath
 

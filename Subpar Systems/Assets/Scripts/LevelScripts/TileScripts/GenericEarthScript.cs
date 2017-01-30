@@ -24,7 +24,7 @@ public class GenericEarthScript : TileScript {
         {
             //need to return correct tile or coordinates, 
             //but implement A* and not just teleport player with move player script
-            List<GameObject> tempList = new List<GameObject>();
+			List<List<int>> tempList = new List<List<int>>();
 
             tempList = AStarScript.control.findShitestPath(LevelControlScript.control.GetAStarMap(), 
 				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
