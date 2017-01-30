@@ -124,9 +124,9 @@ public class AStarScript : MonoBehaviour {
 			int currentNodeIndex = currentNode [1];
 
 			//Iterate through all the surrounding nodes
-			for (int gRow = currentNodeRow - 1; i < currentNodeRow + 2; ++gRow) 
+			for (int gRow = currentNodeRow - 1; gRow < currentNodeRow + 2; ++gRow) 
 			{
-				for (int gIndex = currentNodeIndex - 1; j < currentNodeIndex + 2; ++gIndex) 
+				for (int gIndex = currentNodeIndex - 1; gIndex < currentNodeIndex + 2; ++gIndex) 
 				{
 					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex)) 
 					{
@@ -137,11 +137,11 @@ public class AStarScript : MonoBehaviour {
 
 						//INSERT SOMETHING ABOUT GENERATION COUNTER
 
-						int tentativeGScore = gScore [currentNode] + ReturnCostTile (ReturnDirection, currentNodeRow, currentNodeIndex, goalRow, gIndex);
+						int tentativeGScore = gScore [currentNode] + ReturnCostTile(ReturnDirection, currentNodeRow, currentNodeIndex, goalRow, gIndex);
 
 						//Add the neighbor to the openset if it not there
 						//Also check to see if the tentativeGScore is less than the one current stored for neighbor
-						if (!openSet.Find (neighborNode)) {
+						if (!openSet.Find(neighborNode)) {
 							openSet.Add (neighborNode);
 						} 
 						else if (tentativeGScore >= gScore [neighborNode]) 
@@ -166,7 +166,7 @@ public class AStarScript : MonoBehaviour {
 		}//end while loop
 
 		//We should never get HERE. LIKE EVER
-		return 0;
+		return null;
 	}
 
 	//Parse through the cameFromList and returns a single path
@@ -189,7 +189,7 @@ public class AStarScript : MonoBehaviour {
 		}//end for loop
 
 		//Return back the proper order
-		return finalPath.Reverse ();
+		return finalPath.Reverse;
 
 	}//end ReconstructPath
 
@@ -203,11 +203,11 @@ public class AStarScript : MonoBehaviour {
 		int cardinalCost = 2;
 
 		//Calculate an arbitrary cost value
-		float min = Mathf.Min (Mathf.Abs (originRow - goalRow), Mathf.Abs (originIndex - goalIndex));
-		float max = Mathf.Max (Mathf.Abs (originRow - goalRow), Mathf.Abs (originIndex - goalIndex));
+		int min = Mathf.Min (Mathf.Abs (originRow - goalRow), Mathf.Abs (originIndex - goalIndex));
+		int max = Mathf.Max (Mathf.Abs (originRow - goalRow), Mathf.Abs (originIndex - goalIndex));
 
 		//Current return cost is arbitary
-		return ((min*diagonalCost) + ((max-min)*cardinalCost));
+		return (int)((min*diagonalCost) + ((max-min)*cardinalCost));
 	}
 
 	//Check can I move from this tile to the next
