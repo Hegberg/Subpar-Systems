@@ -89,6 +89,11 @@ public class AStarScript : MonoBehaviour {
 		//Insert the starting node 
 		openSet.Add(startPosition);
 
+		List<int> debugOpenSet = new List<int> ();
+		debugOpenSet = openSet [0];
+		Debug.Log ("GOT HERE " + debugOpenSet [0] + debugOpenSet [1]);
+		Debug.Log ("OpenSet containing values: " + openSet.ToString());
+
 		//Visit the nodes in openSet
 		List<int> currentNode = new List<int> ();
 		List<int> neighborNode = new List<int> ();
@@ -105,7 +110,7 @@ public class AStarScript : MonoBehaviour {
 				if(fScore[openSet[i]] < lowestFScore)
 				{
 					lowestFScore = fScore[openSet[i]];
-					currentNode = openSet [i];
+					currentNode = openSet[i];
 				}
 			}//end for loop
 
@@ -120,8 +125,10 @@ public class AStarScript : MonoBehaviour {
 			openSet.Remove(currentNode);
 			//INSERT SOMETHING ABOUT GENERATION COUNTER
 
-			int currentNodeRow = currentNode [0];
-			int currentNodeIndex = currentNode [1];
+			Debug.Log ("Current Node: " + currentNode);
+
+			int currentNodeRow = currentNode[0];
+			int currentNodeIndex = currentNode[1];
 
 			//Iterate through all the surrounding nodes
 			for (int gRow = currentNodeRow - 1; gRow < currentNodeRow + 2; ++gRow) 
