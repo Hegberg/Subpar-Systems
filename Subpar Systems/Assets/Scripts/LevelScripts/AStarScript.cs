@@ -51,7 +51,7 @@ public class AStarScript : MonoBehaviour {
 		maxIndex = map [0].Count;
 
 		List<List<int>> openSet = new List<List<int>> ();
-		Dictionary<List<int>, List<int>> cameFromSet =  new Dictionary<List<int>, int>();
+		Dictionary<List<int>, List<int>> cameFromSet =  new Dictionary<List<int>, List<int>>();
 
 		//Init Starting and goal position
 		List<int> startPosition = new List<int> ();
@@ -112,6 +112,7 @@ public class AStarScript : MonoBehaviour {
 			//Found the goal
 			if (currentNode.Equals (goalPosition)) 
 			{
+				//Return the path back
 				return ReconstructPath (cameFromSet, currentNode);
 			}
 
@@ -196,6 +197,8 @@ public class AStarScript : MonoBehaviour {
 	private int CalculateHeuristicCost(int originRow, int originIndex, int goalRow, int goalIndex)
 	{
 		//There are temp values for cost matrix
+		//This would get replaced later by a more realistic one 
+
 		int diagonalCost = 4;
 		int cardinalCost = 2;
 
@@ -255,6 +258,7 @@ public class AStarScript : MonoBehaviour {
 	private int ReturnCostTile(int tileCost)
 	{
 		//INSERT CODE FOR REAL COST
+		//Most likely going to be terrain cost 
 		return tileCost;
 	}
 
