@@ -127,7 +127,6 @@ public class AStarScript : MonoBehaviour {
 
 		//Visit the nodes in openSet
 		List<int> currentNode = new List<int> ();
-		List<int> neighborNode = new List<int> ();
 		int lowestFScore;
 
 		//============TESTED TO THIS POINT 4.0 WORK=====================//
@@ -198,16 +197,29 @@ public class AStarScript : MonoBehaviour {
 			{
 				for (int gIndex = currentNodeIndex - 1; gIndex < currentNodeIndex + 2; ++gIndex) 
 				{
+					//============TESTED TO THIS POINT 7.0 WORKS=====================//
+					//Debug.Log("Tested at 7.0");
+					//Debug.Log ("Current node values: " + currentNodeRow + "," + currentNodeIndex);
+					//Debug.Log ("Current node Row min and max: " + (currentNodeRow - 1) + ","+ (currentNodeRow + 1));
+					//Debug.Log ("Current node Index min and max: " + (currentNodeIndex - 1) + ","+ (currentNodeIndex + 1));
+					//return null;
+
 					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex)) 
 					{
 						//Add the new neighbor
-						neighborNode.Clear ();
+						List<int> neighborNode = new List<int> ();
 						neighborNode.Add (gRow);
 						neighborNode.Add (gIndex);
 
 						//INSERT SOMETHING ABOUT GENERATION COUNTER
 
-						int tentativeGScore = gScore [currentNode] + ReturnCostTile(ReturnDirection(currentNodeRow, currentNodeIndex, goalRow, gIndex));
+						int tentativeGScore = gScore[currentNode] + ReturnCostTile(ReturnDirection(currentNodeRow, currentNodeIndex, goalRow, gIndex));
+
+						//============TESTED TO THIS POINT 8.0 WORKS=====================//
+						Debug.Log("Tested at 8.0");
+						Debug.Log ("NeighborNode Row and Index: " + neighborNode[0] + "," + neighborNode[1]);
+						Debug.Log ("TentativeGScore: " + tentativeGScore);
+						return null;
 
 						//Add the neighbor to the openset if it not there
 						//Also check to see if the tentativeGScore is less than the one current stored for neighbor
@@ -277,8 +289,9 @@ public class AStarScript : MonoBehaviour {
 	//Calculate an arbitary HeuristicCost that is basically Eucliden distance
 	private int CalculateHeuristicCost(int originRow, int originIndex, int goalRow, int goalIndex)
 	{
-		//There are temp values for cost matrix
+		//There are temp values/equation for cost matrix
 		//This would get replaced later by tile movement cost or something
+		//Might just use the highest tile movement cost??
 		int diagonalCost = 4;
 		int cardinalCost = 2;
 
@@ -338,7 +351,7 @@ public class AStarScript : MonoBehaviour {
 	{
 		//INSERT CODE FOR REAL COST
 		//Most likely going to be terrain cost 
-		return tileCost;
+		return 1;
 	}
 
 	/*
