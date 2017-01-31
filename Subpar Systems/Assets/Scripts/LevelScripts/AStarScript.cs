@@ -39,6 +39,9 @@ public class AStarScript : MonoBehaviour {
 		//Debug.Log (goalIndex);
 		Debug.Log("Return direction: " + ReturnDirection (originRow, originIndex, goalRow, goalIndex));
 
+		//============TESTED TO THIS POINT 1.0 WORKS=====================//
+		//Debug.Log("Tested at 1.0");
+		//return null;
 
 		//Initialize variables for gScore, fScore, starting position, goal position
 		//For dictionary the List => the row/index number of the tile
@@ -65,24 +68,38 @@ public class AStarScript : MonoBehaviour {
 
 		//INSERT SOMETHING ABOUT GENERATION COUNTER
 
+
+
+		//============TESTED TO THIS POINT 2.0 WORKS=====================//
+		//Debug.Log("Tested at 2.0");
+		//Debug.Log ("map.Count: " + map.Count);
+		//Debug.Log ("map[0].Count: " + map [0].Count);
+		//return null;
+
+
 		//Init all values of gScore/fScore to infinity
 		// i = Row
 		// j = Index
-		List<int> tempTilePosition = new List<int> ();
 		for (int i = 0; i < map.Count; ++i)
 		{
-			for (int j = 0; i < map[i].Count; ++j) 
+			for (int j = 0; j < map[i].Count; ++j) 
 			{
-				//Clear the old values
-				tempTilePosition.Clear ();
+				List<int> tempTilePosition = new List<int> ();
 				//Add the new row and index
-				tempTilePosition.Add (i);
-				tempTilePosition.Add (j);
+				tempTilePosition.Add(i);
+				tempTilePosition.Add(j);
 
 				gScore [tempTilePosition] = int.MaxValue;
 				fScore [tempTilePosition] = int.MaxValue;
+
+				//Debug.Log ("gScore, fscore at i,j = " + i + "," + j + "," + gScore [tempTilePosition] + "," + fScore[tempTilePosition]);
 			}//end inner for loop
+
 		}//end for loop
+
+		//============TESTED TO THIS POINT 3.0 WORK=====================//
+		//Debug.Log("Tested at 3.0");
+		//return null;
 
 		//Init start node
 		gScore[startPosition] = 0;
@@ -113,7 +130,7 @@ public class AStarScript : MonoBehaviour {
 		List<int> neighborNode = new List<int> ();
 		int lowestFScore;
 
-
+		//Did not get here.
 		Debug.Log("Got to before the while loop!");
 		return null;
 
