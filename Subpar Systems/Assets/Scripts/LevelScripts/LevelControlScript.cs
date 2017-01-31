@@ -133,13 +133,13 @@ public class LevelControlScript : MonoBehaviour {
         //0 is earth, 1 is water, 2 is mountian
         //start at bottom row and build up
 
-        List<GameObject> tempList = new List<GameObject>();
-
         List<bool> charactersChosen = GameControlScript.control.GetChosen();
         int characterSpawning = 0;
         bool offset = false;
         for (int i = map.Count - 1; i >= 0; --i)
         {
+            aStarMap.Add(new List<GameObject> { });
+
             for (int j = 0; j < map[i].Count; ++j)
             {
                 List<GameObject> tiles = GameControlScript.control.GetTiles();
@@ -168,14 +168,15 @@ public class LevelControlScript : MonoBehaviour {
                 Transform tile = (Transform)Instantiate(oneTile.transform,tempVector, Quaternion.identity);
                 tile.SetParent(TileParent);
 
-				//Check to see if it is an earth tile if it is add it to set tile location
+				//Check to see if it is an earth tile if it is give it it's current tile position
 				if (map[i][j][0] == 0) {
 					List<int> tempTilePosition = new List<int> ();
 					tempTilePosition.Add (i);
 					tempTilePosition.Add (j);
 					tile.gameObject.GetComponent<GenericEarthScript>().SetTilePosition(tempTilePosition);
 				}
-                tempList.Add(tile.gameObject);
+                //Debug.Log("test : " + (map.Count - i - 1));
+                aStarMap[map.Count - i - 1].Add(tile.gameObject);
 
                 //spawn character code
                 for (int k = 0; k < playerSpawnLocations.Count; ++k)
@@ -240,11 +241,23 @@ public class LevelControlScript : MonoBehaviour {
             offset = !offset;
 
             //fill new list
-            aStarMap.Add(tempList);
-            tempList.Clear();
+        }
+
+        Debug.Log(aStarMap.Count);
+
+        for (int i = 0; i < aStarMap.Count; ++i)
+        {
+            Debug.Log("Count of i " + aStarMap[i].Count);
         }
 
         aStarMap.Reverse();
+
+        /*
+        for (int i = 0; i < aStarMap.Count; ++i)
+        {
+            Debug.Log("Count of i " + aStarMap[i].Count);
+        }
+        */
 
         //angled generation commented out
         /*
