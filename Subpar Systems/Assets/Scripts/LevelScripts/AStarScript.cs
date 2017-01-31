@@ -137,7 +137,7 @@ public class AStarScript : MonoBehaviour {
 			openSet.Remove(currentNode);
 			//INSERT SOMETHING ABOUT GENERATION COUNTER
 
-			Debug.Log ("Current Node: " + currentNode[0] + currentNode[1]);
+			Debug.Log ("Current Node in OpenSet: " + currentNode[0] + ","+ currentNode[1]);
 
 			int currentNodeRow = currentNode[0];
 			int currentNodeIndex = currentNode[1];
@@ -161,6 +161,8 @@ public class AStarScript : MonoBehaviour {
 						//Add the neighbor to the openset if it not there
 						//Also check to see if the tentativeGScore is less than the one current stored for neighbor
 						if (!openSet.Contains(neighborNode)) {
+							//So I am adding the correct neighborNodes
+							Debug.Log ("I have added: " + neighborNode [0] + "," + neighborNode [1]);
 							openSet.Add (neighborNode);
 						} 
 						else if (tentativeGScore >= gScore [neighborNode]) 
