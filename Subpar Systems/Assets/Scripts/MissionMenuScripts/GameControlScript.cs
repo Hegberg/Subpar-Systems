@@ -24,6 +24,10 @@ public class GameControlScript : MonoBehaviour {
     public Transform water;
     public Transform mountian;
 
+    public static List<GameObject> enemies = new List<GameObject>();
+
+    public Transform slime;
+
     private int maxCharacters = 4;
     private int selectedCharacters = 0;
 
@@ -54,6 +58,9 @@ public class GameControlScript : MonoBehaviour {
         tiles.Add(earth.gameObject);
         tiles.Add(water.gameObject);
         tiles.Add(mountian.gameObject);
+
+        //add enemy prefabs
+        enemies.Add(slime.gameObject);
 
         for (int i = 0; i < characters.Capacity; ++i)
         {
@@ -114,18 +121,6 @@ public class GameControlScript : MonoBehaviour {
         return tiles;
     }
 
-    /*
-    public float GetTileWidth()
-    {
-        return tileWidth;
-    }
-
-    public float GetTileHeight()
-    {
-        return tileHeight;
-    }
-    */
-
     public List<bool> GetChosen()
     {
         return chosen;
@@ -134,5 +129,10 @@ public class GameControlScript : MonoBehaviour {
     public List<Object> GetCharacters()
     {
         return characters;
+    }
+
+    public List<GameObject> GetEnemies()
+    {
+        return enemies;
     }
 }

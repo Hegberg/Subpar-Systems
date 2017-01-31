@@ -9,6 +9,11 @@ public class GenericCharacterScript : MonoBehaviour {
 
     private GameObject tileOccuping;
 
+    private int hp = 100;
+    private int attack = 100;
+    private int movement = 3;
+    private int range = 3;
+
     // Use this for initialization
     void Start () {
 		
@@ -22,7 +27,7 @@ public class GenericCharacterScript : MonoBehaviour {
     void OnMouseOver()
     {
         //if player clicked on and it's players turn, and this hasn't moved this turn, then do this
-        if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn() && !hasMoved)
+        if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn())
         {
             TurnControlScript.control.SetPlayerSelected(this.gameObject);
         }
@@ -43,6 +48,36 @@ public class GenericCharacterScript : MonoBehaviour {
     public void SetHasMoved(bool moved)
     {
         hasMoved = moved;
+    }
+
+    public void SetHasAttacked(bool attacked)
+    {
+        hasAttacked = attacked;
+    }
+
+    public bool GetHasMoved()
+    {
+        return hasMoved;
+    }
+
+    public bool GetHasAttacked()
+    {
+        return hasAttacked;
+    }
+
+    public int GetAttack()
+    {
+        return attack;
+    }
+
+    public int GetHP()
+    {
+        return hp;
+    }
+
+    public void SetHP(int hpChangedTo)
+    {
+        hp = hpChangedTo;
     }
 
     public GameObject GetTileOccuping()
