@@ -33,13 +33,11 @@ public class AStarScript : MonoBehaviour {
 	*/
 	public List<List<int>> findShitestPath(List<List<GameObject>> map, int originRow, int originIndex, int goalRow, int goalIndex)
 	{
-		Debug.Log ("Testing Return Direction");
-		Debug.Log (originRow + " " + originIndex);
+		Debug.Log ("Original Row and Index: " + originRow + " " + originIndex);
 		//Debug.Log (originIndex);
-		Debug.Log (goalRow + " " +  goalIndex);
+		Debug.Log ("Goal Row and Index: " + goalRow + " " +  goalIndex);
 		//Debug.Log (goalIndex);
-		Debug.Log ("The end of the Stats");
-		Debug.Log(ReturnDirection (originRow, originIndex, goalRow, goalIndex));
+		Debug.Log("Return direction: " + ReturnDirection (originRow, originIndex, goalRow, goalIndex));
 
 
 		//Initialize variables for gScore, fScore, starting position, goal position
@@ -47,10 +45,12 @@ public class AStarScript : MonoBehaviour {
 		var gScore = new Dictionary<List<int>, int>();
 		var fScore = new Dictionary<List<int>, int>();
 
+		//Currently the maxIndex return 0...
 		maxRow = map.Count;
 		maxIndex = map[0].Count;
 
-		Debug.Log ("The MaxRow = " + map.FindIndex() + " The maxIndex = " + map[0].FindIndex());
+		//Debug.Log ("The MaxRow = " + map.FindIndex() + " The maxIndex = " + map[0].FindIndex());
+		Debug.Log ("The MaxRow = " + map.Count + " The maxIndex = " + map[1].Count);
 
 		List<List<int>> openSet = new List<List<int>> ();
 		Dictionary<List<int>, List<int>> cameFromSet =  new Dictionary<List<int>, List<int>>();
@@ -119,6 +119,7 @@ public class AStarScript : MonoBehaviour {
 
 			//Find the lowest fScore in the opensEt
 			lowestFScore = int.MaxValue;
+			Debug.Log ("=====Start fScore Debug======");
 			for (int i = 0; i < openSet.Count; ++i) 
 			{
 				for (int k = 0; k < openSet.Count; ++k) {
@@ -131,9 +132,10 @@ public class AStarScript : MonoBehaviour {
 				{
 					lowestFScore = fScore[openSet[i]];
 					currentNode = openSet[i];
-					Debug.Log ("What became the current node: " + currentNode [0] + "," + currentNode [1]);
+					Debug.Log ("What got selected as current node: " + currentNode [0] + "," + currentNode [1]);
 				}
-			}//end for loop
+			}//end for loop fScore
+			Debug.Log ("=====End fScore Debug======");
 
 			//Found the goal
 			if (currentNode[0] == goalPosition[0] && currentNode[1] == goalPosition[1]) 
@@ -233,8 +235,7 @@ public class AStarScript : MonoBehaviour {
 	private int CalculateHeuristicCost(int originRow, int originIndex, int goalRow, int goalIndex)
 	{
 		//There are temp values for cost matrix
-		//This would get replaced later by a more realistic one 
-
+		//This would get replaced later by tile movement cost or something
 		int diagonalCost = 4;
 		int cardinalCost = 2;
 
@@ -249,7 +250,7 @@ public class AStarScript : MonoBehaviour {
 	//Check can I move from this tile to the next
 	private bool CanGetNext(int originRow, int originIndex, int goalRow, int goalIndex)
 	{
-
+		//Check all the various things to ensure it can get to next location
 		if (!CheckBound(goalRow,goalIndex) 
 			|| !CheckOneTileAway(originRow,originIndex,goalRow,goalIndex) 
 			|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex)) {

@@ -175,7 +175,7 @@ public class LevelControlScript : MonoBehaviour {
             offset = !offset;
 
             //fill new list
-            aStarMap.Add(tempList);
+			aStarMap.Add(tempList);
             tempList.Clear();
         }
 
