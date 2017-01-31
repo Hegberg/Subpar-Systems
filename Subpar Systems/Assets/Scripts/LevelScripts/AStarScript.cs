@@ -180,16 +180,18 @@ public class AStarScript : MonoBehaviour {
 
 			//Pop the currentNode from openSet
 			openSet.Remove(currentNode);
-			//INSERT SOMETHING ABOUT GENERATION COUNTER
 
-			Debug.Log ("Current Node in OpenSet: " + currentNode[0] + ","+ currentNode[1]);
+			//INSERT SOMETHING ABOUT GENERATION COUNTER
 
 			int currentNodeRow = currentNode[0];
 			int currentNodeIndex = currentNode[1];
 
-			//Does not get here
-			Debug.Log ("Before we meet the other neighbour");
-			return null;
+			//============TESTED TO THIS POINT 6.0 WORKS=====================//
+			//Debug.Log("Tested at 6.0");
+			//Debug.Log ("Current Node in OpenSet: " + currentNode[0] + ","+ currentNode[1]);
+			//Debug.Log ("Does the openset contain currentNode anymore. Should be False: " + openSet.Contains (currentNode));
+			//return null;
+
 
 			//Iterate through all the surrounding nodes
 			for (int gRow = currentNodeRow - 1; gRow < currentNodeRow + 2; ++gRow) 
