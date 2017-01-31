@@ -32,6 +32,7 @@ public class GenericEarthScript : TileScript {
 				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
 				tilePosition[0],
 				tilePosition[1]);
+			
 			/*
 			for (int i = 0; i < tempListInt.Count; ++i) {
 				for (int j = 0; j < tempListInt[i].Count; ++j) {

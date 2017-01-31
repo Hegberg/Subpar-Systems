@@ -112,6 +112,11 @@ public class AStarScript : MonoBehaviour {
 		List<int> currentNode = new List<int> ();
 		List<int> neighborNode = new List<int> ();
 		int lowestFScore;
+
+
+		Debug.Log("Got to before the while loop!");
+		return null;
+
 		while(!(openSet.Count == 0))
 		{
 			//Clear the current node
@@ -122,6 +127,7 @@ public class AStarScript : MonoBehaviour {
 			Debug.Log ("=====Start fScore Debug======");
 			for (int i = 0; i < openSet.Count; ++i) 
 			{
+				//Debug to check inside the element of openSet
 				for (int k = 0; k < openSet.Count; ++k) {
 					for (int j = 0; j < openSet[k].Count; ++j) {
 						Debug.Log ("element inside: " + openSet[k][j]);
@@ -153,6 +159,10 @@ public class AStarScript : MonoBehaviour {
 
 			int currentNodeRow = currentNode[0];
 			int currentNodeIndex = currentNode[1];
+
+			//Does not get here
+			Debug.Log ("Before we meet the other neighbour");
+			return null;
 
 			//Iterate through all the surrounding nodes
 			for (int gRow = currentNodeRow - 1; gRow < currentNodeRow + 2; ++gRow) 
@@ -196,6 +206,10 @@ public class AStarScript : MonoBehaviour {
 				}//end for loop
 			
 			}//end for loop
+
+			//Currently can't get here.
+			Debug.Log("We made it through one iteration!");
+			return null;
 
 		}//end while loop
 
