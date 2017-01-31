@@ -265,13 +265,11 @@ public class AStarScript : MonoBehaviour {
 	//Check to see if the next tile is within the gamebound
 	private bool CheckBound(int goalRow, int goalIndex)
 	{
-		if (goalRow < 0 || goalRow > maxRow) {
-			return false;
+		if ((goalRow >= 0 || goalRow < maxRow) && (goalIndex >= 0 || goalIndex < maxIndex)) {
+			return true;
 		}
-		if (goalIndex < 0 || goalIndex > maxIndex) {
-			return false;
-		}
-		return true;
+
+		return false;
 	}//end checkBound
 
 	//Return the cost of traveling 
