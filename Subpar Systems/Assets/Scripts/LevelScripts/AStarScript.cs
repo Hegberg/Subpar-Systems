@@ -48,7 +48,9 @@ public class AStarScript : MonoBehaviour {
 		var fScore = new Dictionary<List<int>, int>();
 
 		maxRow = map.Count;
-		maxIndex = map [0].Count;
+		maxIndex = map[0].Count;
+
+		Debug.Log ("The MaxRow = " + map.FindIndex() + " The maxIndex = " + map[0].FindIndex());
 
 		List<List<int>> openSet = new List<List<int>> ();
 		Dictionary<List<int>, List<int>> cameFromSet =  new Dictionary<List<int>, List<int>>();
@@ -119,17 +121,25 @@ public class AStarScript : MonoBehaviour {
 			lowestFScore = int.MaxValue;
 			for (int i = 0; i < openSet.Count; ++i) 
 			{
+				for (int k = 0; k < openSet.Count; ++k) {
+					for (int j = 0; j < openSet[k].Count; ++j) {
+						Debug.Log ("element inside: " + openSet[k][j]);
+					}
+				}
+
 				if(fScore[openSet[i]] < lowestFScore)
 				{
 					lowestFScore = fScore[openSet[i]];
 					currentNode = openSet[i];
+					Debug.Log ("What became the current node: " + currentNode [0] + "," + currentNode [1]);
 				}
 			}//end for loop
 
 			//Found the goal
-			if (currentNode.Equals (goalPosition)) 
+			if (currentNode[0] == goalPosition[0] && currentNode[1] == goalPosition[1]) 
 			{
 				//Return the path back
+				Debug.Log("======Got inside reconstruct path======");
 				return ReconstructPath (cameFromSet, currentNode);
 			}
 
@@ -164,6 +174,7 @@ public class AStarScript : MonoBehaviour {
 							//So I am adding the correct neighborNodes
 							Debug.Log ("I have added: " + neighborNode [0] + "," + neighborNode [1]);
 							openSet.Add (neighborNode);
+							Debug.Log ("Current Count of openSet: " + openSet.Count);
 						} 
 						else if (tentativeGScore >= gScore [neighborNode]) 
 						{
@@ -204,6 +215,9 @@ public class AStarScript : MonoBehaviour {
 			{
 				//Add the current to final path
 				finalPath.Add (current);
+			
+				Debug.Log ("Added to final path: " + current [0] + "," + current [1]);
+
 				//Set the next current as the "came from"
 				current = cameFromDic [current];
 			}
@@ -267,7 +281,8 @@ public class AStarScript : MonoBehaviour {
 	//Check to see if the next tile is within the gamebound
 	private bool CheckBound(int goalRow, int goalIndex)
 	{
-		if ((goalRow >= 0 || goalRow < maxRow) && (goalIndex >= 0 || goalIndex < maxIndex)) {
+		
+		if ((goalRow >= 0 && goalRow < maxRow) && (goalIndex >= 0 && goalIndex < maxIndex)) {
 			return true;
 		}
 
