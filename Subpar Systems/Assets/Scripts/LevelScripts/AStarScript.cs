@@ -216,40 +216,59 @@ public class AStarScript : MonoBehaviour {
 						int tentativeGScore = gScore[currentNode] + ReturnCostTile(ReturnDirection(currentNodeRow, currentNodeIndex, goalRow, gIndex));
 
 						//============TESTED TO THIS POINT 8.0 WORKS=====================//
-						Debug.Log("Tested at 8.0");
-						Debug.Log ("NeighborNode Row and Index: " + neighborNode[0] + "," + neighborNode[1]);
-						Debug.Log ("TentativeGScore: " + tentativeGScore);
-						return null;
+						//Debug.Log("Tested at 8.0");
+						//Debug.Log ("NeighborNode Row and Index: " + neighborNode[0] + "," + neighborNode[1]);
+						//Debug.Log ("TentativeGScore: " + tentativeGScore);
+						//return null;
 
 						//Add the neighbor to the openset if it not there
 						//Also check to see if the tentativeGScore is less than the one current stored for neighbor
 						if (!openSet.Contains(neighborNode)) {
-							//So I am adding the correct neighborNodes
-							Debug.Log ("I have added: " + neighborNode [0] + "," + neighborNode [1]);
+							
 							openSet.Add (neighborNode);
-							Debug.Log ("Current Count of openSet: " + openSet.Count);
+
+							//============TESTED TO THIS POINT 9.0A WORKS=====================//
+							//Debug.Log("Tested at 9.0A");
+							//Debug.Log ("neighborNode that got added: " + neighborNode [0] + "," + neighborNode [1]);
+							//Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
+							//return null;
+
 						} 
 						else if (tentativeGScore >= gScore [neighborNode]) 
 						{
+							//============TESTED TO THIS POINT 9.0B UNTESTED YET=====================//
+							Debug.Log("Tested at 9.0B");
+							Debug.Log ("neighborNode that got skipped: " + neighborNode [0] + "," + neighborNode [1]);
+							Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
+							return null;
+
 							continue;
 						}
 						//Create a dic that contains the  Row/Index of current (where we came from)  VALUE
 						//								  Row/Index of neighbor (Where we are going) KEY
-
 						cameFromSet[neighborNode] = currentNode;
 
 						//Change the related gScore and fScore
 						gScore [neighborNode] = tentativeGScore;
 						fScore [neighborNode] = gScore [neighborNode] + CalculateHeuristicCost (gRow, gIndex, goalRow, goalIndex);
 
-
+						//============TESTED TO THIS POINT 10.0 =====================//
+						Debug.Log("Tested at 10.0");
+						Debug.Log ("cameFromSet[neighborNode]: " + cameFromSet[neighborNode][0] + "," + cameFromSet[neighborNode][1] + "= " + currentNode[0] + "," + currentNode[1]);
+						Debug.Log ("gScore[neighborNode]: " + gScore[neighborNode] + "=" + tentativeGScore);
+						Debug.Log ("fScore[neighborNode]: " + fScore[neighborNode] + "=" + (gScore [neighborNode] + CalculateHeuristicCost (gRow, gIndex, goalRow, goalIndex)) );
+						//return null;
 					}
 				}//end for loop
 			
 			}//end for loop
 
 			//Currently can't get here.
-			Debug.Log("We made it through one iteration!");
+			//============TESTED TO THIS POINT 11.0 =====================//
+			Debug.Log("Tested at 11.0");
+			Debug.Log ("Size of cameFromSet: " + cameFromSet.Count);
+			Debug.Log ("Size of openSet: " + openSet.Count);
+
 			return null;
 
 		}//end while loop
