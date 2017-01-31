@@ -130,9 +130,11 @@ public class AStarScript : MonoBehaviour {
 		List<int> neighborNode = new List<int> ();
 		int lowestFScore;
 
-		//Did not get here.
-		Debug.Log("Got to before the while loop!");
-		return null;
+		//============TESTED TO THIS POINT 4.0 WORK=====================//
+		//Debug.Log("Tested at 4.0");
+		//Debug.Log ("fScore for starting position is " + fScore [startPosition]);
+		//return null;
+
 
 		while(!(openSet.Count == 0))
 		{
@@ -141,24 +143,32 @@ public class AStarScript : MonoBehaviour {
 
 			//Find the lowest fScore in the opensEt
 			lowestFScore = int.MaxValue;
-			Debug.Log ("=====Start fScore Debug======");
+
+			//Debug.Log ("=====Start fScore Debug======");
 			for (int i = 0; i < openSet.Count; ++i) 
 			{
 				//Debug to check inside the element of openSet
+				/*
 				for (int k = 0; k < openSet.Count; ++k) {
 					for (int j = 0; j < openSet[k].Count; ++j) {
 						Debug.Log ("element inside: " + openSet[k][j]);
 					}
 				}
-
+				*/
 				if(fScore[openSet[i]] < lowestFScore)
 				{
 					lowestFScore = fScore[openSet[i]];
 					currentNode = openSet[i];
-					Debug.Log ("What got selected as current node: " + currentNode [0] + "," + currentNode [1]);
+					//Debug.Log ("What got selected as current node: " + currentNode [0] + "," + currentNode [1]);
 				}
 			}//end for loop fScore
-			Debug.Log ("=====End fScore Debug======");
+
+			//============TESTED TO THIS POINT 5.0 WORK=====================//
+			//Debug.Log("Tested at 5.0");
+			//Debug.Log ("Past fScore section of AStar " + fScore [startPosition]);
+			//Debug.Log ("=====End fScore Debug======");
+			//return null;
+
 
 			//Found the goal
 			if (currentNode[0] == goalPosition[0] && currentNode[1] == goalPosition[1]) 
