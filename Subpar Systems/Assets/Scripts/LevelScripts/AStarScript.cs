@@ -89,10 +89,22 @@ public class AStarScript : MonoBehaviour {
 		//Insert the starting node 
 		openSet.Add(startPosition);
 
+
+		/*
+		 * These debug prove that the start node is in openSet
+		 * 
 		List<int> debugOpenSet = new List<int> ();
 		debugOpenSet = openSet [0];
 		Debug.Log ("GOT HERE " + debugOpenSet [0] + debugOpenSet [1]);
 		Debug.Log ("OpenSet containing values: " + openSet.ToString());
+
+		for (int i = 0; i < openSet.Count; ++i) {
+			for (int j = 0; j < openSet[i].Count; ++j) {
+				Debug.Log ("element inside: " + openSet[i][j]);
+			}
+		}
+		Debug.Log ("Got here");
+		*/
 
 		//Visit the nodes in openSet
 		List<int> currentNode = new List<int> ();
@@ -125,7 +137,7 @@ public class AStarScript : MonoBehaviour {
 			openSet.Remove(currentNode);
 			//INSERT SOMETHING ABOUT GENERATION COUNTER
 
-			Debug.Log ("Current Node: " + currentNode);
+			Debug.Log ("Current Node: " + currentNode[0] + currentNode[1]);
 
 			int currentNodeRow = currentNode[0];
 			int currentNodeIndex = currentNode[1];
