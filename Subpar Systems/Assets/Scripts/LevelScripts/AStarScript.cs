@@ -312,10 +312,10 @@ public class AStarScript : MonoBehaviour {
 		}//end for loop
 
 		//============TESTED TO THIS POINT 12.0 WORKS=====================//
-		Debug.Log("Tested at 12.0");
-		for (int i = 0; i < finalPath.Count; ++i) {
-			Debug.Log ("FinalPath Results at " + i + " " + finalPath[i][0] + "," + finalPath[i][1]);
-		}
+		//Debug.Log("Tested at 12.0");
+		//for (int i = 0; i < finalPath.Count; ++i) {
+		//	Debug.Log ("FinalPath Results at " + i + " " + finalPath[i][0] + "," + finalPath[i][1]);
+		//}
 
 		//Return back the proper order
 		finalPath.Reverse();

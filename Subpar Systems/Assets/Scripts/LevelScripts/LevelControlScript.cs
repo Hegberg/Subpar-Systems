@@ -73,6 +73,7 @@ public class LevelControlScript : MonoBehaviour {
     private List<int[]> enemySpawnLocations = new List<int[]>();
 
     private List<List<GameObject>> aStarMap = new List<List<GameObject>>();
+    private List<List<int>> aStarMapCost = new List<List<int>>();
 
     //private float tileWidth = 0.64f;
     private float tileWidth;
@@ -139,6 +140,7 @@ public class LevelControlScript : MonoBehaviour {
         for (int i = map.Count - 1; i >= 0; --i)
         {
             aStarMap.Add(new List<GameObject> { });
+            aStarMapCost.Add(new List<int> { });
 
             for (int j = 0; j < map[i].Count; ++j)
             {
@@ -175,8 +177,10 @@ public class LevelControlScript : MonoBehaviour {
 					tempTilePosition.Add (j);
 					tile.gameObject.GetComponent<GenericEarthScript>().SetTilePosition(tempTilePosition);
 				}
-                //Debug.Log("test : " + (map.Count - i - 1));
+                //add gameObject to regular aStarList
                 aStarMap[map.Count - i - 1].Add(tile.gameObject);
+                //add height to cost list
+                aStarMapCost[map.Count - i - 1].Add(map[i][j][1]);
 
                 //spawn character code
                 for (int k = 0; k < playerSpawnLocations.Count; ++k)
@@ -241,14 +245,18 @@ public class LevelControlScript : MonoBehaviour {
             offset = !offset;
 
         }
-		/*
+
+        /*
         Debug.Log(aStarMap.Count);
 
         for (int i = 0; i < aStarMap.Count; ++i)
         {
             Debug.Log("Count of i " + aStarMap[i].Count);
         }
-*/
+
+        */
+
+
         aStarMap.Reverse();
 
         /*
@@ -317,6 +325,11 @@ public class LevelControlScript : MonoBehaviour {
 	{
 		return aStarMap;
 	}
+
+    public List<List<int>> GetAStarMapCost()
+    {
+        return aStarMapCost;
+    }
 
     public float GetTileHeightRatio()
     {
