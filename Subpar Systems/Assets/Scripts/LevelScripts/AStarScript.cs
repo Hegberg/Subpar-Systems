@@ -33,11 +33,11 @@ public class AStarScript : MonoBehaviour {
 	*/
 	public List<List<int>> findShitestPath(List<List<GameObject>> map, int originRow, int originIndex, int goalRow, int goalIndex)
 	{
-		Debug.Log ("Original Row and Index: " + originRow + " " + originIndex);
+		//Debug.Log ("Original Row and Index: " + originRow + " " + originIndex);
 		//Debug.Log (originIndex);
-		Debug.Log ("Goal Row and Index: " + goalRow + " " +  goalIndex);
+		//Debug.Log ("Goal Row and Index: " + goalRow + " " +  goalIndex);
 		//Debug.Log (goalIndex);
-		Debug.Log("Return direction: " + ReturnDirection (originRow, originIndex, goalRow, goalIndex));
+		//Debug.Log("Return direction: " + ReturnDirection (originRow, originIndex, goalRow, goalIndex));
 
 		//============TESTED TO THIS POINT 1.0 WORKS=====================//
 		//Debug.Log("Tested at 1.0");
@@ -53,7 +53,7 @@ public class AStarScript : MonoBehaviour {
 		maxIndex = map[0].Count;
 
 		//Debug.Log ("The MaxRow = " + map.FindIndex() + " The maxIndex = " + map[0].FindIndex());
-		Debug.Log ("The MaxRow = " + map.Count + " The maxIndex = " + map[1].Count);
+		//Debug.Log ("The MaxRow = " + map.Count + " The maxIndex = " + map[1].Count);
 
 		List<List<int>> openSet = new List<List<int>> ();
 		Dictionary<List<int>, List<int>> cameFromSet =  new Dictionary<List<int>, List<int>>();
@@ -172,7 +172,7 @@ public class AStarScript : MonoBehaviour {
 			if (currentNode[0] == goalPosition[0] && currentNode[1] == goalPosition[1]) 
 			{
 				//Return the path back
-				Debug.Log("======Got inside reconstruct path======");
+				//Debug.Log("======Got inside reconstruct path======");
 				return ReconstructPath (cameFromSet, currentNode);
 			}
 
