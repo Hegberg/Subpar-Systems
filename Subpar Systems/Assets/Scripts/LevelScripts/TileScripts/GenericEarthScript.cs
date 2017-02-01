@@ -40,6 +40,7 @@ public class GenericEarthScript : TileScript {
 				}
 			}
 			*/
+
             GameObject player = TurnControlScript.control.GetPlayerSelected();
             TurnControlScript.control.MovePlayer(gameObject);
             occupingObject = player;

@@ -126,7 +126,6 @@ public class AStarScript : MonoBehaviour {
 		*/
 
 		//Visit the nodes in openSet
-		List<int> currentNode = new List<int> ();
 		int lowestFScore;
 
 		//============TESTED TO THIS POINT 4.0 WORK=====================//
@@ -138,7 +137,7 @@ public class AStarScript : MonoBehaviour {
 		while(!(openSet.Count == 0))
 		{
 			//Clear the current node
-			currentNode.Clear();
+			List<int> currentNode = new List<int> ();
 
 			//Find the lowest fScore in the opensEt
 			lowestFScore = int.MaxValue;
@@ -237,10 +236,10 @@ public class AStarScript : MonoBehaviour {
 						else if (tentativeGScore >= gScore [neighborNode]) 
 						{
 							//============TESTED TO THIS POINT 9.0B UNTESTED YET=====================//
-							Debug.Log("Tested at 9.0B");
-							Debug.Log ("neighborNode that got skipped: " + neighborNode [0] + "," + neighborNode [1]);
-							Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
-							return null;
+							//Debug.Log("Tested at 9.0B");
+							//Debug.Log ("neighborNode that got skipped: " + neighborNode [0] + "," + neighborNode [1]);
+							//Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
+							//return null;
 
 							continue;
 						}
@@ -252,11 +251,11 @@ public class AStarScript : MonoBehaviour {
 						gScore [neighborNode] = tentativeGScore;
 						fScore [neighborNode] = gScore [neighborNode] + CalculateHeuristicCost (gRow, gIndex, goalRow, goalIndex);
 
-						//============TESTED TO THIS POINT 10.0 =====================//
-						Debug.Log("Tested at 10.0");
-						Debug.Log ("cameFromSet[neighborNode]: " + cameFromSet[neighborNode][0] + "," + cameFromSet[neighborNode][1] + "= " + currentNode[0] + "," + currentNode[1]);
-						Debug.Log ("gScore[neighborNode]: " + gScore[neighborNode] + "=" + tentativeGScore);
-						Debug.Log ("fScore[neighborNode]: " + fScore[neighborNode] + "=" + (gScore [neighborNode] + CalculateHeuristicCost (gRow, gIndex, goalRow, goalIndex)) );
+						//============TESTED TO THIS POINT 10.0 WORKS=====================//
+						//Debug.Log("Tested at 10.0");
+						//Debug.Log ("cameFromSet[neighborNode]: " + cameFromSet[neighborNode][0] + "," + cameFromSet[neighborNode][1] + "= " + currentNode[0] + "," + currentNode[1]);
+						//Debug.Log ("gScore[neighborNode]: " + gScore[neighborNode] + "=" + tentativeGScore);
+						//Debug.Log ("fScore[neighborNode]: " + fScore[neighborNode] + "=" + (gScore [neighborNode] + CalculateHeuristicCost (gRow, gIndex, goalRow, goalIndex)) );
 						//return null;
 					}
 				}//end for loop
@@ -264,22 +263,21 @@ public class AStarScript : MonoBehaviour {
 			}//end for loop
 
 			//Currently can't get here.
-			//============TESTED TO THIS POINT 11.0 =====================//
-			Debug.Log("Tested at 11.0");
+			//============TESTED TO THIS POINT 11.0 WORKS=====================//
+			//Debug.Log("Tested at 11.0");
+			//Debug.Log ("Size of cameFromSet: " + cameFromSet.Count);
 
-			Debug.Log ("Size of cameFromSet: " + cameFromSet.Count);
+			//foreach(var blah in cameFromSet){
+			//	Debug.Log ("cameFromSet " + blah.Key[0] + "," + blah.Key[1] + " : "+ blah.Value[0] + "," + blah.Value[1]);
+			//}
 
-			foreach(var blah in cameFromSet){
-				Debug.Log ("cameFromSet " + blah.Key[0] + "," + blah.Key[1] + " : "+ blah.Value[0] + "," + blah.Value[1]);
-			}
+			//Debug.Log ("Size of openSet: " + openSet.Count);
+			//for (int i = 0; i < openSet.Count; ++i) 
+			//{
+			//	Debug.Log ("openSet at " + i + " : " + openSet[i][0] + "," + openSet[i][1]);
+			//}
 
-			Debug.Log ("Size of openSet: " + openSet.Count);
-			for (int i = 0; i < openSet.Count; ++i) 
-			{
-				Debug.Log ("openSet at " + i + " : " + openSet[i][0] + "," + openSet[i][1]);
-			}
-
-			return null;
+			//return null;
 
 		}//end while loop
 
@@ -295,6 +293,9 @@ public class AStarScript : MonoBehaviour {
 		List<int> current = currentNode;
 		List<List<int>> finalPath = new List<List<int>> ();
 
+		//Add the end node
+		finalPath.Add (current);
+
 		for (int i = 0; i < cameFromDic.Count; ++i) 
 		{
 			if (cameFromDic.ContainsKey (current)) 
@@ -308,6 +309,10 @@ public class AStarScript : MonoBehaviour {
 				current = cameFromDic [current];
 			}
 		}//end for loop
+
+		for (int i = 0; i < finalPath.Count; ++i) {
+			Debug.Log ("FinalPath Results at " + i + " " + finalPath[i][0] + "," + finalPath[i][1]);
+		}
 
 		//Return back the proper order
 		finalPath.Reverse();
