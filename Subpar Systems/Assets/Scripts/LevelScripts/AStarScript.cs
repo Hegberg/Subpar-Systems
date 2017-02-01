@@ -266,8 +266,18 @@ public class AStarScript : MonoBehaviour {
 			//Currently can't get here.
 			//============TESTED TO THIS POINT 11.0 =====================//
 			Debug.Log("Tested at 11.0");
+
 			Debug.Log ("Size of cameFromSet: " + cameFromSet.Count);
+
+			foreach(var blah in cameFromSet){
+				Debug.Log ("cameFromSet " + blah.Key[0] + "," + blah.Key[1] + " : "+ blah.Value[0] + "," + blah.Value[1]);
+			}
+
 			Debug.Log ("Size of openSet: " + openSet.Count);
+			for (int i = 0; i < openSet.Count; ++i) 
+			{
+				Debug.Log ("openSet at " + i + " : " + openSet[i][0] + "," + openSet[i][1]);
+			}
 
 			return null;
 
