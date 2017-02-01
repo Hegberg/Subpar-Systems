@@ -272,7 +272,7 @@ public class AStarScript : MonoBehaviour {
 			//}
 
 			//Debug.Log ("Size of openSet: " + openSet.Count);
-			//for (int i = 0; i < openSet.Count; ++i) 
+			//for (int i = 0; i < opgoenSet.Count; ++i) 
 			//{
 			//	Debug.Log ("openSet at " + i + " : " + openSet[i][0] + "," + openSet[i][1]);
 			//}
@@ -294,6 +294,7 @@ public class AStarScript : MonoBehaviour {
 		List<List<int>> finalPath = new List<List<int>> ();
 
 		//Add the end node
+		//Debug.Log("The goal node is: " + currentNode[0] + " " +  currentNode[1]);
 		finalPath.Add (current);
 
 		for (int i = 0; i < cameFromDic.Count; ++i) 
@@ -301,15 +302,17 @@ public class AStarScript : MonoBehaviour {
 			if (cameFromDic.ContainsKey (current)) 
 			{
 				//Add the current to final path
-				finalPath.Add (current);
+				finalPath.Add (cameFromDic[current]);
 			
-				Debug.Log ("Added to final path: " + current [0] + "," + current [1]);
+				//Debug.Log ("Added to final path: " + cameFromDic[current][0] + "," + cameFromDic[current][1]);
 
 				//Set the next current as the "came from"
-				current = cameFromDic [current];
+				current = cameFromDic[current];
 			}
 		}//end for loop
 
+		//============TESTED TO THIS POINT 12.0 WORKS=====================//
+		Debug.Log("Tested at 12.0");
 		for (int i = 0; i < finalPath.Count; ++i) {
 			Debug.Log ("FinalPath Results at " + i + " " + finalPath[i][0] + "," + finalPath[i][1]);
 		}
