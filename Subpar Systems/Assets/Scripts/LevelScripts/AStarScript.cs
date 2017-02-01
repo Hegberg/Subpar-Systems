@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class AStarScript : MonoBehaviour {
 	public static AStarScript control;
-	private int maxRow;
-	private int maxIndex;
+
+	//Commented out to try dynamic maxRow/maxIndex
+	//private int maxRow;
+	//private int maxIndex;
+
 	// Use this for initialization
 	void Start () {
 		if(control == null)
@@ -31,7 +34,7 @@ public class AStarScript : MonoBehaviour {
 	/*
 		WARNING NONE OF THE FOLLOWING CODE IS TEST AND WILL AND COULD BREAK EVERYTHING THAT EXIST!
 	*/
-	public List<List<int>> findShitestPath(List<List<GameObject>> map, int originRow, int originIndex, int goalRow, int goalIndex)
+	public List<List<int>> findShitestPath(List<List<GameObject>> map, List<List<int>> mapCost, int originRow, int originIndex, int goalRow, int goalIndex)
 	{
 		//Debug.Log ("Original Row and Index: " + originRow + " " + originIndex);
 		//Debug.Log (originIndex);
@@ -48,9 +51,9 @@ public class AStarScript : MonoBehaviour {
 		var gScore = new Dictionary<List<int>, int>();
 		var fScore = new Dictionary<List<int>, int>();
 
-		//Currently the maxIndex return 0...
-		maxRow = map.Count;
-		maxIndex = map[0].Count;
+		//These use to be hardcoded, but I am experiementing with dynamic
+		//maxRow = map.Count;
+		//maxIndex = map[0].Count;
 
 		//Debug.Log ("The MaxRow = " + map.FindIndex() + " The maxIndex = " + map[0].FindIndex());
 		//Debug.Log ("The MaxRow = " + map.Count + " The maxIndex = " + map[1].Count);
@@ -203,7 +206,7 @@ public class AStarScript : MonoBehaviour {
 					//Debug.Log ("Current node Index min and max: " + (currentNodeIndex - 1) + ","+ (currentNodeIndex + 1));
 					//return null;
 
-					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex)) 
+					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map)) 
 					{
 						//Add the new neighbor
 						List<int> neighborNode = new List<int> ();
@@ -212,7 +215,9 @@ public class AStarScript : MonoBehaviour {
 
 						//INSERT SOMETHING ABOUT GENERATION COUNTER
 
-						int tentativeGScore = gScore[currentNode] + ReturnCostTile(ReturnDirection(currentNodeRow, currentNodeIndex, goalRow, gIndex));
+						//This commented out code is old, just have it incase I screw up later on
+						//int tentativeGScore = gScore[currentNode] + ReturnCostTile(ReturnDirection(currentNodeRow, currentNodeIndex, goalRow, gIndex));
+						int tentativeGScore = gScore[currentNode] + ReturnCostTile(currentNodeRow, currentNodeIndex, mapCost);
 
 						//============TESTED TO THIS POINT 8.0 WORKS=====================//
 						//Debug.Log("Tested at 8.0");
@@ -341,10 +346,10 @@ public class AStarScript : MonoBehaviour {
 	}
 
 	//Check can I move from this tile to the next
-	private bool CanGetNext(int originRow, int originIndex, int goalRow, int goalIndex)
+	private bool CanGetNext(int originRow, int originIndex, int goalRow, int goalIndex, List<List<GameObject>> map)
 	{
 		//Check all the various things to ensure it can get to next location
-		if (!CheckBound(goalRow,goalIndex) 
+		if (!CheckBound(goalRow, goalIndex, map.Count, map[goalIndex].Count) 
 			|| !CheckOneTileAway(originRow,originIndex,goalRow,goalIndex) 
 			|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex)) {
 			return false;
@@ -379,9 +384,13 @@ public class AStarScript : MonoBehaviour {
 	}//end checkOneTileAway
 
 	//Check to see if the next tile is within the gamebound
-	private bool CheckBound(int goalRow, int goalIndex)
+	private bool CheckBound(int goalRow, int goalIndex, int maxRow, int maxIndex)
 	{
-		
+		if (goalRow >= maxRow || goalIndex >= maxIndex) 
+		{
+			return false;
+		}
+
 		if ((goalRow >= 0 && goalRow < maxRow) && (goalIndex >= 0 && goalIndex < maxIndex)) {
 			return true;
 		}
@@ -390,11 +399,9 @@ public class AStarScript : MonoBehaviour {
 	}//end checkBound
 
 	//Return the cost of traveling 
-	private int ReturnCostTile(int tileCost)
+	private int ReturnCostTile(int tileRow, int tileIndex, List<List<int>> mapCost)
 	{
-		//INSERT CODE FOR REAL COST
-		//Most likely going to be terrain cost 
-		return 1;
+		return mapCost [tileRow] [tileIndex];
 	}
 
 	/*
@@ -404,6 +411,7 @@ public class AStarScript : MonoBehaviour {
 	 *	SW = 3
 	*/
 	//Return the direction the unit is takes when moving from current location to next tile
+	//NOT THIS CODE MIGHT BE COMPLETELY WORTHLESS SO I MIGHT GET RID OF IT LATER
 	private int ReturnDirection( int originRow, int originIndex, int neighbourRow, int neighbourIndex)
 	{
 		

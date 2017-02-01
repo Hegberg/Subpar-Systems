@@ -28,6 +28,7 @@ public class GenericEarthScript : TileScript {
 			List<List<int>> tempListInt = new List<List<int>>();
 
             tempListInt = AStarScript.control.findShitestPath(LevelControlScript.control.GetAStarMap(), 
+				LevelControlScript.control.GetAStarMapCost(),
 				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
 				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
 				tilePosition[0],
