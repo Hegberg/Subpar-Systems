@@ -358,10 +358,16 @@ public class AStarScript : MonoBehaviour {
 	//Check to see if the tile is 1 tile away
 	private bool CheckOneTileAway(int originRow, int originIndex, int goalRow, int goalIndex)
 	{
-		if (Mathf.Abs (originRow - goalRow) > 1 || Mathf.Abs (originIndex - goalIndex) > 1) {
-			return false;
+		if (originRow % 2 == 0) {
+			if (((originIndex - goalIndex) == 0 || (originIndex - goalIndex) == 1) && Mathf.Abs (originRow - goalRow) == 1) {
+				return true;
+			}
+		} else {
+			if (((originIndex - goalIndex) == 0 || (originIndex - goalIndex) == -1) && Mathf.Abs (originRow - goalRow) == 1) {
+				return true;
+			}
 		}
-		return true;
+		return false;
 	}//end checkOneTileAway
 
 	//Check to see if the next tile is within the gamebound
