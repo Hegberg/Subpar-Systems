@@ -30,7 +30,7 @@ public class AStarScript : MonoBehaviour {
 	void run(){
 		LevelControlScript.control.GetAStarMap();
 	}
-	M
+
 	/*
 		WARNING NONE OF THE FOLLOWING CODE IS TEST AND WILL AND COULD BREAK EVERYTHING THAT EXIST!
 	*/
@@ -176,6 +176,7 @@ public class AStarScript : MonoBehaviour {
 			{
 				//Return the path back
 				//Debug.Log("======Got inside reconstruct path======");
+				//Debug.Log("The gScore of the tile " + currentNode[0] + "," + currentNode[1] + " is: " + gScore[currentNode]);
 				return ReconstructPath (cameFromSet, currentNode);
 			}
 
@@ -413,7 +414,8 @@ public class AStarScript : MonoBehaviour {
 	//Return the cost of traveling 
 	private int ReturnCostTile(int tileRow, int tileIndex, List<List<int>> mapCost)
 	{
-		return mapCost [tileRow][tileIndex];
+		//Hard coded the +1 because base tile movement cost is 0
+		return mapCost [tileRow][tileIndex] + 1;
 	}
 
 	/*
