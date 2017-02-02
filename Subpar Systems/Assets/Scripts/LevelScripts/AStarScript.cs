@@ -30,7 +30,7 @@ public class AStarScript : MonoBehaviour {
 	void run(){
 		LevelControlScript.control.GetAStarMap();
 	}
-
+	M
 	/*
 		WARNING NONE OF THE FOLLOWING CODE IS TEST AND WILL AND COULD BREAK EVERYTHING THAT EXIST!
 	*/
@@ -206,6 +206,7 @@ public class AStarScript : MonoBehaviour {
 					//Debug.Log ("Current node Index min and max: " + (currentNodeIndex - 1) + ","+ (currentNodeIndex + 1));
 					//return null;
 
+
 					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map)) 
 					{
 						//Add the new neighbor
@@ -219,11 +220,22 @@ public class AStarScript : MonoBehaviour {
 						//int tentativeGScore = gScore[currentNode] + ReturnCostTile(ReturnDirection(currentNodeRow, currentNodeIndex, goalRow, gIndex));
 						int tentativeGScore = gScore[currentNode] + ReturnCostTile(currentNodeRow, currentNodeIndex, mapCost);
 
+						//=====================DUMMY CODE to HANDLE MOVEMENT LIMIT=====================//
+						/*
+						if (tentativeGScore > movementLimit)
+						{
+							break;
+						}
+						*/
+						//======================DUMMY CODE to HANDLE MOVEMENT LIMIT====================//
+
+
 						//============TESTED TO THIS POINT 8.0 WORKS=====================//
 						//Debug.Log("Tested at 8.0");
 						//Debug.Log ("NeighborNode Row and Index: " + neighborNode[0] + "," + neighborNode[1]);
 						//Debug.Log ("TentativeGScore: " + tentativeGScore);
 						//return null;
+
 
 						//Add the neighbor to the openset if it not there
 						//Also check to see if the tentativeGScore is less than the one current stored for neighbor
@@ -401,7 +413,7 @@ public class AStarScript : MonoBehaviour {
 	//Return the cost of traveling 
 	private int ReturnCostTile(int tileRow, int tileIndex, List<List<int>> mapCost)
 	{
-		return mapCost [tileRow] [tileIndex];
+		return mapCost [tileRow][tileIndex];
 	}
 
 	/*
