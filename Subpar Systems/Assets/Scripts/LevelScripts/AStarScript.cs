@@ -337,6 +337,8 @@ public class AStarScript : MonoBehaviour {
 
 		//Return back the proper order
 		finalPath.Reverse();
+	
+
 		return finalPath;
 
 	}//end ReconstructPath
