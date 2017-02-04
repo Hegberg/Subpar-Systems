@@ -33,11 +33,11 @@ public class LevelControlScript : MonoBehaviour {
 
     private List<List<List<int>>> map = new List<List<List<int>>> {
         new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{1,0}, new List<int>{1,0},
-            new List<int>{1,0}, new List<int>{0,1}, new List<int>{2,1}, new List<int>{2,2} },
+            new List<int>{1,0}, new List<int>{0,1}, new List<int>{2,1}, new List<int>{0,2} },
         new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{1,0}, new List<int>{1,0},
-            new List<int>{0,1}, new List<int>{0,2}, new List<int>{2,2}, new List<int>{2,2} },
+            new List<int>{0,1}, new List<int>{0,2}, new List<int>{2,2}, new List<int>{0,2} },
         new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,1}, new List<int>{0,2}, new List<int>{2,2}, new List<int>{2,1} },
+            new List<int>{0,1}, new List<int>{0,2}, new List<int>{2,2}, new List<int>{0,1} },
         new List<List<int>> {new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
             new List<int>{0,1}, new List<int>{0,1}, new List<int>{2,1}, new List<int>{2,0} },
         new List<List<int>> {new List<int>{2,0}, new List<int>{1,0}, new List<int>{0,0}, new List<int>{0,0},
@@ -54,7 +54,6 @@ public class LevelControlScript : MonoBehaviour {
 
     //private int[][][] map2 = { new int[][] { } };
     
-    //private int numOfRows = 9;
 
     private int[] playerSpawn1 = { 8, 0 };
     private int[] playerSpawn2 = { 8, 1 };
@@ -73,7 +72,7 @@ public class LevelControlScript : MonoBehaviour {
     private List<int[]> enemySpawnLocations = new List<int[]>();
 
     private List<List<GameObject>> aStarMap = new List<List<GameObject>>();
-    private List<List<int>> aStarMapCost = new List<List<int>>();
+    private List<List<List<int>>> aStarMapCost = new List<List<List<int>>>();
 
     //private float tileWidth = 0.64f;
     private float tileWidth;
@@ -140,7 +139,7 @@ public class LevelControlScript : MonoBehaviour {
         for (int i = map.Count - 1; i >= 0; --i)
         {
             aStarMap.Add(new List<GameObject> { });
-            aStarMapCost.Add(new List<int> { });
+            aStarMapCost.Add(new List<List<int>> { });
 
             for (int j = 0; j < map[i].Count; ++j)
             {
@@ -179,8 +178,12 @@ public class LevelControlScript : MonoBehaviour {
 				}
                 //add gameObject to regular aStarList
                 aStarMap[map.Count - i - 1].Add(tile.gameObject);
-                //add height to cost list
-                aStarMapCost[map.Count - i - 1].Add(map[i][j][1]);
+                //add walkable/height to cost list
+                //add is walkable first
+                aStarMapCost[map.Count - i - 1].Add(new List<int>());
+                aStarMapCost[map.Count - i - 1][j].Add(map[i][j][0]);
+                //then add tile height
+                aStarMapCost[map.Count - i - 1][j].Add(map[i][j][1]);
 
                 //spawn character code
                 for (int k = 0; k < playerSpawnLocations.Count; ++k)
@@ -258,6 +261,7 @@ public class LevelControlScript : MonoBehaviour {
 
 
         aStarMap.Reverse();
+        aStarMapCost.Reverse();
 
         /*
         for (int i = 0; i < aStarMap.Count; ++i)
@@ -326,7 +330,7 @@ public class LevelControlScript : MonoBehaviour {
 		return aStarMap;
 	}
 
-    public List<List<int>> GetAStarMapCost()
+    public List<List<List<int>>> GetAStarMapCost()
     {
         return aStarMapCost;
     }

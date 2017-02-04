@@ -34,7 +34,7 @@ public class AStarScript : MonoBehaviour {
 	/*
 		WARNING NONE OF THE FOLLOWING CODE IS TEST AND WILL AND COULD BREAK EVERYTHING THAT EXIST!
 	*/
-	public List<List<int>> findShitestPath(List<List<GameObject>> map, List<List<int>> mapCost, int originRow, int originIndex, int goalRow, int goalIndex)
+	public List<List<int>> findShitestPath(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int goalRow, int goalIndex)
 	{
 		//Debug.Log ("Original Row and Index: " + originRow + " " + originIndex);
 		//Debug.Log (originIndex);
@@ -112,9 +112,9 @@ public class AStarScript : MonoBehaviour {
 		openSet.Add(startPosition);
 
 
-		/*
-		 * These debug prove that the start node is in openSet
-		 * 
+		
+		  //These debug prove that the start node is in openSet
+		 /*
 		List<int> debugOpenSet = new List<int> ();
 		debugOpenSet = openSet [0];
 		Debug.Log ("GOT HERE " + debugOpenSet [0] + debugOpenSet [1]);
@@ -125,6 +125,7 @@ public class AStarScript : MonoBehaviour {
 				Debug.Log ("element inside: " + openSet[i][j]);
 			}
 		}
+        
 		Debug.Log ("Got here");
 		*/
 
@@ -170,14 +171,21 @@ public class AStarScript : MonoBehaviour {
 			//Debug.Log ("=====End fScore Debug======");
 			//return null;
 
+            /*
+            Debug.Log(currentNode[0]);
+            Debug.Log(currentNode[1]);
+            Debug.Log(goalPosition[0]);
+            Debug.Log(goalPosition[1]);
+            */
 
-			//Found the goal
-			if (currentNode[0] == goalPosition[0] && currentNode[1] == goalPosition[1]) 
+            //Found the goal
+            if (currentNode[0] == goalPosition[0] && currentNode[1] == goalPosition[1]) 
 			{
 				//Return the path back
 				//Debug.Log("======Got inside reconstruct path======");
 				//Debug.Log("The gScore of the tile " + currentNode[0] + "," + currentNode[1] + " is: " + gScore[currentNode]);
-				return ReconstructPath (cameFromSet, currentNode);
+                //Debug.Log(ReconstructPath(cameFromSet, currentNode));
+                return ReconstructPath (cameFromSet, currentNode);
 			}
 
 			//Pop the currentNode from openSet
@@ -198,17 +206,22 @@ public class AStarScript : MonoBehaviour {
 			//Iterate through all the surrounding nodes
 			for (int gRow = currentNodeRow - 1; gRow < currentNodeRow + 2; ++gRow) 
 			{
-				for (int gIndex = currentNodeIndex - 1; gIndex < currentNodeIndex + 2; ++gIndex) 
-				{
-					//============TESTED TO THIS POINT 7.0 WORKS=====================//
-					//Debug.Log("Tested at 7.0");
-					//Debug.Log ("Current node values: " + currentNodeRow + "," + currentNodeIndex);
-					//Debug.Log ("Current node Row min and max: " + (currentNodeRow - 1) + ","+ (currentNodeRow + 1));
-					//Debug.Log ("Current node Index min and max: " + (currentNodeIndex - 1) + ","+ (currentNodeIndex + 1));
-					//return null;
+                for (int gIndex = currentNodeIndex - 1; gIndex < currentNodeIndex + 2; ++gIndex)
+                {
+                    //============TESTED TO THIS POINT 7.0 WORKS=====================//
+                    //Debug.Log("Tested at 7.0");
+                    //Debug.Log("Current node values: " + currentNodeRow + "," + currentNodeIndex);
+                    //Debug.Log("Current node Row min and max: " + (currentNodeRow - 1) + "," + (currentNodeRow + 1));
+                    //Debug.Log("Current node Index min and max: " + (currentNodeIndex - 1) + "," + (currentNodeIndex + 1));
+                    //return null;
 
+                    //if g < 0 checking for nonexistant tile, so break out of this insatnace of loop
+                    if (gRow < 0 || gIndex < 0) 
+                    {
+                        break;
+                    }
 
-					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map)) 
+                    if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map, mapCost)) 
 					{
 						//Add the new neighbor
 						List<int> neighborNode = new List<int> ();
@@ -361,18 +374,20 @@ public class AStarScript : MonoBehaviour {
 	}
 
 	//Check can I move from this tile to the next
-	private bool CanGetNext(int originRow, int originIndex, int goalRow, int goalIndex, List<List<GameObject>> map)
+	private bool CanGetNext(int originRow, int originIndex, int goalRow, int goalIndex, List<List<GameObject>> map, List<List<List<int>>> mapCost)
 	{
-		//Check all the various things to ensure it can get to next location
-		if (!CheckBound(goalRow, goalIndex, map.Count, map[goalIndex].Count) 
+        //Check all the various things to ensure it can get to next location
+        if (!CheckBound(goalRow, goalIndex, map.Count, map[goalIndex].Count) 
 			|| !CheckOneTileAway(originRow,originIndex,goalRow,goalIndex) 
-			|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex)) {
+			|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex)
+            || !CheckIfWalkable(goalRow, goalIndex, map, mapCost)) {
 			return false;
 		}
+        //Debug.Log("true cangetnext");
 
-		//Code to check if it is matching earthtile
-		//Code might go here for "terrian cost stuff" 
-		return true;
+        //Code to check if it is matching earthtile
+        //Code might go here for "terrian cost stuff" 
+        return true;
 	}
 
 	//Check to see the tile is itself
@@ -401,23 +416,38 @@ public class AStarScript : MonoBehaviour {
 	//Check to see if the next tile is within the gamebound
 	private bool CheckBound(int goalRow, int goalIndex, int maxRow, int maxIndex)
 	{
-		if (goalRow >= maxRow || goalIndex >= maxIndex) 
+        if (goalRow >= maxRow || goalIndex >= maxIndex) 
 		{
-			return false;
+            return false;
 		}
 
 		if ((goalRow >= 0 && goalRow < maxRow) && (goalIndex >= 0 && goalIndex < maxIndex)) {
-			return true;
+            return true;
 		}
-
-		return false;
+        return false;
 	}//end checkBound
 
+    private bool CheckIfWalkable(int goalRow, int goalIndex, List<List<GameObject>> map, List<List<List<int>>> mapCost)
+    {
+        //0 -> earth, 1->water, 2->mountian
+        //right now 0 means earth, and earth only walkable tile
+        if (mapCost[goalRow][goalIndex][0] == 0 && 
+            //check if empty tile as well, nneds to be done after first if or else will check tiles without GenericEarthScript code and exception will be raised
+            (map[goalRow][goalIndex].GetComponent<GenericEarthScript>().GetOccupingObject() == null))
+        {
+
+            return true;
+        }
+
+        //otherwise
+        return false;
+    }
+
 	//Return the cost of traveling 
-	private int ReturnCostTile(int tileRow, int tileIndex, List<List<int>> mapCost)
+	private int ReturnCostTile(int tileRow, int tileIndex, List<List<List<int>>> mapCost)
 	{
 		//Hard coded the +1 because base tile movement cost is 0
-		return mapCost [tileRow][tileIndex] + 1;
+		return mapCost [tileRow][tileIndex][1] + 1;
 	}
 
 	/*

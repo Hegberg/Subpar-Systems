@@ -54,7 +54,7 @@ public class GameControlScript : MonoBehaviour {
         characters.Add(red);
         characters.Add(yellow);
 
-        //add tile prefabs
+        //add tile prefabs, need to ad walkable tiles first so earth, then everything else right now
         tiles.Add(earth.gameObject);
         tiles.Add(water.gameObject);
         tiles.Add(mountian.gameObject);

@@ -27,6 +27,15 @@ public class GenericEarthScript : TileScript {
             //but implement A* and not just teleport player with move player script
 			List<List<int>> tempListInt = new List<List<int>>();
 
+            /*
+            Debug.Log(LevelControlScript.control.GetAStarMap());
+            Debug.Log(LevelControlScript.control.GetAStarMapCost());
+            Debug.Log(TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0]);
+            Debug.Log(TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1]);
+            Debug.Log(tilePosition[0]);
+            Debug.Log(tilePosition[1]);
+            */
+
             tempListInt = AStarScript.control.findShitestPath(LevelControlScript.control.GetAStarMap(), 
 				LevelControlScript.control.GetAStarMapCost(),
 				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
@@ -34,7 +43,10 @@ public class GenericEarthScript : TileScript {
 				tilePosition[0],
 				tilePosition[1]);
 			
-			/*
+            //Debug.Log(tempListInt[0][0]);
+            //Debug.Log(tempListInt[1][0]);
+
+            /*
 			for (int i = 0; i < tempListInt.Count; ++i) {
 				for (int j = 0; j < tempListInt[i].Count; ++j) {
 					Debug.Log ("Pathfinding Results at " + i + " " + tempListInt[i][j]);
@@ -62,4 +74,9 @@ public class GenericEarthScript : TileScript {
 	{
 		return tilePosition;
 	}
+
+    public GameObject GetOccupingObject()
+    {
+        return occupingObject;
+    }
 }
