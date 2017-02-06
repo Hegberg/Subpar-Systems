@@ -10,11 +10,19 @@ public class AStarScript : MonoBehaviour {
 	//private int maxRow;
 	//private int maxIndex;
 
+	//========DEBUG LOOP STOPPER=======//
+	public int endNumLoop;
+	public int increment;
+
 	// Use this for initialization
 	void Start () {
 		if(control == null)
 		{
 			control = this;
+
+			//Debug loop variables
+			endNumLoop = 25;
+			increment = 0;
 		}
 		else
 		{
@@ -59,6 +67,7 @@ public class AStarScript : MonoBehaviour {
 		//Debug.Log ("The MaxRow = " + map.Count + " The maxIndex = " + map[1].Count);
 
 		List<List<int>> openSet = new List<List<int>> ();
+
 		Dictionary<List<int>, List<int>> cameFromSet =  new Dictionary<List<int>, List<int>>();
 
 		//Init Starting and goal position
@@ -297,23 +306,60 @@ public class AStarScript : MonoBehaviour {
 			//============TESTED TO THIS POINT 11.0 WORKS=====================//
 			//Debug.Log("Tested at 11.0");
 			//Debug.Log ("Size of cameFromSet: " + cameFromSet.Count);
+			//return null;
 
 			//foreach(var blah in cameFromSet){
 			//	Debug.Log ("cameFromSet " + blah.Key[0] + "," + blah.Key[1] + " : "+ blah.Value[0] + "," + blah.Value[1]);
 			//}
 
 			//Debug.Log ("Size of openSet: " + openSet.Count);
-			//for (int i = 0; i < opgoenSet.Count; ++i) 
+			//for (int i = 0; i < openSet.Count; ++i) 
 			//{
 			//	Debug.Log ("openSet at " + i + " : " + openSet[i][0] + "," + openSet[i][1]);
 			//}
 
 			//return null;
 
+			//=============DEBUG LOOP STOPPER=============//
+			if (increment == endNumLoop) {
+				Debug.Log ("Size of openSet: " + openSet.Count);
+				for (int i = 0; i < openSet.Count; ++i) 
+				{
+					Debug.Log ("openSet at " + i + " : " + openSet[i][0] + "," + openSet[i][1]);
+				}
+				List<int> testing = new List<int>();
+				testing.Add(3);
+				testing.Add(2);
+				Debug.Log("testing is equal to: " + testing[0] + "," + testing[1]);
+				Debug.Log ("openSet has the list: " + openSet [47] [0] + "," + openSet [47] [1]);
+				Debug.Log("Does openset contain 3,2? " + openSet.Contains(testing));
+
+				return null;	
+			} 
+			else 
+			{
+				increment++;
+			}
+
+
 		}//end while loop
 
 		//We should never get HERE. LIKE EVER
 		return null;
+	}
+
+	//Returns a list of all valid walkable tiles within range
+	private List<List<int>> FloodFillWithinRange(List<List<GameObject>> map, List<int> startNode, int movementRange)
+	{
+		int currentMovementRangeLeft = movementRange;
+		List<List<int>> openSet = new List<List<int>> ();
+		List<List<int>> validMovementSet = new List<List<int>> ();
+
+		//Iterate through all neighbours until cost is equal to 0
+		//Similar code to find shittypath however, currently openset is broken
+
+		//Return list of tiles.
+
 	}
 
 	//Parse through the cameFromList and returns a single path
