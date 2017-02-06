@@ -6,10 +6,10 @@ public class GenericEnemyScript : MonoBehaviour {
 
     private GameObject tileOccuping;
 
-    private int hp = 100;
-    private int attack = 100;
-    private int movement = 3;
-    private int range = 3;
+    private float hp = 100;
+    private float attack = 100;
+    private float movement = 3;
+    private float range = 3;
 
     private bool isSelected = false;
 
@@ -25,15 +25,21 @@ public class GenericEnemyScript : MonoBehaviour {
 
     void OnMouseOver()
     {
+		//if player turn, player selected and player hasn't attacked
         if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn() && 
             TurnControlScript.control.GetPlayerSelected() != null &&
             !TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetHasAttacked())
         {
             if (isSelected)
             {
+				//calculate damage taken
                 hp -= TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetAttack();
+				//set player attacked to true
                 TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().SetHasAttacked(true);
+				//deselect enemy
                 TurnControlScript.control.SetEnemySelected(null);
+				isSelected = false;
+				//check if enemy still alive
                 if (hp <= 0)
                 {
                     Destroy(gameObject);
@@ -41,12 +47,13 @@ public class GenericEnemyScript : MonoBehaviour {
             }
             else
             {
+				//if another enemy selected, deselect it
                 if (TurnControlScript.control.GetEnemySelected() != null)
                 {
                     TurnControlScript.control.GetEnemySelected().GetComponent<GenericEnemyScript>().SetIsSelected(false);
                 }
-                isSelected = true;
-                TurnControlScript.control.SetEnemySelected(this.gameObject);
+				isSelected = true;
+				TurnControlScript.control.SetEnemySelected (this.gameObject);
             }
         }
     }

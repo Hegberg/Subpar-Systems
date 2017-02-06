@@ -321,7 +321,9 @@ public class AStarScript : MonoBehaviour {
 			//return null;
 
 			//=============DEBUG LOOP STOPPER=============//
+
 			if (increment == endNumLoop) {
+				/*
 				Debug.Log ("Size of openSet: " + openSet.Count);
 				for (int i = 0; i < openSet.Count; ++i) 
 				{
@@ -333,13 +335,14 @@ public class AStarScript : MonoBehaviour {
 				Debug.Log("testing is equal to: " + testing[0] + "," + testing[1]);
 				Debug.Log ("openSet has the list: " + openSet [47] [0] + "," + openSet [47] [1]);
 				Debug.Log("Does openset contain 3,2? " + openSet.Contains(testing));
-
+				*/
 				return null;	
 			} 
 			else 
 			{
 				increment++;
 			}
+
 
 
 		}//end while loop
@@ -359,6 +362,7 @@ public class AStarScript : MonoBehaviour {
 		//Similar code to find shittypath however, currently openset is broken
 
 		//Return list of tiles.
+		return openSet;
 
 	}
 
