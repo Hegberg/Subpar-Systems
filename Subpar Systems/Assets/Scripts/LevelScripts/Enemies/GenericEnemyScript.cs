@@ -65,12 +65,71 @@ public class GenericEnemyScript : MonoBehaviour {
 
     void Move()
     {
+		List<List<int>> FloodFillTiles = new List<List<int>> ();
+		//Return all valid movement tiles
+		FloodFillTiles = AStarScript.control.FloodFillWithinRange(LevelControlScript.control.GetAStarMap(), 
+			LevelControlScript.control.GetAStarMapCost(),
+			TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
+			TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
+			(int) movement);
 
-    }
+		List<int> closest = new List<int>();
+		//Find the closest "player character"
+
+		List<int> nearestTile = new List<int> ();
+		int closestTileValue = int.MaxValue;
+		foreach (var elementTile in FloodFillTiles)
+		{
+			int difference = Mathf.Abs (elementTile [0] - closest [0]) + Mathf.Abs (elementTile [1] - closest [1]);
+			//Check to see if the tile total different in coordinate is less than the current closest
+			if (difference <= closestTileValue) 
+			{
+				//Swap the values
+				closestTileValue = difference;
+				nearestTile = elementTile;
+			}
+		}//end find the closest enemy
+    	
+		//Move the enemy to the tile coordinates
+	}
 
     void Attack()
     {
+		List<List<int>> FloodFillTiles = new List<List<int>> ();
+		//Return all valid movement tiles
+		FloodFillTiles = AStarScript.control.FloodFillAttackRange(LevelControlScript.control.GetAStarMap(), 
+			LevelControlScript.control.GetAStarMapCost(),
+			TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
+			TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
+			(int) range);
 
+		List<int> closest = new List<int>();
+		//Find the closest "player character"
+
+		List<int> target = new List<int> ();
+		int closestTileValue = int.MaxValue;
+
+		foreach (var elementTile in FloodFillTiles)
+		{
+			//First check to see if there is a player object on it
+			//If there is not one (look at the data structure that holds all the row,index of the player character)
+			//Continue
+			//Else do the follow
+
+			//Current behaviour is that attack the cloest enemy
+			int difference = Mathf.Abs (elementTile [0] - closest [0]) + Mathf.Abs (elementTile [1] - closest [1]);
+			//Check to see if the tile total different in coordinate is less than the current closest
+			if (difference <= closestTileValue) 
+			{
+				//Swap the values
+				closestTileValue = difference;
+				target = elementTile;
+			}
+		}//end find the closest enemy
+
+		//Now attack the player standing on the neartestTile
+
+		//Move the enemy to the tile coordinates
     }
 
     public GameObject GetTileOccuping()
