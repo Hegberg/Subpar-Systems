@@ -27,22 +27,22 @@ public class CameraScript : MonoBehaviour {
         if (Input.GetKey(KeyCode.LeftArrow) &&
             transform.position.x > LevelControlScript.control.GetCameraMinX())
         {
-            transform.localPosition += new Vector3(-cameraMoveSpeed, 0, 0);
+            Camera.main.transform.localPosition += new Vector3(-cameraMoveSpeed, 0, 0);
         }
         if (Input.GetKey(KeyCode.RightArrow) &&
             transform.position.x < LevelControlScript.control.GetCameraMaxX())
         {
-            transform.localPosition += new Vector3(cameraMoveSpeed, 0, 0);
+            Camera.main.transform.localPosition += new Vector3(cameraMoveSpeed, 0, 0);
         }
         if (Input.GetKey(KeyCode.UpArrow) &&
             transform.position.y < LevelControlScript.control.GetCameraMaxY())
         {
-            transform.localPosition += new Vector3(0, cameraMoveSpeed, 0);
+            Camera.main.transform.localPosition += new Vector3(0, cameraMoveSpeed, 0);
         }
         if (Input.GetKey(KeyCode.DownArrow) &&
             transform.position.y > LevelControlScript.control.GetCameraMinY())
         {
-            transform.localPosition += new Vector3(0, -cameraMoveSpeed, 0);
+            Camera.main.transform.localPosition += new Vector3(0, -cameraMoveSpeed, 0);
         }
     }
 }
