@@ -202,12 +202,6 @@ public class AStarScript : MonoBehaviour {
 			//Debug.Log ("=====End fScore Debug======");
 			//return null;
 
-            /*
-            Debug.Log(currentNode[0]);
-            Debug.Log(currentNode[1]);
-            Debug.Log(goalPosition[0]);
-            Debug.Log(goalPosition[1]);
-            */
 
             //Found the goal
             if (currentNode[0] == goalPosition[0] && currentNode[1] == goalPosition[1]) 
@@ -220,7 +214,7 @@ public class AStarScript : MonoBehaviour {
 			}
 
 			//Pop the currentNode from openSet
-			//openSet.Remove(currentNode);
+			openSet.Remove(currentNode);
 
 			//===================TESTING NEW OPENSET====================//
 			//openSetNew.Remove(currentNode[0].ToString() + "-" + currentNode[1].ToString());
@@ -253,7 +247,7 @@ public class AStarScript : MonoBehaviour {
                     //if g < 0 checking for nonexistant tile, so break out of this insatnace of loop
                     if (gRow < 0 || gIndex < 0) 
                     {
-                        break;
+						continue;
                     }
 
                     if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map, mapCost)) 
@@ -415,17 +409,72 @@ public class AStarScript : MonoBehaviour {
 	}
 
 	//Returns a list of all valid walkable tiles within range
-	private List<List<int>> FloodFillWithinRange(List<List<GameObject>> map, List<int> startNode, int movementRange)
+	public List<List<int>> FloodFillWithinRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int movementRange)
 	{
-		int currentMovementRangeLeft = movementRange;
+		Debug.Log ("Starting Flood");
+		var movementRemain = new Dictionary<List<int>, int>();
+
 		List<List<int>> openSet = new List<List<int>> ();
-		List<List<int>> validMovementSet = new List<List<int>> ();
+		List<List<int>> cameFromSet =  new List<List<int>>();
 
-		//Iterate through all neighbours until cost is equal to 0
-		//Similar code to find shittypath however, currently openset is broken
+		//Init Starting and goal position
+		List<int> startPosition = new List<int> ();
+		startPosition.Add (originRow);
+		startPosition.Add (originIndex);
 
-		//Return list of tiles.x`
-		return null;
+		movementRemain[startPosition] = movementRange;
+		openSet.Add(startPosition);
+
+		while(!(openSet.Count == 0))
+		{
+		//	Debug.Log ("In while loop");
+			//Clear the current node
+			List<int> currentNode = new List<int> ();
+			currentNode = openSet[0];
+			openSet.RemoveAt(0);
+			int currentNodeRow = currentNode[0];
+			int currentNodeIndex = currentNode[1];
+
+			for (int gRow = currentNodeRow - 1; gRow < currentNodeRow + 2; ++gRow) 
+			{
+				for (int gIndex = currentNodeIndex - 1; gIndex < currentNodeIndex + 2; ++gIndex)
+				{
+					if (gRow < 0 || gIndex < 0) 
+					{
+						Debug.Log ("I left in gRow and gIndex");
+						continue;
+					}
+
+					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map, mapCost)) 
+					{
+						//Add the new neighbor
+						int newCost = movementRemain[currentNode] - ReturnCostTile(gRow, gIndex, mapCost);
+						//Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " " + movementRemain [currentNode] + " COST " + newCost);
+						if (newCost >= 0) {
+							List<int> neighborNode = new List<int> ();
+							neighborNode.Add (gRow);
+							neighborNode.Add (gIndex);
+							Debug.Log ("Added the neighborNode " + neighborNode [0] + "," + neighborNode [1]);
+							openSet.Add (neighborNode);
+							cameFromSet.Add (neighborNode);
+							movementRemain [neighborNode] = newCost;
+						} else {
+							continue;
+						}
+					}
+				}//end for loop
+
+			}//end for loop
+				
+		}//end while loop
+		/*
+		for (int i = 0; i < cameFromSet.Count; ++i) {
+			Debug.Log ("cameFromSet Results at " + i + " " + cameFromSet[i][0] + "," + cameFromSet[i][1]);
+		}
+		*/
+
+		//We should never get HERE. LIKE EVER
+		return cameFromSet;
 	}
 
 	//Parse through the cameFromList and returns a single path
