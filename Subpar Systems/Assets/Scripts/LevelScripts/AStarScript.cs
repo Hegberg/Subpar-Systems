@@ -68,6 +68,9 @@ public class AStarScript : MonoBehaviour {
 
 		List<List<int>> openSet = new List<List<int>> ();
 
+		//TESTING NEW OPENSET
+		//Dictionary<string, List<int>> openSetNew = new Dictionary<string, List<int>>();
+
 		Dictionary<List<int>, List<int>> cameFromSet =  new Dictionary<List<int>, List<int>>();
 
 		//Init Starting and goal position
@@ -120,6 +123,9 @@ public class AStarScript : MonoBehaviour {
 		//Insert the starting node 
 		openSet.Add(startPosition);
 
+		//===================TESTING NEW OPENSET====================//
+		//openSetNew[startPosition[0].ToString() + "-" + startPosition[1].ToString()] = startPosition;
+		//===================TESTING NEW OPENSET====================//
 
 		
 		  //These debug prove that the start node is in openSet
@@ -172,7 +178,23 @@ public class AStarScript : MonoBehaviour {
 					currentNode = openSet[i];
 					//Debug.Log ("What got selected as current node: " + currentNode [0] + "," + currentNode [1]);
 				}
+
 			}//end for loop fScore
+				
+
+			//===================TESTING NEW OPENSET====================//
+			/*
+			foreach (var element in openSetNew) 
+			{
+				if (fScore [element.Value] < lowestFScore) 
+				{
+					lowestFScore = fScore [element.Value];
+					currentNode = element.Value;
+				}
+			}
+			*/
+			//===================TESTING NEW OPENSET====================//
+
 
 			//============TESTED TO THIS POINT 5.0 WORK=====================//
 			//Debug.Log("Tested at 5.0");
@@ -180,12 +202,6 @@ public class AStarScript : MonoBehaviour {
 			//Debug.Log ("=====End fScore Debug======");
 			//return null;
 
-            /*
-            Debug.Log(currentNode[0]);
-            Debug.Log(currentNode[1]);
-            Debug.Log(goalPosition[0]);
-            Debug.Log(goalPosition[1]);
-            */
 
             //Found the goal
             if (currentNode[0] == goalPosition[0] && currentNode[1] == goalPosition[1]) 
@@ -199,6 +215,10 @@ public class AStarScript : MonoBehaviour {
 
 			//Pop the currentNode from openSet
 			openSet.Remove(currentNode);
+
+			//===================TESTING NEW OPENSET====================//
+			//openSetNew.Remove(currentNode[0].ToString() + "-" + currentNode[1].ToString());
+			//===================TESTING NEW OPENSET====================//
 
 			//INSERT SOMETHING ABOUT GENERATION COUNTER
 
@@ -227,7 +247,7 @@ public class AStarScript : MonoBehaviour {
                     //if g < 0 checking for nonexistant tile, so break out of this insatnace of loop
                     if (gRow < 0 || gIndex < 0) 
                     {
-                        break;
+						continue;
                     }
 
                     if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map, mapCost)) 
@@ -283,6 +303,41 @@ public class AStarScript : MonoBehaviour {
 
 							continue;
 						}
+
+						//===================TESTING NEW OPENSET====================//
+						/*
+						if (!openSetNew.ContainsKey(neighborNode[0].ToString() + "-" + neighborNode[1].ToString())) {
+
+							openSetNew[neighborNode[0].ToString() + "-" + neighborNode[1].ToString()] = neighborNode;
+
+							//============TESTED TO THIS POINT 9.0A WORKS=====================//
+							//Debug.Log("Tested at 9.0A");
+							//Debug.Log ("neighborNode that got added: " + neighborNode [0] + "," + neighborNode [1]);
+							//Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
+							//return null;
+
+						} 
+						else  
+						{
+							//============TESTED TO THIS POINT 9.0B UNTESTED YET=====================//
+							//Debug.Log("Tested at 9.0B");
+							//Debug.Log ("neighborNode that got skipped: " + neighborNode [0] + "," + neighborNode [1]);
+							//Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
+							//return null;
+							Debug.Log("Check to see if neightborNode is a key in GScore " + neighborNode[0] + "," + neighborNode[1] );
+							Debug.Log ("Run does containkey " + gScore.ContainsKey(neighborNode));
+							if (gScore.ContainsKey (neighborNode)) {
+								return null;
+							}
+
+							if (tentativeGScore >= gScore [neighborNode]) {
+								continue;
+							}
+						}
+						*/
+
+						//===================TESTING NEW OPENSET====================//
+
 						//Create a dic that contains the  Row/Index of current (where we came from)  VALUE
 						//								  Row/Index of neighbor (Where we are going) KEY
 						cameFromSet[neighborNode] = currentNode;
@@ -344,7 +399,6 @@ public class AStarScript : MonoBehaviour {
 			}
 
 
-
 		}//end while loop
 
 		//We should never get HERE. LIKE EVER
@@ -352,18 +406,72 @@ public class AStarScript : MonoBehaviour {
 	}
 
 	//Returns a list of all valid walkable tiles within range
-	private List<List<int>> FloodFillWithinRange(List<List<GameObject>> map, List<int> startNode, int movementRange)
+	public List<List<int>> FloodFillWithinRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int movementRange)
 	{
-		int currentMovementRangeLeft = movementRange;
+		Debug.Log ("Starting Flood");
+		var movementRemain = new Dictionary<List<int>, int>();
+
 		List<List<int>> openSet = new List<List<int>> ();
-		List<List<int>> validMovementSet = new List<List<int>> ();
+		List<List<int>> cameFromSet =  new List<List<int>>();
 
-		//Iterate through all neighbours until cost is equal to 0
-		//Similar code to find shittypath however, currently openset is broken
+		//Init Starting and goal position
+		List<int> startPosition = new List<int> ();
+		startPosition.Add (originRow);
+		startPosition.Add (originIndex);
 
-		//Return list of tiles.
-		return openSet;
+		movementRemain[startPosition] = movementRange;
+		openSet.Add(startPosition);
 
+		while(!(openSet.Count == 0))
+		{
+		//	Debug.Log ("In while loop");
+			//Clear the current node
+			List<int> currentNode = new List<int> ();
+			currentNode = openSet[0];
+			openSet.RemoveAt(0);
+			int currentNodeRow = currentNode[0];
+			int currentNodeIndex = currentNode[1];
+
+			for (int gRow = currentNodeRow - 1; gRow < currentNodeRow + 2; ++gRow) 
+			{
+				for (int gIndex = currentNodeIndex - 1; gIndex < currentNodeIndex + 2; ++gIndex)
+				{
+					if (gRow < 0 || gIndex < 0) 
+					{
+						Debug.Log ("I left in gRow and gIndex");
+						continue;
+					}
+
+					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map, mapCost)) 
+					{
+						//Add the new neighbor
+						int newCost = movementRemain[currentNode] - ReturnCostTile(gRow, gIndex, mapCost);
+						//Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " " + movementRemain [currentNode] + " COST " + newCost);
+						if (newCost >= 0) {
+							List<int> neighborNode = new List<int> ();
+							neighborNode.Add (gRow);
+							neighborNode.Add (gIndex);
+							Debug.Log ("Added the neighborNode " + neighborNode [0] + "," + neighborNode [1]);
+							openSet.Add (neighborNode);
+							cameFromSet.Add (neighborNode);
+							movementRemain [neighborNode] = newCost;
+						} else {
+							continue;
+						}
+					}
+				}//end for loop
+
+			}//end for loop
+				
+		}//end while loop
+		/*
+		for (int i = 0; i < cameFromSet.Count; ++i) {
+			Debug.Log ("cameFromSet Results at " + i + " " + cameFromSet[i][0] + "," + cameFromSet[i][1]);
+		}
+		*/
+
+		//We should never get HERE. LIKE EVER
+		return cameFromSet;
 	}
 
 	//Parse through the cameFromList and returns a single path
