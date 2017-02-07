@@ -41,12 +41,12 @@ public class EnemyParentScript : MonoBehaviour {
 		}
 	}
 
-    void BroadcastAttack()
+    public void BroadcastAttack()
     {
         BroadcastMessage("Attack");
     }
 
-    void BroadcastMove()
+    public void BroadcastMove()
     {
         BroadcastMessage("Move");
     }

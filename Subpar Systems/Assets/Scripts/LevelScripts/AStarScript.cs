@@ -407,6 +407,7 @@ public class AStarScript : MonoBehaviour {
 		return null;
 	}
 
+	//Returns tile that are within the range of the map
 	public List<List<int>> FloodFillAttackRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int attackrange)
 	{
 		Debug.Log ("Starting attaackflood");
@@ -425,8 +426,7 @@ public class AStarScript : MonoBehaviour {
 
 		while(!(openSet.Count == 0))
 		{
-			//	Debug.Log ("In while loop");
-			//Clear the current node
+			
 			List<int> currentNode = new List<int> ();
 			currentNode = openSet[0];
 			openSet.RemoveAt(0);
@@ -443,16 +443,16 @@ public class AStarScript : MonoBehaviour {
 						continue;
 					}
 
+					//A modified version of CanGetNext that ignores some of the restrictions
 					if (CanGetNextAttackRange (currentNodeRow, currentNodeIndex, gRow, gIndex, map)) 
 					{
-						//Add the new neighbor
+						//Determine new cost given attack range, needs to be changed to add in height
 						int newCost = attackRangeRemain[currentNode] - 1;
 						//Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " " + movementRemain [currentNode] + " COST " + newCost);
 						if (newCost >= 0) {
 							List<int> neighborNode = new List<int> ();
 							neighborNode.Add (gRow);
 							neighborNode.Add (gIndex);
-							//Debug.Log ("Added the neighborNode " + neighborNode [0] + "," + neighborNode [1]);
 							openSet.Add (neighborNode);
 							attackSet.Add (neighborNode);
 							attackRangeRemain [neighborNode] = newCost;
@@ -471,7 +471,7 @@ public class AStarScript : MonoBehaviour {
 		}
 
 
-		//We should never get HERE. LIKE EVER
+		//Return tiles that are within attack range
 		return attackSet;
 	} 
 
