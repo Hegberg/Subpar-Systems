@@ -44,11 +44,11 @@ public class GenericEarthScript : TileScript {
 				tilePosition[0],
 				tilePosition[1]);
 
-			tempListInt = AStarScript.control.FloodFillWithinRange(LevelControlScript.control.GetAStarMap(), 
+			tempListInt = AStarScript.control.FloodFillAttackRange(LevelControlScript.control.GetAStarMap(), 
 				LevelControlScript.control.GetAStarMapCost(),
 				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
 				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
-				4);
+				2);
 
             //Debug.Log(tempListInt[0][0]);
             //Debug.Log(tempListInt[1][0]);
