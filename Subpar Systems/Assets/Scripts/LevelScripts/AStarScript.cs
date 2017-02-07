@@ -68,6 +68,9 @@ public class AStarScript : MonoBehaviour {
 
 		List<List<int>> openSet = new List<List<int>> ();
 
+		//TESTING NEW OPENSET
+		//Dictionary<string, List<int>> openSetNew = new Dictionary<string, List<int>>();
+
 		Dictionary<List<int>, List<int>> cameFromSet =  new Dictionary<List<int>, List<int>>();
 
 		//Init Starting and goal position
@@ -120,6 +123,9 @@ public class AStarScript : MonoBehaviour {
 		//Insert the starting node 
 		openSet.Add(startPosition);
 
+		//===================TESTING NEW OPENSET====================//
+		//openSetNew[startPosition[0].ToString() + "-" + startPosition[1].ToString()] = startPosition;
+		//===================TESTING NEW OPENSET====================//
 
 		
 		  //These debug prove that the start node is in openSet
@@ -172,7 +178,23 @@ public class AStarScript : MonoBehaviour {
 					currentNode = openSet[i];
 					//Debug.Log ("What got selected as current node: " + currentNode [0] + "," + currentNode [1]);
 				}
+
 			}//end for loop fScore
+				
+
+			//===================TESTING NEW OPENSET====================//
+			/*
+			foreach (var element in openSetNew) 
+			{
+				if (fScore [element.Value] < lowestFScore) 
+				{
+					lowestFScore = fScore [element.Value];
+					currentNode = element.Value;
+				}
+			}
+			*/
+			//===================TESTING NEW OPENSET====================//
+
 
 			//============TESTED TO THIS POINT 5.0 WORK=====================//
 			//Debug.Log("Tested at 5.0");
@@ -198,7 +220,11 @@ public class AStarScript : MonoBehaviour {
 			}
 
 			//Pop the currentNode from openSet
-			openSet.Remove(currentNode);
+			//openSet.Remove(currentNode);
+
+			//===================TESTING NEW OPENSET====================//
+			//openSetNew.Remove(currentNode[0].ToString() + "-" + currentNode[1].ToString());
+			//===================TESTING NEW OPENSET====================//
 
 			//INSERT SOMETHING ABOUT GENERATION COUNTER
 
@@ -283,6 +309,41 @@ public class AStarScript : MonoBehaviour {
 
 							continue;
 						}
+
+						//===================TESTING NEW OPENSET====================//
+						/*
+						if (!openSetNew.ContainsKey(neighborNode[0].ToString() + "-" + neighborNode[1].ToString())) {
+
+							openSetNew[neighborNode[0].ToString() + "-" + neighborNode[1].ToString()] = neighborNode;
+
+							//============TESTED TO THIS POINT 9.0A WORKS=====================//
+							//Debug.Log("Tested at 9.0A");
+							//Debug.Log ("neighborNode that got added: " + neighborNode [0] + "," + neighborNode [1]);
+							//Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
+							//return null;
+
+						} 
+						else  
+						{
+							//============TESTED TO THIS POINT 9.0B UNTESTED YET=====================//
+							//Debug.Log("Tested at 9.0B");
+							//Debug.Log ("neighborNode that got skipped: " + neighborNode [0] + "," + neighborNode [1]);
+							//Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
+							//return null;
+							Debug.Log("Check to see if neightborNode is a key in GScore " + neighborNode[0] + "," + neighborNode[1] );
+							Debug.Log ("Run does containkey " + gScore.ContainsKey(neighborNode));
+							if (gScore.ContainsKey (neighborNode)) {
+								return null;
+							}
+
+							if (tentativeGScore >= gScore [neighborNode]) {
+								continue;
+							}
+						}
+						*/
+
+						//===================TESTING NEW OPENSET====================//
+
 						//Create a dic that contains the  Row/Index of current (where we came from)  VALUE
 						//								  Row/Index of neighbor (Where we are going) KEY
 						cameFromSet[neighborNode] = currentNode;
@@ -321,9 +382,12 @@ public class AStarScript : MonoBehaviour {
 			//return null;
 
 			//=============DEBUG LOOP STOPPER=============//
+			/*
 			if (increment == endNumLoop) {
-				Debug.Log ("Size of openSet: " + openSet.Count);
-				for (int i = 0; i < openSet.Count; ++i) 
+				
+				Debug.Log ("Size of openSet: " + openSetNew.Count);
+
+				for (int i = 0; i < openSetNew.Count; ++i) 
 				{
 					Debug.Log ("openSet at " + i + " : " + openSet[i][0] + "," + openSet[i][1]);
 				}
@@ -334,14 +398,16 @@ public class AStarScript : MonoBehaviour {
 				Debug.Log ("openSet has the list: " + openSet [47] [0] + "," + openSet [47] [1]);
 				Debug.Log("Does openset contain 3,2? " + openSet.Contains(testing));
 
+
 				return null;	
 			} 
 			else 
 			{
 				increment++;
 			}
+			*/
 
-
+	
 		}//end while loop
 
 		//We should never get HERE. LIKE EVER
@@ -358,8 +424,8 @@ public class AStarScript : MonoBehaviour {
 		//Iterate through all neighbours until cost is equal to 0
 		//Similar code to find shittypath however, currently openset is broken
 
-		//Return list of tiles.
-
+		//Return list of tiles.x`
+		return null;
 	}
 
 	//Parse through the cameFromList and returns a single path
