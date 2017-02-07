@@ -35,7 +35,7 @@ public class GenericCharacterScript : MonoBehaviour {
     public virtual void OnMouseOver()
     {
         //if player clicked on and it's players turn, then select player
-        if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn())
+		if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn() && (!hasMoved || !hasAttacked))
         {
             TurnControlScript.control.SetPlayerSelected(this.gameObject);
 			DebugShowTraits();
@@ -98,27 +98,40 @@ public class GenericCharacterScript : MonoBehaviour {
 		return currentTraits;
 	}
 
+	//refresh actions and get rid of fade out
     public void RefreshActions()
     {
         hasAttacked = false;
         hasMoved = false;
+		GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
     }
 
     public void RemoveActions()
     {
         hasAttacked = true;
         hasMoved = true;
+		OutOfActions ();
     } 
 
     public void SetHasMoved(bool moved)
     {
         hasMoved = moved;
+		OutOfActions ();
     }
 
     public void SetHasAttacked(bool attacked)
     {
         hasAttacked = attacked;
+		OutOfActions ();
     }
+
+	public void OutOfActions() {
+		//if player out of actions, make them fade out slightly
+		if (hasAttacked && hasMoved) {
+			TurnControlScript.control.SetPlayerSelected (null);
+			GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0.50f);
+		} 
+	}
 
     public bool GetHasMoved()
     {
@@ -130,9 +143,13 @@ public class GenericCharacterScript : MonoBehaviour {
         return hasAttacked;
     }
 
+	//need to implement permenant death
     public void SetHP(int hpChangedTo)
     {
         hp = hpChangedTo;
+		if (hp <= 0) {
+			LevelControlScript.control.PlayerDied ();
+		}
     }
 
     public GameObject GetTileOccuping()

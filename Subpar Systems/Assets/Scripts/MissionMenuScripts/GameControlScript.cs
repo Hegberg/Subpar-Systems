@@ -31,6 +31,9 @@ public class GameControlScript : MonoBehaviour {
     private int maxCharacters = 4;
     private int selectedCharacters = 0;
 
+	//level progression
+	private int currentLevel = 0;
+
     //public Transform characterParent;
 
     // Use this for initialization
@@ -66,6 +69,8 @@ public class GameControlScript : MonoBehaviour {
         {
             chosen.Add(false);
         }
+
+		DontDestroyOnLoad (this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -135,4 +140,14 @@ public class GameControlScript : MonoBehaviour {
     {
         return enemies;
     }
+
+	public int GetLevel(){
+		return currentLevel;
+	}
+
+	//set the level to be loaded to be the next level
+	public void NextLevel(){
+		currentLevel += 1;
+		//Debug.Log (currentLevel);
+	}
 }

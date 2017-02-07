@@ -21,7 +21,9 @@ public class StartMissionScript : MonoBehaviour {
         {
             if (GameControlScript.control.EnoughPlayersSelected())
             {
-                SceneManager.LoadScene("TestLevel");
+				if (GameControlScript.control.GetLevel () == 0) {
+					SceneManager.LoadScene ("TestLevel");
+				}
             }
             else
             {

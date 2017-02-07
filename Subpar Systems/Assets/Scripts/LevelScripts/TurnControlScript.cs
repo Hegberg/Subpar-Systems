@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TurnControlScript : MonoBehaviour {
 
@@ -33,6 +34,15 @@ public class TurnControlScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+	}
+
+	public void LevelPassed(){
+		GameControlScript.control.NextLevel ();
+		SceneManager.LoadScene ("MissionMenu");
+	}
+		
+	public void LevelFailed(){
+		SceneManager.LoadScene ("MissionMenu");
 	}
 
     public void EndTurn()
