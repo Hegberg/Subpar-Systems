@@ -149,6 +149,7 @@ public class LevelControlScript : MonoBehaviour {
                         character.SetParent(characterParent);
 						playersAlive += 1;
                         characterSpawning += 1;
+                        GameControlScript.control.AddCharacterToInGameList(character.gameObject);
                         break;
                     }
                 }
@@ -169,6 +170,7 @@ public class LevelControlScript : MonoBehaviour {
                         tile.gameObject.GetComponent<GenericEarthScript>().SetOccupingObject(enemy.gameObject);
                         enemy.SetParent(enemyParent);
 						EnemyParentScript.control.EnemyCreated ();
+                        GameControlScript.control.AddEnemyToInGameList(enemy.gameObject);
                         break;
                     }
                 }
