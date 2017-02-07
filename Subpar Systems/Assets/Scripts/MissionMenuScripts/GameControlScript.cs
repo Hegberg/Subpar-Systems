@@ -173,4 +173,14 @@ public class GameControlScript : MonoBehaviour {
     {
         enemyInGameList.Add(enemy);
     }
+
+    public void RemoveCharacterFromInGameList(GameObject character)
+    {
+        characterInGameList.Remove(character);
+    }
+
+    public void RemoveEnemyFromInGameList(GameObject enemy)
+    {
+        enemyInGameList.Remove(enemy);
+    }
 }
