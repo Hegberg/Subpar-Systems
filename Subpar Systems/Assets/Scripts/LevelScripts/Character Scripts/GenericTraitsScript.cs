@@ -4,35 +4,12 @@ using UnityEngine;
 
 public class GenericTraitsScript {
 
-	//public static GenericTraitsScript control;
-
 	protected string name = "temp";
 	protected float hpModifier = 1.0f; //not affected
 	protected float attackModifier = 1.0f; //not affected
 	protected float defenseModifier = 1.0f; //not affected
 	protected float movementModifier = 1.0f; //not affected
 	protected float rangeModifier = 1.0f; //not affected
-
-	// Use this for initialization
-	void Start () {
-		/*
-		if(control == null)
-		{
-			control = this;
-		}
-		else
-		{
-			Destroy(this.gameObject);
-		}
-
-		DontDestroyOnLoad (this.gameObject);
-		*/
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public virtual void ShowInfo() {
 		Debug.Log (" name: " + name + ", hp modifier: " +  hpModifier + ", attack modifier: " + attackModifier 
