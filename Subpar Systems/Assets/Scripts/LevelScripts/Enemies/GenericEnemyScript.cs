@@ -32,18 +32,22 @@ public class GenericEnemyScript : MonoBehaviour {
         {
             if (isSelected)
             {
-				//calculate damage taken
-                hp -= TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetAttack();
-				//set player attacked to true
-                TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().SetHasAttacked(true);
-				//deselect enemy
-                TurnControlScript.control.SetEnemySelected(null);
-				isSelected = false;
-				//check if enemy still alive
-                if (hp <= 0)
-                {
-                    Destroy(gameObject);
-                }
+				//calculate damage taken, if it is 0 attack doesn't happen
+				if (TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack () != 0) {
+					hp -= TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ();
+					//set player attacked to true
+					TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().SetHasAttacked (true);
+					//deselect enemy
+					TurnControlScript.control.SetEnemySelected (null);
+					isSelected = false;
+					//check if enemy still alive
+					if (hp <= 0) {
+						Destroy (gameObject);
+					}
+				} else {
+					//do nothing attack doesn't happen
+					//Debug.Log("0 attack");
+				}
             }
             else
             {

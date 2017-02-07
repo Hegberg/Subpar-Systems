@@ -20,7 +20,7 @@ public class GenericCharacterScript : MonoBehaviour {
 	//range character can fire
 	protected float range = 4;
 
-	protected List<List<float>> currentTraits = new List<List<float>>();
+	protected List<GenericTraitsScript> currentTraits = new List<GenericTraitsScript>();
 
     // Use this for initialization
     void Start () {
@@ -38,7 +38,7 @@ public class GenericCharacterScript : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn())
         {
             TurnControlScript.control.SetPlayerSelected(this.gameObject);
-			//DebugShowTraits();
+			DebugShowTraits();
         }
     }
 
@@ -47,9 +47,10 @@ public class GenericCharacterScript : MonoBehaviour {
 		float attackModifier = 1.0f;
 		for (int i = 0; i < currentTraits.Count; ++i) {
 			//add modifiers together so that the attack modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
-			attackModifier += (currentTraits [i] [1] - 1);
+			attackModifier += currentTraits[i].ModifyAttack() - 1;
 		}
-		//stop modifier from going below 0%
+		//stop modifier from going below 0%, and if at 0% stop attack
+		//to be completed
 		if (attackModifier < 0) {
 			attackModifier = 0;
 		}
@@ -66,7 +67,7 @@ public class GenericCharacterScript : MonoBehaviour {
 		float defenseModifier = 1.0f;
 		for (int i = 0; i < currentTraits.Count; ++i) {
 			//add modifiers together so that the defense modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
-			defenseModifier += (currentTraits [i] [2] - 1);
+			defenseModifier += currentTraits[i].ModifyDefense() - 1;
 		}
 		//stop modifier from going below 0%
 		if (defenseModifier < 0) {
@@ -85,17 +86,15 @@ public class GenericCharacterScript : MonoBehaviour {
 
 	public void DebugShowTraits(){
 		for (int i = 0; i < currentTraits.Count; ++i) {
-			Debug.Log ("trait: " + i + ", hp modifier: " + currentTraits [i][0] + ", attack modifier: " + currentTraits [i][1] 
-				+ ", defense modifier: " + currentTraits [i][2] + ", movement modifier: " + currentTraits [i][3] + 
-				", range modifier: " + currentTraits [i][4]);
+			currentTraits[i].ShowInfo();
 		}
 	}
 
-	public void AddTrait(List<float> trait){
+	public void AddTrait(GenericTraitsScript trait){
 		currentTraits.Add (trait);
 	}
 
-	public List<List<float>> GetTraits() {
+	public List<GenericTraitsScript> GetTraits() {
 		return currentTraits;
 	}
 

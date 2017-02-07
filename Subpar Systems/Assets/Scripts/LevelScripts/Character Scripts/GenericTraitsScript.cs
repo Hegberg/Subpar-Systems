@@ -2,23 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenericTraitsScript : MonoBehaviour {
+public class GenericTraitsScript {
 
-	public static GenericTraitsScript control;
+	//public static GenericTraitsScript control;
 
-	private float hpModifier = 1.0f; //not affected
-	private float attackModifier = 1.0f; //not affected
-	private float defenseModifier = 1.0f; //not affected
-	private float movementModifier = 1.0f; //not affected
-	private float rangeModifier = 1.0f; //not affected
-
-	//arguments for list are hpModifier, attackModifier, defenseModifier, movementModifier, and rangedModifier
-	private List<float> aggresion = new List<float>() {1.0f, 1.5f, 1.0f, 1.0f, 1.0f};
-	private List<float> wimp = new List<float>() {1.0f, 0.5f, 0.5f, 1.0f, 1.0f};
-	private List<float> malnourished = new List<float>() {1.0f, 1.0f, 0.5f, 1.0f, 1.0f};
+	protected string name = "temp";
+	protected float hpModifier = 1.0f; //not affected
+	protected float attackModifier = 1.0f; //not affected
+	protected float defenseModifier = 1.0f; //not affected
+	protected float movementModifier = 1.0f; //not affected
+	protected float rangeModifier = 1.0f; //not affected
 
 	// Use this for initialization
 	void Start () {
+		/*
 		if(control == null)
 		{
 			control = this;
@@ -29,7 +26,7 @@ public class GenericTraitsScript : MonoBehaviour {
 		}
 
 		DontDestroyOnLoad (this.gameObject);
-
+		*/
 	}
 	
 	// Update is called once per frame
@@ -37,15 +34,56 @@ public class GenericTraitsScript : MonoBehaviour {
 		
 	}
 
-	public List<float> GetAggresion(){
-		return aggresion;
+	public virtual void ShowInfo() {
+		Debug.Log (" name: " + name + ", hp modifier: " +  hpModifier + ", attack modifier: " + attackModifier 
+			+ ", defense modifier: " + defenseModifier + ", movement modifier: " + movementModifier + 
+			", range modifier: " + rangeModifier);
 	}
 
-	public List<float> GetWimp(){
-		return wimp;
+	public virtual float ModifyHP() {
+		return hpModifier;
 	}
 
-	public List<float> GetMalnourished(){
-		return malnourished;
+	public virtual float ModifyAttack(){
+		return attackModifier;
+	}
+
+	public virtual float ModifyDefense(){
+		return defenseModifier;
+	}
+
+	public virtual float ModifyMovement(){
+		return movementModifier;
+	}
+
+	public virtual float ModifyRange(){
+		return rangeModifier;
+	}
+		
+}
+
+public class AggressionTrait : GenericTraitsScript {
+
+	public void InitializeValues() {
+		name = "Agresion";
+		attackModifier = 1.5f;
+	}
+}
+
+public class WimpTrait : GenericTraitsScript {
+
+	public void InitializeValues() {
+		name = "Wimp";
+		attackModifier = 0.0f;
+		defenseModifier = 0.5f;
+	}
+}
+
+public class MalnourishedTrait : GenericTraitsScript {
+
+	public void InitializeValues() {
+		name = "Malnourished";
+		attackModifier = 0.5f;
+		defenseModifier = 0.5f;
 	}
 }
