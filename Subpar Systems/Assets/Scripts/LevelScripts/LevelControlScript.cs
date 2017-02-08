@@ -167,7 +167,6 @@ public class LevelControlScript : MonoBehaviour {
                             GameControlScript.control.GetEnemies()[enemySpawnLocations[k][2]].transform,
                             tempVector, Quaternion.identity);
                         enemy.gameObject.GetComponent<GenericEnemyScript>().SetTileOccuping(tile.gameObject);
-                        tile.gameObject.GetComponent<GenericEarthScript>().SetOccupingObject(enemy.gameObject);
                         enemy.SetParent(enemyParent);
 						EnemyParentScript.control.EnemyCreated ();
                         GameControlScript.control.AddEnemyToInGameList(enemy.gameObject);

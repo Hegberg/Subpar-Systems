@@ -49,5 +49,11 @@ public class EnemyParentScript : MonoBehaviour {
     public void BroadcastMove()
     {
         BroadcastMessage("Move");
+        /*
+        foreach(var enemy in GameControlScript.control.GetInGameEnemyList())
+        {
+            enemy.GetComponent<GenericEnemyScript>().Move();
+        }
+        */
     }
 }

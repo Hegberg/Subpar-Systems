@@ -410,7 +410,7 @@ public class AStarScript : MonoBehaviour {
 	//Returns tile that are within the range of the map
 	public List<List<int>> FloodFillAttackRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int attackrange)
 	{
-		Debug.Log ("Starting attaackflood");
+		//Debug.Log ("Starting attaackflood");
 		var attackRangeRemain = new Dictionary<List<int>, int>();
 
 		List<List<int>> openSet = new List<List<int>> ();
@@ -467,7 +467,7 @@ public class AStarScript : MonoBehaviour {
 		}//end while loop
 
 		for (int i = 0; i < attackSet.Count; ++i) {
-			Debug.Log ("attackSet Results at " + i + " " + attackSet[i][0] + "," + attackSet[i][1]);
+			//Debug.Log ("attackSet Results at " + i + " " + attackSet[i][0] + "," + attackSet[i][1]);
 		}
 
 
@@ -478,7 +478,7 @@ public class AStarScript : MonoBehaviour {
 	//Returns a list of all valid walkable tiles within range
 	public List<List<int>> FloodFillWithinRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int movementRange)
 	{
-		Debug.Log ("Starting Flood");
+		//Debug.Log ("Starting Flood");
 		var movementRemain = new Dictionary<List<int>, int>();
 
 		List<List<int>> openSet = new List<List<int>> ();
