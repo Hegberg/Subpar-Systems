@@ -149,7 +149,7 @@ public class GenericCharacterScript : MonoBehaviour {
         hp = hpChangedTo;
 		if (hp <= 0) {
 			LevelControlScript.control.PlayerDied ();
-            GameControlScript.control.RemoveCharacterFromInGameList(this.gameObject);
+            GameControlScript.control.CharacterDied(this.gameObject);
         }
     }
 

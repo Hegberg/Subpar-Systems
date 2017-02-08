@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class GameControlScript : MonoBehaviour {
 
@@ -38,6 +40,7 @@ public class GameControlScript : MonoBehaviour {
 
     private static List<GameObject> characterInGameList = new List<GameObject>();
     private static List<GameObject> enemyInGameList = new List<GameObject>();
+    private static List<GameObject> deadCharacterList = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
@@ -74,11 +77,63 @@ public class GameControlScript : MonoBehaviour {
         }
 
 		DontDestroyOnLoad (this.gameObject);
-	}
+
+        LoadDeadCharacters();
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
+    }
+
+    //load dead characters
+    public void LoadDeadCharacters()
+    {
+        if (File.Exists(Application.persistentDataPath + "/charactersDead.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/charactersDead.dat", FileMode.Open);
+            deadCharacterList = (List<GameObject>)bf.Deserialize(file);
+            file.Close();
+        }
+    }
+
+    //save dead characters
+    public void SaveDeadCharacters()
+    {
+        if (File.Exists(Application.persistentDataPath + "/charactersDead.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/charactersDead.dat", FileMode.Open);
+            bf.Serialize(file, deadCharacterList);
+            file.Close();
+        }
+        else
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(Application.persistentDataPath + "/charactersDead.dat");
+            bf.Serialize(file, deadCharacterList);
+            file.Close();
+        }
+    }
+
+    public void ClearDeadCharacters()
+    {
+        deadCharacterList.Clear();
+        if (File.Exists(Application.persistentDataPath + "/charactersDead.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/charactersDead.dat", FileMode.Open);
+            bf.Serialize(file, deadCharacterList);
+            file.Close();
+        }
+        else
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(Application.persistentDataPath + "/charactersDead.dat");
+            bf.Serialize(file, deadCharacterList);
+            file.Close();
+        }
     }
 
     //character selected in list to join team
@@ -151,8 +206,9 @@ public class GameControlScript : MonoBehaviour {
 	//set the level to be loaded to be the next level
 	public void NextLevel(){
 		currentLevel += 1;
-		//Debug.Log (currentLevel);
-	}
+        SaveDeadCharacters();
+        //Debug.Log (currentLevel);
+    }
 
     public List<GameObject> GetInGameCharacterList()
     {
@@ -182,5 +238,12 @@ public class GameControlScript : MonoBehaviour {
     public void RemoveEnemyFromInGameList(GameObject enemy)
     {
         enemyInGameList.Remove(enemy);
+    }
+
+    public void CharacterDied(GameObject character)
+    {
+        deadCharacterList.Add(character);
+        RemoveCharacterFromInGameList(character);
+        SaveDeadCharacters();
     }
 }
