@@ -42,7 +42,8 @@ public class TurnControlScript : MonoBehaviour {
 	}
 		
 	public void LevelFailed(){
-		SceneManager.LoadScene ("MissionMenu");
+        GameControlScript.control.SaveDeadCharacters();
+        SceneManager.LoadScene ("MissionMenu");
 	}
 
     public void EndTurn()
