@@ -54,6 +54,8 @@ public class TurnControlScript : MonoBehaviour {
         playerSelected = null;
         Debug.Log("Player Turn Ended");
         LevelControlScript.control.BroadcastRemoveActionsToCharacters();
+		EnemyParentScript.control.BroadcastMove();
+		EnemyParentScript.control.BroadcastAttack ();
     }
 
     public void StartTurn()

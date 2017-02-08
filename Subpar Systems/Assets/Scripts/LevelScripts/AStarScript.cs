@@ -407,6 +407,74 @@ public class AStarScript : MonoBehaviour {
 		return null;
 	}
 
+	//Returns tile that are within the range of the map
+	public List<List<int>> FloodFillAttackRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int attackrange)
+	{
+		Debug.Log ("Starting attaackflood");
+		var attackRangeRemain = new Dictionary<List<int>, int>();
+
+		List<List<int>> openSet = new List<List<int>> ();
+		List<List<int>> attackSet =  new List<List<int>>();
+
+		//Init Starting and goal position
+		List<int> startPosition = new List<int> ();
+		startPosition.Add (originRow);
+		startPosition.Add (originIndex);
+
+		attackRangeRemain[startPosition] = attackrange;
+		openSet.Add(startPosition);
+
+		while(!(openSet.Count == 0))
+		{
+			
+			List<int> currentNode = new List<int> ();
+			currentNode = openSet[0];
+			openSet.RemoveAt(0);
+			int currentNodeRow = currentNode[0];
+			int currentNodeIndex = currentNode[1];
+
+			for (int gRow = currentNodeRow - 1; gRow < currentNodeRow + 2; ++gRow) 
+			{
+				for (int gIndex = currentNodeIndex - 1; gIndex < currentNodeIndex + 2; ++gIndex)
+				{
+					if (gRow < 0 || gIndex < 0) 
+					{
+						//Debug.Log ("I left in gRow and gIndex");
+						continue;
+					}
+
+					//A modified version of CanGetNext that ignores some of the restrictions
+					if (CanGetNextAttackRange (currentNodeRow, currentNodeIndex, gRow, gIndex, map)) 
+					{
+						//Determine new cost given attack range, needs to be changed to add in height
+						int newCost = attackRangeRemain[currentNode] - 1;
+						//Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " " + movementRemain [currentNode] + " COST " + newCost);
+						if (newCost >= 0) {
+							List<int> neighborNode = new List<int> ();
+							neighborNode.Add (gRow);
+							neighborNode.Add (gIndex);
+							openSet.Add (neighborNode);
+							attackSet.Add (neighborNode);
+							attackRangeRemain [neighborNode] = newCost;
+						} else {
+							continue;
+						}
+					}
+				}//end for loop
+
+			}//end for loop
+
+		}//end while loop
+
+		for (int i = 0; i < attackSet.Count; ++i) {
+			Debug.Log ("attackSet Results at " + i + " " + attackSet[i][0] + "," + attackSet[i][1]);
+		}
+
+
+		//Return tiles that are within attack range
+		return attackSet;
+	} 
+
 	//Returns a list of all valid walkable tiles within range
 	public List<List<int>> FloodFillWithinRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int movementRange)
 	{
@@ -440,7 +508,7 @@ public class AStarScript : MonoBehaviour {
 				{
 					if (gRow < 0 || gIndex < 0) 
 					{
-						Debug.Log ("I left in gRow and gIndex");
+						//Debug.Log ("I left in gRow and gIndex");
 						continue;
 					}
 
@@ -453,7 +521,7 @@ public class AStarScript : MonoBehaviour {
 							List<int> neighborNode = new List<int> ();
 							neighborNode.Add (gRow);
 							neighborNode.Add (gIndex);
-							Debug.Log ("Added the neighborNode " + neighborNode [0] + "," + neighborNode [1]);
+							//Debug.Log ("Added the neighborNode " + neighborNode [0] + "," + neighborNode [1]);
 							openSet.Add (neighborNode);
 							cameFromSet.Add (neighborNode);
 							movementRemain [neighborNode] = newCost;
@@ -531,6 +599,23 @@ public class AStarScript : MonoBehaviour {
 
 		//Current return cost is arbitary
 		return (int)((min*diagonalCost) + ((max-min)*cardinalCost));
+	}
+
+	//Check can I move from this tile to the next
+	private bool CanGetNextAttackRange(int originRow, int originIndex, int goalRow, int goalIndex, List<List<GameObject>> map)
+	{
+		//Check all the various things to ensure it can get to next location
+		if (!CheckBound(goalRow, goalIndex, map.Count, map[goalIndex].Count) 
+			|| !CheckOneTileAway(originRow,originIndex,goalRow,goalIndex) 
+			|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex)
+			) {
+			return false;
+		}
+		//Debug.Log("true cangetnext");
+
+		//Code to check if it is matching earthtile
+		//Code might go here for "terrian cost stuff" 
+		return true;
 	}
 
 	//Check can I move from this tile to the next
