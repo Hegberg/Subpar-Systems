@@ -43,7 +43,8 @@ public class GenericEnemyScript : MonoBehaviour {
 					//check if enemy still alive
 					if (hp <= 0) {
 						EnemyParentScript.control.EnemyDied ();
-						Destroy (gameObject);
+                        GameControlScript.control.RemoveEnemyFromInGameList(this.gameObject);
+                        Destroy (gameObject);
 					}
 				} else {
 					//do nothing attack doesn't happen

@@ -36,6 +36,9 @@ public class GameControlScript : MonoBehaviour {
 
     //public Transform characterParent;
 
+    private static List<GameObject> characterInGameList = new List<GameObject>();
+    private static List<GameObject> enemyInGameList = new List<GameObject>();
+
     // Use this for initialization
     void Start () {
 		if (control == null)
@@ -150,4 +153,34 @@ public class GameControlScript : MonoBehaviour {
 		currentLevel += 1;
 		//Debug.Log (currentLevel);
 	}
+
+    public List<GameObject> GetInGameCharacterList()
+    {
+        return characterInGameList;
+    }
+
+    public List<GameObject> GetInGameEnemyList()
+    {
+        return enemyInGameList;
+    }
+
+    public void AddCharacterToInGameList(GameObject character)
+    {
+        characterInGameList.Add(character);
+    }
+
+    public void AddEnemyToInGameList(GameObject enemy)
+    {
+        enemyInGameList.Add(enemy);
+    }
+
+    public void RemoveCharacterFromInGameList(GameObject character)
+    {
+        characterInGameList.Remove(character);
+    }
+
+    public void RemoveEnemyFromInGameList(GameObject enemy)
+    {
+        enemyInGameList.Remove(enemy);
+    }
 }
