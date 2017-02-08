@@ -478,7 +478,7 @@ public class AStarScript : MonoBehaviour {
 	//Returns a list of all valid walkable tiles within range
 	public List<List<int>> FloodFillWithinRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int movementRange)
 	{
-		//Debug.Log ("Starting Flood");
+		Debug.Log ("Starting Flood");
 		var movementRemain = new Dictionary<List<int>, int>();
 
 		List<List<int>> openSet = new List<List<int>> ();
@@ -516,7 +516,7 @@ public class AStarScript : MonoBehaviour {
 					{
 						//Add the new neighbor
 						int newCost = movementRemain[currentNode] - ReturnCostTile(gRow, gIndex, mapCost);
-						//Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " " + movementRemain [currentNode] + " COST " + newCost);
+						Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " " + movementRemain [currentNode] + " COST " + newCost);
 						if (newCost >= 0) {
 							List<int> neighborNode = new List<int> ();
 							neighborNode.Add (gRow);
@@ -539,7 +539,7 @@ public class AStarScript : MonoBehaviour {
 			Debug.Log ("cameFromSet Results at " + i + " " + cameFromSet[i][0] + "," + cameFromSet[i][1]);
 		}
 		*/
-
+		Debug.Log ("End floodfill");
 		//We should never get HERE. LIKE EVER
 		return cameFromSet;
 	}
