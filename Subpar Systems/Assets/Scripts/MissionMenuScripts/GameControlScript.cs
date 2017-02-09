@@ -33,7 +33,7 @@ public class GameControlScript : MonoBehaviour {
     private int maxCharacters = 4;
     private int selectedCharacters = 0;
 
-	//level progression
+	//level progression, auto increment on victory
 	private int currentLevel = 0;
 
     //public Transform characterParent;
