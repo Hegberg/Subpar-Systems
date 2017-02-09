@@ -42,370 +42,7 @@ public class AStarScript : MonoBehaviour {
 	/*
 		WARNING NONE OF THE FOLLOWING CODE IS TEST AND WILL AND COULD BREAK EVERYTHING THAT EXIST!
 	*/
-	public List<List<int>> findShitestPath(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int goalRow, int goalIndex)
-	{
-		//Debug.Log ("Original Row and Index: " + originRow + " " + originIndex);
-		//Debug.Log (originIndex);
-		//Debug.Log ("Goal Row and Index: " + goalRow + " " +  goalIndex);
-		//Debug.Log (goalIndex);
-		//Debug.Log("Return direction: " + ReturnDirection (originRow, originIndex, goalRow, goalIndex));
 
-		//============TESTED TO THIS POINT 1.0 WORKS=====================//
-		//Debug.Log("Tested at 1.0");
-		//return null;
-
-		//Initialize variables for gScore, fScore, starting position, goal position
-		//For dictionary the List => the row/index number of the tile
-		var gScore = new Dictionary<List<int>, int>();
-		var fScore = new Dictionary<List<int>, int>();
-
-		//These use to be hardcoded, but I am experiementing with dynamic
-		//maxRow = map.Count;
-		//maxIndex = map[0].Count;
-
-		//Debug.Log ("The MaxRow = " + map.FindIndex() + " The maxIndex = " + map[0].FindIndex());
-		//Debug.Log ("The MaxRow = " + map.Count + " The maxIndex = " + map[1].Count);
-
-		List<List<int>> openSet = new List<List<int>> ();
-
-		//TESTING NEW OPENSET
-		//Dictionary<string, List<int>> openSetNew = new Dictionary<string, List<int>>();
-
-		Dictionary<List<int>, List<int>> cameFromSet =  new Dictionary<List<int>, List<int>>();
-
-		//Init Starting and goal position
-		List<int> startPosition = new List<int> ();
-		startPosition.Add (originRow);
-		startPosition.Add (originIndex);
-		List<int> goalPosition = new List<int> ();
-		goalPosition.Add (goalRow);
-		goalPosition.Add (goalIndex);
-
-		//INSERT SOMETHING ABOUT GENERATION COUNTER
-
-
-
-		//============TESTED TO THIS POINT 2.0 WORKS=====================//
-		//Debug.Log("Tested at 2.0");
-		//Debug.Log ("map.Count: " + map.Count);
-		//Debug.Log ("map[0].Count: " + map [0].Count);
-		//return null;
-
-
-		//Init all values of gScore/fScore to infinity
-		// i = Row
-		// j = Index
-		for (int i = 0; i < map.Count; ++i)
-		{
-			for (int j = 0; j < map[i].Count; ++j) 
-			{
-				List<int> tempTilePosition = new List<int> ();
-				//Add the new row and index
-				tempTilePosition.Add(i);
-				tempTilePosition.Add(j);
-
-				gScore [tempTilePosition] = int.MaxValue;
-				fScore [tempTilePosition] = int.MaxValue;
-
-				//Debug.Log ("gScore, fscore at i,j = " + i + "," + j + "," + gScore [tempTilePosition] + "," + fScore[tempTilePosition]);
-			}//end inner for loop
-
-		}//end for loop
-
-		//============TESTED TO THIS POINT 3.0 WORK=====================//
-		//Debug.Log("Tested at 3.0");
-		//return null;
-
-		//Init start node
-		gScore[startPosition] = 0;
-		fScore [startPosition] = CalculateHeuristicCost (originRow, originIndex, goalRow, goalIndex);
-
-		//Insert the starting node 
-		openSet.Add(startPosition);
-
-		//===================TESTING NEW OPENSET====================//
-		//openSetNew[startPosition[0].ToString() + "-" + startPosition[1].ToString()] = startPosition;
-		//===================TESTING NEW OPENSET====================//
-
-		
-		  //These debug prove that the start node is in openSet
-		 /*
-		List<int> debugOpenSet = new List<int> ();
-		debugOpenSet = openSet [0];
-		Debug.Log ("GOT HERE " + debugOpenSet [0] + debugOpenSet [1]);
-		Debug.Log ("OpenSet containing values: " + openSet.ToString());
-
-		for (int i = 0; i < openSet.Count; ++i) {
-			for (int j = 0; j < openSet[i].Count; ++j) {
-				Debug.Log ("element inside: " + openSet[i][j]);
-			}
-		}
-        
-		Debug.Log ("Got here");
-		*/
-
-		//Visit the nodes in openSet
-		int lowestFScore;
-
-		//============TESTED TO THIS POINT 4.0 WORK=====================//
-		//Debug.Log("Tested at 4.0");
-		//Debug.Log ("fScore for starting position is " + fScore [startPosition]);
-		//return null;
-
-
-		while(!(openSet.Count == 0))
-		{
-			//Clear the current node
-			List<int> currentNode = new List<int> ();
-
-			//Find the lowest fScore in the opensEt
-			lowestFScore = int.MaxValue;
-
-			//Debug.Log ("=====Start fScore Debug======");
-			for (int i = 0; i < openSet.Count; ++i) 
-			{
-				//Debug to check inside the element of openSet
-				/*
-				for (int k = 0; k < openSet.Count; ++k) {
-					for (int j = 0; j < openSet[k].Count; ++j) {
-						Debug.Log ("element inside: " + openSet[k][j]);
-					}
-				}
-				*/
-				if(fScore[openSet[i]] < lowestFScore)
-				{
-					lowestFScore = fScore[openSet[i]];
-					currentNode = openSet[i];
-					//Debug.Log ("What got selected as current node: " + currentNode [0] + "," + currentNode [1]);
-				}
-
-			}//end for loop fScore
-				
-
-			//===================TESTING NEW OPENSET====================//
-			/*
-			foreach (var element in openSetNew) 
-			{
-				if (fScore [element.Value] < lowestFScore) 
-				{
-					lowestFScore = fScore [element.Value];
-					currentNode = element.Value;
-				}
-			}
-			*/
-			//===================TESTING NEW OPENSET====================//
-
-
-			//============TESTED TO THIS POINT 5.0 WORK=====================//
-			//Debug.Log("Tested at 5.0");
-			//Debug.Log ("Past fScore section of AStar " + fScore [startPosition]);
-			//Debug.Log ("=====End fScore Debug======");
-			//return null;
-
-
-            //Found the goal
-            if (currentNode[0] == goalPosition[0] && currentNode[1] == goalPosition[1]) 
-			{
-				//Return the path back
-				//Debug.Log("======Got inside reconstruct path======");
-				//Debug.Log("The gScore of the tile " + currentNode[0] + "," + currentNode[1] + " is: " + gScore[currentNode]);
-                //Debug.Log(ReconstructPath(cameFromSet, currentNode));
-                return ReconstructPath (cameFromSet, currentNode);
-			}
-
-			//Pop the currentNode from openSet
-			openSet.Remove(currentNode);
-
-			//===================TESTING NEW OPENSET====================//
-			//openSetNew.Remove(currentNode[0].ToString() + "-" + currentNode[1].ToString());
-			//===================TESTING NEW OPENSET====================//
-
-			//INSERT SOMETHING ABOUT GENERATION COUNTER
-
-			int currentNodeRow = currentNode[0];
-			int currentNodeIndex = currentNode[1];
-
-			//============TESTED TO THIS POINT 6.0 WORKS=====================//
-			//Debug.Log("Tested at 6.0");
-			//Debug.Log ("Current Node in OpenSet: " + currentNode[0] + ","+ currentNode[1]);
-			//Debug.Log ("Does the openset contain currentNode anymore. Should be False: " + openSet.Contains (currentNode));
-			//return null;
-
-
-			//Iterate through all the surrounding nodes
-			for (int gRow = currentNodeRow - 1; gRow < currentNodeRow + 2; ++gRow) 
-			{
-                for (int gIndex = currentNodeIndex - 1; gIndex < currentNodeIndex + 2; ++gIndex)
-                {
-                    //============TESTED TO THIS POINT 7.0 WORKS=====================//
-                    //Debug.Log("Tested at 7.0");
-                    //Debug.Log("Current node values: " + currentNodeRow + "," + currentNodeIndex);
-                    //Debug.Log("Current node Row min and max: " + (currentNodeRow - 1) + "," + (currentNodeRow + 1));
-                    //Debug.Log("Current node Index min and max: " + (currentNodeIndex - 1) + "," + (currentNodeIndex + 1));
-                    //return null;
-
-                    //if g < 0 checking for nonexistant tile, so break out of this insatnace of loop
-                    if (gRow < 0 || gIndex < 0) 
-                    {
-						continue;
-                    }
-
-                    if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map, mapCost)) 
-					{
-						//Add the new neighbor
-						List<int> neighborNode = new List<int> ();
-						neighborNode.Add (gRow);
-						neighborNode.Add (gIndex);
-
-						//INSERT SOMETHING ABOUT GENERATION COUNTER
-
-						//This commented out code is old, just have it incase I screw up later on
-						//int tentativeGScore = gScore[currentNode] + ReturnCostTile(ReturnDirection(currentNodeRow, currentNodeIndex, goalRow, gIndex));
-						int tentativeGScore = gScore[currentNode] + ReturnCostTile(currentNodeRow, currentNodeIndex, mapCost);
-
-						//=====================DUMMY CODE to HANDLE MOVEMENT LIMIT=====================//
-						/*
-						if (tentativeGScore > movementLimit)
-						{
-							break;
-						}
-						*/
-						//======================DUMMY CODE to HANDLE MOVEMENT LIMIT====================//
-
-
-						//============TESTED TO THIS POINT 8.0 WORKS=====================//
-						//Debug.Log("Tested at 8.0");
-						//Debug.Log ("NeighborNode Row and Index: " + neighborNode[0] + "," + neighborNode[1]);
-						//Debug.Log ("TentativeGScore: " + tentativeGScore);
-						//return null;
-
-
-						//Add the neighbor to the openset if it not there
-						//Also check to see if the tentativeGScore is less than the one current stored for neighbor
-						if (!openSet.Contains(neighborNode)) {
-							
-							openSet.Add (neighborNode);
-
-							//============TESTED TO THIS POINT 9.0A WORKS=====================//
-							//Debug.Log("Tested at 9.0A");
-							//Debug.Log ("neighborNode that got added: " + neighborNode [0] + "," + neighborNode [1]);
-							//Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
-							//return null;
-
-						} 
-						else if (tentativeGScore >= gScore [neighborNode]) 
-						{
-							//============TESTED TO THIS POINT 9.0B UNTESTED YET=====================//
-							//Debug.Log("Tested at 9.0B");
-							//Debug.Log ("neighborNode that got skipped: " + neighborNode [0] + "," + neighborNode [1]);
-							//Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
-							//return null;
-
-							continue;
-						}
-
-						//===================TESTING NEW OPENSET====================//
-						/*
-						if (!openSetNew.ContainsKey(neighborNode[0].ToString() + "-" + neighborNode[1].ToString())) {
-
-							openSetNew[neighborNode[0].ToString() + "-" + neighborNode[1].ToString()] = neighborNode;
-
-							//============TESTED TO THIS POINT 9.0A WORKS=====================//
-							//Debug.Log("Tested at 9.0A");
-							//Debug.Log ("neighborNode that got added: " + neighborNode [0] + "," + neighborNode [1]);
-							//Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
-							//return null;
-
-						} 
-						else  
-						{
-							//============TESTED TO THIS POINT 9.0B UNTESTED YET=====================//
-							//Debug.Log("Tested at 9.0B");
-							//Debug.Log ("neighborNode that got skipped: " + neighborNode [0] + "," + neighborNode [1]);
-							//Debug.Log ("Check to see if openset has the neighborNode. Should be True: " + openSet.Contains(neighborNode));
-							//return null;
-							Debug.Log("Check to see if neightborNode is a key in GScore " + neighborNode[0] + "," + neighborNode[1] );
-							Debug.Log ("Run does containkey " + gScore.ContainsKey(neighborNode));
-							if (gScore.ContainsKey (neighborNode)) {
-								return null;
-							}
-
-							if (tentativeGScore >= gScore [neighborNode]) {
-								continue;
-							}
-						}
-						*/
-
-						//===================TESTING NEW OPENSET====================//
-
-						//Create a dic that contains the  Row/Index of current (where we came from)  VALUE
-						//								  Row/Index of neighbor (Where we are going) KEY
-						cameFromSet[neighborNode] = currentNode;
-
-						//Change the related gScore and fScore
-						gScore [neighborNode] = tentativeGScore;
-						fScore [neighborNode] = gScore [neighborNode] + CalculateHeuristicCost (gRow, gIndex, goalRow, goalIndex);
-
-						//============TESTED TO THIS POINT 10.0 WORKS=====================//
-						//Debug.Log("Tested at 10.0");
-						//Debug.Log ("cameFromSet[neighborNode]: " + cameFromSet[neighborNode][0] + "," + cameFromSet[neighborNode][1] + "= " + currentNode[0] + "," + currentNode[1]);
-						//Debug.Log ("gScore[neighborNode]: " + gScore[neighborNode] + "=" + tentativeGScore);
-						//Debug.Log ("fScore[neighborNode]: " + fScore[neighborNode] + "=" + (gScore [neighborNode] + CalculateHeuristicCost (gRow, gIndex, goalRow, goalIndex)) );
-						//return null;
-					}
-				}//end for loop
-			
-			}//end for loop
-
-			//Currently can't get here.
-			//============TESTED TO THIS POINT 11.0 WORKS=====================//
-			//Debug.Log("Tested at 11.0");
-			//Debug.Log ("Size of cameFromSet: " + cameFromSet.Count);
-			//return null;
-
-			//foreach(var blah in cameFromSet){
-			//	Debug.Log ("cameFromSet " + blah.Key[0] + "," + blah.Key[1] + " : "+ blah.Value[0] + "," + blah.Value[1]);
-			//}
-
-			//Debug.Log ("Size of openSet: " + openSet.Count);
-			//for (int i = 0; i < openSet.Count; ++i) 
-			//{
-			//	Debug.Log ("openSet at " + i + " : " + openSet[i][0] + "," + openSet[i][1]);
-			//}
-
-			//return null;
-
-			//=============DEBUG LOOP STOPPER=============//
-			/*
-			if (increment == endNumLoop) {
-				
-				Debug.Log ("Size of openSet: " + openSet.Count);
-				for (int i = 0; i < openSet.Count; ++i) 
-				{
-					Debug.Log ("openSet at " + i + " : " + openSet[i][0] + "," + openSet[i][1]);
-				}
-				List<int> testing = new List<int>();
-				testing.Add(3);
-				testing.Add(2);
-				Debug.Log("testing is equal to: " + testing[0] + "," + testing[1]);
-				Debug.Log ("openSet has the list: " + openSet [47] [0] + "," + openSet [47] [1]);
-				Debug.Log("Does openset contain 3,2? " + openSet.Contains(testing));
-
-				return null;	
-			} 
-			else 
-			{
-				increment++;
-			}
-
-		*/
-
-
-		}//end while loop
-
-		//We should never get HERE. LIKE EVER
-		return null;
-	}
 
 	//Returns tile that are within the range of the map
 	public List<List<int>> FloodFillAttackRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int attackrange)
@@ -496,27 +133,45 @@ public class AStarScript : MonoBehaviour {
 		{
 		//	Debug.Log ("In while loop");
 			//Clear the current node
+
 			List<int> currentNode = new List<int> ();
+			List<int> index = new List<int> ();
 			currentNode = openSet[0];
+			//Debug.Log ("Current node in openset " + currentNode [0] + currentNode [1]);
 			openSet.RemoveAt(0);
 			int currentNodeRow = currentNode[0];
 			int currentNodeIndex = currentNode[1];
 
-			for (int gRow = currentNodeRow - 1; gRow < currentNodeRow + 2; ++gRow) 
+			List<int> rows = new List<int> () { currentNodeRow - 1, currentNodeRow + 1 };
+			if (currentNodeRow % 2 == 0) {
+				index.Add (currentNodeIndex-1);
+				index.Add (currentNodeIndex);
+			} else {
+				index.Add (currentNodeIndex);
+				index.Add (currentNodeIndex+1);
+			}
+			//Debug.Log ("What is in the row " + rows [0] + "," + rows [1]);
+			//Debug.Log ("What is in the index " + index [0] + "," + index [1]);
+
+			for(int i = 0; i < 2; ++i) 
 			{
-				for (int gIndex = currentNodeIndex - 1; gIndex < currentNodeIndex + 2; ++gIndex)
+				int gRow = rows [i];
+				for (int j = 0; j < 2; ++j)
 				{
-					if (gRow < 0 || gIndex < 0) 
+					int gIndex = index [j];
+					//Debug.Log ("Current Node we are Checking: " + gRow + "," + gIndex);
+					if (gRow < 0 || gRow >= map.Count || gIndex < 0 || gIndex >= map[gIndex].Count) 
 					{
 						//Debug.Log ("I left in gRow and gIndex");
 						continue;
 					}
-
-					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map, mapCost)) 
+					//Debug.Log ("Here is row and index " + gRow + "," + gIndex);
+					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map.Count, map[gIndex].Count, map[gRow][gIndex], mapCost[gRow][gIndex][0])) 
 					{
 						//Add the new neighbor
+
 						int newCost = movementRemain[currentNode] - ReturnCostTile(gRow, gIndex, mapCost);
-						Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " movement " + movementRemain [currentNode] + " COST " + newCost);
+						//Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " movement " + movementRemain [currentNode] + " COST " + newCost);
 						if (newCost >= 0) {
 							List<int> neighborNode = new List<int> ();
 							neighborNode.Add (gRow);
@@ -534,7 +189,7 @@ public class AStarScript : MonoBehaviour {
 			}//end for loop
 				
 		}//end while loop
-		/*
+		/*Debug.Log("END THE LOOPS");
 		for (int i = 0; i < cameFromSet.Count; ++i) {
 			Debug.Log ("cameFromSet Results at " + i + " " + cameFromSet[i][0] + "," + cameFromSet[i][1]);
 		}
@@ -619,13 +274,13 @@ public class AStarScript : MonoBehaviour {
 	}
 
 	//Check can I move from this tile to the next
-	private bool CanGetNext(int originRow, int originIndex, int goalRow, int goalIndex, List<List<GameObject>> map, List<List<List<int>>> mapCost)
+	private bool CanGetNext(int originRow, int originIndex, int goalRow, int goalIndex, int mapRowCount, int mapIndexCount, GameObject mapTile, int mapType)
 	{
         //Check all the various things to ensure it can get to next location
-        if (!CheckBound(goalRow, goalIndex, map.Count, map[goalIndex].Count) 
+		if (!CheckBound(goalRow, goalIndex, mapRowCount, mapIndexCount) 
 			|| !CheckOneTileAway(originRow,originIndex,goalRow,goalIndex) 
 			|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex)
-            || !CheckIfWalkable(goalRow, goalIndex, map, mapCost)) {
+            || !CheckIfWalkable(mapTile, mapType)) {
 			return false;
 		}
         //Debug.Log("true cangetnext");
@@ -672,13 +327,13 @@ public class AStarScript : MonoBehaviour {
         return false;
 	}//end checkBound
 
-    private bool CheckIfWalkable(int goalRow, int goalIndex, List<List<GameObject>> map, List<List<List<int>>> mapCost)
+	private bool CheckIfWalkable(GameObject mapTile, int mapType)
     {
         //0 -> earth, 1->water, 2->mountian
         //right now 0 means earth, and earth only walkable tile
-        if (mapCost[goalRow][goalIndex][0] == 0 && 
+		if (mapType == 0 && 
             //check if empty tile as well, nneds to be done after first if or else will check tiles without GenericEarthScript code and exception will be raised
-            (map[goalRow][goalIndex].GetComponent<GenericEarthScript>().GetOccupingObject() == null))
+            (mapTile.GetComponent<GenericEarthScript>().GetOccupingObject() == null))
         {
 
             return true;

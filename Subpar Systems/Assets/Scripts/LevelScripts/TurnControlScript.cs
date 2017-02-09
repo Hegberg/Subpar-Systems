@@ -16,7 +16,7 @@ public class TurnControlScript : MonoBehaviour {
 
     public Button endTurn;
 
-	List<List<int>> allValidTile = new List<List<int>> ();
+	private List<List<int>> allValidTile = new List<List<int>> ();
 
     // Use this for initialization
     void Start () {
@@ -171,9 +171,9 @@ public class TurnControlScript : MonoBehaviour {
 				//Replace the '2' with the movement range of the unit
 				allValidTile = AStarScript.control.FloodFillWithinRange (LevelControlScript.control.GetAStarMap (), 
 					LevelControlScript.control.GetAStarMapCost (),
-					TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
-					TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
-					2);
+					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
+					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
+					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetMovement());
 
 				//Highlight all the valid tiles
 				List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap ();
@@ -206,4 +206,8 @@ public class TurnControlScript : MonoBehaviour {
     {
         return enemySelected;
     }
+
+	public List<List<int>> GetAllValidMovementTiles(){
+		return allValidTile;
+	}
 }
