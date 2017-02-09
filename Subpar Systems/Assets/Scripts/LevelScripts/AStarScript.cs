@@ -65,26 +65,42 @@ public class AStarScript : MonoBehaviour {
 		{
 			
 			List<int> currentNode = new List<int> ();
+			List<int> index = new List<int> ();
 			currentNode = openSet[0];
+			//Debug.Log ("Current node in openset " + currentNode [0] + currentNode [1]);
 			openSet.RemoveAt(0);
 			int currentNodeRow = currentNode[0];
 			int currentNodeIndex = currentNode[1];
 
-			for (int gRow = currentNodeRow - 1; gRow < currentNodeRow + 2; ++gRow) 
+			List<int> rows = new List<int> () { currentNodeRow - 1, currentNodeRow + 1 };
+			if (currentNodeRow % 2 == 0) {
+				index.Add (currentNodeIndex-1);
+				index.Add (currentNodeIndex);
+			} else {
+				index.Add (currentNodeIndex);
+				index.Add (currentNodeIndex+1);
+			}
+			//Debug.Log ("What is in the row " + rows [0] + "," + rows [1]);
+			//Debug.Log ("What is in the index " + index [0] + "," + index [1]);
+
+			for(int i = 0; i < 2; ++i) 
 			{
-				for (int gIndex = currentNodeIndex - 1; gIndex < currentNodeIndex + 2; ++gIndex)
+				int gRow = rows [i];
+				for (int j = 0; j < 2; ++j)
 				{
-					if (gRow < 0 || gIndex < 0) 
+					int gIndex = index [j];
+					//Debug.Log ("Current Node we are Checking: " + gRow + "," + gIndex);
+					if (gRow < 0 || gRow >= map.Count || gIndex < 0 || gIndex >= map[gIndex].Count) 
 					{
 						//Debug.Log ("I left in gRow and gIndex");
 						continue;
 					}
 
 					//A modified version of CanGetNext that ignores some of the restrictions
-					if (CanGetNextAttackRange (currentNodeRow, currentNodeIndex, gRow, gIndex, map)) 
+					if (CanGetNextAttackRange (currentNodeRow, currentNodeIndex, gRow, gIndex, map.Count, map[gIndex].Count)) 
 					{
 						//Determine new cost given attack range, needs to be changed to add in height
-						int newCost = attackRangeRemain[currentNode] - 1;
+						int newCost = attackRangeRemain[currentNode] - ReturnCostTile(gRow, gIndex, mapCost);
 						//Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " " + movementRemain [currentNode] + " COST " + newCost);
 						if (newCost >= 0) {
 							List<int> neighborNode = new List<int> ();
@@ -257,13 +273,13 @@ public class AStarScript : MonoBehaviour {
 	}
 
 	//Check can I move from this tile to the next
-	private bool CanGetNextAttackRange(int originRow, int originIndex, int goalRow, int goalIndex, List<List<GameObject>> map)
+	private bool CanGetNextAttackRange(int originRow, int originIndex, int goalRow, int goalIndex, int mapRowCount, int mapIndexCount)
 	{
 		//Check all the various things to ensure it can get to next location
-		if (!CheckBound(goalRow, goalIndex, map.Count, map[goalIndex].Count) 
+		if (!CheckBound(goalRow, goalIndex, mapRowCount, mapIndexCount) 
 			|| !CheckOneTileAway(originRow,originIndex,goalRow,goalIndex) 
-			|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex)
-			) {
+			|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex)) 
+		{
 			return false;
 		}
 		//Debug.Log("true cangetnext");
