@@ -516,7 +516,7 @@ public class AStarScript : MonoBehaviour {
 					{
 						//Add the new neighbor
 						int newCost = movementRemain[currentNode] - ReturnCostTile(gRow, gIndex, mapCost);
-						Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " " + movementRemain [currentNode] + " COST " + newCost);
+						Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " movement " + movementRemain [currentNode] + " COST " + newCost);
 						if (newCost >= 0) {
 							List<int> neighborNode = new List<int> ();
 							neighborNode.Add (gRow);

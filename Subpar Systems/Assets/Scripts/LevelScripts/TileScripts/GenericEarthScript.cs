@@ -25,41 +25,29 @@ public class GenericEarthScript : TileScript {
         {
             //need to return correct tile or coordinates, 
             //but implement A* and not just teleport player with move player script
-			List<List<int>> tempListInt = new List<List<int>>();
-			List<List<int>> tempListInt2 = new List<List<int>> ();
-            
-			/*
-            Debug.Log(LevelControlScript.control.GetAStarMap());
-            Debug.Log(LevelControlScript.control.GetAStarMapCost());
-            Debug.Log(TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0]);
-            Debug.Log(TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1]);
-            Debug.Log(tilePosition[0]);
-            Debug.Log(tilePosition[1]);
-            */
+			List<List<int>> allValidTile = new List<List<int>> ();
+			List<List<int>> returnPath = new List<List<int>> ();
 
-            tempListInt = AStarScript.control.findShitestPath(LevelControlScript.control.GetAStarMap(), 
+			//Replace the '2' with the movement range of the unit
+			allValidTile = AStarScript.control.FloodFillWithinRange(LevelControlScript.control.GetAStarMap(), 
+				LevelControlScript.control.GetAStarMapCost(),
+				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
+				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
+				2);
+
+			//Highlight all the valid tiles
+
+			//When the player clicks somewhere outside the allValidTile, NULL THE FUCKER
+
+			//Calculate the path if the goal is within the range. Replace tilePosition[0], tilePosition[1]
+			returnPath = AStarScript.control.findShitestPath(LevelControlScript.control.GetAStarMap(), 
 				LevelControlScript.control.GetAStarMapCost(),
 				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
 				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
 				tilePosition[0],
 				tilePosition[1]);
 
-			tempListInt = AStarScript.control.FloodFillAttackRange(LevelControlScript.control.GetAStarMap(), 
-				LevelControlScript.control.GetAStarMapCost(),
-				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
-				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
-				2);
-
-            //Debug.Log(tempListInt[0][0]);
-            //Debug.Log(tempListInt[1][0]);
-
-            /*
-			for (int i = 0; i < tempListInt.Count; ++i) {
-				for (int j = 0; j < tempListInt[i].Count; ++j) {
-					Debug.Log ("Pathfinding Results at " + i + " " + tempListInt[i][j]);
-				}
-			}
-			*/
+			//Do something with the return path, it going to be coordinates 
 
             GameObject player = TurnControlScript.control.GetPlayerSelected();
             TurnControlScript.control.MovePlayer(gameObject);
