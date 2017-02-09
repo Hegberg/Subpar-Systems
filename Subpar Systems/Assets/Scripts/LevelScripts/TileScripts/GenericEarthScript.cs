@@ -23,9 +23,24 @@ public class GenericEarthScript : TileScript {
         if (Input.GetMouseButtonDown(0) && (TurnControlScript.control.GetPlayerSelected() != null) && (occupingObject == null) &&
             !TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetHasMoved())
         {
+			
             //need to return correct tile or coordinates, 
-		
-
+			List<List<int>> allValidTile = new List<List<int>> ();
+			List<List<int>> returnPath = new List<List<int>> ();
+			List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
+			allValidTile = AStarScript.control.FloodFillWithinRange (LevelControlScript.control.GetAStarMap (), 
+				LevelControlScript.control.GetAStarMapCost (),
+				TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
+				TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
+				2);
+			/*
+			for (int i = 0; i < allValidTile.Count; ++i) {
+				if (allValidTile [i] [0] == tilePosition [0] && allValidTile [i] [i] == tilePosition [1]) 
+				{
+					TurnControlScript.control.MovePlayer(gameObject);
+				}
+			}
+			*/
 			//When the player clicks somewhere outside the allValidTile, NULL THE FUCKER
 
 			//Calculate the path if the goal is within the range. Replace tilePosition[0], tilePosition[1]
@@ -41,7 +56,7 @@ public class GenericEarthScript : TileScript {
 			//Do something with the return path, it going to be coordinates 
 
             GameObject player = TurnControlScript.control.GetPlayerSelected();
-            TurnControlScript.control.MovePlayer(gameObject);
+			TurnControlScript.control.MovePlayer(gameObject);
             occupingObject = player;
         }
     }
