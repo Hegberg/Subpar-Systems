@@ -24,28 +24,19 @@ public class GenericEarthScript : TileScript {
             !TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetHasMoved())
         {
             //need to return correct tile or coordinates, 
-            //but implement A* and not just teleport player with move player script
-			List<List<int>> allValidTile = new List<List<int>> ();
-			List<List<int>> returnPath = new List<List<int>> ();
-
-			//Replace the '2' with the movement range of the unit
-			allValidTile = AStarScript.control.FloodFillWithinRange(LevelControlScript.control.GetAStarMap(), 
-				LevelControlScript.control.GetAStarMapCost(),
-				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
-				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
-				2);
-
-			//Highlight all the valid tiles
+		
 
 			//When the player clicks somewhere outside the allValidTile, NULL THE FUCKER
 
 			//Calculate the path if the goal is within the range. Replace tilePosition[0], tilePosition[1]
+			/*
 			returnPath = AStarScript.control.findShitestPath(LevelControlScript.control.GetAStarMap(), 
 				LevelControlScript.control.GetAStarMapCost(),
 				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
 				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
 				tilePosition[0],
 				tilePosition[1]);
+				*/
 
 			//Do something with the return path, it going to be coordinates 
 

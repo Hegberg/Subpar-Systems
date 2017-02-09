@@ -16,6 +16,8 @@ public class TurnControlScript : MonoBehaviour {
 
     public Button endTurn;
 
+	List<List<int>> allValidTile = new List<List<int>> ();
+
     // Use this for initialization
     void Start () {
         if (control == null)
@@ -127,7 +129,13 @@ public class TurnControlScript : MonoBehaviour {
 
         //set tile occupying to correct tile
         playerSelected.GetComponent<GenericCharacterScript>().SetTileOccuping(tileMovingTo);
-        HighlightPlayerTile();
+
+		//unhighlight floodfill tiles
+		List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
+		for (int i = 0; i < allValidTile.Count; ++i) {
+			movementmap[allValidTile[i][0]][allValidTile[i][1]].GetComponent<SpriteRenderer>().material.color = Color.white;
+		}
+		HighlightPlayerTile();
     }
 
     public bool GetPlayerTurn()
@@ -141,6 +149,11 @@ public class TurnControlScript : MonoBehaviour {
         if (playerSelected != null)
         {
             UnHighlightPlayerTile();
+			//unhighlight floodfill tiles
+			List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
+			for (int i = 0; i < allValidTile.Count; ++i) {
+				movementmap[allValidTile[i][0]][allValidTile[i][1]].GetComponent<SpriteRenderer>().material.color = Color.white;
+			}
         }
         playerSelected = selected;
         if (enemySelected != null)
@@ -151,6 +164,23 @@ public class TurnControlScript : MonoBehaviour {
         if (playerSelected != null)
         {
             HighlightPlayerTile();
+			//but implement A* and not just teleport player with move player script
+			List<List<int>> returnPath = new List<List<int>> ();
+			if (!GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetHasMoved ()) {
+
+				//Replace the '2' with the movement range of the unit
+				allValidTile = AStarScript.control.FloodFillWithinRange (LevelControlScript.control.GetAStarMap (), 
+					LevelControlScript.control.GetAStarMapCost (),
+					TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
+					TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
+					2);
+
+				//Highlight all the valid tiles
+				List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap ();
+				for (int i = 0; i < allValidTile.Count; ++i) {
+					movementmap [allValidTile [i] [0]] [allValidTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = Color.cyan;
+				}
+			}
         }
     }
 
