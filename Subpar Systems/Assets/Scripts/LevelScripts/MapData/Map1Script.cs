@@ -65,6 +65,7 @@ public class Map1Script : MonoBehaviour
 
 
     //x, y, enemy type
+    /*
     private int[] enemySpawn1 = { 1, 1, 0 };
     private int[] enemySpawn2 = { 0, 4, 0 };
     private int[] enemySpawn3 = { 1, 4, 0 };
@@ -81,6 +82,7 @@ public class Map1Script : MonoBehaviour
     private int[] enemySpawn14 = { 3, 11, 0 };
     private int[] enemySpawn15 = { 7, 11, 0 };
     private int[] enemySpawn16 = { 8, 4, 0 };
+    */
 
 
 
@@ -94,6 +96,7 @@ public class Map1Script : MonoBehaviour
         playerSpawnLocations.Add(playerSpawn3);
         playerSpawnLocations.Add(playerSpawn4);
 
+        /*
         enemySpawnLocations.Add(enemySpawn1);
         enemySpawnLocations.Add(enemySpawn2);
         enemySpawnLocations.Add(enemySpawn3);
@@ -110,6 +113,7 @@ public class Map1Script : MonoBehaviour
         enemySpawnLocations.Add(enemySpawn14);
         enemySpawnLocations.Add(enemySpawn15);
         enemySpawnLocations.Add(enemySpawn16);
+        */
         StartCoroutine(MapGenerateWait());
         //LevelControlScript.control.CreateMap (map, playerSpawnLocations, enemySpawnLocations);
     }
