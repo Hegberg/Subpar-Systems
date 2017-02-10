@@ -5,7 +5,8 @@ using UnityEngine;
 public class GenericEarthScript : TileScript {
 
     private GameObject occupingObject;
-	private List<int> tilePosition = new List<int>();
+    private bool isOccupyingObjectAnEnemy = false;
+    private List<int> tilePosition = new List<int>();
 
 	// Use this for initialization
 	void Start () {
@@ -36,7 +37,8 @@ public class GenericEarthScript : TileScript {
 					GameObject player = TurnControlScript.control.GetPlayerSelected();
 					TurnControlScript.control.MovePlayer(gameObject);
 					occupingObject = player;
-				}
+                    isOccupyingObjectAnEnemy = false;
+                }
 			}
 
 			//When the player clicks somewhere outside the allValidTile, NULL THE FUCKER
@@ -62,6 +64,10 @@ public class GenericEarthScript : TileScript {
     public void SetOccupingObject(GameObject setTo)
     {
         occupingObject = setTo;
+        if (occupingObject == null)
+        {
+            SetIsAnEnemyOccupyingThisTile(false);
+        }
     }
 
 	public void SetTilePosition(List<int> position)
@@ -77,5 +83,15 @@ public class GenericEarthScript : TileScript {
     public GameObject GetOccupingObject()
     {
         return occupingObject;
+    }
+
+    public void SetIsAnEnemyOccupyingThisTile(bool setOccupying)
+    {
+        isOccupyingObjectAnEnemy = setOccupying;
+    }
+
+    public bool GetIsOccupyingObjectAnEnemy()
+    {
+        return isOccupyingObjectAnEnemy;
     }
 }

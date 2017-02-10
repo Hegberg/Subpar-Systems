@@ -44,7 +44,7 @@ public class AStarScript : MonoBehaviour {
 	*/
 
 
-	//Returns tile that are within the range of the map
+	//Returns tile that are within the range of the map that can be attacked
 	public List<List<int>> FloodFillAttackRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int attackrange)
 	{
 		//Debug.Log ("Starting attaackflood");

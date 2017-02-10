@@ -30,36 +30,63 @@ public class GenericEnemyScript : MonoBehaviour {
             TurnControlScript.control.GetPlayerSelected() != null &&
             !TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetHasAttacked())
         {
-            if (isSelected)
+
+            List<List<int>> validAttackTiles = TurnControlScript.control.GetAllValidAttackTiles();
+
+            bool isValidTarget = false;
+            /*
+            Debug.Log(validAttackTiles.Count + " count");
+            Debug.Log(GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0] + " "
+                 + GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1] + " pos"); 
+                 */
+            for (int i = 0; i < validAttackTiles.Count; ++i)
             {
-				//calculate damage taken, if it is 0 attack doesn't happen
-				if (TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack () != 0) {
-					hp -= TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ();
-					//set player attacked to true
-					TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().SetHasAttacked (true);
-					//deselect enemy
-					TurnControlScript.control.SetEnemySelected (null);
-					isSelected = false;
-					//check if enemy still alive
-					if (hp <= 0) {
-						EnemyParentScript.control.EnemyDied ();
-                        GameControlScript.control.RemoveEnemyFromInGameList(this.gameObject);
-                        Destroy (gameObject);
-					}
-				} else {
-					//do nothing attack doesn't happen
-					//Debug.Log("0 attack");
-				}
-            }
-            else
-            {
-				//if another enemy selected, deselect it
-                if (TurnControlScript.control.GetEnemySelected() != null)
+                //Debug.Log(validAttackTiles[i][0] + " " + validAttackTiles[i][1]);
+                if (validAttackTiles[i][0] == GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0] &&
+                    validAttackTiles[i][1] == GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1])
                 {
-                    TurnControlScript.control.GetEnemySelected().GetComponent<GenericEnemyScript>().SetIsSelected(false);
+                    //Debug.Log("match");
+                    isValidTarget = true;
+                    break;
                 }
-				isSelected = true;
-				TurnControlScript.control.SetEnemySelected (this.gameObject);
+            }
+
+            if (isValidTarget)
+            {
+                if (isSelected)
+                {
+                    //calculate damage taken, if it is 0 attack doesn't happen
+                    if (TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetAttack() != 0)
+                    {
+                        hp -= TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetAttack();
+                        //set player attacked to true
+                        TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().SetHasAttacked(true);
+                        //deselect enemy
+                        TurnControlScript.control.SetEnemySelected(null);
+                        isSelected = false;
+                        //check if enemy still alive
+                        if (hp <= 0)
+                        {
+                            EnemyParentScript.control.EnemyDied();
+                            GameControlScript.control.RemoveEnemyFromInGameList(this.gameObject);
+                            tileOccuping.GetComponent<GenericEarthScript>().SetOccupingObject(null);
+
+                            Destroy(gameObject);
+                        }
+                    }
+                    else
+                    {
+                        //do nothing attack doesn't happen
+                        //Debug.Log("0 attack");
+                    }
+                }
+                else
+                {
+                    //if another enemy selected, deselect it (done in turn control)
+                    //set this enemy to selected regardless
+                    isSelected = true;
+                    TurnControlScript.control.SetEnemySelected(this.gameObject);
+                }
             }
         }
     }
@@ -203,6 +230,7 @@ public class GenericEnemyScript : MonoBehaviour {
     {
         tileOccuping = setTo;
         tileOccuping.GetComponent<GenericEarthScript>().SetOccupingObject(this.gameObject);
+        tileOccuping.GetComponent<GenericEarthScript>().SetIsAnEnemyOccupyingThisTile(true);
     }
 
     public void SetIsSelected(bool selected)
@@ -210,8 +238,16 @@ public class GenericEnemyScript : MonoBehaviour {
         isSelected = selected;
     }
 
+    public bool GetIsSelected()
+    {
+        return isSelected;
+    }
+
     public virtual void MoveToTile(GameObject tileMovingTo)
     {
+        tileOccuping.GetComponent<GenericEarthScript>().SetOccupingObject(null);
+        tileOccuping.GetComponent<GenericEarthScript>().SetIsAnEnemyOccupyingThisTile(false);
+
         SetTileOccuping(tileMovingTo);
 
         //get correct position (so tile placement but slightly up so goes to middle of tile)

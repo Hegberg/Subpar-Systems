@@ -17,6 +17,7 @@ public class TurnControlScript : MonoBehaviour {
     public Button endTurn;
 
 	private List<List<int>> allValidTile = new List<List<int>> ();
+    private List<List<int>> allValidAttackTile = new List<List<int>>();
 
     // Use this for initialization
     void Start () {
@@ -88,6 +89,21 @@ public class TurnControlScript : MonoBehaviour {
         {
             playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
                 material.color = Color.white;
+            //unhighlight floodfill tiles
+            List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
+            for (int i = 0; i < allValidTile.Count; ++i)
+            {
+                movementmap[allValidTile[i][0]][allValidTile[i][1]].GetComponent<SpriteRenderer>().material.color = Color.white;
+            }
+            //Highlight enemies the player can attack
+            for (int i = 0; i < allValidAttackTile.Count; ++i)
+            {
+                if (movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].name.ToString() == "Earth(Clone)" &&
+                    movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy())
+                {
+                    movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<SpriteRenderer>().material.color = Color.white;
+                }
+            }
         }
     }
 
@@ -104,8 +120,18 @@ public class TurnControlScript : MonoBehaviour {
     {
         if (enemySelected != null)
         {
-            enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
-                material.color = Color.white;
+            //if enemy is within range, highlight it as possible to select
+            if (enemySelected.GetComponent<GenericEnemyScript>().GetIsSelected())
+            {
+                enemySelected.GetComponent<GenericEnemyScript>().SetIsSelected(false);
+                enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+                material.color = Color.yellow;
+            }
+            else //if no enmy previously selected, set tile back to unhighlighted
+            {
+                enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+                    material.color = Color.white;
+            }
         }
     }
 
@@ -135,7 +161,26 @@ public class TurnControlScript : MonoBehaviour {
 		for (int i = 0; i < allValidTile.Count; ++i) {
 			movementmap[allValidTile[i][0]][allValidTile[i][1]].GetComponent<SpriteRenderer>().material.color = Color.white;
 		}
+
 		HighlightPlayerTile();
+        if (!GetPlayerSelected().GetComponent<GenericCharacterScript>().GetHasAttacked())
+        {
+            allValidAttackTile = AStarScript.control.FloodFillAttackRange(LevelControlScript.control.GetAStarMap(),
+                LevelControlScript.control.GetAStarMapCost(),
+                GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
+                GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
+                GetPlayerSelected().GetComponent<GenericCharacterScript>().GetRange());
+
+            //Highlight enemies the player can attack
+            for (int i = 0; i < allValidAttackTile.Count; ++i)
+            {
+                if (movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].name.ToString() == "Earth(Clone)" &&
+                    movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy())
+                {
+                    movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<SpriteRenderer>().material.color = Color.yellow;
+                }
+            }
+        }
     }
 
     public bool GetPlayerTurn()
@@ -146,14 +191,23 @@ public class TurnControlScript : MonoBehaviour {
     //when new player selected, set the game object and set isPlayerSelected to true since by virtue of a player being selected it is true
     public void SetPlayerSelected(GameObject selected)
     {
+        List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
         if (playerSelected != null)
         {
             UnHighlightPlayerTile();
 			//unhighlight floodfill tiles
-			List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
 			for (int i = 0; i < allValidTile.Count; ++i) {
 				movementmap[allValidTile[i][0]][allValidTile[i][1]].GetComponent<SpriteRenderer>().material.color = Color.white;
 			}
+            //UnHighlight enemies the player can attack
+            for (int i = 0; i < allValidAttackTile.Count; ++i)
+            {
+                if (movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].name.ToString() == "Earth(Clone)" &&
+                    movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy())
+                {
+                    movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<SpriteRenderer>().material.color = Color.white;
+                }
+            }
         }
         playerSelected = selected;
         if (enemySelected != null)
@@ -161,6 +215,7 @@ public class TurnControlScript : MonoBehaviour {
             enemySelected.GetComponent<GenericEnemyScript>().SetIsSelected(false);
         }
         SetEnemySelected(null);
+
         if (playerSelected != null)
         {
             HighlightPlayerTile();
@@ -175,12 +230,30 @@ public class TurnControlScript : MonoBehaviour {
 					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
 					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetMovement());
 
-				//Highlight all the valid tiles
-				List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap ();
+                //Highlight all the valid tiles
 				for (int i = 0; i < allValidTile.Count; ++i) {
 					movementmap [allValidTile [i] [0]] [allValidTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = Color.cyan;
 				}
 			}
+
+            if (!GetPlayerSelected().GetComponent<GenericCharacterScript>().GetHasAttacked())
+            {
+                allValidAttackTile = AStarScript.control.FloodFillAttackRange(LevelControlScript.control.GetAStarMap(),
+                    LevelControlScript.control.GetAStarMapCost(),
+                    GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
+                    GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
+                    GetPlayerSelected().GetComponent<GenericCharacterScript>().GetRange());
+
+                //Highlight enemies the player can attack
+                for (int i = 0; i < allValidAttackTile.Count; ++i)
+                {
+                    if (movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].name.ToString() == "Earth(Clone)" &&
+                        movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy())
+                    {
+                        movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<SpriteRenderer>().material.color = Color.yellow;
+                    }
+                }
+            }
         }
     }
 
@@ -210,4 +283,9 @@ public class TurnControlScript : MonoBehaviour {
 	public List<List<int>> GetAllValidMovementTiles(){
 		return allValidTile;
 	}
+
+    public List<List<int>> GetAllValidAttackTiles()
+    {
+        return allValidAttackTile;
+    }
 }
