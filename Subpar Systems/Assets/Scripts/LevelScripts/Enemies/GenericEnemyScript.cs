@@ -61,18 +61,20 @@ public class GenericEnemyScript : MonoBehaviour {
                         hp -= TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetAttack();
                         //set player attacked to true
                         TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().SetHasAttacked(true);
-                        //deselect enemy
-                        TurnControlScript.control.SetEnemySelected(null);
                         isSelected = false;
                         //check if enemy still alive
-                        if (hp <= 0)
-                        {
-                            EnemyParentScript.control.EnemyDied();
-                            GameControlScript.control.RemoveEnemyFromInGameList(this.gameObject);
-                            tileOccuping.GetComponent<GenericEarthScript>().SetOccupingObject(null);
+						if (hp <= 0) {
+							EnemyParentScript.control.EnemyDied ();
+							GameControlScript.control.RemoveEnemyFromInGameList (this.gameObject);
+							tileOccuping.GetComponent<GenericEarthScript> ().SetOccupingObject (null);
+							//need this repeated twice since if this is before the line above, the line above will malfunction, 
+							//but if not in else than code malfunctions
+							TurnControlScript.control.SetEnemySelected(null);
 
-                            Destroy(gameObject);
-                        }
+							Destroy (gameObject);
+						} else {
+							TurnControlScript.control.SetEnemySelected(null);
+						}
                     }
                     else
                     {

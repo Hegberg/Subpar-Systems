@@ -21,6 +21,7 @@ public class GenericEarthScript : TileScript {
     //since characters can move on earth, send coordinates to move back
     void OnMouseOver()
     {
+		//if player slelected and hasn't moved
         if (Input.GetMouseButtonDown(0) && (TurnControlScript.control.GetPlayerSelected() != null) && (occupingObject == null) &&
             !TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetHasMoved())
         {
@@ -30,14 +31,19 @@ public class GenericEarthScript : TileScript {
 			List<List<int>> returnPath = new List<List<int>> ();
 			List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
 			allValidTile = TurnControlScript.control.GetAllValidMovementTiles ();
-			
+
 			for (int i = 0; i < allValidTile.Count; ++i) {
-				if (allValidTile [i] [0] == tilePosition [0] && allValidTile [i] [1] == tilePosition [1]) 
+				if (allValidTile [i] [0] == tilePosition [0] && allValidTile [i] [1] == tilePosition [1] 
+					&& TurnControlScript.control.GetPlayerSelected() != null) 
 				{
 					GameObject player = TurnControlScript.control.GetPlayerSelected();
+					//Debug.Log("null: " + (TurnControlScript.control.GetPlayerSelected() == null));
+
 					TurnControlScript.control.MovePlayer(gameObject);
 					occupingObject = player;
                     isOccupyingObjectAnEnemy = false;
+					//need this or loops through again with player already moved
+					break;
                 }
 			}
 
@@ -64,10 +70,9 @@ public class GenericEarthScript : TileScript {
     public void SetOccupingObject(GameObject setTo)
     {
         occupingObject = setTo;
-        if (occupingObject == null)
-        {
-            SetIsAnEnemyOccupyingThisTile(false);
-        }
+		if (occupingObject == null) {
+			SetIsAnEnemyOccupyingThisTile (false);
+		}
     }
 
 	public void SetTilePosition(List<int> position)

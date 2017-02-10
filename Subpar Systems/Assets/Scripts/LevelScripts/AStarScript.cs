@@ -347,6 +347,10 @@ public class AStarScript : MonoBehaviour {
     {
         //0 -> earth, 1->water, 2->mountian
         //right now 0 means earth, and earth only walkable tile
+		if (mapType == 0 &&
+		    (mapTile.GetComponent<GenericEarthScript> ().GetTilePosition () [0] == 5 &&
+		    mapTile.GetComponent<GenericEarthScript> ().GetTilePosition () [1] == 2)) {
+		}
 		if (mapType == 0 && 
             //check if empty tile as well, nneds to be done after first if or else will check tiles without GenericEarthScript code and exception will be raised
             (mapTile.GetComponent<GenericEarthScript>().GetOccupingObject() == null))
