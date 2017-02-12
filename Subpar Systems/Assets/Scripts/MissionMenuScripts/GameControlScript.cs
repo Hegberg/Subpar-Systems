@@ -47,18 +47,18 @@ public class GameControlScript : MonoBehaviour {
 
 	private List<List<GenericTraitsScript>> allCharacterTraits = new List<List<GenericTraitsScript>> ();
 
-	private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript> () { AggressionTrait};
-	private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript> () { WimpTrait};
-	private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript> () { MalnourishedTrait};
-	private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> () { AggressionTrait};
-	private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript> () {};
-	private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript> () { };
-	private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript> () { };
-	private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript> () { };
-	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript> () { };
-	private List<GenericTraitsScript> character10InitialTraits = new List<GenericTraitsScript> () { };
-	private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript> () { };
-	private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript> () { };
+	private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript> { new AggressionTrait()};
+	private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript> { new WimpTrait()};
+	private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript> { new MalnourishedTrait() };
+	private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> { new AggressionTrait ()};
+	private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript> {};
+	private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character10InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript> { };
 
 
 
