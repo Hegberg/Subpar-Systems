@@ -6,7 +6,7 @@ public class Character4Script : GenericCharacterScript {
 
 	// Use this for initialization
 	void Start () {
-		
+		currentTraits = GameControlScript.control.GetTraitsOfACharacter (3);
 	}
 	
 	// Update is called once per frame
