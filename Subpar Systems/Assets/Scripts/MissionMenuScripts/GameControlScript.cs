@@ -47,7 +47,7 @@ public class GameControlScript : MonoBehaviour {
 
 	private List<List<GenericTraitsScript>> allCharacterTraits = new List<List<GenericTraitsScript>> ();
 
-	private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript> { new AggressionTrait()};
+	private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript> { new MachineGunTrait()};
 	private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript> { new WimpTrait()};
 	private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript> { new MalnourishedTrait() };
 	private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> { new AggressionTrait ()};
@@ -118,6 +118,24 @@ public class GameControlScript : MonoBehaviour {
 		SaveCurrentLevel ();
 	}
 
+	//If need to clear traits at any point
+	public void ClearTraits () {
+		allCharacterTraits.Clear ();
+		allCharacterTraits.Add (character1InitialTraits);
+		allCharacterTraits.Add (character2InitialTraits);
+		allCharacterTraits.Add (character3InitialTraits);
+		allCharacterTraits.Add (character4InitialTraits);
+		allCharacterTraits.Add (character5InitialTraits);
+		allCharacterTraits.Add (character6InitialTraits);
+		allCharacterTraits.Add (character7InitialTraits);
+		allCharacterTraits.Add (character8InitialTraits);
+		allCharacterTraits.Add (character9InitialTraits);
+		allCharacterTraits.Add (character10InitialTraits);
+		allCharacterTraits.Add (character11InitialTraits);
+		allCharacterTraits.Add (character12InitialTraits);
+		InitializeTraits ();
+	}
+
     //load dead characters
     public void LoadDeadCharacters()
     {
@@ -180,6 +198,7 @@ public class GameControlScript : MonoBehaviour {
 			allCharacterTraits.Add (character11InitialTraits);
 			allCharacterTraits.Add (character12InitialTraits);
 		}
+		InitializeTraits ();
 	}
 
 	public void SaveCharacterTraits() {
@@ -196,6 +215,14 @@ public class GameControlScript : MonoBehaviour {
 			FileStream file = File.Create(Application.persistentDataPath + "/allCharactersTraits.dat");
 			bf.Serialize(file, allCharacterTraits);
 			file.Close();
+		}
+	}
+
+	public void InitializeTraits() {
+		for (int i = 0; i < allCharacterTraits.Count; ++i) {
+			for (int j = 0; j < allCharacterTraits [i].Count; ++j) {
+				allCharacterTraits [i] [j].InitializeValues ();
+			}
 		}
 	}
 

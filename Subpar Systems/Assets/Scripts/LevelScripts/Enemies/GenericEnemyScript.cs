@@ -28,7 +28,7 @@ public class GenericEnemyScript : MonoBehaviour {
 		//if player turn, player selected and player hasn't attacked
         if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn() && 
             TurnControlScript.control.GetPlayerSelected() != null &&
-            !TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetHasAttacked())
+			TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetNumOfAttacks() > 0)
         {
 
             List<List<int>> validAttackTiles = TurnControlScript.control.GetAllValidAttackTiles();
@@ -60,7 +60,7 @@ public class GenericEnemyScript : MonoBehaviour {
                     {
                         hp -= TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetAttack();
                         //set player attacked to true
-                        TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().SetHasAttacked(true);
+						TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().PlayerAttacked(1);
                         isSelected = false;
                         //check if enemy still alive
 						if (hp <= 0) {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GenericCharacterScript : MonoBehaviour {
 
 	protected bool hasMoved = false;
-	protected bool hasAttacked = false;
+	protected int attacksLeft = 1;
 
 	protected GameObject tileOccuping;
 
@@ -24,7 +24,7 @@ public class GenericCharacterScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+		RefreshActions ();
 	}
 	
 	// Update is called once per frame
@@ -35,7 +35,7 @@ public class GenericCharacterScript : MonoBehaviour {
     public virtual void OnMouseOver()
     {
         //if player clicked on and it's players turn, then select player
-		if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn() && (!hasMoved || !hasAttacked))
+		if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn() && (!hasMoved || attacksLeft > 0))
         {
             TurnControlScript.control.SetPlayerSelected(this.gameObject);
 			DebugShowTraits();
@@ -101,14 +101,20 @@ public class GenericCharacterScript : MonoBehaviour {
 	//refresh actions and get rid of fade out
     public void RefreshActions()
     {
-        hasAttacked = false;
-        hasMoved = false;
+		float attacks = 1;
+		for (int i = 0; i < currentTraits.Count; ++i) {
+			//add modifiers together so that the defense modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
+			attacks += currentTraits[i].ModifyNumOfAttacks() - 1;
+		}
+		attacksLeft = (int)attacks;
+		hasMoved = false;
+		//unvoid character
 		GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
     }
 
     public void RemoveActions()
     {
-        hasAttacked = true;
+		attacksLeft = 0;
         hasMoved = true;
 		OutOfActions ();
     } 
@@ -119,15 +125,18 @@ public class GenericCharacterScript : MonoBehaviour {
 		OutOfActions ();
     }
 
-    public void SetHasAttacked(bool attacked)
+	public void PlayerAttacked(int numOfTimesAttacked)
     {
-        hasAttacked = attacked;
+		attacksLeft -= numOfTimesAttacked;
+		if (attacksLeft <= 0) {
+			TurnControlScript.control.UnHighlightEnemyTile ();
+		}
 		OutOfActions ();
     }
 
 	public void OutOfActions() {
 		//if player out of actions, make them fade out slightly
-		if (hasAttacked && hasMoved) {
+		if (attacksLeft <= 0 && hasMoved) {
 			TurnControlScript.control.SetPlayerSelected (null);
 			GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0.50f);
 		} 
@@ -138,9 +147,9 @@ public class GenericCharacterScript : MonoBehaviour {
         return hasMoved;
     }
 
-    public bool GetHasAttacked()
+    public int GetNumOfAttacks()
     {
-        return hasAttacked;
+		return (int)attacksLeft;
     }
 
 	//need to implement permenant death
