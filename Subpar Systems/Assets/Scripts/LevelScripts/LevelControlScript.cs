@@ -157,7 +157,7 @@ public class LevelControlScript : MonoBehaviour {
                 //spawn enemy code
                 for (int k = 0; k < enemySpawnLocations.Count; ++k)
                 {
-                    if (enemySpawnLocations[k][0] == i && enemySpawnLocations[k][1] == j)
+                    if (enemySpawnLocations[k][0] == j && enemySpawnLocations[k][1] == i)
                     {
                         tempVector.z -= 0.01f;
 

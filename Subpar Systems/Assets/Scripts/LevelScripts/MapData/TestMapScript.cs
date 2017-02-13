@@ -37,10 +37,10 @@ public class TestMapScript : MonoBehaviour {
 
 
 	//x, y, enemy type
-	private int[] enemySpawn1 = { 0, 5 , 0 };
-	private int[] enemySpawn2 = { 1, 4 , 0 };
-	private int[] enemySpawn3 = { 1, 5 , 0 };
-	private int[] enemySpawn4 = { 2, 4 , 0 };
+	private int[] enemySpawn1 = { 5, 0 , 0 };
+	private int[] enemySpawn2 = { 4, 1 , 0 };
+	private int[] enemySpawn3 = { 5, 1 , 0 };
+	private int[] enemySpawn4 = { 4, 2 , 0 };
 
 	private List<int[]> enemySpawnLocations = new List<int[]>();
 
