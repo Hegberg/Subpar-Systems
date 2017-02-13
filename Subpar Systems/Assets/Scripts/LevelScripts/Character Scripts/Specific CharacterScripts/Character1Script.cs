@@ -6,9 +6,7 @@ public class Character1Script : GenericCharacterScript {
 
 	// Use this for initialization
 	void Start () {
-		AggressionTrait temp = new AggressionTrait ();
-		temp.InitializeValues ();
-		AddTrait (temp);
+		currentTraits = GameControlScript.control.GetTraitsOfACharacter (0);
 	}
 	
 	// Update is called once per frame

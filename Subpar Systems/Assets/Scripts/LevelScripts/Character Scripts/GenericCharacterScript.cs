@@ -76,12 +76,12 @@ public class GenericCharacterScript : MonoBehaviour {
 		return defense * defenseModifier;
 	}
 
-	public float GetMovement() {
-		return movement;
+	public int GetMovement() {
+		return (int)movement;
 	}
 
-	public float GetRange() {
-		return range;
+	public int GetRange() {
+		return (int)range;
 	}
 
 	public void DebugShowTraits(){
