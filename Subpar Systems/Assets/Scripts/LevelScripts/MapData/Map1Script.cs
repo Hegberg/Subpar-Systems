@@ -73,35 +73,35 @@ public class Map1Script : MonoBehaviour
     };
 
     private int[] playerSpawn1 = { 1, 1 };
-    private int[] playerSpawn2 = { 2, 0 };
+    private int[] playerSpawn2 = { 0, 2 };
     private int[] playerSpawn3 = { 0, 0 };
-    private int[] playerSpawn4 = { 1, 0 };
+    private int[] playerSpawn4 = { 0, 1 };
 
     private List<int[]> playerSpawnLocations = new List<int[]>();
 
 
     //x, y, enemy type
-    private int[] enemySpawn1 = { 2, 3, 0 };
-    private int[] enemySpawn2 = { 3, 4, 0 };
-    private int[] enemySpawn3 = { 4, 3, 0 };
-    private int[] enemySpawn4 = { 7, 0, 0 };
-    private int[] enemySpawn5 = { 6, 5, 0 };
-    private int[] enemySpawn6 = { 6, 7, 0 };
-    private int[] enemySpawn7 = { 5, 8, 0 };
+    private int[] enemySpawn1 = { 3, 2, 0 };
+    private int[] enemySpawn2 = { 4, 3, 0 };
+    private int[] enemySpawn3 = { 3, 4, 0 };
+    private int[] enemySpawn4 = { 0, 7, 0 };
+    private int[] enemySpawn5 = { 5, 6, 0 };
+    private int[] enemySpawn6 = { 7, 6, 0 };
+    private int[] enemySpawn7 = { 8, 5, 0 };
     private int[] enemySpawn8 = { 8, 8, 0 };
-    private int[] enemySpawn9 = { 9, 7, 0 };
-    private int[] enemySpawn10 = { 11, 7, 0 };
-    private int[] enemySpawn11 = { 12, 0, 0 }; //Broken
-    private int[] enemySpawn12 = { 17, 3, 0 };
-    private int[] enemySpawn13 = { 19, 3, 0 };
-    private int[] enemySpawn14 = { 15, 7, 0 };
-    private int[] enemySpawn15 = { 19, 7, 0 };
+    private int[] enemySpawn9 = { 7, 9, 0 };
+    private int[] enemySpawn10 = { 7, 11, 0 };
+    private int[] enemySpawn11 = { 0, 12, 0 }; //Broken
+    private int[] enemySpawn12 = { 3, 17, 0 };
+    private int[] enemySpawn13 = { 3, 19, 0 };
+    private int[] enemySpawn14 = { 7, 15, 0 };
+    private int[] enemySpawn15 = { 7, 19, 0 };
 
     //LAST 4 ARE THE OBJECTIVE TARGETS
-    private int[] enemySpawn16 = { 11, 9, 0 };
-    private int[] enemySpawn17 = { 13, 8, 0 };
-    private int[] enemySpawn18 = { 15, 9, 0 };
-    private int[] enemySpawn19 = { 17, 8, 0 };
+    private int[] enemySpawn16 = { 9, 11, 0 };
+    private int[] enemySpawn17 = { 8, 13, 0 };
+    private int[] enemySpawn18 = { 9, 15, 0 };
+    private int[] enemySpawn19 = { 8, 17, 0 };
     // private int[] enemySpawn20 = { 0, 10, 0 };
 
     // //private int[] enemySpawn21 = { 0, 0, 0 };

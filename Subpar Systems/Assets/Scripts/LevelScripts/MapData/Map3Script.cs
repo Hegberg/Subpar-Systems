@@ -72,24 +72,24 @@ public class Map3Script : MonoBehaviour
     };
 
     private int[] playerSpawn1 = { 1, 1 };
-    private int[] playerSpawn2 = { 2, 0 };
+    private int[] playerSpawn2 = { 0, 2 };
     private int[] playerSpawn3 = { 0, 0 };
-    private int[] playerSpawn4 = { 1, 0 };
+    private int[] playerSpawn4 = { 0, 1 };
 
     private List<int[]> playerSpawnLocations = new List<int[]>();
 
 
     //x, y, enemy type
-    private int[] enemySpawn1 = { 10, 3, 0 };
-    private int[] enemySpawn2 = { 11, 3, 0 };
-    private int[] enemySpawn3 = { 7, 4, 0 };
-    private int[] enemySpawn4 = { 6, 4, 0 };
-    private int[] enemySpawn5 = { 6, 5, 0 };
-    private int[] enemySpawn6 = { 12, 5, 0 };
-    private int[] enemySpawn7 = { 11, 6, 0 };
-    private int[] enemySpawn8 = { 14, 4, 0 };
-    private int[] enemySpawn9 = { 15, 6, 0 };
-    private int[] enemySpawn10 = { 8, 5, 0 };
+    private int[] enemySpawn1 = { 3, 10, 0 };
+    private int[] enemySpawn2 = { 3, 11, 0 };
+    private int[] enemySpawn3 = { 4, 7, 0 };
+    private int[] enemySpawn4 = { 4, 6, 0 };
+    private int[] enemySpawn5 = { 5, 6, 0 };
+    private int[] enemySpawn6 = { 5, 12, 0 };
+    private int[] enemySpawn7 = { 6, 11, 0 };
+    private int[] enemySpawn8 = { 4, 14, 0 };
+    private int[] enemySpawn9 = { 6, 15, 0 };
+    private int[] enemySpawn10 = { 5, 8, 0 };
     // private int[] enemySpawn11 = { 0, 1, 0 }; //Broken
     // private int[] enemySpawn12 = { 0, 2, 0 };
     // private int[] enemySpawn13 = { 0, 3, 0 };
