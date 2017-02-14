@@ -219,7 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a0102637d2d554c9a0fcd3d31c2766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clicked: 
 --- !u!1 &5685074
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +312,7 @@ RectTransform:
   - {fileID: 2119520361}
   - {fileID: 816407384}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -869,6 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff692aa19a456824caf07b3706683162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIButt: {fileID: 0}
 --- !u!114 &386721069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1237,6 +1237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff692aa19a456824caf07b3706683162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIButt: {fileID: 0}
 --- !u!114 &580215993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1863,6 +1864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff692aa19a456824caf07b3706683162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIButt: {fileID: 0}
 --- !u!114 &907641970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2251,6 +2253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff692aa19a456824caf07b3706683162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIButt: {fileID: 0}
 --- !u!114 &1167914877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2944,6 +2947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff692aa19a456824caf07b3706683162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIButt: {fileID: 0}
 --- !u!114 &1507657835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3246,7 +3250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1661156898
 GameObject:
@@ -3778,6 +3782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff692aa19a456824caf07b3706683162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIButt: {fileID: 0}
 --- !u!114 &1949511647
 MonoBehaviour:
   m_ObjectHideFlags: 0
