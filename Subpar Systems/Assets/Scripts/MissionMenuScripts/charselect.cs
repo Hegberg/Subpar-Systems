@@ -5,12 +5,20 @@ using UnityEngine.UI;
 
 public class charselect : MonoBehaviour {
     public static charselect test;
-    public string clicked;
+    Button clicked;
     // Use this for initialization
     void Start () {
-       Button go;
-       var test = GameObject.FindWithTag("addchar");
-       go = test.GetComponent<Button>();
+        if (test == null)
+        {
+            test = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        Button go;
+       var add = GameObject.FindWithTag("addchar");
+       go = add.GetComponent<Button>();
        go.onClick.AddListener(OnMouseOver);
     }
 	
@@ -18,24 +26,23 @@ public class charselect : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void buttselected(string charac)
+    public void buttselected(Button charac)
     {
         clicked = charac;
-        Debug.Log(clicked);
     }
+
     public void OnMouseOver()
     {
-        Sprite test;
+        Sprite add;
         var UI1 = GameObject.FindWithTag("UIChar"); 
         var UI = GameObject.FindWithTag("CharSelect");
         var pict = GameObject.FindWithTag("UIImage");
-        test = pict.GetComponent<Image>().sprite;
+        add = pict.GetComponent<Image>().sprite;
         UI.GetComponent<Canvas>().enabled = false;
         UI1.GetComponent<Canvas>().enabled = false;
-        GameObject.FindWithTag("Mission").GetComponent<Canvas>().enabled = false;
+        GameObject.FindWithTag("Mission").GetComponent<Canvas>().enabled = true;
         GameObject.FindWithTag("Mission Text").GetComponent<Canvas>().enabled = true;
-        Debug.Log(clicked);
-        GameObject.Find(clicked).GetComponent<Image>().sprite = test;
-        GameControlScript.control.SelectCharacter(clicked);
+        clicked.GetComponent<Image>().sprite = add;
+        GameControlScript.control.SelectCharacter(clicked.name.ToString().ToLower());
     }
 }
