@@ -9,6 +9,9 @@ public class GenericCharacterScript : MonoBehaviour {
 
 	protected GameObject tileOccuping;
 
+	//name of character
+	protected string name = "temp";
+
 	//hp of character
 	protected float hp = 100;
 	//attack damamage of the character's attack
@@ -184,4 +187,8 @@ public class GenericCharacterScript : MonoBehaviour {
     {
         tileOccuping = setTo;
     }
+
+	public string GetName() {
+		return name;
+	}
 }

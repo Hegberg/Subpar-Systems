@@ -105,3 +105,18 @@ public class BacklineCommanderTrait : GenericTraitsScript {
 		return GameControlScript.control.GetInGameCharacterList ().Count > 1;
 	}
 }
+
+public class F27GoodWithF25Trait : GenericTraitsScript {
+	//small general buff between the 2 characters
+	public override void InitializeValues ()
+	{
+		name = "F27GoodWithF25";
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F25") {
+				attackModifier = 1.2f;
+				defenseModifier = 1.2f;
+				break;
+			}
+		}
+	}
+}
