@@ -11,14 +11,18 @@ public class GameControlScript : MonoBehaviour {
     private static List<Object> characters = new List<Object>();
     private static List<bool> chosen = new List<bool>();
 
-    public Transform blue;
-    public Transform brown;
-    public Transform green;
-    public Transform grey;
-    public Transform pink;
-    public Transform purple;
-    public Transform red;
-    public Transform yellow;
+    public Transform character1;
+	public Transform character2;
+	public Transform character3;
+	public Transform character4;
+	public Transform character5;
+	public Transform character6;
+	public Transform character7;
+	public Transform character8;
+	public Transform character9;
+	public Transform character10;
+	public Transform character11;
+	public Transform character12;
 
     private static List<GameObject> tiles = new List<GameObject>();
 
@@ -80,14 +84,18 @@ public class GameControlScript : MonoBehaviour {
         }
 
         //add character prefabs
-        characters.Add(blue);
-        characters.Add(brown);
-        characters.Add(green);
-        characters.Add(grey);
-        characters.Add(pink);
-        characters.Add(purple);
-        characters.Add(red);
-        characters.Add(yellow);
+		characters.Add(character1);
+		characters.Add(character2);
+		characters.Add(character3);
+		characters.Add(character4);
+		characters.Add(character5);
+		characters.Add(character6);
+		characters.Add(character7);
+		characters.Add(character8);
+		characters.Add(character9);
+		characters.Add(character10);
+		characters.Add(character11);
+		characters.Add(character12);
 
         //add tile prefabs, need to ad walkable tiles first so earth, then everything else right now
         tiles.Add(earth.gameObject);
@@ -97,7 +105,8 @@ public class GameControlScript : MonoBehaviour {
         //add enemy prefabs
         enemies.Add(slime.gameObject);
 
-        for (int i = 0; i < characters.Capacity; ++i)
+		//initialize chosen list
+		for (int i = 0; i < characters.Count; ++i)
         {
             chosen.Add(false);
         }
@@ -265,7 +274,7 @@ public class GameControlScript : MonoBehaviour {
     public void SelectCharacter(string nameSelected)
     {
         int selected = -1;
-        for (int i = 0; i < characters.Capacity; ++i)
+        for (int i = 0; i < characters.Count; ++i)
         {
             if(characters[i].name.ToString() == nameSelected)
             {
