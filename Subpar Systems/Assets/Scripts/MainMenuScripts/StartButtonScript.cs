@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartButtonScript : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    Button start;
+    // Use this for initialization
+    void Start () {
+        start = GetComponent<Button>();
+        start.onClick.AddListener(OnMouseOver);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -17,9 +19,6 @@ public class StartButtonScript : MonoBehaviour {
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
             SceneManager.LoadScene("MissionMenu");
-        }
     }
 }

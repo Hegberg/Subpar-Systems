@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartMissionScript : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    Button start;
+    // Use this for initialization
+    void Start () {
+        start = GetComponent<Button>();
+        start.onClick.AddListener(started);
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-    private void OnMouseOver()
+    void started()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (GameControlScript.control.EnoughPlayersSelected())
-            {
-                
+        if (GameControlScript.control.EnoughPlayersSelected() == false) {
+            Debug.Log("Not enough players selected to start mission");
+        }
+        if (GameControlScript.control.EnoughPlayersSelected())
+           {
 				if (GameControlScript.control.GetLevel () == 0) {
 					SceneManager.LoadScene ("TestLevel");
                     //switch have loadscene be level1 when ==1 etc etc.
@@ -46,13 +48,9 @@ public class StartMissionScript : MonoBehaviour {
                     SceneManager.LoadScene("Level3");
                     //switch have loadscene be level1 when ==1 etc etc.
                 }
-
-            }
-            else
-            {
+            }   else  {
                 //replace with proper warning
-                Debug.Log("Not enough players selected to start mission");
+             Debug.Log("Not enough players selected to start mission");
             }
-        }
-    }
+       }
 }
