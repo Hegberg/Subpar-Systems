@@ -28,19 +28,19 @@ public class TestMapScript : MonoBehaviour {
 			new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} }
 	};
 
-	private int[] playerSpawn1 = { 8, 0 };
-	private int[] playerSpawn2 = { 8, 1 };
-	private int[] playerSpawn3 = { 8, 2 };
-	private int[] playerSpawn4 = { 8, 3 };
+	private int[] playerSpawn1 = { 0, 8 };
+	private int[] playerSpawn2 = { 1, 8 };
+	private int[] playerSpawn3 = { 2, 8 };
+	private int[] playerSpawn4 = { 3, 8 };
 
 	private List<int[]> playerSpawnLocations = new List<int[]>();
 
 
 	//x, y, enemy type
-	private int[] enemySpawn1 = { 0, 5 , 0 };
-	private int[] enemySpawn2 = { 1, 4 , 0 };
-	private int[] enemySpawn3 = { 1, 5 , 0 };
-	private int[] enemySpawn4 = { 2, 4 , 0 };
+	private int[] enemySpawn1 = { 5, 0 , 0 };
+	private int[] enemySpawn2 = { 4, 1 , 0 };
+	private int[] enemySpawn3 = { 5, 1 , 0 };
+	private int[] enemySpawn4 = { 4, 2 , 0 };
 
 	private List<int[]> enemySpawnLocations = new List<int[]>();
 

@@ -6,9 +6,7 @@ public class Character3Script : GenericCharacterScript {
 
 	// Use this for initialization
 	void Start () {
-		MalnourishedTrait temp = new MalnourishedTrait ();
-		temp.InitializeValues ();
-		AddTrait (temp);
+		currentTraits = GameControlScript.control.GetTraitsOfACharacter (2);
 	}
 	
 	// Update is called once per frame

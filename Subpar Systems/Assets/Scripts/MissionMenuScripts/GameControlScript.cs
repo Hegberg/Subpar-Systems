@@ -11,14 +11,18 @@ public class GameControlScript : MonoBehaviour {
     private static List<Object> characters = new List<Object>();
     private static List<bool> chosen = new List<bool>();
 
-    public Transform blue;
-    public Transform brown;
-    public Transform green;
-    public Transform grey;
-    public Transform pink;
-    public Transform purple;
-    public Transform red;
-    public Transform yellow;
+    public Transform character1;
+	public Transform character2;
+	public Transform character3;
+	public Transform character4;
+	public Transform character5;
+	public Transform character6;
+	public Transform character7;
+	public Transform character8;
+	public Transform character9;
+	public Transform character10;
+	public Transform character11;
+	public Transform character12;
 
     private static List<GameObject> tiles = new List<GameObject>();
 
@@ -34,13 +38,39 @@ public class GameControlScript : MonoBehaviour {
     private int selectedCharacters = 0;
 
 	//level progression, auto increment on victory
-	private int currentLevel = 0;
+	private int currentLevel;
+
+	private int testLevel = 0;
+	private int firstLevel = 1;
 
     //public Transform characterParent;
 
     private static List<GameObject> characterInGameList = new List<GameObject>();
     private static List<GameObject> enemyInGameList = new List<GameObject>();
     private static List<GameObject> deadCharacterList = new List<GameObject>();
+
+	private List<List<GenericTraitsScript>> allCharacterTraits = new List<List<GenericTraitsScript>> ();
+
+	//character F27
+	private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript> 
+	{ new MachineGunTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait() };
+
+	private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript> 
+	{ new WimpTrait()};
+	private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript> 
+	{ new MalnourishedTrait() };
+	private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> 
+	{ new AggressionTrait ()};
+	private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript> {};
+	private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character10InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript> { };
+	private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript> { };
+
+
 
     // Use this for initialization
     void Start () {
@@ -54,14 +84,18 @@ public class GameControlScript : MonoBehaviour {
         }
 
         //add character prefabs
-        characters.Add(blue);
-        characters.Add(brown);
-        characters.Add(green);
-        characters.Add(grey);
-        characters.Add(pink);
-        characters.Add(purple);
-        characters.Add(red);
-        characters.Add(yellow);
+		characters.Add(character1);
+		characters.Add(character2);
+		characters.Add(character3);
+		characters.Add(character4);
+		characters.Add(character5);
+		characters.Add(character6);
+		characters.Add(character7);
+		characters.Add(character8);
+		characters.Add(character9);
+		characters.Add(character10);
+		characters.Add(character11);
+		characters.Add(character12);
 
         //add tile prefabs, need to ad walkable tiles first so earth, then everything else right now
         tiles.Add(earth.gameObject);
@@ -71,14 +105,15 @@ public class GameControlScript : MonoBehaviour {
         //add enemy prefabs
         enemies.Add(slime.gameObject);
 
-        for (int i = 0; i < characters.Capacity; ++i)
+		//initialize chosen list
+		for (int i = 0; i < characters.Count; ++i)
         {
             chosen.Add(false);
         }
 
 		DontDestroyOnLoad (this.gameObject);
 
-        LoadDeadCharacters();
+        Load();
     }
 	
 	// Update is called once per frame
@@ -86,16 +121,48 @@ public class GameControlScript : MonoBehaviour {
 
     }
 
+	public void Load() {
+		LoadDeadCharacters ();
+		LoadCharacterTraits ();
+		LoadCurrentLevel ();
+	}
+
+	public void Save() {
+		SaveDeadCharacters ();
+		SaveCharacterTraits ();
+		SaveCurrentLevel ();
+	}
+
+	//If need to clear traits at any point
+	public void ClearTraits () {
+		allCharacterTraits.Clear ();
+		allCharacterTraits.Add (character1InitialTraits);
+		allCharacterTraits.Add (character2InitialTraits);
+		allCharacterTraits.Add (character3InitialTraits);
+		allCharacterTraits.Add (character4InitialTraits);
+		allCharacterTraits.Add (character5InitialTraits);
+		allCharacterTraits.Add (character6InitialTraits);
+		allCharacterTraits.Add (character7InitialTraits);
+		allCharacterTraits.Add (character8InitialTraits);
+		allCharacterTraits.Add (character9InitialTraits);
+		allCharacterTraits.Add (character10InitialTraits);
+		allCharacterTraits.Add (character11InitialTraits);
+		allCharacterTraits.Add (character12InitialTraits);
+		InitializeTraits ();
+	}
+
     //load dead characters
     public void LoadDeadCharacters()
     {
-        if (File.Exists(Application.persistentDataPath + "/charactersDead.dat"))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/charactersDead.dat", FileMode.Open);
-            deadCharacterList = (List<GameObject>)bf.Deserialize(file);
-            file.Close();
-        }
+		if (File.Exists (Application.persistentDataPath + "/charactersDead.dat")) {
+			BinaryFormatter bf = new BinaryFormatter ();
+			FileStream file = File.Open (Application.persistentDataPath + "/charactersDead.dat", FileMode.Open);
+			deadCharacterList = (List<GameObject>)bf.Deserialize (file);
+			file.Close ();
+		} else {
+			//no dead characters so empty list
+			deadCharacterList.Clear();
+		}
     }
 
     //save dead characters
@@ -120,27 +187,94 @@ public class GameControlScript : MonoBehaviour {
     public void ClearDeadCharacters()
     {
         deadCharacterList.Clear();
-        if (File.Exists(Application.persistentDataPath + "/charactersDead.dat"))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/charactersDead.dat", FileMode.Open);
-            bf.Serialize(file, deadCharacterList);
-            file.Close();
-        }
-        else
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/charactersDead.dat");
-            bf.Serialize(file, deadCharacterList);
-            file.Close();
-        }
+		SaveDeadCharacters ();
     }
+
+	//need the character traits to be updatedby the respective character classes upon load and save
+	public void LoadCharacterTraits()
+	{
+		if (File.Exists (Application.persistentDataPath + "/allCharactersTraits.dat")) {
+			BinaryFormatter bf = new BinaryFormatter ();
+			FileStream file = File.Open (Application.persistentDataPath + "/allCharactersTraits.dat", FileMode.Open);
+			allCharacterTraits = (List<List<GenericTraitsScript>>)bf.Deserialize (file);
+			file.Close ();
+		} else {
+			//need to initialize traits
+			allCharacterTraits.Add (character1InitialTraits);
+			allCharacterTraits.Add (character2InitialTraits);
+			allCharacterTraits.Add (character3InitialTraits);
+			allCharacterTraits.Add (character4InitialTraits);
+			allCharacterTraits.Add (character5InitialTraits);
+			allCharacterTraits.Add (character6InitialTraits);
+			allCharacterTraits.Add (character7InitialTraits);
+			allCharacterTraits.Add (character8InitialTraits);
+			allCharacterTraits.Add (character9InitialTraits);
+			allCharacterTraits.Add (character10InitialTraits);
+			allCharacterTraits.Add (character11InitialTraits);
+			allCharacterTraits.Add (character12InitialTraits);
+		}
+		InitializeTraits ();
+	}
+
+	public void SaveCharacterTraits() {
+		if (File.Exists(Application.persistentDataPath + "/allCharactersTraits.dat"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = File.Open(Application.persistentDataPath + "/allCharactersTraits.dat", FileMode.Open);
+			bf.Serialize(file, allCharacterTraits);
+			file.Close();
+		}
+		else
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = File.Create(Application.persistentDataPath + "/allCharactersTraits.dat");
+			bf.Serialize(file, allCharacterTraits);
+			file.Close();
+		}
+	}
+
+	public void InitializeTraits() {
+		for (int i = 0; i < allCharacterTraits.Count; ++i) {
+			for (int j = 0; j < allCharacterTraits [i].Count; ++j) {
+				allCharacterTraits [i] [j].InitializeValues ();
+			}
+		}
+	}
+
+	public void LoadCurrentLevel() {
+		if (File.Exists (Application.persistentDataPath + "/currentLevel.dat")) {
+			BinaryFormatter bf = new BinaryFormatter ();
+			FileStream file = File.Open (Application.persistentDataPath + "/currentLevel.dat", FileMode.Open);
+			currentLevel = (int)bf.Deserialize (file);
+			file.Close ();
+		} else {
+			//if current level hasn't been save it is a new game so level 1
+			currentLevel = testLevel;
+		}
+	}
+
+	public void SaveCurrentLevel() {
+		if (File.Exists(Application.persistentDataPath + "/currentLevel.dat"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = File.Open(Application.persistentDataPath + "/currentLevel.dat", FileMode.Open);
+			bf.Serialize(file, currentLevel);
+			file.Close();
+		}
+		else
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = File.Create(Application.persistentDataPath + "/currentLevel.dat");
+			bf.Serialize(file, currentLevel);
+			file.Close();
+		}
+	}
 
     //character selected in list to join team
     public void SelectCharacter(string nameSelected)
     {
         int selected = -1;
-        for (int i = 0; i < characters.Capacity; ++i)
+        for (int i = 0; i < characters.Count; ++i)
         {
             if(characters[i].name.ToString() == nameSelected)
             {
@@ -178,6 +312,16 @@ public class GameControlScript : MonoBehaviour {
     {
         return selectedCharacters == maxCharacters;
     }
+
+	//index of character1 is 0, character 2 is 1, etc
+	public void SetTraitsOfACharacter(int indexOfCharacter, List<GenericTraitsScript> traitList){
+		allCharacterTraits [indexOfCharacter] = traitList;
+	}
+
+	//index of character1 is 0, character 2 is 1, etc
+	public List<GenericTraitsScript> GetTraitsOfACharacter(int indexOfCharacter) {
+		return allCharacterTraits [indexOfCharacter];
+	}
 
     public List<GameObject> GetTiles()
     {

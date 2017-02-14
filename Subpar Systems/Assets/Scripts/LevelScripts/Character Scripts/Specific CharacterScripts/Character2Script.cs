@@ -6,9 +6,7 @@ public class Character2Script : GenericCharacterScript {
 
 	// Use this for initialization
 	void Start () {
-		WimpTrait temp = new WimpTrait ();
-		temp.InitializeValues ();
-		AddTrait (temp);
+		currentTraits = GameControlScript.control.GetTraitsOfACharacter (1);
 	}
 	
 	// Update is called once per frame
