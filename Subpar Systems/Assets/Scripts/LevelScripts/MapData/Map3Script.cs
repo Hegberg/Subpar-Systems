@@ -9,64 +9,118 @@ public class Map3Script : MonoBehaviour
     //first element = tile type, second element = tile height
     //list<list> is row, list<list<list>>> is item in row
     private List<List<List<int>>> map = new List<List<List<int>>> {
+        new List<List<int>> { //0
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0},
+            new List<int>{2,0}, new List<int>{2,0}},
         new List<List<int>> { //1
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0},
+            new List<int>{2,0}, new List<int>{2,0}},
         new List<List<int>> { //2
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0},
+            new List<int>{2,0}, new List<int>{2,0}},
         new List<List<int>> { //3
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{2,2}, new List<int>{2,2}, new List<int>{2,2}, new List<int>{0,0}},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{2,0}, new List<int>{2,0}},
         new List<List<int>> { //4
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}},
-       new List<List<int>> { //5
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,2}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}},
-       new List<List<int>> { //6
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,2}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{2,0}, new List<int>{2,0}},
+        new List<List<int>> { //5
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{2,0}},
+        new List<List<int>> { //6
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{2,0}},
         new List<List<int>> { //7
-            new List<int>{0,0}, new List<int>{2,2}, new List<int>{2,2}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{2,2}, new List<int>{0,0}, new List<int>{0,0}},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}},
         new List<List<int>> { //8
-            new List<int>{0,0}, new List<int>{2,2}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}},
+            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}},
         new List<List<int>> { //9
-            new List<int>{0,0}, new List<int>{2,2}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}},
-       new List<List<int>> { //10
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}},
+            new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{0,0},
+            new List<int>{2,0}, new List<int>{0,0}},
+        new List<List<int>> { //10
+            new List<int>{2,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{2,0}, new List<int>{0,0}},
         new List<List<int>> { //11
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}},
+            new List<int>{2,0}, new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}},
         new List<List<int>> { //12
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}},
-       new List<List<int>> { //13
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-            new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}},
+            new List<int>{2,0}, new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}},
+        new List<List<int>> { //13
+            new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}},
+        new List<List<int>> { //14
+            new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{0,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}},
+        new List<List<int>> { //15
+            new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}},
+        new List<List<int>> { //16
+            new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{0,0},
+            new List<int>{0,0}, new List<int>{0,0}},
+        new List<List<int>> { //17
+            new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0},
+            new List<int>{0,0}, new List<int>{0,0}},
+        new List<List<int>> { //18
+            new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0},
+            new List<int>{0,0}, new List<int>{0,0}},
+        new List<List<int>> { //19
+            new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0}, new List<int>{2,0},
+            new List<int>{2,0}, new List<int>{0,0}}
     };
 
-    private int[] playerSpawn1 = { 3, 11 };
-    private int[] playerSpawn2 = { 4, 11 };
-    private int[] playerSpawn3 = { 3, 12 };
-    private int[] playerSpawn4 = { 4, 12 };
+    private int[] playerSpawn1 = { 1, 1 };
+    private int[] playerSpawn2 = { 2, 0 };
+    private int[] playerSpawn3 = { 0, 0 };
+    private int[] playerSpawn4 = { 1, 0 };
 
     private List<int[]> playerSpawnLocations = new List<int[]>();
 
 
     //x, y, enemy type
-    private int[] enemySpawn1 = { 0, 0, 0 };
-    private int[] enemySpawn2 = { 1, 1, 0 };
-    private int[] enemySpawn3 = { 2, 0, 0 };
-    private int[] enemySpawn4 = { 3, 1, 0 };
-    private int[] enemySpawn5 = { 4, 0, 0 };
-    private int[] enemySpawn6 = { 5, 1, 0 };
-    private int[] enemySpawn7 = { 6, 0, 0 };
-    private int[] enemySpawn8 = { 7, 1, 0 };
+    private int[] enemySpawn1 = { 10, 3, 0 };
+    private int[] enemySpawn2 = { 11, 3, 0 };
+    private int[] enemySpawn3 = { 7, 4, 0 };
+    private int[] enemySpawn4 = { 6, 4, 0 };
+    private int[] enemySpawn5 = { 6, 5, 0 };
+    private int[] enemySpawn6 = { 12, 5, 0 };
+    private int[] enemySpawn7 = { 11, 6, 0 };
+    private int[] enemySpawn8 = { 14, 4, 0 };
+    private int[] enemySpawn9 = { 15, 6, 0 };
+    private int[] enemySpawn10 = { 8, 5, 0 };
+    // private int[] enemySpawn11 = { 0, 1, 0 }; //Broken
+    // private int[] enemySpawn12 = { 0, 2, 0 };
+    // private int[] enemySpawn13 = { 0, 3, 0 };
+    // private int[] enemySpawn14 = { 0, 4, 0 };
+    // private int[] enemySpawn15 = { 0, 5, 0 };
+    // private int[] enemySpawn16 = { 0, 6, 0 };
+    // private int[] enemySpawn17 = { 0, 7, 0 };
+    // private int[] enemySpawn18 = { 0, 8, 0 };
+    // private int[] enemySpawn19 = { 0, 9, 0 };
+    //// private int[] enemySpawn20 = { 0, 10, 0 };
+
+    // //private int[] enemySpawn21 = { 0, 0, 0 };
+    // private int[] enemySpawn22 = { 2, 9, 0 };
+    // private int[] enemySpawn23 = { 4, 9, 0 };
+    // private int[] enemySpawn24 = { 6, 9, 0 };
+    // private int[] enemySpawn25 = { 8, 9, 0 };
+    // private int[] enemySpawn26 = { 10, 9, 0 };
+    //private int[] enemySpawn27 = { 12, 9, 0 };
+    //private int[] enemySpawn28 = { 14, 9, 0 };
+    //private int[] enemySpawn29 = { 16, 9, 0 };
+    //private int[] enemySpawn30 = { 18, 9, 0 };
+    //private int[] enemySpawn31 = { 18, 1, 0 }; //Broken
+    //private int[] enemySpawn32 = { 18, 2, 0 };
+    //private int[] enemySpawn33 = { 18, 3, 0 };
+    //private int[] enemySpawn34 = { 18, 4, 0 };
+    //private int[] enemySpawn35 = { 18, 5, 0 };
+    //private int[] enemySpawn36 = { 18, 6, 0 };
+    //private int[] enemySpawn37 = { 18, 7, 0 };
+    //private int[] enemySpawn38 = { 18, 8, 0 };
+    //private int[] enemySpawn39 = { 18, 9, 0 };
+    //private int[] enemySpawn40 = { 18, 10, 0 };
 
 
 
@@ -88,6 +142,39 @@ public class Map3Script : MonoBehaviour
         enemySpawnLocations.Add(enemySpawn6);
         enemySpawnLocations.Add(enemySpawn7);
         enemySpawnLocations.Add(enemySpawn8);
+        enemySpawnLocations.Add(enemySpawn9);
+        enemySpawnLocations.Add(enemySpawn10);
+        //enemySpawnLocations.Add(enemySpawn11);
+        //enemySpawnLocations.Add(enemySpawn12);
+        //enemySpawnLocations.Add(enemySpawn13);
+        //enemySpawnLocations.Add(enemySpawn14);
+        //enemySpawnLocations.Add(enemySpawn15);
+        //enemySpawnLocations.Add(enemySpawn16);
+        //enemySpawnLocations.Add(enemySpawn17);
+        //enemySpawnLocations.Add(enemySpawn18);
+        //enemySpawnLocations.Add(enemySpawn19);
+        ////enemySpawnLocations.Add(enemySpawn20);
+
+        ////enemySpawnLocations.Add(enemySpawn21);
+        //enemySpawnLocations.Add(enemySpawn22);
+        //enemySpawnLocations.Add(enemySpawn23);
+        //enemySpawnLocations.Add(enemySpawn24);
+        //enemySpawnLocations.Add(enemySpawn25);
+        //enemySpawnLocations.Add(enemySpawn26);
+        //enemySpawnLocations.Add(enemySpawn27);
+        //enemySpawnLocations.Add(enemySpawn28);
+        //enemySpawnLocations.Add(enemySpawn29);
+        //enemySpawnLocations.Add(enemySpawn30);
+        //enemySpawnLocations.Add(enemySpawn31);
+        //enemySpawnLocations.Add(enemySpawn32);
+        //enemySpawnLocations.Add(enemySpawn33);
+        //enemySpawnLocations.Add(enemySpawn34);
+        //enemySpawnLocations.Add(enemySpawn35);
+        //enemySpawnLocations.Add(enemySpawn36);
+        //enemySpawnLocations.Add(enemySpawn37);
+        //enemySpawnLocations.Add(enemySpawn38);
+        //enemySpawnLocations.Add(enemySpawn39);
+        //enemySpawnLocations.Add(enemySpawn40);
         StartCoroutine(MapGenerateWait());
         //LevelControlScript.control.CreateMap (map, playerSpawnLocations, enemySpawnLocations);
     }
