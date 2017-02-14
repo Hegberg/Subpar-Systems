@@ -153,9 +153,22 @@ public class GenericCharacterScript : MonoBehaviour {
     }
 
 	//need to implement permenant death
-    public void SetHP(int hpChangedTo)
+    public void HPLost(int hpLost)
     {
-        hp = hpChangedTo;
+		hp -= hpLost;
+		bool stopFromDieing = false;
+		bool check = false;
+		for (int i = 0; i < currentTraits.Count; ++i) {
+			check = currentTraits[i].StopFromDieing();
+			//if stop from dieing is true, set stop from dieng to true
+			if (check) {
+				stopFromDieing = true;
+			}
+		}
+		//if hp <= 0 but stop from dieing true, set hp to 1
+		if (stopFromDieing && hp <= 0) {
+			hp = 1;
+		}
 		if (hp <= 0) {
 			LevelControlScript.control.PlayerDied ();
             GameControlScript.control.CharacterDied(this.gameObject);

@@ -45,6 +45,10 @@ public class GenericTraitsScript {
 	public virtual float ModifyNumOfAttacks() {
 		return numberOfAttacksModifier;
 	}
+
+	public virtual bool StopFromDieing() {
+		return false;
+	}
 		
 }
 
@@ -78,5 +82,26 @@ public class MachineGunTrait : GenericTraitsScript {
 	public override void InitializeValues() {
 		name = "Machine Gun";
 		numberOfAttacksModifier = 2;
+	}
+}
+
+public class BrutalEfficiencyTrait : GenericTraitsScript {
+	public override void InitializeValues ()
+	{
+		name = "Brutal Efficiency";
+		defenseModifier = 0.5f;
+	}
+}
+
+public class BacklineCommanderTrait : GenericTraitsScript {
+	public override void InitializeValues ()
+	{
+		name = "Backline Commander";
+	}
+
+	public override bool StopFromDieing ()
+	{
+		//if not the only one left, stop from dieing (return true)
+		return GameControlScript.control.GetInGameCharacterList ().Count > 1;
 	}
 }
