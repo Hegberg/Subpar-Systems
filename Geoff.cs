@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 public class Geoff : MonoBehaviour
 {
-    string Name = "Geoff";
-    string bio = "I am bio";
+    public string Name;
+    public string bios = "I am bio";
     Image image;
     Canvas main;
-    public Button btn;
+    Button btn;
     // Use this for initialization
     void Start()
     {
@@ -35,8 +35,8 @@ public class Geoff : MonoBehaviour
         Sprite picture;
         picture = GetComponent<Image>().sprite;
         pict.GetComponent<Image>().sprite = picture;
-        GameObject.FindWithTag("name").GetComponent<Text>().text = Name;
-        GameObject.FindWithTag("bio").GetComponent<Text>().text = Name;
+        GameObject.FindWithTag("name").GetComponent<Text>().text = btn.GetComponent<Button>().name.ToString();
+        GameObject.FindWithTag("bio").GetComponent<Text>().text = bios;
         UI1 = UI.GetComponent<Canvas>();
         UI1.enabled = true;
 
