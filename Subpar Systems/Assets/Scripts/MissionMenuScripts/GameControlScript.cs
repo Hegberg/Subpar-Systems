@@ -276,7 +276,7 @@ public class GameControlScript : MonoBehaviour {
         int selected = -1;
         for (int i = 0; i < characters.Count; ++i)
         {
-            if(characters[i].name.ToString() == nameSelected)
+            if(characters[i].name.ToString().ToLower() == nameSelected)
             {
                 selected = i;
             }
@@ -344,7 +344,7 @@ public class GameControlScript : MonoBehaviour {
     }
 
 	public int GetLevel(){
-		return currentLevel;
+        return currentLevel;
 	}
 
 	//set the level to be loaded to be the next level

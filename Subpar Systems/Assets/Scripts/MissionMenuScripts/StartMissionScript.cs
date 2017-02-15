@@ -9,7 +9,7 @@ public class StartMissionScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         start = GetComponent<Button>();
-        start.onClick.AddListener(started);
+        start.onClick.AddListener(OnMouseOver);
     }
 	
 	// Update is called once per frame
@@ -17,12 +17,11 @@ public class StartMissionScript : MonoBehaviour {
 		
 	}
 
-    void started()
+    void OnMouseOver()
     {
-        if (GameControlScript.control.EnoughPlayersSelected() == false) {
-            Debug.Log("Not enough players selected to start mission");
-        }
-        if (GameControlScript.control.EnoughPlayersSelected())
+        bool starting;
+        starting = GameControlScript.control.EnoughPlayersSelected();
+        if (starting == true)
            {
 				if (GameControlScript.control.GetLevel () == 0) {
 					SceneManager.LoadScene ("TestLevel");
@@ -48,9 +47,11 @@ public class StartMissionScript : MonoBehaviour {
                     SceneManager.LoadScene("Level3");
                     //switch have loadscene be level1 when ==1 etc etc.
                 }
-            }   else  {
+            }
+
+        else  {
                 //replace with proper warning
              Debug.Log("Not enough players selected to start mission");
             }
-       }
+    }
 }
