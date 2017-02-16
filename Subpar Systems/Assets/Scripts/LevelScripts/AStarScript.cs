@@ -74,11 +74,11 @@ public class AStarScript : MonoBehaviour {
 
 			List<int> rows = new List<int> () { currentNodeRow - 1, currentNodeRow + 1 };
 			if (currentNodeRow % 2 == 0) {
-				index.Add (currentNodeIndex-1);
-				index.Add (currentNodeIndex);
-			} else {
 				index.Add (currentNodeIndex);
 				index.Add (currentNodeIndex+1);
+			} else {
+				index.Add (currentNodeIndex-1);
+				index.Add (currentNodeIndex);
 			}
 			//Debug.Log ("What is in the row " + rows [0] + "," + rows [1]);
 			//Debug.Log ("What is in the index " + index [0] + "," + index [1]);
@@ -158,13 +158,15 @@ public class AStarScript : MonoBehaviour {
 			int currentNodeRow = currentNode[0];
 			int currentNodeIndex = currentNode[1];
 
+
+
 			List<int> rows = new List<int> () { currentNodeRow - 1, currentNodeRow + 1 };
 			if (currentNodeRow % 2 == 0) {
-				index.Add (currentNodeIndex-1);
-				index.Add (currentNodeIndex);
-			} else {
 				index.Add (currentNodeIndex);
 				index.Add (currentNodeIndex+1);
+			} else {
+				index.Add (currentNodeIndex-1);
+				index.Add (currentNodeIndex);
 			}
 			//Debug.Log ("What is in the row " + rows [0] + "," + rows [1]);
 			//Debug.Log ("What is in the index " + index [0] + "," + index [1]);
@@ -277,8 +279,8 @@ public class AStarScript : MonoBehaviour {
 	{
 		//Check all the various things to ensure it can get to next location
 		if (!CheckBound(goalRow, goalIndex, mapRowCount, mapIndexCount) 
-			|| !CheckOneTileAway(originRow,originIndex,goalRow,goalIndex) 
-			|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex)) 
+				|| !CheckOneTileAway(originRow,originIndex,goalRow,goalIndex) 
+				|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex))
 		{
 			return false;
 		}
@@ -309,6 +311,7 @@ public class AStarScript : MonoBehaviour {
 	//Check to see the tile is itself
 	private bool CheckIsSelf(int originRow, int originIndex, int goalRow, int goalIndex){
 		if (originRow == goalRow && originIndex == goalIndex) {
+			Debug.Log ("Rejected is Self");
 			return true;
 		}
 		return false;
@@ -318,14 +321,15 @@ public class AStarScript : MonoBehaviour {
 	private bool CheckOneTileAway(int originRow, int originIndex, int goalRow, int goalIndex)
 	{
 		if (originRow % 2 == 0) {
-			if (((originIndex - goalIndex) == 0 || (originIndex - goalIndex) == 1) && Mathf.Abs (originRow - goalRow) == 1) {
-				return true;
-			}
-		} else {
 			if (((originIndex - goalIndex) == 0 || (originIndex - goalIndex) == -1) && Mathf.Abs (originRow - goalRow) == 1) {
 				return true;
 			}
+		} else {
+			if (((originIndex - goalIndex) == 0 || (originIndex - goalIndex) == 1) && Mathf.Abs (originRow - goalRow) == 1) {
+				return true;
+			}
 		}
+		Debug.Log ("Rejected Not one tile away");
 		return false;
 	}//end checkOneTileAway
 
@@ -334,12 +338,14 @@ public class AStarScript : MonoBehaviour {
 	{
         if (goalRow >= maxRow || goalIndex >= maxIndex) 
 		{
+			Debug.Log ("Rejected Out of Bound");
             return false;
 		}
 
 		if ((goalRow >= 0 && goalRow < maxRow) && (goalIndex >= 0 && goalIndex < maxIndex)) {
-            return true;
+			return true;
 		}
+		Debug.Log ("Rejected Out of Bound");
         return false;
 	}//end checkBound
 
@@ -360,6 +366,7 @@ public class AStarScript : MonoBehaviour {
         }
 
         //otherwise
+		Debug.Log ("Rejected Walkable");
         return false;
     }
 
