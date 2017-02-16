@@ -25,6 +25,12 @@ public class CharacterSelectionForSlot : MonoBehaviour
     {
 
     }
+
+	//full color
+	//GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
+	//half fade
+	//GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0.5f);
+
     private void OnMouseOver()
     {
         //expermental, need to fix, for preventing duplicates

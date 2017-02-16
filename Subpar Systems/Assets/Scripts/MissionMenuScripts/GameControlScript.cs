@@ -420,4 +420,8 @@ public class GameControlScript : MonoBehaviour {
         RemoveCharacterFromInGameList(character);
         SaveDeadCharacters();
     }
+
+	public List<string> GetDeadCharacters(){
+		return deadCharacterList;
+	}
 }
