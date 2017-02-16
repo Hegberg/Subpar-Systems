@@ -126,8 +126,8 @@ public class TurnControlScript : MonoBehaviour {
     public void UnHighlightEnemyTile()
     {
 		if (enemySelected != null) {
-			//if enemy is within range and selected, highlight it as possible to select
-			if (enemySelected.GetComponent<GenericEnemyScript> ().GetIsSelected ()) {
+            //if enemy is within range and selected, highlight it as possible to selectplayerSelected != null && playerSelected.GetComponent<GenericCharacterScript> ().GetNumOfAttacks () <= 0
+            if (enemySelected.GetComponent<GenericEnemyScript> ().GetIsSelected ()) {
 
 				enemySelected.GetComponent<GenericEnemyScript> ().SetIsSelected (false);
 				enemySelected.GetComponent<GenericEnemyScript> ().GetTileOccuping ().GetComponent<SpriteRenderer> ().
@@ -184,10 +184,16 @@ public class TurnControlScript : MonoBehaviour {
 						}
 					}
 				}
-				if (!moveableTile) {
+				if (!moveableTile && playerSelected != null && playerSelected.GetComponent<GenericCharacterScript>().GetNumOfAttacks() <= 0) {
 					enemySelected.GetComponent<GenericEnemyScript> ().GetTileOccuping ().GetComponent<SpriteRenderer> ().
 					material.color = restoreOriginalColor;
-				}
+				} else if (!moveableTile && playerSelected != null && playerSelected.GetComponent<GenericCharacterScript>().GetNumOfAttacks() >= 0) {
+                    enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+                    material.color = enemyCanAttackHighlight;
+                } else if (!moveableTile) {
+                    enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+                    material.color = restoreOriginalColor;
+                }
 			}
 		} 
     }
