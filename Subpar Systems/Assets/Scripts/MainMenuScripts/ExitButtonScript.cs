@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ExitButtonScript : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    Button exit;
+    // Use this for initialization
+    void Start () {
+        exit = GetComponent<Button>();
+        exit.onClick.AddListener(OnMouseOver);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -16,9 +18,8 @@ public class ExitButtonScript : MonoBehaviour {
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
+        
             Application.Quit();
-        }
+        
     }
 }
