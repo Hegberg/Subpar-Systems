@@ -74,11 +74,11 @@ public class AStarScript : MonoBehaviour {
 
 			List<int> rows = new List<int> () { currentNodeRow - 1, currentNodeRow + 1 };
 			if (currentNodeRow % 2 == 0) {
-				index.Add (currentNodeIndex-1);
-				index.Add (currentNodeIndex);
-			} else {
 				index.Add (currentNodeIndex);
 				index.Add (currentNodeIndex+1);
+			} else {
+				index.Add (currentNodeIndex-1);
+				index.Add (currentNodeIndex);
 			}
 			//Debug.Log ("What is in the row " + rows [0] + "," + rows [1]);
 			//Debug.Log ("What is in the index " + index [0] + "," + index [1]);
@@ -153,7 +153,7 @@ public class AStarScript : MonoBehaviour {
 			List<int> currentNode = new List<int> ();
 			List<int> index = new List<int> ();
 			currentNode = openSet[0];
-			Debug.Log ("Current node in openset " + currentNode [0] + currentNode [1]);
+			//Debug.Log ("Current node in openset " + currentNode [0] + currentNode [1]);
 			openSet.RemoveAt(0);
 			int currentNodeRow = currentNode[0];
 			int currentNodeIndex = currentNode[1];
@@ -168,8 +168,8 @@ public class AStarScript : MonoBehaviour {
 				index.Add (currentNodeIndex-1);
 				index.Add (currentNodeIndex);
 			}
-			Debug.Log ("What is in the row " + rows [0] + "," + rows [1]);
-			Debug.Log ("What is in the index " + index [0] + "," + index [1]);
+			//Debug.Log ("What is in the row " + rows [0] + "," + rows [1]);
+			//Debug.Log ("What is in the index " + index [0] + "," + index [1]);
 
 			for(int i = 0; i < 2; ++i) 
 			{
@@ -177,10 +177,10 @@ public class AStarScript : MonoBehaviour {
 				for (int j = 0; j < 2; ++j)
 				{
 					int gIndex = index [j];
-					Debug.Log ("Current Node we are Checking: " + gRow + "," + gIndex);
+					//Debug.Log ("Current Node we are Checking: " + gRow + "," + gIndex);
 					if (gRow < 0 || gRow >= map.Count || gIndex < 0 || gIndex >= map[gIndex].Count) 
 					{
-						Debug.Log ("I left in gRow and gIndex");
+						//Debug.Log ("I left in gRow and gIndex");
 						continue;
 					}
 					//Debug.Log ("Here is row and index " + gRow + "," + gIndex);
@@ -189,12 +189,12 @@ public class AStarScript : MonoBehaviour {
 						//Add the new neighbor
 
 						int newCost = movementRemain[currentNode] - ReturnCostTile(gRow, gIndex, mapCost);
-						Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " movement " + movementRemain [currentNode] + " COST " + newCost);
+						//Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " movement " + movementRemain [currentNode] + " COST " + newCost);
 						if (newCost >= 0) {
 							List<int> neighborNode = new List<int> ();
 							neighborNode.Add (gRow);
 							neighborNode.Add (gIndex);
-							Debug.Log ("Added the neighborNode " + neighborNode [0] + "," + neighborNode [1]);
+							//Debug.Log ("Added the neighborNode " + neighborNode [0] + "," + neighborNode [1]);
 							openSet.Add (neighborNode);
 							cameFromSet.Add (neighborNode);
 							movementRemain [neighborNode] = newCost;
@@ -279,8 +279,8 @@ public class AStarScript : MonoBehaviour {
 	{
 		//Check all the various things to ensure it can get to next location
 		if (!CheckBound(goalRow, goalIndex, mapRowCount, mapIndexCount) 
-			|| !CheckOneTileAway(originRow,originIndex,goalRow,goalIndex) 
-			|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex)) 
+				|| !CheckOneTileAway(originRow,originIndex,goalRow,goalIndex) 
+				|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex))
 		{
 			return false;
 		}
