@@ -47,7 +47,7 @@ public class GameControlScript : MonoBehaviour {
 
     private static List<GameObject> characterInGameList = new List<GameObject>();
     private static List<GameObject> enemyInGameList = new List<GameObject>();
-    private static List<GameObject> deadCharacterList = new List<GameObject>();
+    private static List<string> deadCharacterList = new List<string>();
 
 	private List<List<GenericTraitsScript>> allCharacterTraits = new List<List<GenericTraitsScript>> ();
 
@@ -56,7 +56,7 @@ public class GameControlScript : MonoBehaviour {
 	{ new MachineGunTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait() };
 
 	private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript> 
-	{ new WimpTrait()};
+	{ new MalnourishedTrait()};
 	private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript> 
 	{ new MalnourishedTrait() };
 	private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> 
@@ -77,42 +77,46 @@ public class GameControlScript : MonoBehaviour {
 		if (control == null)
         {
             control = this;
+
+            //add character prefabs
+            characters.Add(character1);
+            characters.Add(character2);
+            characters.Add(character3);
+            characters.Add(character4);
+            characters.Add(character5);
+            characters.Add(character6);
+            characters.Add(character7);
+            characters.Add(character8);
+            characters.Add(character9);
+            characters.Add(character10);
+            characters.Add(character11);
+            characters.Add(character12);
+
+            //add tile prefabs, need to ad walkable tiles first so earth, then everything else right now
+            tiles.Add(earth.gameObject);
+            tiles.Add(water.gameObject);
+            tiles.Add(mountian.gameObject);
+
+            //add enemy prefabs
+            enemies.Add(slime.gameObject);
+
+            //initialize chosen list
+            for (int i = 0; i < characters.Count; ++i)
+            {
+                chosen.Add(false);
+            }
+
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
             Destroy(this.gameObject);
         }
 
-        //add character prefabs
-		characters.Add(character1);
-		characters.Add(character2);
-		characters.Add(character3);
-		characters.Add(character4);
-		characters.Add(character5);
-		characters.Add(character6);
-		characters.Add(character7);
-		characters.Add(character8);
-		characters.Add(character9);
-		characters.Add(character10);
-		characters.Add(character11);
-		characters.Add(character12);
+        //remove this when can get permenant death working in ui
+        deadCharacterList.Clear();
 
-        //add tile prefabs, need to ad walkable tiles first so earth, then everything else right now
-        tiles.Add(earth.gameObject);
-        tiles.Add(water.gameObject);
-        tiles.Add(mountian.gameObject);
-
-        //add enemy prefabs
-        enemies.Add(slime.gameObject);
-
-		//initialize chosen list
-		for (int i = 0; i < characters.Count; ++i)
-        {
-            chosen.Add(false);
-        }
-
-		DontDestroyOnLoad (this.gameObject);
-
+        SaveDeadCharacters();
         Load();
     }
 	
@@ -157,7 +161,7 @@ public class GameControlScript : MonoBehaviour {
 		if (File.Exists (Application.persistentDataPath + "/charactersDead.dat")) {
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (Application.persistentDataPath + "/charactersDead.dat", FileMode.Open);
-			deadCharacterList = (List<GameObject>)bf.Deserialize (file);
+			deadCharacterList = (List<string>)bf.Deserialize (file);
 			file.Close ();
 		} else {
 			//no dead characters so empty list
@@ -249,7 +253,7 @@ public class GameControlScript : MonoBehaviour {
 			file.Close ();
 		} else {
 			//if current level hasn't been save it is a new game so level 1
-			currentLevel = testLevel;
+			currentLevel = firstLevel;
 		}
 	}
 
@@ -282,6 +286,9 @@ public class GameControlScript : MonoBehaviour {
             }
         }
 
+        Debug.Log("selected - " + selected);
+        
+
         //if name not found selected will be -1, and need to check for that before using selected to grab item from a list
         if (selected == -1)
         {
@@ -306,6 +313,8 @@ public class GameControlScript : MonoBehaviour {
             chosen[selected] = !chosen[selected];
             selectedCharacters -= 1;
         }
+
+        Debug.Log("selected characters = " + selectedCharacters);
     }
 
     public bool EnoughPlayersSelected()
@@ -351,7 +360,28 @@ public class GameControlScript : MonoBehaviour {
 	public void NextLevel(){
 		currentLevel += 1;
         SaveDeadCharacters();
+        characterInGameList.Clear();
+        enemyInGameList.Clear();
+        ClearChosenCharacters();
         //Debug.Log (currentLevel);
+    }
+
+    public void FailedLevel()
+    {
+        SaveDeadCharacters();
+        characterInGameList.Clear();
+        enemyInGameList.Clear();
+        ClearChosenCharacters();
+    }
+
+    public void ClearChosenCharacters()
+    {
+        chosen.Clear();
+        for (int i = 0; i < characters.Count; ++i)
+        {
+            chosen.Add(false);
+        }
+        selectedCharacters = 0;
     }
 
     public List<GameObject> GetInGameCharacterList()
@@ -386,7 +416,7 @@ public class GameControlScript : MonoBehaviour {
 
     public void CharacterDied(GameObject character)
     {
-        deadCharacterList.Add(character);
+        deadCharacterList.Add(character.name.ToString().ToLower());
         RemoveCharacterFromInGameList(character);
         SaveDeadCharacters();
     }

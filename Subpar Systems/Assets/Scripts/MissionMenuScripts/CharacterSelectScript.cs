@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class CharacterSelectScript : MonoBehaviour
 {
+
     // Use this for initialization
     public Button UIButt;
-     void Start()  {
+
+    void Start()  {
         UIButt = GetComponent<Button>();
         UIButt.onClick.AddListener(OnMouseOver);
     }
@@ -19,14 +21,14 @@ public class CharacterSelectScript : MonoBehaviour
 
     public void OnMouseOver()
     {
-
         GameObject.FindWithTag("Mission Text").GetComponent<Canvas>().enabled = false;
         GameObject.FindWithTag("Mission").GetComponent<Canvas>().enabled = false;
         var UI = GameObject.FindWithTag("CharSelect");
         Canvas UI1;
         UI1 = UI.GetComponent<Canvas>();
         UI1.enabled = true;
-        charselect.test.buttselected(UIButt);
+        charselect.control.buttselected(UIButt);
+        charselect.control.AddButtonClicked(UIButt);
     }
 
 }

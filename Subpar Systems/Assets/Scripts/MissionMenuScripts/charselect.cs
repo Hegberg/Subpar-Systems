@@ -4,13 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class charselect : MonoBehaviour {
-    public static charselect test;
+
+    public static charselect control;
     Button clicked;
+    private string characterSelected;
+    private List<Button> buttonClicked = new List<Button>();
+    private List<string> charactersAdded = new List<string>();
+
     // Use this for initialization
     void Start () {
-        if (test == null)
+        if (control == null)
         {
-            test = this;
+            control = this;
         }
         else
         {
@@ -26,9 +31,25 @@ public class charselect : MonoBehaviour {
 	void Update () {
 		
 	}
+
     public void buttselected(Button charac)
     {
         clicked = charac;
+        //Debug.Log(clicked.name.ToString().ToLower());
+
+    }
+
+    //expermental need to fix, for changing a already chosen character
+    public void CharacterSelected(string character)
+    {
+        /*
+        if (characterSelected.Contains(character))
+        {
+            //GameControlScript.control.SelectCharacter(character);
+        }
+        */
+        characterSelected = character;
+        
     }
 
     public void OnMouseOver()
@@ -43,6 +64,23 @@ public class charselect : MonoBehaviour {
         GameObject.FindWithTag("Mission").GetComponent<Canvas>().enabled = true;
         GameObject.FindWithTag("Mission Text").GetComponent<Canvas>().enabled = true;
         clicked.GetComponent<Image>().sprite = add;
-        GameControlScript.control.SelectCharacter(clicked.name.ToString().ToLower());
+        //Debug.Log(clicked.name.ToString().ToLower());
+        GameControlScript.control.SelectCharacter(characterSelected);
+    }
+
+    public void AddButtonClicked(Button setTo)
+    {
+        //Debug.Log(setTo);
+        buttonClicked.Add(setTo);
+    }
+
+    public List<Button> GetButtonsClicked()
+    {
+        return buttonClicked;
+    }
+
+    public void AddCharacterSelected(string setTo)
+    {
+        charactersAdded.Add(setTo);
     }
 }

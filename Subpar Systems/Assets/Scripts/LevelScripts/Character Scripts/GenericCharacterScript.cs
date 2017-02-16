@@ -10,12 +10,12 @@ public class GenericCharacterScript : MonoBehaviour {
 	protected GameObject tileOccuping;
 
 	//name of character
-	protected string name = "temp";
+	protected string characterName = "temp";
 
 	//hp of character
 	protected float hp = 100;
 	//attack damamage of the character's attack
-	protected float attack = 100;
+	protected float attack = 50;
 	//damage mitigated of any incoming attack
 	protected float defense = 20;
 	//amount of squares a character can move
@@ -34,6 +34,13 @@ public class GenericCharacterScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnGUI()
+    {
+        Vector2 targetPos;
+        targetPos = Camera.main.WorldToScreenPoint(transform.position);
+        GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20), hp + "/" + 100);
+    }
 
     public virtual void OnMouseOver()
     {
@@ -175,6 +182,7 @@ public class GenericCharacterScript : MonoBehaviour {
 		if (hp <= 0) {
 			LevelControlScript.control.PlayerDied ();
             GameControlScript.control.CharacterDied(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 

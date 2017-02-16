@@ -51,7 +51,7 @@ public class TurnControlScript : MonoBehaviour {
 	}
 		
 	public void LevelFailed(){
-        GameControlScript.control.SaveDeadCharacters();
+        GameControlScript.control.FailedLevel();
         SceneManager.LoadScene ("MissionMenu");
 	}
 
@@ -148,17 +148,31 @@ public class TurnControlScript : MonoBehaviour {
 						GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
 						GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetMovement ());
 
-					for (int i = 0; i < allValidTile.Count; ++i) {
-						//Debug.Log (allValidTile [i] [0] + " " + allValidTile [i] [1]);
-						if (enemySelected.GetComponent<GenericEnemyScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0] == allValidTile [i] [0] &&
-						    enemySelected.GetComponent<GenericEnemyScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1] == allValidTile [i] [1]) {
-							enemySelected.GetComponent<GenericEnemyScript> ().GetTileOccuping ().GetComponent<SpriteRenderer> ().
-							material.color = movementHighlight;
-							moveableTile = true;
-							break;
-						}
-					}
-				}
+                    List<List<GameObject>> map = LevelControlScript.control.GetAStarMap();
+
+                    for (int i = 0; i < allValidTile.Count; ++i)
+                    {
+                        //Debug.Log (allValidTile [i] [0] + " " + allValidTile [i] [1]);
+
+                        if (enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0] == allValidTile[i][0] &&
+                            enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1] == allValidTile[i][1])
+                        {
+                            enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+                            material.color = movementHighlight;
+                            moveableTile = true;
+                            break;
+                        }
+                    }
+                    //if player can still move, recheck availible tile
+
+                    List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
+
+                    //Highlight all the valid tiles
+                    for (int i = 0; i < allValidTile.Count; ++i)
+                    {
+                        movementmap[allValidTile[i][0]][allValidTile[i][1]].GetComponent<SpriteRenderer>().material.color = movementHighlight;
+                    }
+                }
 
 				if (playerSelected != null && playerSelected.GetComponent<GenericCharacterScript> ().GetNumOfAttacks () <= 0) {
 					List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap ();
