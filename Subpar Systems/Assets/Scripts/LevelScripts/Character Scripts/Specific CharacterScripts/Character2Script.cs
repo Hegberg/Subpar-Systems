@@ -7,7 +7,10 @@ public class Character2Script : GenericCharacterScript {
 	// Use this for initialization
 	void Start () {
 		currentTraits = GameControlScript.control.GetTraitsOfACharacter (1);
-	}
+
+        RefreshActions();
+        ModifyStats();
+    }
 	
 	// Update is called once per frame
 	void Update () {

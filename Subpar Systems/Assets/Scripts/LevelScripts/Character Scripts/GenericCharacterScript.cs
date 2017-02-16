@@ -27,13 +27,25 @@ public class GenericCharacterScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		RefreshActions ();
-	}
+        RefreshActions();
+        ModifyStats();
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void ModifyStats()
+    {
+        /*
+        for (int i = 0; i < currentTraits.Count; ++i)
+        {
+            //add modifiers together so that the attack modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
+            attackModifier += currentTraits[i].ModifyAttack() - 1;
+        }
+        */
+    }
 
     void OnGUI()
     {
@@ -117,7 +129,8 @@ public class GenericCharacterScript : MonoBehaviour {
 			attacks += currentTraits[i].ModifyNumOfAttacks() - 1;
 		}
 		attacksLeft = (int)attacks;
-		hasMoved = false;
+        Debug.Log("character attacks = " + gameObject.name.ToString() + " " + attacksLeft);
+        hasMoved = false;
 		//unvoid character
 		GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
     }

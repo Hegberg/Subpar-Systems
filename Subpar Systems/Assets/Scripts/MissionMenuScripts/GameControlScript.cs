@@ -286,7 +286,7 @@ public class GameControlScript : MonoBehaviour {
             }
         }
 
-        Debug.Log("selected - " + selected);
+        //Debug.Log("selected - " + selected);
         
 
         //if name not found selected will be -1, and need to check for that before using selected to grab item from a list
@@ -314,7 +314,7 @@ public class GameControlScript : MonoBehaviour {
             selectedCharacters -= 1;
         }
 
-        Debug.Log("selected characters = " + selectedCharacters);
+        //Debug.Log("selected characters = " + selectedCharacters);
     }
 
     public bool EnoughPlayersSelected()

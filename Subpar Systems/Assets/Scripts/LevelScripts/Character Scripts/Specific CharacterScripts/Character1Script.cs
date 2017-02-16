@@ -8,7 +8,9 @@ public class Character1Script : GenericCharacterScript {
 	void Start () {
 		currentTraits = GameControlScript.control.GetTraitsOfACharacter (0);
 		name = "F27";
-	}
+        RefreshActions();
+        ModifyStats();
+    }
 	
 	// Update is called once per frame
 	void Update () {

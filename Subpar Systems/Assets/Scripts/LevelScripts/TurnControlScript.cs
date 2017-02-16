@@ -57,15 +57,19 @@ public class TurnControlScript : MonoBehaviour {
 
     public void EndTurn()
     {
-        StartCoroutine(RevertTurn());
-        Debug.Log("Player Turn Ended");
-		//need this broadcast first, so checks in Unhighlight that are rellying on what state the character in are correct
-        LevelControlScript.control.BroadcastRemoveActionsToCharacters();
-		UnHighlightPlayerTile();
-		UnHighlightEnemyTile();
-		playerSelected = null;
-		EnemyParentScript.control.BroadcastMove();
-		EnemyParentScript.control.BroadcastAttack ();
+        if (playerTurn)
+        {
+            playerTurn = false;
+            StartCoroutine(RevertTurn());
+            Debug.Log("Player Turn Ended");
+            //need this broadcast first, so checks in Unhighlight that are rellying on what state the character in are correct
+            LevelControlScript.control.BroadcastRemoveActionsToCharacters();
+            UnHighlightPlayerTile();
+            UnHighlightEnemyTile();
+            playerSelected = null;
+            EnemyParentScript.control.BroadcastMove();
+            EnemyParentScript.control.BroadcastAttack();
+        }
     }
 
     public void StartTurn()
