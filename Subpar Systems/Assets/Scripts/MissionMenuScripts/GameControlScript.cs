@@ -53,15 +53,18 @@ public class GameControlScript : MonoBehaviour {
 
 	//character F27
 	private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript> 
-	{ new MachineGunTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait() };
-
+	{ new MachineGunTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait(), new F27BadWithM40Trait()};
+	//character M40
 	private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript> 
-	{ new MalnourishedTrait()};
+	{ };
+	//character F32
 	private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript> 
-	{ new MalnourishedTrait() };
+	{new F32GoodWithM41Trait()};
+	//character M31
 	private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> 
-	{ new AggressionTrait ()};
-	private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript> {};
+	{new M31GoodWithM29Trait(), new M31MarriedToF32Trait(), new M31FriendM29DeadTrait(), new M31WifeF32DeadTrait()};
+
+	private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript> { };
 	private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript> { };
 	private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript> { };
 	private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript> { };
@@ -414,9 +417,10 @@ public class GameControlScript : MonoBehaviour {
         enemyInGameList.Remove(enemy);
     }
 
+	//Stores characters name (ex. M31), not the name of the prefab or gameObject
     public void CharacterDied(GameObject character)
     {
-        deadCharacterList.Add(character.name.ToString().ToLower());
+		deadCharacterList.Add(character.GetComponent<GenericCharacterScript>().GetName());
         RemoveCharacterFromInGameList(character);
         SaveDeadCharacters();
     }

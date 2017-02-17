@@ -1,0 +1,21 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.AttachToProcess" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelScripts\Character Scripts\GenericTraitsScript.cs">
+    <Files>
+      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\GenericTraitsScript.cs" Line="125" Column="49" />
+      <File FileName="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\LevelControlScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\TurnControlScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\AStarScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character1Script.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character2Script.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character3Script.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character4Script.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -120,3 +120,102 @@ public class F27GoodWithF25Trait : GenericTraitsScript {
 		}
 	}
 }
+
+public class F27BadWithM40Trait : GenericTraitsScript {
+	//small general debuff between the 2 characters
+	public override void InitializeValues ()
+	{
+		name = "F27BadWithM40";
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M40") {
+				attackModifier = 0.8f;
+				defenseModifier = 0.8f;
+				break;
+			}
+		}
+	}
+}
+
+public class F32GoodWithM41Trait : GenericTraitsScript {
+	//small general buff between the 2 characters
+	public override void InitializeValues ()
+	{
+		name = "F32GoodWithM41";
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M41") {
+				attackModifier = 1.2f;
+				defenseModifier = 1.2f;
+				break;
+			}
+		}
+	}
+}
+
+public class M31GoodWithM29Trait : GenericTraitsScript {
+	//small general buff between the 2 characters
+	public override void InitializeValues ()
+	{
+		name = "M31GoodWithM29";
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M29") {
+				attackModifier = 1.2f;
+				defenseModifier = 1.2f;
+				break;
+			}
+		}
+	}
+}
+
+public class M31MarriedToF32Trait : GenericTraitsScript {
+	//defense buff between the 2 characters (to protect each other
+	public override void InitializeValues ()
+	{
+		name = "M31MarriedToF32";
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F32") {
+				attackModifier = 1.0f;
+				defenseModifier = 1.5f;
+				break;
+			}
+		}
+	}
+}
+
+public class M31FriendM29DeadTrait : GenericTraitsScript {
+	//massive debuff if M29 dies
+	public override void InitializeValues ()
+	{
+		name = "M31FriendM29Dead";
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetDeadCharacters ()[i] == "M29") {
+				attackModifier = 0.45f;
+				defenseModifier = 0.45f;
+				break;
+			}
+		}
+	}
+}
+
+public class M31WifeF32DeadTrait : GenericTraitsScript {
+	//massive debuff if F32 dies
+	public override void InitializeValues ()
+	{
+		name = "M31WifeF32Dead";
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetDeadCharacters ()[i] == "F32") {
+				attackModifier = 0.45f;
+				defenseModifier = 0.45f;
+				break;
+			}
+		}
+	}
+}
+
+public class AdrenalineJunky : GenericTraitsScript {
+	//bonus attack if moves max tiles
+	public override void InitializeValues ()
+	{
+		name = "Adrenaline Junky";
+
+	}
+}
