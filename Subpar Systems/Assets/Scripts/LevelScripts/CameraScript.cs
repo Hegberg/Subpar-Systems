@@ -6,6 +6,10 @@ public class CameraScript : MonoBehaviour {
 
     private float cameraMoveSpeed = 0.25f;
 
+	private Vector3 level1Spawn = new Vector3(4,18,0);
+	private Vector3 level2Spawn = new Vector3(8,14,0);
+	private Vector3 level3Spawn = new Vector3(4,18,0);
+
     //http://tinypixel-studios.com/log-2-pixel-perfect-tutorial-for-unity-5
     void Awake()
     {
@@ -15,6 +19,18 @@ public class CameraScript : MonoBehaviour {
         int scale = 2;
 
         Camera.main.orthographicSize = (1.0f * ResolutionHeight) / 2 / currentPixelsToUnits/ scale;
+
+		//Camera.main.transform.localPosition = LevelControlScript.control.GetCameraSpawnPosition();
+		//transform.localPosition.y = LevelControlScript.control.GetCameraSpawnPosition().y;
+
+		if (GameControlScript.control.GetLevel () == 1) {
+			Camera.main.transform.localPosition += level1Spawn;
+		} else if (GameControlScript.control.GetLevel () == 2) {
+			Camera.main.transform.localPosition += level2Spawn;
+		} else if (GameControlScript.control.GetLevel () == 3) {
+			Camera.main.transform.localPosition += level3Spawn;
+		}
+
     }
 
     void Update()

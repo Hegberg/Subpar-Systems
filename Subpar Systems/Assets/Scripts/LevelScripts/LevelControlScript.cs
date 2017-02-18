@@ -72,6 +72,8 @@ public class LevelControlScript : MonoBehaviour {
         List<bool> charactersChosen = GameControlScript.control.GetChosen();
         int characterSpawning = 0;
         bool offset = false;
+		List<GameObject> tiles = GameControlScript.control.GetTiles();
+
         for (int i = map.Count - 1; i >= 0; --i)
         {
             aStarMap.Add(new List<GameObject> { });
@@ -79,8 +81,6 @@ public class LevelControlScript : MonoBehaviour {
 
             for (int j = 0; j < map[i].Count; ++j)
             {
-                List<GameObject> tiles = GameControlScript.control.GetTiles();
-
                 GameObject oneTile = tiles[map[i][j][0]];
 
                 tileWidth = oneTile.GetComponent<Renderer>().bounds.size.x;
@@ -98,7 +98,7 @@ public class LevelControlScript : MonoBehaviour {
                 fuckThomasY = ((map.Count - i) * (tileHeight /3));
                 //put y to current level if not 0
                 fuckThomasY += ((tileHeight / 3) * map[i][j][1]);
-                fuckThomasZ += 0.01f;
+                //fuckThomasZ += 0.01f;
 
                 Vector3 tempVector = new Vector3(fuckThomasX, fuckThomasY, fuckThomasZ);
 
@@ -185,7 +185,7 @@ public class LevelControlScript : MonoBehaviour {
                 }
             }
             offset = !offset;
-
+			fuckThomasZ += 0.01f;
         }
 
 
@@ -197,7 +197,72 @@ public class LevelControlScript : MonoBehaviour {
         maxCameraY += -0.5f;
         minCameraX += 1.0f;
         minCameraY += 0.5f;
+
+		//if i start even, offset starts false
+		offset = false;
+		//water index in GameControl
+		int water = 1;
+
+		fuckThomasZ = -0.12f;
+
+		int iReplaceLow = 0;
+
+		int iReplaceHigh = map.Count;
+
+
+
+		//create extra water
+		for (int i = -12; i < map.Count + 12; ++i) {
+			//overlaying map
+			if (i >= 0 && i < map.Count) {
+				for (int j = -10; j < map [i].Count + 10; ++j) {
+					//if not overlaying existing map
+					if (j < 0 || j >= map [i].Count) {
+					
+						ExtraWaterSpawnCode (tiles, offset, fuckThomasX, fuckThomasY, fuckThomasZ, i, j);
+					}
+				}
+			} else if (i < 0) {
+				for (int j = -10; j < map [iReplaceLow].Count + 10; ++j) {
+
+					ExtraWaterSpawnCode (tiles, offset, fuckThomasX, fuckThomasY, fuckThomasZ, i, j);
+				}
+			} else if (i >= map.Count ) {
+				for (int j = -10; j < map [iReplaceHigh - 1].Count + 10; ++j) {
+
+					ExtraWaterSpawnCode (tiles, offset, fuckThomasX, fuckThomasY, fuckThomasZ, i, j);
+				}
+			}
+			fuckThomasZ += 0.01f;
+			offset = !offset;
+
+		}
     }
+
+	private void ExtraWaterSpawnCode(List<GameObject> tiles, bool offset, float fuckThomasX, 
+		float fuckThomasY, float fuckThomasZ, int i, int j){
+		int water = 1;
+
+		GameObject oneTile = tiles [water];
+
+		tileWidth = oneTile.GetComponent<Renderer> ().bounds.size.x;
+		tileHeight = oneTile.GetComponent<Renderer> ().bounds.size.y;
+
+		if (!offset) {
+			fuckThomasX = (j * tileWidth);
+		} else {
+			fuckThomasX = (j * tileWidth) + (tileWidth / 2);
+		}
+		//sets y to level 0 height
+		fuckThomasY = ((i+ 1) * (tileHeight / 3));
+		//put y to current level if not 0, not needed, default sea level 0
+		//fuckThomasY += ((tileHeight / 3) * map[i][j][1]);
+
+		Vector3 tempVector = new Vector3 (fuckThomasX, fuckThomasY, fuckThomasZ);
+
+		Transform tile = (Transform)Instantiate (oneTile.transform, tempVector, Quaternion.identity);
+		tile.SetParent (TileParent);
+	}
 
     public float GetCameraMinX()
     {
@@ -244,4 +309,5 @@ public class LevelControlScript : MonoBehaviour {
 	public void PlayerSpawned() {
 		playersAlive += 1;
 	}
+		
 }

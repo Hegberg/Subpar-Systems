@@ -129,7 +129,7 @@ public class GenericCharacterScript : MonoBehaviour {
 			attacks += currentTraits[i].ModifyNumOfAttacks() - 1;
 		}
 		attacksLeft = (int)attacks;
-        Debug.Log("character attacks = " + gameObject.name.ToString() + " " + attacksLeft);
+        //Debug.Log("character attacks = " + gameObject.name.ToString() + " " + attacksLeft);
         hasMoved = false;
 		//unvoid character
 		GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
