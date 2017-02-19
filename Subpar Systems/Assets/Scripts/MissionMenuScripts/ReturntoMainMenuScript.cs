@@ -19,6 +19,6 @@ public class ReturntoMainMenuScript : MonoBehaviour {
 
     void OnMouseOver()
     {
-            SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }
