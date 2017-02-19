@@ -64,6 +64,7 @@ public class charselect : MonoBehaviour {
         GameObject.FindWithTag("Mission").GetComponent<Canvas>().enabled = true;
         GameObject.FindWithTag("Mission Text").GetComponent<Canvas>().enabled = true;
         clicked.GetComponent<Image>().sprite = add;
+        clicked.GetComponent<Button>().name = characterSelected;
         //Debug.Log(clicked.name.ToString().ToLower());
         GameControlScript.control.SelectCharacter(characterSelected);
     }

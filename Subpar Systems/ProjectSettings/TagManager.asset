@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - addchar
+  - Mission
+  - UIChar
+  - CharSelect
+  - bio
+  - Mission Text
+  - UIImage
+  - name
+  - Characters
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,8 @@ public class GameControlScript : MonoBehaviour {
 
     private static List<Object> characters = new List<Object>();
     private static List<bool> chosen = new List<bool>();
+    public static List<string> team = new List<string>();
+    
 
     public Transform character1;
 	public Transform character2;
@@ -115,9 +117,6 @@ public class GameControlScript : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-
-        //remove this when can get permenant death working in ui
-        deadCharacterList.Clear();
 
         SaveDeadCharacters();
         Load();
@@ -301,6 +300,7 @@ public class GameControlScript : MonoBehaviour {
         //if not selected it and only selected less then max then select it
         else if (!chosen[selected] && selectedCharacters < maxCharacters)
         {
+            team.Add(nameSelected);
             chosen[selected] = !chosen[selected];
             selectedCharacters += 1;
         }
@@ -313,6 +313,7 @@ public class GameControlScript : MonoBehaviour {
         //unselecting character
         else if (chosen[selected])
         {
+            team.Remove(nameSelected);
             chosen[selected] = !chosen[selected];
             selectedCharacters -= 1;
         }
@@ -334,7 +335,10 @@ public class GameControlScript : MonoBehaviour {
 	public List<GenericTraitsScript> GetTraitsOfACharacter(int indexOfCharacter) {
 		return allCharacterTraits [indexOfCharacter];
 	}
-
+    public List<string> GetTeam()
+    {
+        return team;
+    }
     public List<GameObject> GetTiles()
     {
         return tiles;
