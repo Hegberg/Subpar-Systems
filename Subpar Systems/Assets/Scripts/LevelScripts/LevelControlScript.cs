@@ -105,6 +105,17 @@ public class LevelControlScript : MonoBehaviour {
                 Transform tile = (Transform)Instantiate(oneTile.transform,tempVector, Quaternion.identity);
                 tile.SetParent(TileParent);
 
+				//created for tile filler below
+				Vector3 tempVectorFiller = new Vector3(fuckThomasX, fuckThomasY, fuckThomasZ);
+				//spawn tiles below raised tiles
+				for (int k = 0; k < map[i][j][1]; ++k) {
+					//lower by 1 Y interval
+					tempVectorFiller.y -= (tileHeight / 3);
+					Transform tileFiller = (Transform)Instantiate(oneTile.transform,tempVectorFiller, Quaternion.identity);
+					tile.SetParent(TileParent);
+					Destroy (tileFiller.GetComponent<Collider2D>());
+				}
+
 				//Check to see if it is an earth tile if it is give it it's current tile position
 				if (map[i][j][0] == 0) {
 					List<int> tempTilePosition = new List<int> ();
@@ -153,6 +164,8 @@ public class LevelControlScript : MonoBehaviour {
                         break;
                     }
                 }
+				//reset temp vector
+				tempVector = new Vector3(fuckThomasX, fuckThomasY, fuckThomasZ);
 
                 //spawn enemy code
                 for (int k = 0; k < enemySpawnLocations.Count; ++k)
@@ -203,7 +216,7 @@ public class LevelControlScript : MonoBehaviour {
 		//water index in GameControl
 		int water = 1;
 
-		fuckThomasZ = -0.12f;
+		fuckThomasZ = -0.20f;
 
 		int iReplaceLow = 0;
 
@@ -212,7 +225,7 @@ public class LevelControlScript : MonoBehaviour {
 
 
 		//create extra water
-		for (int i = -12; i < map.Count + 12; ++i) {
+		for (int i = -20; i < map.Count + 20; ++i) {
 			//overlaying map
 			if (i >= 0 && i < map.Count) {
 				for (int j = -10; j < map [i].Count + 10; ++j) {

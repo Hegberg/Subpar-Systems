@@ -23,9 +23,9 @@ public class TestMapScript : MonoBehaviour {
 		new List<List<int>> {new List<int>{1,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
 			new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} },
 		new List<List<int>> {new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-			new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} },
+			new List<int>{0,0}, new List<int>{0,8}, new List<int>{2,0}, new List<int>{2,0} },
 		new List<List<int>> {new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0}, new List<int>{0,0},
-			new List<int>{0,0}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} }
+			new List<int>{0,8}, new List<int>{0,0}, new List<int>{2,0}, new List<int>{2,0} }
 	};
 
 	private int[] playerSpawn1 = { 0, 8 };
