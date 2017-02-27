@@ -11,6 +11,7 @@ public class GameControlScript : MonoBehaviour {
 
     private static List<Object> characters = new List<Object>();
     private static List<bool> chosen = new List<bool>();
+	private static List<bool> sideMissionChosen = new List<bool>();
     public static List<string> team = new List<string>();
     
 
@@ -39,6 +40,7 @@ public class GameControlScript : MonoBehaviour {
 
     private int maxCharacters = 4;
     private int selectedCharacters = 0;
+	private int selectedSideMissionCharacters = 0;
 
 	//level progression, auto increment on victory
 	private int currentLevel;
@@ -322,6 +324,53 @@ public class GameControlScript : MonoBehaviour {
         //Debug.Log("selected characters = " + selectedCharacters);
     }
 
+	//need to fix, and fix previous choose to check for this choose, and this to check for chosen list, 
+	//so side mission and prev characters are not in the same game
+	//character selected in list to join side mission team
+	public void SelectSideMissionCharacter(string nameSelected)
+	{
+		int selected = -1;
+		for (int i = 0; i < characters.Count; ++i)
+		{
+			if(characters[i].name.ToString().ToLower() == nameSelected)
+			{
+				selected = i;
+			}
+		}
+
+		//Debug.Log("selected - " + selected);
+
+
+		//if name not found selected will be -1, and need to check for that before using selected to grab item from a list
+		if (selected == -1)
+		{
+			//do nothing, but prevents other if checks from raising errors
+		}
+
+		//if not selected it and only selected less then max then select it
+		else if (!sideMissionChosen[selected] && selectedCharacters < maxCharacters)
+		{
+			team.Add(nameSelected);
+			sideMissionChosen[selected] = !sideMissionChosen[selected];
+			selectedCharacters += 1;
+		}
+		//not selected but have max selected
+		else if (!sideMissionChosen[selected] && selectedCharacters == maxCharacters)
+		{
+			//replace with proper in game warning
+			Debug.Log("Have max side already");
+		}
+		//unselecting character
+		else if (sideMissionChosen[selected])
+		{
+			team.Remove(nameSelected);
+			sideMissionChosen[selected] = !sideMissionChosen[selected];
+			selectedCharacters -= 1;
+		}
+
+		//Debug.Log("selected characters = " + selectedCharacters);
+	}
+
     public bool EnoughPlayersSelected()
     {
         return selectedCharacters == maxCharacters;
@@ -392,6 +441,7 @@ public class GameControlScript : MonoBehaviour {
             chosen.Add(false);
         }
         selectedCharacters = 0;
+		selectedSideMissionCharacters = 0;
     }
 
     public List<GameObject> GetInGameCharacterList()
