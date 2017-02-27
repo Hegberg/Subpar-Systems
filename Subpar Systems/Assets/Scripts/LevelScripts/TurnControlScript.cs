@@ -47,12 +47,10 @@ public class TurnControlScript : MonoBehaviour {
 
 	public void LevelPassed(){
 		GameControlScript.control.NextLevel ();
-		SceneManager.LoadScene ("MissionMenu");
 	}
 		
 	public void LevelFailed(){
         GameControlScript.control.FailedLevel();
-        SceneManager.LoadScene ("MissionMenu");
 	}
 
     public void EndTurn()
@@ -60,15 +58,13 @@ public class TurnControlScript : MonoBehaviour {
         if (playerTurn)
         {
             playerTurn = false;
-            StartCoroutine(RevertTurn());
             Debug.Log("Player Turn Ended");
             //need this broadcast first, so checks in Unhighlight that are rellying on what state the character in are correct
             LevelControlScript.control.BroadcastRemoveActionsToCharacters();
             UnHighlightPlayerTile();
             UnHighlightEnemyTile();
             playerSelected = null;
-            EnemyParentScript.control.BroadcastMove();
-            EnemyParentScript.control.BroadcastAttack();
+			EnemyParentScript.control.StartAITurn();
         }
     }
 
@@ -77,12 +73,6 @@ public class TurnControlScript : MonoBehaviour {
         playerTurn = true;
         Debug.Log("Player Turn Started");
         LevelControlScript.control.BroadcastRefreshActionsToCharacters();
-    }
-
-    IEnumerator RevertTurn()
-    {
-        yield return new WaitForSeconds(2);
-        StartTurn();
     }
 
     public void HighlightPlayerTile()

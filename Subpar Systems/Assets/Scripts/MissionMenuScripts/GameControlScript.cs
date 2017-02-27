@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class GameControlScript : MonoBehaviour {
 
@@ -370,6 +371,7 @@ public class GameControlScript : MonoBehaviour {
         characterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
+		SceneManager.LoadScene ("MissionMenu");
         //Debug.Log (currentLevel);
     }
 
@@ -379,6 +381,7 @@ public class GameControlScript : MonoBehaviour {
         characterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
+		SceneManager.LoadScene ("MissionMenu");
     }
 
     public void ClearChosenCharacters()
