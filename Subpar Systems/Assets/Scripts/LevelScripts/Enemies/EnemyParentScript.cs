@@ -62,6 +62,7 @@ public class EnemyParentScript : MonoBehaviour {
 		{
 			yield return new WaitForSeconds(0.01f);
 			enemy.GetComponent<GenericEnemyScript>().Move();
+			yield return new WaitForSeconds(0.01f);
 			enemy.GetComponent<GenericEnemyScript>().Attack();
 		}
 		yield return new WaitForSeconds(0.01f);
