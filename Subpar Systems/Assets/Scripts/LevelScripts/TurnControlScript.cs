@@ -127,7 +127,33 @@ public class TurnControlScript : MonoBehaviour {
         }
     }
 
-    public void UnHighlightEnemyTile()
+	/*
+	private void UnHIghlightEnenmyHelper(){
+		allValidTile = AStarScript.control.FloodFillWithinRange (LevelControlScript.control.GetAStarMap (), 
+			LevelControlScript.control.GetAStarMapCost (),
+			GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
+			GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
+			GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetMovement ());
+
+		List<List<GameObject>> map = LevelControlScript.control.GetAStarMap();
+
+		for (int i = 0; i < allValidTile.Count; ++i)
+		{
+			//Debug.Log (allValidTile [i] [0] + " " + allValidTile [i] [1]);
+
+			if (enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0] == allValidTile[i][0] &&
+				enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1] == allValidTile[i][1])
+			{
+				enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
+				material.color = movementHighlight;
+				moveableTile = true;
+				break;
+			}
+		}
+	}
+	*/
+
+	public void UnHighlightEnemyTile()
     {
 		if (enemySelected != null) {
             //if enemy is within range and selected, highlight it as possible to selectplayerSelected != null && playerSelected.GetComponent<GenericCharacterScript> ().GetNumOfAttacks () <= 0
@@ -188,18 +214,23 @@ public class TurnControlScript : MonoBehaviour {
 						}
 					}
 				}
+
+				//if player is out of attacks remove highlight
 				if (!moveableTile && playerSelected != null && playerSelected.GetComponent<GenericCharacterScript>().GetNumOfAttacks() <= 0) {
 					enemySelected.GetComponent<GenericEnemyScript> ().GetTileOccuping ().GetComponent<SpriteRenderer> ().
 					material.color = restoreOriginalColor;
-				} else if (!moveableTile && playerSelected != null && playerSelected.GetComponent<GenericCharacterScript>().GetNumOfAttacks() >= 0) {
+				//if player has attacks and enemy alive set to enemy attackHighlight
+				} else if (!moveableTile && playerSelected != null && playerSelected.GetComponent<GenericCharacterScript>().GetNumOfAttacks() >= 0 &&
+					enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetOccupingObject() != null) {
                     enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
                     material.color = enemyCanAttackHighlight;
+				//if tile not able to get to restore original colour
                 } else if (!moveableTile) {
                     enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
                     material.color = restoreOriginalColor;
                 }
 			}
-		} 
+		}
     }
 
     public void MovePlayer(GameObject tileMovingTo)
@@ -207,7 +238,7 @@ public class TurnControlScript : MonoBehaviour {
         //get correct position (so tile placement but slightly up so goes to middle of tile)
         Vector3 tempTile = tileMovingTo.transform.position;
         tempTile.y += (tileMovingTo.gameObject.GetComponent<Renderer>().bounds.size.y / LevelControlScript.control.GetTileHeightRatio());
-
+		tempTile.z -= 0.01f;
         playerSelected.transform.position = tempTile;
 
         //set old tile to have nothing on it
@@ -334,13 +365,12 @@ public class TurnControlScript : MonoBehaviour {
 			if (playerSelected != null) {
 				Debug.Log ("Number of player attacks: " + playerSelected.GetComponent<GenericCharacterScript> ().GetNumOfAttacks ());
 			}
-            UnHighlightEnemyTile();
-        }
+			UnHighlightEnemyTile();
+		}
         enemySelected = selected;
-        if (enemySelected != null)
-        {
-            HighlightEnemyTile();
-        }
+		if (enemySelected != null) {
+			HighlightEnemyTile ();
+		}
     }
 
     public GameObject GetEnemySelected()
