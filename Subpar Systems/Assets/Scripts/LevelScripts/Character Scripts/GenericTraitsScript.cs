@@ -49,6 +49,11 @@ public class GenericTraitsScript {
 	public virtual bool StopFromDieing() {
 		return false;
 	}
+
+    public virtual string GetName()
+    {
+        return name;
+    }
 		
 }
 
