@@ -11,6 +11,8 @@ public class CharacterSelectScript : MonoBehaviour
     string CharName;
     public bool happened = false;
     GameObject[] Characters1;
+	public int buttonSelected;
+
     void Start()  {
         UIButt = GetComponent<Button>();
         UIButt.onClick.AddListener(clicked);
@@ -21,9 +23,10 @@ public class CharacterSelectScript : MonoBehaviour
     {
 
     }
+
     public void mainmenu() //trying to clear chars if we go to mainmenu
     {
-
+		/*
         happened = false;
         for (int i = 0; i < GameControlScript.control.GetTeam().Count; ++i)
         {
@@ -31,7 +34,9 @@ public class CharacterSelectScript : MonoBehaviour
             Debug.Log(name);
             GameControlScript.control.SelectCharacter(name);
         }
+        */
     }
+
     private void clicked()
     {
         if (happened == false)
@@ -45,6 +50,7 @@ public class CharacterSelectScript : MonoBehaviour
           OnMouseOver();
         }
     }
+
     public void OnMouseOver()
     {
         GameObject.FindWithTag("Mission Text").GetComponent<Canvas>().enabled = false;
@@ -54,20 +60,24 @@ public class CharacterSelectScript : MonoBehaviour
         UI1 = UI.GetComponent<Canvas>();
         Characters1 = GameObject.FindGameObjectsWithTag("Characters");
         UI1.enabled = true;
+		int characterPlace;
         foreach (GameObject character in Characters1)
         {
             
             character.GetComponent<Button>().interactable = true;
             character.GetComponent<CanvasGroup>().alpha = 1;
             CharName = character.GetComponent<Button>().name.ToString().ToLower();
-            for (int i = 0; i < GameControlScript.control.GetTeam().Count; ++i)
+
+			characterPlace = character.GetComponent<CharacterSelectionForSlot> ().GetCharacterPlace ();
+			//Debug.Log (characterPlace);
+			//Debug.Log (GameControlScript.control.GetTeam()[characterPlace]);
+
+			if (GameControlScript.control.GetTeam()[characterPlace])
             {
-                if (GameControlScript.control.GetTeam()[i].ToLower() == CharName)
-                {
-                    character.GetComponent<Button>().interactable = false;
-                    character.GetComponent<CanvasGroup>().alpha = 0.5f;
-                }
+                character.GetComponent<Button>().interactable = false;
+                character.GetComponent<CanvasGroup>().alpha = 0.5f;
             }
+
             for (int i = 0; i < GameControlScript.control.GetDeadCharacters().Count; ++i)
             {
                 if (GameControlScript.control.GetDeadCharacters()[i].ToLower() == CharName)
@@ -76,8 +86,9 @@ public class CharacterSelectScript : MonoBehaviour
                     character.GetComponent<CanvasGroup>().alpha = 0.5f;
                 }
             }
+
             charselect.control.buttselected(UIButt);
-        charselect.control.AddButtonClicked(UIButt);
+        	charselect.control.AddButtonClicked(UIButt);
         }
     }
 }

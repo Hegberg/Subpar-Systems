@@ -49,6 +49,11 @@ public class GenericTraitsScript {
 	public virtual bool StopFromDieing() {
 		return false;
 	}
+
+    public virtual string GetName()
+    {
+        return name;
+    }
 		
 }
 
@@ -218,4 +223,28 @@ public class AdrenalineJunky : GenericTraitsScript {
 		name = "Adrenaline Junky";
 
 	}
+}
+
+public class RiflemanTrait : GenericTraitsScript
+{
+    public override void InitializeValues()
+    {
+        name = "Rifleman";
+    }
+}
+
+public class GrenedierTrait : GenericTraitsScript
+{
+    public override void InitializeValues()
+    {
+        name = "Grenedier";
+    }
+}
+
+public class AssaultTrait : GenericTraitsScript
+{
+    public override void InitializeValues()
+    {
+        name = "Assault";
+    }
 }

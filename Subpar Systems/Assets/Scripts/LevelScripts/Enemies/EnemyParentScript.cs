@@ -41,19 +41,43 @@ public class EnemyParentScript : MonoBehaviour {
 		}
 	}
 
-    public void BroadcastAttack()
+	public void StartAITurn(){
+		StartCoroutine (AIEnnumerate());
+		//BroadcastAttack ();
+	}
+
+    private void BroadcastAttack()
     {
-        BroadcastMessage("Attack");
+        //BroadcastMessage("Attack");
+		foreach(var enemy in GameControlScript.control.GetInGameEnemyList())
+		{
+			enemy.GetComponent<GenericEnemyScript>().Attack();
+		}
     }
 
-    public void BroadcastMove()
+	IEnumerator AIEnnumerate()
+	{
+		//yield return new WaitForSeconds(0.01f);
+		foreach(var enemy in GameControlScript.control.GetInGameEnemyList())
+		{
+			yield return new WaitForSeconds(0.01f);
+			enemy.GetComponent<GenericEnemyScript>().Move();
+			yield return new WaitForSeconds(0.01f);
+			enemy.GetComponent<GenericEnemyScript>().Attack();
+		}
+		yield return new WaitForSeconds(0.01f);
+		TurnControlScript.control.StartTurn ();
+	}
+
+    private void BroadcastMove()
     {
-        BroadcastMessage("Move");
-        /*
+        //BroadcastMessage("Move");
+        
         foreach(var enemy in GameControlScript.control.GetInGameEnemyList())
         {
             enemy.GetComponent<GenericEnemyScript>().Move();
+			enemy.GetComponent<GenericEnemyScript>().Attack();
         }
-        */
+
     }
 }

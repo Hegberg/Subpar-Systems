@@ -131,7 +131,7 @@ public class AStarScript : MonoBehaviour {
 	//Returns a list of all valid walkable tiles within range
 	public List<List<int>> FloodFillWithinRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int movementRange)
 	{
-		Debug.Log ("Starting Flood");
+		//Debug.Log ("Starting Flood");
 		var movementRemain = new Dictionary<List<int>, int>();
 
 		List<List<int>> openSet = new List<List<int>> ();
@@ -212,7 +212,7 @@ public class AStarScript : MonoBehaviour {
 			Debug.Log ("cameFromSet Results at " + i + " " + cameFromSet[i][0] + "," + cameFromSet[i][1]);
 		}
 		*/
-		Debug.Log ("End floodfill");
+		//Debug.Log ("End floodfill");
 		//We should never get HERE. LIKE EVER
 		return cameFromSet;
 	}
@@ -311,7 +311,7 @@ public class AStarScript : MonoBehaviour {
 	//Check to see the tile is itself
 	private bool CheckIsSelf(int originRow, int originIndex, int goalRow, int goalIndex){
 		if (originRow == goalRow && originIndex == goalIndex) {
-			Debug.Log ("Rejected is Self");
+			//Debug.Log ("Rejected is Self");
 			return true;
 		}
 		return false;
@@ -329,7 +329,7 @@ public class AStarScript : MonoBehaviour {
 				return true;
 			}
 		}
-		Debug.Log ("Rejected Not one tile away");
+		//Debug.Log ("Rejected Not one tile away");
 		return false;
 	}//end checkOneTileAway
 
@@ -338,14 +338,14 @@ public class AStarScript : MonoBehaviour {
 	{
         if (goalRow >= maxRow || goalIndex >= maxIndex) 
 		{
-			Debug.Log ("Rejected Out of Bound");
+			//Debug.Log ("Rejected Out of Bound");
             return false;
 		}
 
 		if ((goalRow >= 0 && goalRow < maxRow) && (goalIndex >= 0 && goalIndex < maxIndex)) {
 			return true;
 		}
-		Debug.Log ("Rejected Out of Bound");
+		//Debug.Log ("Rejected Out of Bound");
         return false;
 	}//end checkBound
 
@@ -362,7 +362,7 @@ public class AStarScript : MonoBehaviour {
         }
 
         //otherwise
-		Debug.Log ("Rejected Walkable");
+		//Debug.Log ("Rejected Walkable");
         return false;
     }
 

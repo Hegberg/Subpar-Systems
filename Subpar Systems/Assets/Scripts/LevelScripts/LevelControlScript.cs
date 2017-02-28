@@ -198,7 +198,7 @@ public class LevelControlScript : MonoBehaviour {
                 }
             }
             offset = !offset;
-			fuckThomasZ += 0.01f;
+			fuckThomasZ += 0.02f;
         }
 
 
@@ -216,7 +216,7 @@ public class LevelControlScript : MonoBehaviour {
 		//water index in GameControl
 		int water = 1;
 
-		fuckThomasZ = -0.20f;
+		fuckThomasZ = -0.40f;
 
 		int iReplaceLow = 0;
 
@@ -246,7 +246,7 @@ public class LevelControlScript : MonoBehaviour {
 					ExtraWaterSpawnCode (tiles, offset, fuckThomasX, fuckThomasY, fuckThomasZ, i, j);
 				}
 			}
-			fuckThomasZ += 0.01f;
+			fuckThomasZ += 0.02f;
 			offset = !offset;
 
 		}

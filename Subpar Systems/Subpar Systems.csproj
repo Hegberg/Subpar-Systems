@@ -78,9 +78,19 @@
     <Compile Include="Assets\Scripts\LevelScripts\AStarScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\GenericTraitsScript.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character1Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character2Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character3Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character4Script.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemyParentScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Enemies\GenericEnemyScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\LevelControlScript.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\MapData\BlankMapScript.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\MapData\Map1Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\MapData\Map2Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\MapData\Map3Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\MapData\TestMapScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TileScripts\GenericEarthScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TileScripts\GenericMountianScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TileScripts\GenericWaterScript.cs" />
@@ -89,9 +99,18 @@
     <Compile Include="Assets\Scripts\MainMenuScripts\ExitButtonScript.cs" />
     <Compile Include="Assets\Scripts\MainMenuScripts\StartButtonScript.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\CharacterSelectScript.cs" />
+    <Compile Include="Assets\Scripts\MissionMenuScripts\CharacterSelectionForSlot.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\ReturntoMainMenuScript.cs" />
+    <Compile Include="Assets\Scripts\MissionMenuScripts\SideMissionScripts\SideMissionScript.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\StartMissionScript.cs" />
+    <Compile Include="Assets\Scripts\MissionMenuScripts\TitleText.cs" />
+    <Compile Include="Assets\Scripts\MissionMenuScripts\charselect.cs" />
+    <Compile Include="Assets\Sounds\Music\Royalty Free Music\Credits.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Scripts\OLD STAR.txt" />
+    <None Include="Assets\Sprites\OpenSans-Familiy\OpenSansLic.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

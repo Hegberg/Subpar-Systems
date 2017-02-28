@@ -75,7 +75,7 @@ public class GenericEnemyScript : MonoBehaviour {
 							GameControlScript.control.RemoveEnemyFromInGameList (this.gameObject);
 							tileOccuping.GetComponent<GenericEarthScript> ().SetOccupingObject (null);
 							//need this repeated twice since if this is before the line above, the line above will malfunction, 
-							//but if not in else than code malfunctions
+							//but if not in else than code malfunction
 							TurnControlScript.control.SetEnemySelected(null);
 
 							Destroy (gameObject);
