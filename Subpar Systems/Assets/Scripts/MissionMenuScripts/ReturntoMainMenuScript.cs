@@ -19,6 +19,7 @@ public class ReturntoMainMenuScript : MonoBehaviour {
 
     void OnMouseOver()
     {
+		GameControlScript.control.ClearChosenCharacters ();
         SceneManager.LoadScene("MainMenu");
     }
 }

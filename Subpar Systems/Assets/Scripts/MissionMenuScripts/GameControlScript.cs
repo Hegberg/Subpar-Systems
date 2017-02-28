@@ -12,7 +12,7 @@ public class GameControlScript : MonoBehaviour {
     private static List<Object> characters = new List<Object>();
     private static List<bool> chosen = new List<bool>();
 	private static List<bool> sideMissionChosen = new List<bool>();
-    public static List<string> team = new List<string>();
+    public static List<bool> team = new List<bool>();
     
 
     public Transform character1;
@@ -112,6 +112,8 @@ public class GameControlScript : MonoBehaviour {
             for (int i = 0; i < characters.Count; ++i)
             {
                 chosen.Add(false);
+				sideMissionChosen.Add (false);
+				team.Add (false);
             }
 
             DontDestroyOnLoad(this.gameObject);
@@ -131,12 +133,14 @@ public class GameControlScript : MonoBehaviour {
     }
 
 	public void Load() {
+		Debug.Log (deadCharacterList.Count);
 		LoadDeadCharacters ();
 		LoadCharacterTraits ();
 		LoadCurrentLevel ();
 	}
 
 	public void Save() {
+		Debug.Log (deadCharacterList.Count);
 		SaveDeadCharacters ();
 		SaveCharacterTraits ();
 		SaveCurrentLevel ();
@@ -303,7 +307,7 @@ public class GameControlScript : MonoBehaviour {
         //if not selected it and only selected less then max then select it
         else if (!chosen[selected] && selectedCharacters < maxCharacters)
         {
-            team.Add(nameSelected);
+			team[selected] = !team[selected];
             chosen[selected] = !chosen[selected];
             selectedCharacters += 1;
         }
@@ -316,7 +320,7 @@ public class GameControlScript : MonoBehaviour {
         //unselecting character
         else if (chosen[selected])
         {
-            team.Remove(nameSelected);
+			team[selected] = !team[selected];
             chosen[selected] = !chosen[selected];
             selectedCharacters -= 1;
         }
@@ -350,7 +354,7 @@ public class GameControlScript : MonoBehaviour {
 		//if not selected it and only selected less then max then select it
 		else if (!sideMissionChosen[selected] && selectedCharacters < maxCharacters)
 		{
-			team.Add(nameSelected);
+			team[selected] = !team[selected];
 			sideMissionChosen[selected] = !sideMissionChosen[selected];
 			selectedCharacters += 1;
 		}
@@ -363,7 +367,7 @@ public class GameControlScript : MonoBehaviour {
 		//unselecting character
 		else if (sideMissionChosen[selected])
 		{
-			team.Remove(nameSelected);
+			team[selected] = !team[selected];
 			sideMissionChosen[selected] = !sideMissionChosen[selected];
 			selectedCharacters -= 1;
 		}
@@ -385,7 +389,7 @@ public class GameControlScript : MonoBehaviour {
 	public List<GenericTraitsScript> GetTraitsOfACharacter(int indexOfCharacter) {
 		return allCharacterTraits [indexOfCharacter];
 	}
-    public List<string> GetTeam()
+    public List<bool> GetTeam()
     {
         return team;
     }
@@ -436,12 +440,14 @@ public class GameControlScript : MonoBehaviour {
     public void ClearChosenCharacters()
     {
         chosen.Clear();
+		sideMissionChosen.Clear ();
         for (int i = 0; i < characters.Count; ++i)
         {
             chosen.Add(false);
         }
         selectedCharacters = 0;
 		selectedSideMissionCharacters = 0;
+		team.Clear();
     }
 
     public List<GameObject> GetInGameCharacterList()

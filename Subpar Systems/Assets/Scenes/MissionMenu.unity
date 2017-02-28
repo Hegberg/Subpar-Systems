@@ -635,6 +635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 8
 --- !u!114 &194252723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,6 +773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 9
 --- !u!114 &200437428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2160,6 +2162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 3
 --- !u!114 &659821650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2545,6 +2548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 1
 --- !u!225 &906484252
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2806,6 +2810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 4
 --- !u!114 &978363889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2943,6 +2948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 11
 --- !u!114 &986664279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3670,6 +3676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 6
 --- !u!114 &1248812250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4030,6 +4037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 0
 --- !u!225 &1362627929
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4675,6 +4683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 7
 --- !u!114 &1628791588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5031,6 +5040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 10
 --- !u!114 &1699266899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5379,6 +5389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 2
 --- !u!114 &1827890285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6221,6 +6232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   bios: I am bio
+  characterPlace: 5
 --- !u!114 &1963329403
 MonoBehaviour:
   m_ObjectHideFlags: 0

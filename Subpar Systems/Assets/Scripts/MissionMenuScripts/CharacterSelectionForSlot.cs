@@ -7,6 +7,7 @@ public class CharacterSelectionForSlot : MonoBehaviour
 {
     public string Name;
     public string bios = "I am bio";
+	public int characterPlace;
     Image image;
     Canvas main;
     Button btn;

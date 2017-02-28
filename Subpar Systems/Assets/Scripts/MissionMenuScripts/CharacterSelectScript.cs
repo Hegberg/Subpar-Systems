@@ -21,9 +21,10 @@ public class CharacterSelectScript : MonoBehaviour
     {
 
     }
+
     public void mainmenu() //trying to clear chars if we go to mainmenu
     {
-
+		/*
         happened = false;
         for (int i = 0; i < GameControlScript.control.GetTeam().Count; ++i)
         {
@@ -31,7 +32,9 @@ public class CharacterSelectScript : MonoBehaviour
             Debug.Log(name);
             GameControlScript.control.SelectCharacter(name);
         }
+        */
     }
+
     private void clicked()
     {
         if (happened == false)
@@ -45,6 +48,7 @@ public class CharacterSelectScript : MonoBehaviour
           OnMouseOver();
         }
     }
+
     public void OnMouseOver()
     {
         GameObject.FindWithTag("Mission Text").GetComponent<Canvas>().enabled = false;
@@ -60,13 +64,16 @@ public class CharacterSelectScript : MonoBehaviour
             character.GetComponent<Button>().interactable = true;
             character.GetComponent<CanvasGroup>().alpha = 1;
             CharName = character.GetComponent<Button>().name.ToString().ToLower();
+			int characterPlace = char
+
             for (int i = 0; i < GameControlScript.control.GetTeam().Count; ++i)
             {
-                if (GameControlScript.control.GetTeam()[i].ToLower() == CharName)
+                if (GameControlScript.control.GetTeam()[i])
                 {
                     character.GetComponent<Button>().interactable = false;
                     character.GetComponent<CanvasGroup>().alpha = 0.5f;
                 }
+
             }
             for (int i = 0; i < GameControlScript.control.GetDeadCharacters().Count; ++i)
             {
