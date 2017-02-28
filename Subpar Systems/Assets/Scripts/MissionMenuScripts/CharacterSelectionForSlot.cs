@@ -60,4 +60,8 @@ public class CharacterSelectionForSlot : MonoBehaviour
 
         charselect.control.CharacterSelected(btn.name.ToString().ToLower());
     }
+
+	public int GetCharacterPlace() {
+		return characterPlace;
+	}
 }
