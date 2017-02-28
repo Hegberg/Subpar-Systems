@@ -42,7 +42,183 @@ public class AStarScript : MonoBehaviour {
 	/*
 		WARNING NONE OF THE FOLLOWING CODE IS TEST AND WILL AND COULD BREAK EVERYTHING THAT EXIST!
 	*/
+	public List<List<int>> findShitestPath(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int goalRow, int goalIndex)
+	{
 
+		//============TESTED TO THIS POINT 1.0 WORKS=====================//
+		//Debug.Log("Tested at 1.0");
+		//return null;
+
+		//Initialize variables for gScore, fScore, starting position, goal position
+		//For dictionary the List => the row/index number of the tile
+		var gScore = new Dictionary<List<int>, int>();
+		var fScore = new Dictionary<List<int>, int>();
+
+		List<List<int>> openSet = new List<List<int>> ();
+
+		//TESTING NEW OPENSET
+		//Dictionary<string, List<int>> openSetNew = new Dictionary<string, List<int>>();
+
+		Dictionary<List<int>, List<int>> cameFromSet =  new Dictionary<List<int>, List<int>>();
+
+		//Init Starting and goal position
+		List<int> startPosition = new List<int> ();
+		startPosition.Add (originRow);
+		startPosition.Add (originIndex);
+		List<int> goalPosition = new List<int> ();
+		goalPosition.Add (goalRow);
+		goalPosition.Add (goalIndex);
+
+		Debug.Log ("Current Start Node " + originRow + " " + originIndex);
+		Debug.Log ("Current Goal Node " + goalRow + " " + goalIndex);
+
+		bool isEnemy = false;
+		//Check to see if this is enemy
+		if (map[originRow][originIndex].GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy() == true)
+		{
+			isEnemy = true;
+		}	
+
+		//Init all values of gScore/fScore to infinity
+		// i = Row
+		// j = Index
+		for (int i = 0; i < map.Count; ++i)
+		{
+			for (int j = 0; j < map[i].Count; ++j) 
+			{
+				List<int> tempTilePosition = new List<int> ();
+				//Add the new row and index
+				tempTilePosition.Add(i);
+				tempTilePosition.Add(j);
+
+				gScore[tempTilePosition] = int.MaxValue;
+				fScore[tempTilePosition] = int.MaxValue;
+
+				Debug.Log ("gScore, fscore at i,j = " + i + "," + j + "," + gScore [tempTilePosition] + "," + fScore[tempTilePosition]);
+			}//end inner for loop
+
+		}//end for loop
+			
+
+		//Init start node
+		gScore[startPosition] = 0;
+		fScore [startPosition] = CalculateHeuristicCost (originRow, originIndex, goalRow, goalIndex);
+
+		//Insert the starting node 
+		openSet.Add(startPosition);
+
+		int lowestFScore;
+
+
+		while(!(openSet.Count == 0))
+		{
+			Debug.Log ("Currently in while loop in openset");	
+
+			//Clear the current node
+			List<int> currentNode = new List<int> ();
+
+			//Find the lowest fScore in the opensEt
+			lowestFScore = int.MaxValue;
+
+			//Debug.Log ("=====Start fScore Debug======");
+			for (int i = 0; i < openSet.Count; ++i) 
+			{
+				if(fScore[openSet[i]] < lowestFScore)
+				{
+					lowestFScore = fScore[openSet[i]];
+					currentNode = openSet[i];
+
+				}
+
+			}//end for loop fScore
+				
+
+			Debug.Log ("Curretly at before found goal");
+			Debug.Log ("Current node is " + currentNode [0] + " " + currentNode [1]);
+
+			//Found the goal
+			if (currentNode[0] == goalPosition[0] && currentNode[1] == goalPosition[1]) 
+			{
+				return ReconstructPath (cameFromSet, currentNode);
+			}
+			openSet.Remove(currentNode);
+
+
+			int currentNodeRow = currentNode[0];
+			int currentNodeIndex = currentNode[1];
+
+			List<int> index = new List<int> ();
+
+			List<int> rows = new List<int> () { currentNodeRow - 1, currentNodeRow + 1 };
+			if (currentNodeRow % 2 == 0) {
+				index.Add (currentNodeIndex);
+				index.Add (currentNodeIndex+1);
+			} else {
+				index.Add (currentNodeIndex-1);
+				index.Add (currentNodeIndex);
+			}
+			Debug.Log ("What is in the row " + rows [0] + "," + rows [1]);
+			Debug.Log ("What is in the index " + index [0] + "," + index [1]);
+
+			for(int i = 0; i < 2; ++i) 
+			{
+				int gRow = rows [i];
+				for (int j = 0; j < 2; ++j)
+				{
+					int gIndex = index [j];
+					if (gRow < 0 || gRow >= map.Count || gIndex < 0 || gIndex >= map[gIndex].Count) 
+					{
+						//Debug.Log ("I left in gRow and gIndex");
+						continue;
+					}
+
+					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map.Count, map[gIndex].Count,  mapCost[gRow][gIndex][0])) 
+					{
+						Debug.Log ("I can get to row " + gRow + " and index " + gIndex);
+						List<int> neighborNode = new List<int> ();
+						neighborNode.Add (gRow);
+						neighborNode.Add (gIndex);
+						Debug.Log ("Testing inside of for adding neighborNode");
+						Debug.Log ("NeighborNode has " + neighborNode [0] + " " + neighborNode [1]);
+						Debug.Log ("CurrentNode has " + currentNode [0] + " " + currentNode [1]);
+						Debug.Log ("gScore at current is " + gScore [currentNode]);
+						Debug.Log ("ReturnCost Tile is " + ReturnCostTile (currentNodeRow, currentNodeIndex, mapCost));
+						int tentativeGScore = gScore[currentNode] + ReturnCostTile(currentNodeRow, currentNodeIndex, mapCost);
+						Debug.Log ("I Got pass the new cost with " + tentativeGScore);
+						if (CheckIfFriendly(map[gRow][gIndex], isEnemy) || !CheckIfOccupied(map[gRow][gIndex])) 
+						{
+							Debug.Log ("Got pass CheckIfFriendly and CheckIfOccupied");
+							Debug.Log ("Checking neighborNode " + neighborNode[0] + " " + neighborNode[1]);
+							Debug.Log ("Checking gScore of neighborNode " + gScore [neighborNode]);
+							if (tentativeGScore >= gScore [neighborNode]) 
+							{
+								continue;
+							}
+							//Create a dic that contains the  Row/Index of current (where we came from)  VALUE
+							//								  Row/Index of neighbor (Where we are going) KEY
+							Debug.Log("Adding to openset : "+ neighborNode[0] + " " + neighborNode[1]);
+							openSet.Add (neighborNode);
+							cameFromSet[neighborNode] = currentNode;
+
+							//Change the related gScore and fScore
+							Debug.Log("Before Update gScore and fScore");
+							gScore [neighborNode] = tentativeGScore;
+							Debug.Log ("Finish updating gScore");
+							fScore [neighborNode] = gScore [neighborNode] + CalculateHeuristicCost (gRow, gIndex, goalRow, goalIndex);
+							Debug.Log ("Finish Update gScore and fScore");
+						} 
+
+
+					}
+				}//end for loop
+
+			}//end for loop
+				
+		}//end while loop
+
+		//We should never get HERE. LIKE EVER
+		return null;
+	}
 
 	//Returns tile that are within the range of the map that can be attacked
 	public List<List<int>> FloodFillAttackRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int attackrange)
@@ -145,6 +321,13 @@ public class AStarScript : MonoBehaviour {
 		movementRemain[startPosition] = movementRange;
 		openSet.Add(startPosition);
 
+		bool isEnemy = false;
+		//Check to see if this is enemy
+		if (map[originRow][originIndex].GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy() == true)
+		{
+			isEnemy = true;
+		}	
+
 		while(!(openSet.Count == 0))
 		{
 		//	Debug.Log ("In while loop");
@@ -184,13 +367,22 @@ public class AStarScript : MonoBehaviour {
 						continue;
 					}
 					//Debug.Log ("Here is row and index " + gRow + "," + gIndex);
-					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map.Count, map[gIndex].Count, map[gRow][gIndex], mapCost[gRow][gIndex][0])) 
+					if (CanGetNext (currentNodeRow, currentNodeIndex, gRow, gIndex, map.Count, map[gIndex].Count,  mapCost[gRow][gIndex][0])) 
 					{
 						//Add the new neighbor
 
 						int newCost = movementRemain[currentNode] - ReturnCostTile(gRow, gIndex, mapCost);
+						//Debug.Log ("I Got pass the new cost with " + newCost);
+						if (CheckIfFriendly(map[gRow][gIndex], isEnemy) && newCost > 0) 
+						{
+							List<int> neighborNode = new List<int> ();
+							neighborNode.Add (gRow);
+							neighborNode.Add (gIndex);
+							openSet.Add (neighborNode);
+							movementRemain [neighborNode] = newCost;
+						}
 						//Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " movement " + movementRemain [currentNode] + " COST " + newCost);
-						if (newCost >= 0) {
+						else if (newCost >= 0 && !CheckIfOccupied(map[gRow][gIndex])) {
 							List<int> neighborNode = new List<int> ();
 							neighborNode.Add (gRow);
 							neighborNode.Add (gIndex);
@@ -292,13 +484,13 @@ public class AStarScript : MonoBehaviour {
 	}
 
 	//Check can I move from this tile to the next
-	private bool CanGetNext(int originRow, int originIndex, int goalRow, int goalIndex, int mapRowCount, int mapIndexCount, GameObject mapTile, int mapType)
+	private bool CanGetNext(int originRow, int originIndex, int goalRow, int goalIndex, int mapRowCount, int mapIndexCount,  int mapType)
 	{
         //Check all the various things to ensure it can get to next location
 		if (!CheckBound(goalRow, goalIndex, mapRowCount, mapIndexCount) 
 			|| !CheckOneTileAway(originRow,originIndex,goalRow,goalIndex) 
 			|| CheckIsSelf(originRow,originIndex,goalRow,goalIndex)
-            || !CheckIfWalkable(mapTile, mapType)) {
+            || !CheckIfWalkable( mapType)) {
 			return false;
 		}
         //Debug.Log("true cangetnext");
@@ -349,13 +541,43 @@ public class AStarScript : MonoBehaviour {
         return false;
 	}//end checkBound
 
-	private bool CheckIfWalkable(GameObject mapTile, int mapType)
+	private bool CheckIfFriendly(GameObject mapTile, bool isEnemy)
+	{
+		//If you are an enemy AI, You cannot walk pass friendly
+		if (isEnemy) 
+		{
+			if ((mapTile.GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy() == true)
+				&&(mapTile.GetComponent<GenericEarthScript> ().GetOccupingObject () != null)) 
+			{
+				return true;
+			}
+			return false;
+		}	
+		//If you are a friendly you can walk by friendly
+		else if ((mapTile.GetComponent<GenericEarthScript> ().GetOccupingObject () != null)
+			&& (mapTile.GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy() == false)
+		)	
+		{
+			return true;
+		}
+		return false;
+	}
+
+	private bool CheckIfOccupied(GameObject mapTile)
+	{
+		if (mapTile.GetComponent<GenericEarthScript> ().GetOccupingObject () == null) {
+			return false;
+		}
+		return true;
+	}
+
+	private bool CheckIfWalkable(int mapType)
     {
         //0 -> earth, 1->water, 2->mountian
         //right now 0 means earth, and earth only walkable tile
-		if (mapType == 0 && 
+		if (mapType == 0 
             //check if empty tile as well, nneds to be done after first if or else will check tiles without GenericEarthScript code and exception will be raised
-            (mapTile.GetComponent<GenericEarthScript>().GetOccupingObject() == null))
+            )
         {
 
             return true;
