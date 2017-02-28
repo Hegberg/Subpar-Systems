@@ -13,6 +13,10 @@ TagManager:
   - UIImage
   - name
   - Characters
+  - MissionHubConvo1
+  - MissionHubConvo2
+  - Convo1
+  - Convo2
   layers:
   - Default
   - TransparentFX

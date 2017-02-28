@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
   - enabled: 1
+    path: Assets/Scenes/HubArea.unity
+  - enabled: 1
     path: Assets/Scenes/MissionMenu.unity
   - enabled: 1
     path: Assets/Scenes/TestLevel.unity

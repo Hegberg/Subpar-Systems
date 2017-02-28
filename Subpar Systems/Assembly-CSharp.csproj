@@ -46,6 +46,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\HubConvo.cs" />
+     <Compile Include="Assets\MissionBrief.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\AStarScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\CameraScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" />
@@ -77,6 +79,7 @@
      <Compile Include="Assets\Scripts\MissionMenuScripts\StartMissionScript.cs" />
      <Compile Include="Assets\Scripts\MissionMenuScripts\TitleText.cs" />
      <Compile Include="Assets\Scripts\MissionMenuScripts\charselect.cs" />
+     <Compile Include="Assets\Sounds\Music\Royalty Free Music\Credits.cs" />
      <None Include="Assets\Sprites\OpenSans-Familiy\OpenSansLic.txt" />
      <None Include="Assets\Scripts\OLD STAR.txt" />
  <Reference Include="UnityEngine.UI">
