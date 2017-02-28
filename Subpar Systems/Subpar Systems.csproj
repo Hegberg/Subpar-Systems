@@ -106,6 +106,7 @@
     <Compile Include="Assets\Scripts\MissionMenuScripts\StartMissionScript.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\TitleText.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\charselect.cs" />
+    <Compile Include="Assets\Sounds\Music\Royalty Free Music\Credits.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\OLD STAR.txt" />
