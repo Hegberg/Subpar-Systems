@@ -129,6 +129,7 @@ public class Map1Script : MonoBehaviour
 
     private List<int[]> enemySpawnLocations = new List<int[]>();
 
+
     // Use this for initialization
     void Start()
     {
