@@ -11,22 +11,22 @@ public class GameControlScript : MonoBehaviour {
 
     private static List<Object> characters = new List<Object>();
     private static List<bool> chosen = new List<bool>();
+
 	private static List<bool> sideMissionChosen = new List<bool>();
     public static List<bool> team = new List<bool>();
-    
 
     public Transform character1;
-	public Transform character2;
-	public Transform character3;
-	public Transform character4;
-	public Transform character5;
-	public Transform character6;
-	public Transform character7;
-	public Transform character8;
-	public Transform character9;
-	public Transform character10;
-	public Transform character11;
-	public Transform character12;
+    public Transform character2;
+    public Transform character3;
+    public Transform character4;
+    public Transform character5;
+    public Transform character6;
+    public Transform character7;
+    public Transform character8;
+    public Transform character9;
+    public Transform character10;
+    public Transform character11;
+    public Transform character12;
 
     private static List<GameObject> tiles = new List<GameObject>();
 
@@ -40,13 +40,13 @@ public class GameControlScript : MonoBehaviour {
 
     private int maxCharacters = 4;
     private int selectedCharacters = 0;
-	private int selectedSideMissionCharacters = 0;
+    private int selectedSideMissionCharacters = 0;
 
-	//level progression, auto increment on victory
-	private int currentLevel;
+    //level progression, auto increment on victory
+    private int currentLevel;
 
-	private int testLevel = 0;
-	private int firstLevel = 1;
+    private int testLevel = 0;
+    private int firstLevel = 1;
 
     //public Transform characterParent;
 
@@ -54,20 +54,20 @@ public class GameControlScript : MonoBehaviour {
     private static List<GameObject> enemyInGameList = new List<GameObject>();
     private static List<string> deadCharacterList = new List<string>();
 
-	private List<List<GenericTraitsScript>> allCharacterTraits = new List<List<GenericTraitsScript>> ();
+    private List<List<GenericTraitsScript>> allCharacterTraits = new List<List<GenericTraitsScript>>();
 
-	//character F27
-	private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript> 
-	{ new MachineGunTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait(), new F27BadWithM40Trait()};
-	//character M40
-	private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript> 
-	{ };
+    //character F27
+    private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript>
+    { new MachineGunTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait(), new F27BadWithM40Trait()};
+    //character M40
+    private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript>
+    { new GrenedierTrait()};
 	//character F32
 	private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript> 
-	{new F32GoodWithM41Trait()};
+	{new RiflemanTrait(), new F32GoodWithM41Trait()};
 	//character M31
 	private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> 
-	{new M31GoodWithM29Trait(), new M31MarriedToF32Trait(), new M31FriendM29DeadTrait(), new M31WifeF32DeadTrait()};
+	{new M31GoodWithM29Trait(), new M31MarriedToF32Trait(), new M31FriendM29DeadTrait(), new M31WifeF32DeadTrait(), new RiflemanTrait()};
 
 	private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript> { };
 	private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript> { };

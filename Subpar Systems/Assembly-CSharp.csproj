@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\MissionMenuScripts\CharacterSelectionForSlot.cs" />
      <Compile Include="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" />
      <Compile Include="Assets\Scripts\MissionMenuScripts\ReturntoMainMenuScript.cs" />
+     <Compile Include="Assets\Scripts\MissionMenuScripts\SideMissionScripts\SideMissionScript.cs" />
      <Compile Include="Assets\Scripts\MissionMenuScripts\StartMissionScript.cs" />
      <Compile Include="Assets\Scripts\MissionMenuScripts\TitleText.cs" />
      <Compile Include="Assets\Scripts\MissionMenuScripts\charselect.cs" />

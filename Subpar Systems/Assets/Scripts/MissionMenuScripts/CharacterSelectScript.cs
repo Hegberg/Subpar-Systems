@@ -64,7 +64,7 @@ public class CharacterSelectScript : MonoBehaviour
             character.GetComponent<Button>().interactable = true;
             character.GetComponent<CanvasGroup>().alpha = 1;
             CharName = character.GetComponent<Button>().name.ToString().ToLower();
-			int characterPlace = char
+			//int characterPlace = char
 
             for (int i = 0; i < GameControlScript.control.GetTeam().Count; ++i)
             {

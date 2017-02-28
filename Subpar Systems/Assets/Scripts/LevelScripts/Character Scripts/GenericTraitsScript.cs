@@ -219,3 +219,27 @@ public class AdrenalineJunky : GenericTraitsScript {
 
 	}
 }
+
+public class RiflemanTrait : GenericTraitsScript
+{
+    public override void InitializeValues()
+    {
+        name = "Rifleman";
+    }
+}
+
+public class GrenedierTrait : GenericTraitsScript
+{
+    public override void InitializeValues()
+    {
+        name = "Grenedier";
+    }
+}
+
+public class AssaultTrait : GenericTraitsScript
+{
+    public override void InitializeValues()
+    {
+        name = "Assault";
+    }
+}
