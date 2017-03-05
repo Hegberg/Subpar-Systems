@@ -75,6 +75,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\HubScripts\HubConvo.cs" />
+    <Compile Include="Assets\Scripts\HubScripts\MissionBrief.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\AStarScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" />

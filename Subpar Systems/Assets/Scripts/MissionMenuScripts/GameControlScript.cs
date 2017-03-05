@@ -439,15 +439,14 @@ public class GameControlScript : MonoBehaviour {
 
     public void ClearChosenCharacters()
     {
-        chosen.Clear();
-		sideMissionChosen.Clear ();
         for (int i = 0; i < characters.Count; ++i)
         {
-            chosen.Add(false);
+            chosen[i] = false;
+            sideMissionChosen[i] = false;
+            team[i] = false;
         }
         selectedCharacters = 0;
 		selectedSideMissionCharacters = 0;
-		team.Clear();
     }
 
     public List<GameObject> GetInGameCharacterList()
