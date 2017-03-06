@@ -1,14 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.AttachToProcess" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MissionMenuScripts\GameControlScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MissionMenuScripts\TraitSpriteControl.cs">
     <Files>
-      <File FileName="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" Line="14" Column="1" />
-      <File FileName="Assets\Scripts\LevelScripts\LevelControlScript.cs" Line="250" Column="21" />
-      <File FileName="Assets\Scripts\LevelScripts\TurnControlScript.cs" Line="71" Column="5" />
-      <File FileName="Assets\Scripts\LevelScripts\Enemies\EnemyParentScript.cs" Line="67" Column="4" />
-      <File FileName="Assets\Scripts\MissionMenuScripts\CharacterSelectionForSlot.cs" Line="22" Column="6" />
-      <File FileName="Assets\Scripts\MissionMenuScripts\CharacterSelectScript.cs" Line="58" Column="41" />
-      <File FileName="Assets\Scripts\MissionMenuScripts\ReturntoMainMenuScript.cs" Line="22" Column="54" />
+      <File FileName="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" Line="491" Column="2" />
+      <File FileName="Assets\Scripts\LevelScripts\LevelControlScript.cs" Line="86" Column="75" />
+      <File FileName="Assets\Scripts\LevelScripts\TurnControlScript.cs" Line="22" Column="10" />
+      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" Line="69" Column="28" />
+      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\GenericTraitsScript.cs" Line="15" Column="2" />
+      <File FileName="Assets\Scripts\MissionMenuScripts\TraitSpriteControl.cs" Line="13" Column="30" />
+      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\IndividualTraitScipt.cs" Line="18" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -11,6 +11,7 @@ public class GenericTraitsScript {
 	protected float movementModifier = 1.0f; //not affected
 	protected float rangeModifier = 1.0f; //not affected
 	protected float numberOfAttacksModifier = 1;
+	protected int positionInSpriteUIList = 0;
 
 	public virtual void InitializeValues() {
 		name = "temp";

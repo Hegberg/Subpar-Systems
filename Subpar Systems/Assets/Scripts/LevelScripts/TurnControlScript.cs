@@ -280,6 +280,9 @@ public class TurnControlScript : MonoBehaviour {
         List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
         if (playerSelected != null)
         {
+			//remove current player traits that are showing
+			playerSelected.GetComponent<GenericCharacterScript> ().UnShowTraits ();
+
             UnHighlightPlayerTile();
 			//unhighlight floodfill tiles
 			for (int i = 0; i < allValidTile.Count; ++i) {

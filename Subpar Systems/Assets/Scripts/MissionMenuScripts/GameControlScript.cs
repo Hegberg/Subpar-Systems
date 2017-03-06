@@ -78,8 +78,6 @@ public class GameControlScript : MonoBehaviour {
 	private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript> { };
 	private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript> { };
 
-
-
     // Use this for initialization
     void Start () {
 		if (control == null)
@@ -490,4 +488,5 @@ public class GameControlScript : MonoBehaviour {
 	public List<string> GetDeadCharacters(){
 		return deadCharacterList;
 	}
+
 }

@@ -52,6 +52,7 @@ public class GenericCharacterScript : MonoBehaviour {
         Vector2 targetPos;
         targetPos = Camera.main.WorldToScreenPoint(transform.position);
         GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20), hp + "/" + 100);
+
     }
 
     public virtual void OnMouseOver()
@@ -60,9 +61,18 @@ public class GenericCharacterScript : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn() && (!hasMoved || attacksLeft > 0))
         {
             TurnControlScript.control.SetPlayerSelected(this.gameObject);
-			DebugShowTraits();
+			ShowTraits ();
+			//DebugShowTraits();
         }
     }
+
+	public void ShowTraits() {
+		TraitSpriteControl.control.ShowTraits (currentTraits);
+	}
+
+	public void UnShowTraits() {
+		TraitSpriteControl.control.UnShowTraits ();
+	}
 
 	public float GetAttack()
 	{
