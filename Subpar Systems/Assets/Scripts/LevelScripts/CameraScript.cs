@@ -15,9 +15,14 @@ public class CameraScript : MonoBehaviour {
     private float dragSpeed = 2;
     private Vector3 dragOrigin;
 
+	private float dist;
+	private Vector3 v3OrgMouse;
+
     //http://tinypixel-studios.com/log-2-pixel-perfect-tutorial-for-unity-5
     void Awake()
     {
+		dist = transform.position.y;  // Distance camera is above map
+
         //modificatoreSchermo = 1f;
         float ResolutionHeight = Screen.height;
         int currentPixelsToUnits = 16;
@@ -70,92 +75,58 @@ public class CameraScript : MonoBehaviour {
 
     private void CameraDrag()
     {
-        Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+		//when mouse pressed
+		if (Input.GetMouseButtonDown (1)) {
+			v3OrgMouse = new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist);
+			v3OrgMouse = Camera.main.ScreenToWorldPoint (v3OrgMouse);
+		} 
+		//when dragging
+		else if (Input.GetMouseButton (1)) {
+			//getting distance moved
+			var v3Pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist);
+			v3Pos = Camera.main.ScreenToWorldPoint (v3Pos);
+			Vector3 checkVector = transform.position -(v3Pos - v3OrgMouse);
+			//set temp and make it have no y effect
+			Vector3 tempVector = v3Pos;
+			tempVector.y = transform.position.y;
+			//variable to do move calculation
+			Vector3 affectedXVector = transform.position;
+			Vector3 affectedYVector = transform.position;
+			Vector3 affectedVector = new Vector3 ();
 
-        float left = Screen.width * 0.2f;
-        float right = Screen.width - (Screen.width * 0.2f);
+			//going right
+			if (transform.position.x < checkVector.x && 
+				transform.position.x < LevelControlScript.control.GetCameraMaxX ()) {
+				affectedXVector -= (tempVector - v3OrgMouse);
+			}
 
-        if (mousePosition.x < left)
-        {
-            cameraDragging = true;
-        }
-        else if (mousePosition.x > right)
-        {
-            cameraDragging = true;
-        }
+			//going left
+			else if (transform.position.x > checkVector.x && 
+				transform.position.x > LevelControlScript.control.GetCameraMinX ()) {
+				affectedXVector -= (tempVector - v3OrgMouse);
+			}
 
-        if (cameraDragging)
-        {
+			//reset temp and make it have no x effect
+			tempVector = v3Pos;
+			tempVector.x = transform.position.x;
 
-            if (Input.GetMouseButtonDown(1))
-            {
-                dragOrigin = Input.mousePosition;
-                return;
-            }
+			//going up
+			if (transform.position.y < checkVector.y && 
+				transform.position.y < LevelControlScript.control.GetCameraMaxY ()) {
+				affectedYVector -= (tempVector - v3OrgMouse);
+			}
 
-            if (!Input.GetMouseButton(1)) return;
+			//going down
+			else if (transform.position.y > checkVector.y && 
+				transform.position.y > LevelControlScript.control.GetCameraMinY ()) {
+				affectedYVector -= (tempVector - v3OrgMouse);
+			}
 
-            Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-            Vector3 move = new Vector3(-(pos.x * dragSpeed), 0, 0);
+			affectedVector.x = affectedXVector.x;
+			affectedVector.y = affectedYVector.y;
+			affectedVector.z = transform.position.z;
 
-            if (move.x > 0f)
-            {
-                if (this.transform.position.x < LevelControlScript.control.GetCameraMaxX() )
-                {
-                    transform.Translate(move, Space.World);
-                }
-            }
-            else
-            {
-                if (this.transform.position.x > LevelControlScript.control.GetCameraMinX() )
-                {
-                    transform.Translate(move, Space.World);
-                }
-            }
-        }
-
-        float top = Screen.height * 0.2f;
-        float bottom = Screen.height - (Screen.height * 0.2f);
-
-        if (mousePosition.x < top)
-        {
-            cameraDraggingUpDown = true;
-        }
-        else if (mousePosition.x > bottom)
-        {
-            cameraDraggingUpDown = true;
-        }
-
-        if (cameraDraggingUpDown)
-        {
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                dragOrigin = Input.mousePosition;
-                return;
-            }
-
-            if (!Input.GetMouseButton(1)) return;
-
-            Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-            Vector3 move = new Vector3(0, -(pos.y * dragSpeed), 0);
-
-            if (move.y > 0f)
-            {
-                if (this.transform.position.y < LevelControlScript.control.GetCameraMaxY() )
-                {
-                    transform.Translate(move, Space.World);
-                }
-            }
-            
-            else
-            {
-                if (this.transform.position.y > LevelControlScript.control.GetCameraMinY() )
-                {
-                    transform.Translate(move, Space.World);
-                }
-            }
-            
-        }
+			transform.position = affectedVector;
+		}
     }
 }
