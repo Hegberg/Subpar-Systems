@@ -11,6 +11,7 @@ public class GenericTraitsScript {
 	protected float movementModifier = 1.0f; //not affected
 	protected float rangeModifier = 1.0f; //not affected
 	protected float numberOfAttacksModifier = 1;
+	protected int positionInSpriteUIList = 0;
 
 	public virtual void InitializeValues() {
 		name = "temp";
@@ -55,6 +56,9 @@ public class GenericTraitsScript {
         return name;
     }
 		
+	public virtual int GetPositionInSpriteControlList(){
+		return positionInSpriteUIList;
+	}
 }
 
 public class AggressionTrait : GenericTraitsScript {
@@ -87,6 +91,7 @@ public class MachineGunTrait : GenericTraitsScript {
 	public override void InitializeValues() {
 		name = "Machine Gun";
 		numberOfAttacksModifier = 2;
+		positionInSpriteUIList = 0;
 	}
 }
 
@@ -95,6 +100,7 @@ public class BrutalEfficiencyTrait : GenericTraitsScript {
 	{
 		name = "Brutal Efficiency";
 		defenseModifier = 0.5f;
+		positionInSpriteUIList = 1;
 	}
 }
 
@@ -102,6 +108,7 @@ public class BacklineCommanderTrait : GenericTraitsScript {
 	public override void InitializeValues ()
 	{
 		name = "Backline Commander";
+		positionInSpriteUIList = 2;
 	}
 
 	public override bool StopFromDieing ()
@@ -123,6 +130,7 @@ public class F27GoodWithF25Trait : GenericTraitsScript {
 				break;
 			}
 		}
+		positionInSpriteUIList = 3;
 	}
 }
 
@@ -138,6 +146,7 @@ public class F27BadWithM40Trait : GenericTraitsScript {
 				break;
 			}
 		}
+		positionInSpriteUIList = 4;
 	}
 }
 
@@ -153,6 +162,7 @@ public class F32GoodWithM41Trait : GenericTraitsScript {
 				break;
 			}
 		}
+		positionInSpriteUIList = 5;
 	}
 }
 
@@ -168,6 +178,7 @@ public class M31GoodWithM29Trait : GenericTraitsScript {
 				break;
 			}
 		}
+		positionInSpriteUIList = 6;
 	}
 }
 
@@ -183,6 +194,7 @@ public class M31MarriedToF32Trait : GenericTraitsScript {
 				break;
 			}
 		}
+		positionInSpriteUIList = 7;
 	}
 }
 
@@ -198,6 +210,7 @@ public class M31FriendM29DeadTrait : GenericTraitsScript {
 				break;
 			}
 		}
+		positionInSpriteUIList = 8;
 	}
 }
 
@@ -213,6 +226,7 @@ public class M31WifeF32DeadTrait : GenericTraitsScript {
 				break;
 			}
 		}
+		positionInSpriteUIList = 9;
 	}
 }
 
@@ -221,7 +235,7 @@ public class AdrenalineJunky : GenericTraitsScript {
 	public override void InitializeValues ()
 	{
 		name = "Adrenaline Junky";
-
+		positionInSpriteUIList = 10;
 	}
 }
 
@@ -230,6 +244,7 @@ public class RiflemanTrait : GenericTraitsScript
     public override void InitializeValues()
     {
         name = "Rifleman";
+		positionInSpriteUIList = 11;
     }
 }
 
@@ -238,6 +253,7 @@ public class GrenedierTrait : GenericTraitsScript
     public override void InitializeValues()
     {
         name = "Grenedier";
+		positionInSpriteUIList = 12;
     }
 }
 
@@ -246,5 +262,6 @@ public class AssaultTrait : GenericTraitsScript
     public override void InitializeValues()
     {
         name = "Assault";
+		positionInSpriteUIList = 13;
     }
 }

@@ -10,9 +10,19 @@ public class CameraScript : MonoBehaviour {
 	private Vector3 level2Spawn = new Vector3(8,14,0);
 	private Vector3 level3Spawn = new Vector3(4,18,0);
 
+    private bool cameraDragging = true;
+    private bool cameraDraggingUpDown = true;
+    private float dragSpeed = 2;
+    private Vector3 dragOrigin;
+
+	private float dist;
+	private Vector3 v3OrgMouse;
+
     //http://tinypixel-studios.com/log-2-pixel-perfect-tutorial-for-unity-5
     void Awake()
     {
+		dist = transform.position.y;  // Distance camera is above map
+
         //modificatoreSchermo = 1f;
         float ResolutionHeight = Screen.height;
         int currentPixelsToUnits = 16;
@@ -36,6 +46,7 @@ public class CameraScript : MonoBehaviour {
     void Update()
     {
         CameraMove();
+        CameraDrag();
     }
 
     private void CameraMove()
@@ -60,5 +71,62 @@ public class CameraScript : MonoBehaviour {
         {
             Camera.main.transform.localPosition += new Vector3(0, -cameraMoveSpeed, 0);
         }
+    }
+
+    private void CameraDrag()
+    {
+		//when mouse pressed
+		if (Input.GetMouseButtonDown (1)) {
+			v3OrgMouse = new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist);
+			v3OrgMouse = Camera.main.ScreenToWorldPoint (v3OrgMouse);
+		} 
+		//when dragging
+		else if (Input.GetMouseButton (1)) {
+			//getting distance moved
+			var v3Pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist);
+			v3Pos = Camera.main.ScreenToWorldPoint (v3Pos);
+			Vector3 checkVector = transform.position -(v3Pos - v3OrgMouse);
+			//set temp and make it have no y effect
+			Vector3 tempVector = v3Pos;
+			tempVector.y = transform.position.y;
+			//variable to do move calculation
+			Vector3 affectedXVector = transform.position;
+			Vector3 affectedYVector = transform.position;
+			Vector3 affectedVector = new Vector3 ();
+
+			//going right
+			if (transform.position.x < checkVector.x && 
+				transform.position.x < LevelControlScript.control.GetCameraMaxX ()) {
+				affectedXVector -= (tempVector - v3OrgMouse);
+			}
+
+			//going left
+			else if (transform.position.x > checkVector.x && 
+				transform.position.x > LevelControlScript.control.GetCameraMinX ()) {
+				affectedXVector -= (tempVector - v3OrgMouse);
+			}
+
+			//reset temp and make it have no x effect
+			tempVector = v3Pos;
+			tempVector.x = transform.position.x;
+
+			//going up
+			if (transform.position.y < checkVector.y && 
+				transform.position.y < LevelControlScript.control.GetCameraMaxY ()) {
+				affectedYVector -= (tempVector - v3OrgMouse);
+			}
+
+			//going down
+			else if (transform.position.y > checkVector.y && 
+				transform.position.y > LevelControlScript.control.GetCameraMinY ()) {
+				affectedYVector -= (tempVector - v3OrgMouse);
+			}
+
+			affectedVector.x = affectedXVector.x;
+			affectedVector.y = affectedYVector.y;
+			affectedVector.z = transform.position.z;
+
+			transform.position = affectedVector;
+		}
     }
 }

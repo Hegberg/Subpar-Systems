@@ -75,14 +75,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\DebriefingScripts\DebriefingScript.cs" />
+    <Compile Include="Assets\Scripts\DebriefingScripts\HubButtonScript.cs" />
+    <Compile Include="Assets\Scripts\HubScripts\HubConvo.cs" />
+    <Compile Include="Assets\Scripts\HubScripts\MissionBrief.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\AStarScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\GenericTraitsScript.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\IndividualTraitScipt.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character1Script.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character2Script.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character3Script.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character4Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\TraitBackgroudScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemyParentScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Enemies\GenericEnemyScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\LevelControlScript.cs" />
@@ -97,15 +103,17 @@
     <Compile Include="Assets\Scripts\LevelScripts\TileScripts\TileScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TurnControlScript.cs" />
     <Compile Include="Assets\Scripts\MainMenuScripts\ExitButtonScript.cs" />
+    <Compile Include="Assets\Scripts\MainMenuScripts\MainMenuButtonScript.cs" />
     <Compile Include="Assets\Scripts\MainMenuScripts\StartButtonScript.cs" />
-    <Compile Include="Assets\Scripts\MissionMenuScripts\CharacterSelectScript.cs" />
-    <Compile Include="Assets\Scripts\MissionMenuScripts\CharacterSelectionForSlot.cs" />
+    <Compile Include="Assets\Scripts\MissionMenuScripts\Character Selection Stuff\CharacterSelectScript.cs" />
+    <Compile Include="Assets\Scripts\MissionMenuScripts\Character Selection Stuff\CharacterSelectionForSlot.cs" />
+    <Compile Include="Assets\Scripts\MissionMenuScripts\Character Selection Stuff\charselect.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\ReturntoMainMenuScript.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\SideMissionScripts\SideMissionScript.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\StartMissionScript.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\TitleText.cs" />
-    <Compile Include="Assets\Scripts\MissionMenuScripts\charselect.cs" />
+    <Compile Include="Assets\Scripts\MissionMenuScripts\TraitSpriteControl.cs" />
     <Compile Include="Assets\Sounds\Music\Royalty Free Music\Credits.cs" />
   </ItemGroup>
   <ItemGroup>
