@@ -9,33 +9,33 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1149400648220088}
+  m_RootGameObject: {fileID: 1083499560932340}
   m_IsPrefabParent: 1
---- !u!1 &1149400648220088
+--- !u!1 &1083499560932340
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 224754469280326022}
-  - component: {fileID: 212719801392598254}
-  - component: {fileID: 61532133124777406}
-  - component: {fileID: 114164828064391770}
-  - component: {fileID: 114288039101840586}
+  - component: {fileID: 224721456958939102}
+  - component: {fileID: 212759498928867798}
+  - component: {fileID: 61669062853930610}
+  - component: {fileID: 114785047522703280}
+  - component: {fileID: 114873997510616856}
   m_Layer: 5
-  m_Name: testUISprite
+  m_Name: Rifleman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &61532133124777406
+--- !u!61 &61669062853930610
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1149400648220088}
+  m_GameObject: {fileID: 1083499560932340}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -44,34 +44,34 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
---- !u!114 &114164828064391770
+--- !u!114 &114785047522703280
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1149400648220088}
+  m_GameObject: {fileID: 1083499560932340}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114288039101840586
+--- !u!114 &114873997510616856
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1149400648220088}
+  m_GameObject: {fileID: 1083499560932340}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -146154839, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &212719801392598254
+--- !u!212 &212759498928867798
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1149400648220088}
+  m_GameObject: {fileID: 1083499560932340}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -97,16 +97,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 266b350fc8cc75a48b1d6e8d80a2d5e2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ee2a4bc066a4048488bc0f1c765bcb91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!224 &224754469280326022
+--- !u!224 &224721456958939102
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1149400648220088}
+  m_GameObject: {fileID: 1083499560932340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 250, y: 250, z: 1}

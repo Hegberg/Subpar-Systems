@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character2Script.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character3Script.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character4Script.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\TraitBackgroudScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemyParentScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\GenericEnemyScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\LevelControlScript.cs" />

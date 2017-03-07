@@ -9,6 +9,20 @@ public class TraitSpriteControl : MonoBehaviour {
 
 	public Transform testUISprite;
 	public Transform traitBackgroundUI;
+	public Transform machineGun;
+	public Transform backLineCommander;
+	public Transform assault;
+	public Transform grenedier;
+	public Transform rifleman;
+	public Transform adrenalineJunky;
+	public Transform m31WifeF32Dead;
+	public Transform m31FriendM29Dead;
+	public Transform m31MarriedToF32;
+	public Transform m31GoodWithM29;
+	public Transform f32GoodWithM41;
+	public Transform f27BadWithM40;
+	public Transform f27GoodWithF25;
+	public Transform brutalEfficiency;
 
 	private int traitsPerRow = 3;
 	private int denominatorOfFractionOfExtraSpace = 4;
@@ -49,6 +63,7 @@ public class TraitSpriteControl : MonoBehaviour {
 		traitRectBackground.anchorMin = anchorMin;
 		traitRectBackground.anchorMax = anchorMax;
 		traitBackground.SetParent (traitUIParent, false);
+
 		//create each trait
 		for (int i = 0; i < traitList.Count; ++i) {
 			
@@ -57,10 +72,6 @@ public class TraitSpriteControl : MonoBehaviour {
 			traitVector.y = ((i / traitsPerRow) * 
 				(-testUISprite.GetComponent<Renderer>().bounds.size.y - (testUISprite.GetComponent<Renderer>().bounds.size.y/denominatorOfFractionOfExtraSpace)));
 			traitVector.y -= traitBackgroundUI.GetComponent<Renderer> ().bounds.size.y / 2;
-			/*
-			traitVector.x = 0 + (i * 10);
-			traitVector.y = 0 + ((i/4) * 10);
-			*/
 			traitVector.z = 0;
 			Transform trait = (Transform)Instantiate(testUISprite, traitVector, Quaternion.identity);
 			RectTransform traitRect = trait.GetComponent<RectTransform> ();

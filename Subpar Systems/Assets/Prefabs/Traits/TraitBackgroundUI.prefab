@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 224340682570559032}
   - component: {fileID: 212946091023723648}
   - component: {fileID: 61368633988573998}
-  - component: {fileID: 114165286918600434}
   - component: {fileID: 114523958718259932}
+  - component: {fileID: 114606279729539270}
   m_Layer: 5
   m_Name: TraitBackgroundUI
   m_TagString: Untagged
@@ -44,17 +44,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
---- !u!114 &114165286918600434
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1035570554510036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114523958718259932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -64,6 +53,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -146154839, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114606279729539270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035570554510036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fddd7ce9e4250ea4abdcbb9534b0e7ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212946091023723648
@@ -109,7 +109,7 @@ RectTransform:
   m_GameObject: {fileID: 1035570554510036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1000, y: 1000, z: 1}
+  m_LocalScale: {x: 500, y: 500, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
