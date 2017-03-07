@@ -9,6 +9,7 @@ public class TraitSpriteControl : MonoBehaviour {
 
 	public Transform testUISprite;
 	public Transform traitBackgroundUI;
+
 	public Transform machineGun;
 	public Transform backLineCommander;
 	public Transform assault;
@@ -23,6 +24,8 @@ public class TraitSpriteControl : MonoBehaviour {
 	public Transform f27BadWithM40;
 	public Transform f27GoodWithF25;
 	public Transform brutalEfficiency;
+
+	public List<Transform> TraitsInOrderOfCreatedClass;
 
 	private int traitsPerRow = 3;
 	private int denominatorOfFractionOfExtraSpace = 4;
@@ -40,6 +43,23 @@ public class TraitSpriteControl : MonoBehaviour {
 			DontDestroyOnLoad(this.gameObject);
 
 			traitUIParent = this.gameObject.transform;
+
+			TraitsInOrderOfCreatedClass.Add (machineGun);
+			TraitsInOrderOfCreatedClass.Add (brutalEfficiency);
+			TraitsInOrderOfCreatedClass.Add (backLineCommander);
+			TraitsInOrderOfCreatedClass.Add (f27GoodWithF25);
+			TraitsInOrderOfCreatedClass.Add (f27BadWithM40);
+			TraitsInOrderOfCreatedClass.Add (f32GoodWithM41);
+			TraitsInOrderOfCreatedClass.Add (m31GoodWithM29);
+			TraitsInOrderOfCreatedClass.Add (m31MarriedToF32);
+			TraitsInOrderOfCreatedClass.Add (m31FriendM29Dead);
+			TraitsInOrderOfCreatedClass.Add (m31WifeF32Dead);
+			TraitsInOrderOfCreatedClass.Add (adrenalineJunky);
+			TraitsInOrderOfCreatedClass.Add (rifleman);
+			TraitsInOrderOfCreatedClass.Add (grenedier);
+			TraitsInOrderOfCreatedClass.Add (assault);
+
+			Debug.Log (TraitsInOrderOfCreatedClass.Count);
 		}
 		else
 		{
@@ -64,16 +84,18 @@ public class TraitSpriteControl : MonoBehaviour {
 		traitRectBackground.anchorMax = anchorMax;
 		traitBackground.SetParent (traitUIParent, false);
 
+		Debug.Log (TraitsInOrderOfCreatedClass.Count);
+
 		//create each trait
 		for (int i = 0; i < traitList.Count; ++i) {
-			
+			int tempPos = traitList [i].GetPositionInSpriteControlList ();
 			traitVector.x = (((i % traitsPerRow) + 0.5f) * 
-				(testUISprite.GetComponent<Renderer>().bounds.size.x + (testUISprite.GetComponent<Renderer>().bounds.size.x/denominatorOfFractionOfExtraSpace)));
+				(TraitsInOrderOfCreatedClass[tempPos].GetComponent<Renderer>().bounds.size.x + (TraitsInOrderOfCreatedClass[tempPos].GetComponent<Renderer>().bounds.size.x/denominatorOfFractionOfExtraSpace)));
 			traitVector.y = ((i / traitsPerRow) * 
-				(-testUISprite.GetComponent<Renderer>().bounds.size.y - (testUISprite.GetComponent<Renderer>().bounds.size.y/denominatorOfFractionOfExtraSpace)));
+				(-TraitsInOrderOfCreatedClass[tempPos].GetComponent<Renderer>().bounds.size.y - (TraitsInOrderOfCreatedClass[tempPos].GetComponent<Renderer>().bounds.size.y/denominatorOfFractionOfExtraSpace)));
 			traitVector.y -= traitBackgroundUI.GetComponent<Renderer> ().bounds.size.y / 2;
 			traitVector.z = 0;
-			Transform trait = (Transform)Instantiate(testUISprite, traitVector, Quaternion.identity);
+			Transform trait = (Transform)Instantiate(TraitsInOrderOfCreatedClass[tempPos], traitVector, Quaternion.identity);
 			RectTransform traitRect = trait.GetComponent<RectTransform> ();
 			traitRect.anchorMin = anchorMin;
 			traitRect.anchorMax = anchorMax;

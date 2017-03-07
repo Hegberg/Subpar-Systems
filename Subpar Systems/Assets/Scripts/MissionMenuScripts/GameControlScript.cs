@@ -131,14 +131,14 @@ public class GameControlScript : MonoBehaviour {
     }
 
 	public void Load() {
-		Debug.Log (deadCharacterList.Count);
+		//Debug.Log (deadCharacterList.Count);
 		LoadDeadCharacters ();
 		LoadCharacterTraits ();
 		LoadCurrentLevel ();
 	}
 
 	public void Save() {
-		Debug.Log (deadCharacterList.Count);
+		//Debug.Log (deadCharacterList.Count);
 		SaveDeadCharacters ();
 		SaveCharacterTraits ();
 		SaveCurrentLevel ();
@@ -360,7 +360,7 @@ public class GameControlScript : MonoBehaviour {
 		else if (!sideMissionChosen[selected] && selectedCharacters == maxCharacters)
 		{
 			//replace with proper in game warning
-			Debug.Log("Have max side already");
+			//Debug.Log("Have max side already");
 		}
 		//unselecting character
 		else if (sideMissionChosen[selected])
