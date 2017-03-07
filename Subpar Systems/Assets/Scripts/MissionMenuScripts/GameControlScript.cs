@@ -422,7 +422,7 @@ public class GameControlScript : MonoBehaviour {
         characterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
-		SceneManager.LoadScene ("MissionMenu");
+        SceneManager.LoadScene("Debriefing");
         //Debug.Log (currentLevel);
     }
 
@@ -432,7 +432,7 @@ public class GameControlScript : MonoBehaviour {
         characterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
-		SceneManager.LoadScene ("MissionMenu");
+		SceneManager.LoadScene ("Game Over");
     }
 
     public void ClearChosenCharacters()
