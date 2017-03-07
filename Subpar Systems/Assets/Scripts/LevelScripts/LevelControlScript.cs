@@ -158,7 +158,6 @@ public class LevelControlScript : MonoBehaviour {
                         character.gameObject.GetComponent<GenericCharacterScript>().SetTileOccuping(tile.gameObject);
                         tile.gameObject.GetComponent<GenericEarthScript>().SetOccupingObject(character.gameObject);
                         character.SetParent(characterParent);
-						playersAlive += 1;
                         characterSpawning += 1;
                         GameControlScript.control.AddCharacterToInGameList(character.gameObject);
                         break;
@@ -313,14 +312,10 @@ public class LevelControlScript : MonoBehaviour {
     }
 		
 	public void PlayerDied (){
-		playersAlive -= 1;
+		playersAlive = GameControlScript.control.GetInGameCharacterList().Count;
 		if (playersAlive <= 0) {
 			TurnControlScript.control.LevelFailed ();
 		}
-	}
-
-	public void PlayerSpawned() {
-		playersAlive += 1;
 	}
 		
 }

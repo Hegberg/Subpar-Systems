@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class IndividualTraitScipt : MonoBehaviour {
 
+	public GenericTraitsScript infoTrait;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,5 +18,15 @@ public class IndividualTraitScipt : MonoBehaviour {
 
 	public void DestroyItem() {
 		Destroy (this.gameObject);
+	}
+
+	public void OnMouseOver(){
+		if (infoTrait != null) {
+			Debug.Log (infoTrait.GetName ());
+		}
+	}
+
+	public void SetInfoTrait(GenericTraitsScript info){
+		infoTrait = info;
 	}
 }

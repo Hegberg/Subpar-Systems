@@ -203,8 +203,9 @@ public class GenericCharacterScript : MonoBehaviour {
 			hp = 1;
 		}
 		if (hp <= 0) {
-			LevelControlScript.control.PlayerDied ();
             GameControlScript.control.CharacterDied(this.gameObject);
+			//this after gamecontrol call since levelControl call relies on game control count
+			LevelControlScript.control.PlayerDied ();
             Destroy(this.gameObject);
         }
     }

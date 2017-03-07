@@ -59,7 +59,7 @@ public class TraitSpriteControl : MonoBehaviour {
 			TraitsInOrderOfCreatedClass.Add (grenedier);
 			TraitsInOrderOfCreatedClass.Add (assault);
 
-			Debug.Log (TraitsInOrderOfCreatedClass.Count);
+			//Debug.Log (TraitsInOrderOfCreatedClass.Count);
 		}
 		else
 		{
@@ -84,7 +84,7 @@ public class TraitSpriteControl : MonoBehaviour {
 		traitRectBackground.anchorMax = anchorMax;
 		traitBackground.SetParent (traitUIParent, false);
 
-		Debug.Log (TraitsInOrderOfCreatedClass.Count);
+		//Debug.Log (TraitsInOrderOfCreatedClass.Count);
 
 		//create each trait
 		for (int i = 0; i < traitList.Count; ++i) {
@@ -96,6 +96,7 @@ public class TraitSpriteControl : MonoBehaviour {
 			traitVector.y -= traitBackgroundUI.GetComponent<Renderer> ().bounds.size.y / 2;
 			traitVector.z = 0;
 			Transform trait = (Transform)Instantiate(TraitsInOrderOfCreatedClass[tempPos], traitVector, Quaternion.identity);
+			trait.gameObject.GetComponent<IndividualTraitScipt> ().SetInfoTrait (traitList [i]);
 			RectTransform traitRect = trait.GetComponent<RectTransform> ();
 			traitRect.anchorMin = anchorMin;
 			traitRect.anchorMax = anchorMax;

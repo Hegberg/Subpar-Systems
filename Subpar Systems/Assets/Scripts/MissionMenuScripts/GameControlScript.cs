@@ -483,6 +483,7 @@ public class GameControlScript : MonoBehaviour {
 		deadCharacterList.Add(character.GetComponent<GenericCharacterScript>().GetName());
         RemoveCharacterFromInGameList(character);
         SaveDeadCharacters();
+		//FailedLevel ();
     }
 
 	public List<string> GetDeadCharacters(){

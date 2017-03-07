@@ -46,6 +46,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\DebriefingScripts\DebriefingScript.cs" />
+     <Compile Include="Assets\Scripts\DebriefingScripts\HubButtonScript.cs" />
      <Compile Include="Assets\Scripts\HubScripts\HubConvo.cs" />
      <Compile Include="Assets\Scripts\HubScripts\MissionBrief.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\AStarScript.cs" />
@@ -72,6 +74,7 @@
      <Compile Include="Assets\Scripts\LevelScripts\TileScripts\TileScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\TurnControlScript.cs" />
      <Compile Include="Assets\Scripts\MainMenuScripts\ExitButtonScript.cs" />
+     <Compile Include="Assets\Scripts\MainMenuScripts\MainMenuButtonScript.cs" />
      <Compile Include="Assets\Scripts\MainMenuScripts\StartButtonScript.cs" />
      <Compile Include="Assets\Scripts\MissionMenuScripts\Character Selection Stuff\CharacterSelectScript.cs" />
      <Compile Include="Assets\Scripts\MissionMenuScripts\Character Selection Stuff\CharacterSelectionForSlot.cs" />
