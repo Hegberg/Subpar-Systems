@@ -19,6 +19,6 @@ public class StartButtonScript : MonoBehaviour {
 
     private void OnMouseOver()
     {
-            SceneManager.LoadScene("MissionMenu");
+            SceneManager.LoadScene("HubArea");
     }
 }

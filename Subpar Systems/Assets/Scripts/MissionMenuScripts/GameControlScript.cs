@@ -78,8 +78,6 @@ public class GameControlScript : MonoBehaviour {
 	private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript> { };
 	private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript> { };
 
-
-
     // Use this for initialization
     void Start () {
 		if (control == null)
@@ -133,14 +131,14 @@ public class GameControlScript : MonoBehaviour {
     }
 
 	public void Load() {
-		Debug.Log (deadCharacterList.Count);
+		//Debug.Log (deadCharacterList.Count);
 		LoadDeadCharacters ();
 		LoadCharacterTraits ();
 		LoadCurrentLevel ();
 	}
 
 	public void Save() {
-		Debug.Log (deadCharacterList.Count);
+		//Debug.Log (deadCharacterList.Count);
 		SaveDeadCharacters ();
 		SaveCharacterTraits ();
 		SaveCurrentLevel ();
@@ -362,7 +360,7 @@ public class GameControlScript : MonoBehaviour {
 		else if (!sideMissionChosen[selected] && selectedCharacters == maxCharacters)
 		{
 			//replace with proper in game warning
-			Debug.Log("Have max side already");
+			//Debug.Log("Have max side already");
 		}
 		//unselecting character
 		else if (sideMissionChosen[selected])
@@ -424,7 +422,7 @@ public class GameControlScript : MonoBehaviour {
         characterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
-		SceneManager.LoadScene ("MissionMenu");
+        SceneManager.LoadScene("Debriefing");
         //Debug.Log (currentLevel);
     }
 
@@ -434,20 +432,19 @@ public class GameControlScript : MonoBehaviour {
         characterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
-		SceneManager.LoadScene ("MissionMenu");
+		SceneManager.LoadScene ("Game Over");
     }
 
     public void ClearChosenCharacters()
     {
-        chosen.Clear();
-		sideMissionChosen.Clear ();
         for (int i = 0; i < characters.Count; ++i)
         {
-            chosen.Add(false);
+            chosen[i] = false;
+            sideMissionChosen[i] = false;
+            team[i] = false;
         }
         selectedCharacters = 0;
 		selectedSideMissionCharacters = 0;
-		team.Clear();
     }
 
     public List<GameObject> GetInGameCharacterList()
@@ -486,9 +483,11 @@ public class GameControlScript : MonoBehaviour {
 		deadCharacterList.Add(character.GetComponent<GenericCharacterScript>().GetName());
         RemoveCharacterFromInGameList(character);
         SaveDeadCharacters();
+		//FailedLevel ();
     }
 
 	public List<string> GetDeadCharacters(){
 		return deadCharacterList;
 	}
+
 }

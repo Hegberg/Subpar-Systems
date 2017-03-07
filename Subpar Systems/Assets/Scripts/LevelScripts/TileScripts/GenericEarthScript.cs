@@ -41,11 +41,11 @@ public class GenericEarthScript : TileScript {
 				tilePosition [0],
 				tilePosition [1]
 			);
-
+			Debug.Log ("=====Testing AStar=====");
 			for (int k = 0; k < testAStarPath.Count; ++k) {
 				Debug.Log ("testAStarPath Results at " + k + " " + testAStarPath[k][0] + "," + testAStarPath[k][1]);
 			}
-
+			Debug.Log ("=====End Testing AStar=====");
 			for (int i = 0; i < allValidTile.Count; ++i) {
 				if (allValidTile [i] [0] == tilePosition [0] && allValidTile [i] [1] == tilePosition [1] 
 					&& TurnControlScript.control.GetPlayerSelected() != null) 

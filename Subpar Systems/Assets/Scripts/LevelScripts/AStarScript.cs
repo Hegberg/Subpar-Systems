@@ -273,11 +273,11 @@ public class AStarScript : MonoBehaviour {
 					{
 						//Debug.Log("Current node gRow and gIndex that we can reach: " + gRow + " " + gIndex);
 						if (CheckIfFriendly (map[gRow][gIndex], isEnemy)) {
-							Debug.Log("Current node gRow and gIndex that got skipped: " + gRow + " " + gIndex);
+							//Debug.Log("Current node gRow and gIndex that got skipped: " + gRow + " " + gIndex);
 							continue;
 
 						} else {
-							Debug.Log("Current node gRow and gIndex that passed: " + gRow + " " + gIndex);
+							//Debug.Log("Current node gRow and gIndex that passed: " + gRow + " " + gIndex);
 						}
 
 						//Add the new neighbor
@@ -294,8 +294,8 @@ public class AStarScript : MonoBehaviour {
 						int tentativeGScore = gScore[currentNode] + ReturnCostTile(currentNodeRow, currentNodeIndex, mapCost);
 
 						//============TESTED TO THIS POINT 8.0 WORKS=====================//
-						Debug.Log("Tested at 8.0");
-						Debug.Log ("NeighborNode Row and Index: " + neighborNode[0] + "," + neighborNode[1]);
+						//Debug.Log("Tested at 8.0");
+						//Debug.Log ("NeighborNode Row and Index: " + neighborNode[0] + "," + neighborNode[1]);
 						//Debug.Log ("TentativeGScore: " + tentativeGScore);
 						//return null;
 

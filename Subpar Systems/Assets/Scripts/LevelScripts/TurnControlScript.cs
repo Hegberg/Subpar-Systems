@@ -117,32 +117,6 @@ public class TurnControlScript : MonoBehaviour {
         }
     }
 
-	/*
-	private void UnHIghlightEnenmyHelper(){
-		allValidTile = AStarScript.control.FloodFillWithinRange (LevelControlScript.control.GetAStarMap (), 
-			LevelControlScript.control.GetAStarMapCost (),
-			GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
-			GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
-			GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetMovement ());
-
-		List<List<GameObject>> map = LevelControlScript.control.GetAStarMap();
-
-		for (int i = 0; i < allValidTile.Count; ++i)
-		{
-			//Debug.Log (allValidTile [i] [0] + " " + allValidTile [i] [1]);
-
-			if (enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0] == allValidTile[i][0] &&
-				enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1] == allValidTile[i][1])
-			{
-				enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
-				material.color = movementHighlight;
-				moveableTile = true;
-				break;
-			}
-		}
-	}
-	*/
-
 	public void UnHighlightEnemyTile()
     {
 		if (enemySelected != null) {
@@ -280,6 +254,9 @@ public class TurnControlScript : MonoBehaviour {
         List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
         if (playerSelected != null)
         {
+			//remove current player traits that are showing
+			playerSelected.GetComponent<GenericCharacterScript> ().UnShowTraits ();
+
             UnHighlightPlayerTile();
 			//unhighlight floodfill tiles
 			for (int i = 0; i < allValidTile.Count; ++i) {
