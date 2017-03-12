@@ -32,10 +32,25 @@ public class GenericEarthScript : TileScript {
 			List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
 			allValidTile = TurnControlScript.control.GetAllValidMovementTiles ();
 
+			List<List<int>> testAStarPath = new List<List<int>>();
+
+			testAStarPath = AStarScript.control.findShitestPath (LevelControlScript.control.GetAStarMap (),
+				LevelControlScript.control.GetAStarMapCost (),
+				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
+				TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
+				tilePosition [0],
+				tilePosition [1]
+			);
+			Debug.Log ("=====Testing AStar=====");
+			for (int k = 0; k < testAStarPath.Count; ++k) {
+				Debug.Log ("testAStarPath Results at " + k + " " + testAStarPath[k][0] + "," + testAStarPath[k][1]);
+			}
+			Debug.Log ("=====End Testing AStar=====");
 			for (int i = 0; i < allValidTile.Count; ++i) {
 				if (allValidTile [i] [0] == tilePosition [0] && allValidTile [i] [1] == tilePosition [1] 
 					&& TurnControlScript.control.GetPlayerSelected() != null) 
 				{
+
 					GameObject player = TurnControlScript.control.GetPlayerSelected();
 					//Debug.Log("null: " + (TurnControlScript.control.GetPlayerSelected() == null));
 
@@ -46,6 +61,7 @@ public class GenericEarthScript : TileScript {
 					break;
                 }
 			}
+				
 
 			//When the player clicks somewhere outside the allValidTile, NULL THE FUCKER
 
