@@ -5,10 +5,17 @@ using UnityEngine.UI;
 
 public class TitleText : MonoBehaviour {
     Text mission;
-	// Use this for initialization
-	void Start () { //will be changed after prototype to grab right info
+    int missonlevel = 0;
+    // Use this for initialization
+    void Start () { //will be changed after prototype to grab right info
         mission = GetComponent<Text>();
-        mission.text = "Search and Destroy";
+        missonlevel += 1; //should be changed to getlevel
+        if (missonlevel == 1)
+        {
+            mission.text = "Search and Destroy";
+        }
+        else
+            mission.text = "Level Name";
 	}
 	
 	// Update is called once per frame
