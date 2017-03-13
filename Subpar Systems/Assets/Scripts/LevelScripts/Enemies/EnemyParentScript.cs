@@ -57,6 +57,7 @@ public class EnemyParentScript : MonoBehaviour {
 
 	IEnumerator AIEnnumerate()
 	{
+		int x = 5;
 		//yield return new WaitForSeconds(0.01f);
 		foreach(var enemy in GameControlScript.control.GetInGameEnemyList())
 		{
@@ -64,6 +65,8 @@ public class EnemyParentScript : MonoBehaviour {
 			enemy.GetComponent<GenericEnemyScript>().Move();
 			yield return new WaitForSeconds(0.01f);
 			enemy.GetComponent<GenericEnemyScript>().Attack();
+
+
 		}
 		yield return new WaitForSeconds(0.01f);
 		TurnControlScript.control.StartTurn ();

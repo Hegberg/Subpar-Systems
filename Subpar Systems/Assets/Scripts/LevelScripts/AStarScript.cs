@@ -631,7 +631,7 @@ public class AStarScript : MonoBehaviour {
 	}//end ReconstructPath
 
 	//Calculate an arbitary HeuristicCost that is basically Eucliden distance
-	private int CalculateHeuristicCost(int originRow, int originIndex, int goalRow, int goalIndex)
+	public int CalculateHeuristicCost(int originRow, int originIndex, int goalRow, int goalIndex)
 	{
 		//There are temp values/equation for cost matrix
 		//This would get replaced later by tile movement cost or something
@@ -645,6 +645,11 @@ public class AStarScript : MonoBehaviour {
 
 		//Current return cost is arbitary
 		return (int)((min*diagonalCost) + ((max-min)*cardinalCost));
+	}
+
+	public int CalculateHeuristicCostEnemy(int originRow, int originIndex, int goalRow, int goalIndex)
+	{
+		return (int) (Mathf.Abs (originRow - goalRow) + Mathf.Abs (originIndex - goalIndex));
 	}
 
 	//Check can I move from this tile to the next
