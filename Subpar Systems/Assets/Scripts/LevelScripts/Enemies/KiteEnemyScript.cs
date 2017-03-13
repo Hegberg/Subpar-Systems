@@ -30,9 +30,6 @@ public class KiteEnemyScript : GenericEnemyScript {
                 tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1],
                 (int)movement);
 
-            //Debug.Log("FloodFillTiles Count = " + FloodFillTiles.Count + " with movement range " + (int)movement);
-            //Debug.Log(FloodFillTiles.Count + " count " + (int)movement + " movement");
-            //Debug.Log("what");
 
             //Find the closest "player character"
 			GameObject nearestPlayer = new GameObject();
@@ -42,14 +39,12 @@ public class KiteEnemyScript : GenericEnemyScript {
 
             closest = nearestPlayer.GetComponent<GenericCharacterScript>().GetTileOccuping().
                     GetComponent<GenericEarthScript>().GetTilePosition();
-			//Debug.Log ("I am at row " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [0] + " ,  " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [1]);
-            //Debug.Log("Closest Player position is row " + closest[0] + "," + closest[1]);
 
 			List<int> nearestTile = new List<int>();
 			int closestTileValue = int.MaxValue;
 
 			List<List<GameObject>> tempMap = LevelControlScript.control.GetAStarMap();
-			if (didKite) {
+			if (!didKite) {
 				//find closest tile to that character
 				foreach (var elementTile in FloodFillTiles) {
 
@@ -78,15 +73,7 @@ public class KiteEnemyScript : GenericEnemyScript {
 					}
 				}//end find the closest tile to enemy
 			
-			
 			}
-
-
-			//Move the enemy to the tile coordinates
-			//Debug.Log("END OF TESTING FIRST HALF");
-			//Debug.Log(nearestTile.Count);
-			//Debug.Log(nearestTile[0]);
-			//Debug.Log(nearestTile[1]);
 
 			//this is broken, nearest tile should give a tile, without this check, errors that shouldn't happen get thrown
 			if (nearestTile.Count > 0)
@@ -98,7 +85,7 @@ public class KiteEnemyScript : GenericEnemyScript {
 	}
 
 
-    public void Attack()
+    public override void Attack()
     {
 		if (didKite) {
 			return;

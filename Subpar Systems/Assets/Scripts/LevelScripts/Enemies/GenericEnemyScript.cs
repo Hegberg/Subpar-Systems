@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GenericEnemyScript : MonoBehaviour {
 
-    private GameObject tileOccuping;
+	protected GameObject tileOccuping;
 
-    private float hp = 100;
-    private float attack = 10;
-    private float movement = 3;
-    private float range = 3;
+	protected float hp = 100;
+	protected float attack = 10;
+	protected float movement = 3;
+	protected float range = 3;
 
-    private bool isSelected = false;
+	protected bool isSelected = false;
 
     // Use this for initialization
     void Start () {
