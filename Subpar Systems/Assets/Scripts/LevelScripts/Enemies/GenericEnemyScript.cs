@@ -30,7 +30,7 @@ public class GenericEnemyScript : MonoBehaviour {
         GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20), hp + "/" + 100);
     }
 
-    void OnMouseOver()
+	void OnMouseOver()
     {
 		//if player turn, player selected and player hasn't attacked
         if (Input.GetMouseButtonDown(0) && TurnControlScript.control.GetPlayerTurn() && 
@@ -100,7 +100,7 @@ public class GenericEnemyScript : MonoBehaviour {
         }
     }
 
-    public void Move()
+	public virtual void Move()
     {
         //if any players alive, move
         if (GameControlScript.control.GetInGameCharacterList().Count > 0)
@@ -170,7 +170,7 @@ public class GenericEnemyScript : MonoBehaviour {
 	}
 
 
-    public void Attack()
+	public virtual void Attack()
     {
         //if any players alive, attack
         if (GameControlScript.control.GetInGameCharacterList().Count > 0)

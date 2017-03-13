@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\TraitBackgroudScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemyParentScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\GenericEnemyScript.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Enemies\KiteEnemyScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\LevelControlScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\MapData\BlankMapScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\MapData\Map1Script.cs" />
