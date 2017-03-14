@@ -10,7 +10,7 @@ public class GenericCharacterScript : MonoBehaviour {
 	protected GameObject tileOccuping;
 
 	//name of character
-	protected string characterName = "temp";
+	protected string name = "temp";
 
 	//hp of character
 	protected float hp = 100;

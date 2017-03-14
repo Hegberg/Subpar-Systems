@@ -11,24 +11,35 @@ public class EnemySpawner {
 	private int amountOfSpawnsUsed = 0;
 	private int enemyType = 0;
 	//
-	private int turnsFromPreviousSpawn = 1;
+	private int turnsFromPreviousSpawn = 0;
+
+	private int startTurn = 0;
+	private int turnsToStartSpawning = 0;
 
 	public EnemySpawner(List<int> newTilePosition = default(List<int>), int newMaxSpawnCount = 0, 
-		int newSpawnRate = 0, int newEnemyType = 0) {
+		int newSpawnRate = 0, int newEnemyType = 0, int newStartTurn = 0) {
 		tilePosition = newTilePosition;
 		maxSpawnCount = newMaxSpawnCount;
 		spawnRate = newSpawnRate;
 		amountOfSpawnsUsed = 0;
 		enemyType = newEnemyType;
-		turnsFromPreviousSpawn = 1;
+		turnsFromPreviousSpawn = newStartTurn;
+		startTurn = newStartTurn;
 	}
 
 	public void SpawnEnemy() {
-		turnsFromPreviousSpawn += 1;
-		if (amountOfSpawnsUsed < maxSpawnCount && turnsFromPreviousSpawn >= spawnRate) {
-			if (LevelControlScript.control.SpawnEnemy (tilePosition [0], tilePosition [1], enemyType)) {
-				turnsFromPreviousSpawn = 0;
-				amountOfSpawnsUsed += 1;
+		turnsToStartSpawning += 1;
+		Debug.Log (turnsToStartSpawning + " a " + startTurn + " b");
+		//if at start spawn turn, start trying to spawn
+		if (turnsToStartSpawning >= startTurn) {
+			turnsFromPreviousSpawn += 1;
+			//if has spawns left and enough turns between spawns, try spawning, 
+			//only if spawn succeeds do rest timer and increment amount of eneimeis spawned
+			if (amountOfSpawnsUsed < maxSpawnCount && turnsFromPreviousSpawn >= spawnRate) {
+				if (LevelControlScript.control.SpawnEnemy (tilePosition [0], tilePosition [1], enemyType)) {
+					turnsFromPreviousSpawn = 0;
+					amountOfSpawnsUsed += 1;
+				}
 			}
 		}
 	}
