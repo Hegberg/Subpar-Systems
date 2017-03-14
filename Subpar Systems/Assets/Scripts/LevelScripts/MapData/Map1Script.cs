@@ -125,9 +125,15 @@ public class Map1Script : MonoBehaviour
     //private int[] enemySpawn39 = { 18, 9, 0 };
     //private int[] enemySpawn40 = { 18, 10, 0 };
 
-
-
     private List<int[]> enemySpawnLocations = new List<int[]>();
+
+	private List<EnemySpawner> enemySpawners = new List<EnemySpawner>();
+
+	//Parameters are - position of spawn, maxSpawnCount, spawnRate(turns between each spawn), enemyType
+	private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{6,0}, 5, 2 , 0); 
+	private EnemySpawner enemySpawner2 = new EnemySpawner(new List<int>{5,1}, 5, 2 , 0); 
+	private EnemySpawner enemySpawner3 = new EnemySpawner(new List<int>{4,1}, 5, 2 , 0); 
+	private EnemySpawner enemySpawner4 = new EnemySpawner(new List<int>{3,2}, 5, 2 , 0); 
 
 
     // Use this for initialization
@@ -179,6 +185,12 @@ public class Map1Script : MonoBehaviour
         //enemySpawnLocations.Add(enemySpawn38);
         //enemySpawnLocations.Add(enemySpawn39);
         //enemySpawnLocations.Add(enemySpawn40);
+
+		enemySpawners.Add (enemySpawner1);
+		enemySpawners.Add (enemySpawner2);
+		enemySpawners.Add (enemySpawner3);
+		enemySpawners.Add (enemySpawner4);
+
         StartCoroutine(MapGenerateWait());
         //LevelControlScript.control.CreateMap (map, playerSpawnLocations, enemySpawnLocations);
     }
@@ -192,6 +204,6 @@ public class Map1Script : MonoBehaviour
     IEnumerator MapGenerateWait()
     {
         yield return new WaitForSeconds(0.01f);
-        LevelControlScript.control.CreateMap(map, playerSpawnLocations, enemySpawnLocations);
+		LevelControlScript.control.CreateMap(map, playerSpawnLocations, enemySpawnLocations, enemySpawners);
     }
 }
