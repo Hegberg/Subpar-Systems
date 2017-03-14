@@ -8,6 +8,7 @@ public class KiteEnemyScript : GenericEnemyScript {
 
 	public void checkAttack()
 	{
+		didKite = false;
 		this.Attack ();
 	}
 
@@ -131,7 +132,8 @@ public class KiteEnemyScript : GenericEnemyScript {
 				didKite = false;
 			}
         }
-    }
+	}
+
     
     
 }

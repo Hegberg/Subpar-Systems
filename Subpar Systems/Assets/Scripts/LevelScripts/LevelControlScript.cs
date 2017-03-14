@@ -28,6 +28,10 @@ public class LevelControlScript : MonoBehaviour {
 
 	private int playersAlive = 0;
 
+	private List<EnemySpawner> enemySpawners;
+
+	private List<List<List<int>>> mapData = new List<List<List<int>>>();
+
     // Use this for initialization
     void Start () {
 
@@ -39,6 +43,8 @@ public class LevelControlScript : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+
+		DontDestroyOnLoad (this.gameObject);
 
     }
 	
@@ -57,7 +63,51 @@ public class LevelControlScript : MonoBehaviour {
         BroadcastMessage("RemoveActions");
     }
 
-	public void CreateMap(List<List<List<int>>> map, List<int[]> playerSpawnLocations, List<int[]> enemySpawnLocations)
+	public bool SpawnEnemy(int tilePositionX, int tilePositionY, int enemyType) {
+		//Debug.Log (aStarMap[tilePositionX][tilePositionY].GetComponent<GenericEarthScript>().GetOccupingObject());
+		Debug.Log(tilePositionX + " " + tilePositionY);
+		if (aStarMap[tilePositionY][tilePositionX].GetComponent<GenericEarthScript>().GetOccupingObject() == null) {
+			float tempY = 0;
+			float tempX = 0;
+
+			List<GameObject> tiles = GameControlScript.control.GetTiles();
+			GameObject oneTile = tiles[mapData[tilePositionX][tilePositionY][0]];
+
+			tileWidth = oneTile.GetComponent<Renderer>().bounds.size.x;
+			tileHeight = oneTile.GetComponent<Renderer>().bounds.size.y;
+
+			//if not offset do first, else do second
+			if (tilePositionY % 2 == 1)
+			{
+				tempX = (tilePositionX * tileWidth);
+			}
+			else
+			{
+				tempX = (tilePositionX * tileWidth) + (tileWidth / 2);
+			}
+			Debug.Log (tileHeight / 3);
+
+			//sets y to level 0 height
+			tempY = ((mapData.Count - tilePositionY) * (tileHeight /3));
+			tempY += tileHeight / 4;
+			//put y to current level if not 0
+			tempY += ((tileHeight / 3) * mapData[tilePositionY][tilePositionX][1]);
+			Transform enemy = (Transform)Instantiate(
+				GameControlScript.control.GetEnemies()[enemyType].transform,
+				new Vector3(tempX, tempY, (0.02f * tilePositionX) - 0.01f), Quaternion.identity);
+			enemy.SetParent(enemyParent);
+			enemy.gameObject.GetComponent<GenericEnemyScript>().SetTileOccuping(
+				aStarMap[tilePositionY][tilePositionX]);
+			enemy.gameObject.GetComponent<SpriteRenderer> ().material.color = Color.blue;
+			EnemyParentScript.control.EnemyCreated ();
+			GameControlScript.control.AddEnemyToInGameList(enemy.gameObject);
+			return true;
+		}
+		return false;
+	}
+
+	public void CreateMap(List<List<List<int>>> map, List<int[]> playerSpawnLocations, 
+		List<int[]> enemySpawnLocations , List<EnemySpawner> tempEnemySpawners = default(List<EnemySpawner>))
     {
         minCameraX = 0f;
         minCameraY = 0f;
@@ -112,7 +162,7 @@ public class LevelControlScript : MonoBehaviour {
 					//lower by 1 Y interval
 					tempVectorFiller.y -= (tileHeight / 3);
 					Transform tileFiller = (Transform)Instantiate(oneTile.transform,tempVectorFiller, Quaternion.identity);
-					tile.SetParent(TileParent);
+					tileFiller.SetParent(TileParent);
 					Destroy (tileFiller.GetComponent<Collider2D>());
 				}
 
@@ -209,6 +259,11 @@ public class LevelControlScript : MonoBehaviour {
         maxCameraY += -0.5f;
         minCameraX += 1.0f;
         minCameraY += 0.5f;
+
+
+		mapData = map;
+		//set enemy spawners for the map
+		enemySpawners = tempEnemySpawners;
 
 		//if i start even, offset starts false
 		offset = false;
@@ -318,4 +373,11 @@ public class LevelControlScript : MonoBehaviour {
 		}
 	}
 		
+	public Transform GetEnemyParent() {
+		return enemyParent;
+	}
+
+	public List<EnemySpawner> GetEnemySpawners() {
+		return enemySpawners;
+	}
 }
