@@ -98,7 +98,7 @@ public class LevelControlScript : MonoBehaviour {
 			enemy.SetParent(enemyParent);
 			enemy.gameObject.GetComponent<GenericEnemyScript>().SetTileOccuping(
 				aStarMap[tilePositionY][tilePositionX]);
-			enemy.gameObject.GetComponent<SpriteRenderer> ().material.color = Color.blue;
+			//enemy.gameObject.GetComponent<SpriteRenderer> ().material.color = Color.blue;
 			EnemyParentScript.control.EnemyCreated ();
 			GameControlScript.control.AddEnemyToInGameList(enemy.gameObject);
 			return true;
