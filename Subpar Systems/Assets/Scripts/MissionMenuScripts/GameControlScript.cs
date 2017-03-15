@@ -120,7 +120,7 @@ public class GameControlScript : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-
+		ClearDeadCharacters ();
         SaveDeadCharacters();
         Load();
     }

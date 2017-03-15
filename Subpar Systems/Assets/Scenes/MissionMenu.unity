@@ -1432,7 +1432,7 @@ GameObject:
   - component: {fileID: 386721069}
   - component: {fileID: 386721068}
   m_Layer: 5
-  m_Name: M31
+  m_Name: Character4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2311,7 +2311,7 @@ GameObject:
   - component: {fileID: 659821649}
   - component: {fileID: 659821653}
   m_Layer: 5
-  m_Name: M31
+  m_Name: Character4
   m_TagString: Characters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2697,7 +2697,7 @@ GameObject:
   - component: {fileID: 906484251}
   - component: {fileID: 906484252}
   m_Layer: 5
-  m_Name: F32
+  m_Name: Character2
   m_TagString: Characters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3477,7 +3477,7 @@ GameObject:
   - component: {fileID: 1167914877}
   - component: {fileID: 1167914876}
   m_Layer: 5
-  m_Name: F32
+  m_Name: Character3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4176,7 +4176,7 @@ GameObject:
   - component: {fileID: 1362627928}
   - component: {fileID: 1362627929}
   m_Layer: 5
-  m_Name: F27
+  m_Name: Character1
   m_TagString: Characters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4460,7 +4460,7 @@ GameObject:
   - component: {fileID: 1507657835}
   - component: {fileID: 1507657834}
   m_Layer: 5
-  m_Name: M40
+  m_Name: Character2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5530,7 +5530,7 @@ GameObject:
   - component: {fileID: 1827890284}
   - component: {fileID: 1827890288}
   m_Layer: 5
-  m_Name: M40
+  m_Name: Character3
   m_TagString: Characters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6249,7 +6249,7 @@ GameObject:
   - component: {fileID: 1949511647}
   - component: {fileID: 1949511646}
   m_Layer: 5
-  m_Name: F27
+  m_Name: Character1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
