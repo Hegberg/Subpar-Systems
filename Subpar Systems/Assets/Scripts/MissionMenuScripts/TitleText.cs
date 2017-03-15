@@ -14,9 +14,15 @@ public class TitleText : MonoBehaviour {
         {
             mission.text = "Search and Destroy";
         }
-        else
-            mission.text = "Level Name";
-	}
+        if (missonlevel == 2)
+        {
+            mission.text = "Hardwired";
+        }
+        if (missonlevel == 3)
+        {
+            mission.text = "All Nightmare Long";
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

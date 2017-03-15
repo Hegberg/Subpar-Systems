@@ -869,6 +869,7 @@ GameObject:
   - component: {fileID: 213735313}
   - component: {fileID: 213735315}
   - component: {fileID: 213735314}
+  - component: {fileID: 213735316}
   m_Layer: 5
   m_Name: Main Bio
   m_TagString: Untagged
@@ -935,6 +936,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 213735312}
+--- !u!114 &213735316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 213735312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cee074c4b1378439165d112aaf08cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &218854123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,7 +1432,7 @@ GameObject:
   - component: {fileID: 386721069}
   - component: {fileID: 386721068}
   m_Layer: 5
-  m_Name: Character4
+  m_Name: M31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2299,7 +2311,7 @@ GameObject:
   - component: {fileID: 659821649}
   - component: {fileID: 659821653}
   m_Layer: 5
-  m_Name: Character4
+  m_Name: M31
   m_TagString: Characters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2685,7 +2697,7 @@ GameObject:
   - component: {fileID: 906484251}
   - component: {fileID: 906484252}
   m_Layer: 5
-  m_Name: Character2
+  m_Name: F32
   m_TagString: Characters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2721,7 +2733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: F32
   bios: I am bio
   characterPlace: 1
 --- !u!225 &906484252
@@ -2984,7 +2996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: M31
   bios: I am bio
   characterPlace: 4
 --- !u!114 &978363889
@@ -3220,7 +3232,6 @@ GameObject:
   - component: {fileID: 1012738102}
   - component: {fileID: 1012738105}
   - component: {fileID: 1012738104}
-  - component: {fileID: 1012738103}
   m_Layer: 5
   m_Name: Side Mission 1
   m_TagString: Untagged
@@ -3246,17 +3257,6 @@ RectTransform:
   m_AnchoredPosition: {x: 283.59998, y: 225.8}
   m_SizeDelta: {x: 311.8, y: 42}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1012738103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1012738101}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5839080265035104e9f6cf88ff1fffc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1012738104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3376,7 +3376,7 @@ RectTransform:
   m_GameObject: {fileID: 529035592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 1400117392}
   - {fileID: 1252477428}
@@ -3477,7 +3477,7 @@ GameObject:
   - component: {fileID: 1167914877}
   - component: {fileID: 1167914876}
   m_Layer: 5
-  m_Name: Character3
+  m_Name: F32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4176,7 +4176,7 @@ GameObject:
   - component: {fileID: 1362627928}
   - component: {fileID: 1362627929}
   m_Layer: 5
-  m_Name: Character1
+  m_Name: F27
   m_TagString: Characters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4212,7 +4212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: F27
   bios: I am bio
   characterPlace: 0
 --- !u!225 &1362627929
@@ -4460,7 +4460,7 @@ GameObject:
   - component: {fileID: 1507657835}
   - component: {fileID: 1507657834}
   m_Layer: 5
-  m_Name: Character2
+  m_Name: M40
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5530,7 +5530,7 @@ GameObject:
   - component: {fileID: 1827890284}
   - component: {fileID: 1827890288}
   m_Layer: 5
-  m_Name: Character3
+  m_Name: M40
   m_TagString: Characters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5566,7 +5566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: M40
   bios: I am bio
   characterPlace: 2
 --- !u!114 &1827890285
@@ -6249,7 +6249,7 @@ GameObject:
   - component: {fileID: 1949511647}
   - component: {fileID: 1949511646}
   m_Layer: 5
-  m_Name: Character1
+  m_Name: F27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
