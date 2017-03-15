@@ -91,7 +91,13 @@ public class MachineGunTrait : GenericTraitsScript {
 	public override void InitializeValues() {
 		name = "Machine Gun";
 		numberOfAttacksModifier = 2;
-		positionInSpriteUIList = 0;
+        attackModifier = 0.66f; //33?
+        defenseModifier = 1.0f; //not affected
+        movementModifier = 0.5f; //2
+        rangeModifier = 1.5f; //6
+        //I wanted machineGunners to deal regular damage, but if they can
+        //move and shoot twice I'm going to reduce it.
+        positionInSpriteUIList = 0;
 	}
 }
 
@@ -244,7 +250,11 @@ public class RiflemanTrait : GenericTraitsScript
     public override void InitializeValues()
     {
         name = "Rifleman";
-		positionInSpriteUIList = 11;
+        attackModifier = 1.0f; //not affected
+        defenseModifier = 1.0f; //not affected
+        movementModifier = 0.75f; //3 
+        rangeModifier = 1.0f; //not affected
+        positionInSpriteUIList = 11;
     }
 }
 
@@ -253,7 +263,15 @@ public class GrenedierTrait : GenericTraitsScript
     public override void InitializeValues()
     {
         name = "Grenedier";
-		positionInSpriteUIList = 12;
+        attackModifier = 1.0f; //not affected
+        defenseModifier = 1.0f; //not affected
+        movementModifier = 0.75f; //3
+        rangeModifier = 0.75f; //3
+        //Need some sort of advantage against certain monsters to make it
+        //so grenadiers have a role.  
+        //Two ideas, make it so grenades weaken targets, or that they have
+        //advantages against other targets. Testing required.
+        positionInSpriteUIList = 12;
     }
 }
 
@@ -262,6 +280,10 @@ public class AssaultTrait : GenericTraitsScript
     public override void InitializeValues()
     {
         name = "Assault";
-		positionInSpriteUIList = 13;
+        attackModifier = 1.5f; //high
+        defenseModifier = 1.0f; //not affected
+        movementModifier = 1.25f; //5
+        rangeModifier = 0.25f; //1
+        positionInSpriteUIList = 13;
     }
 }
