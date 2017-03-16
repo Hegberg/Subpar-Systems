@@ -38,7 +38,7 @@ public class AStarScript : MonoBehaviour {
 	void run(){
 		LevelControlScript.control.GetAStarMap();
 	}
-
+	/*
 	public List<List<int>> findShitestPath(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int goalRow, int goalIndex)
 	{
 		//Debug.Log ("Original Row and Index: " + originRow + " " + originIndex);
@@ -146,7 +146,7 @@ public class AStarScript : MonoBehaviour {
 		}
         
 		Debug.Log ("Got here");
-		*/
+
 
 		//Visit the nodes in openSet
 		int lowestFScore;
@@ -175,7 +175,7 @@ public class AStarScript : MonoBehaviour {
 						Debug.Log ("element inside: " + openSet[k][j]);
 					}
 				}
-				*/
+
 				if(fScore[openSet[i]] < lowestFScore)
 				{
 					lowestFScore = fScore[openSet[i]];
@@ -196,7 +196,7 @@ public class AStarScript : MonoBehaviour {
 					currentNode = element.Value;
 				}
 			}
-			*/
+
 			//===================TESTING NEW OPENSET====================//
 
 
@@ -387,7 +387,7 @@ public class AStarScript : MonoBehaviour {
 				increment++;
 			}
 
-		*/
+		
 
 
 		}//end while loop
@@ -395,7 +395,7 @@ public class AStarScript : MonoBehaviour {
 		//We should never get HERE. LIKE EVER
 		return null;
 	}
-
+	*/
 	/*
 		WARNING NONE OF THE FOLLOWING CODE IS TEST AND WILL AND COULD BREAK EVERYTHING THAT EXIST!
 	*/
