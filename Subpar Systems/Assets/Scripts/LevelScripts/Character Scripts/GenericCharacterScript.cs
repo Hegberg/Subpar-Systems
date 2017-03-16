@@ -223,4 +223,8 @@ public class GenericCharacterScript : MonoBehaviour {
 	public string GetName() {
 		return name;
 	}
+
+	public void RemoveFromGame() {
+		Destroy (this.gameObject);
+	}
 }

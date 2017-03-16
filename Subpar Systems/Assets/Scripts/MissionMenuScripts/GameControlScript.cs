@@ -43,7 +43,7 @@ public class GameControlScript : MonoBehaviour {
     private int selectedSideMissionCharacters = 0;
 
     //level progression, auto increment on victory
-    private int currentLevel;
+    private int currentLevel = 1;
 
     private int testLevel = 0;
     private int firstLevel = 1;
@@ -120,9 +120,10 @@ public class GameControlScript : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-		ClearDeadCharacters ();
-        SaveDeadCharacters();
-        Load();
+		//ClearDeadCharacters ();
+        //SaveDeadCharacters();
+        //Load();
+		ClearTraits();
     }
 	
 	// Update is called once per frame
@@ -417,6 +418,9 @@ public class GameControlScript : MonoBehaviour {
 
 	//set the level to be loaded to be the next level
 	public void NextLevel(){
+		for (int i = characterInGameList.Count - 1; i >= 0; --i) {
+			characterInGameList [i].GetComponent<GenericCharacterScript> ().RemoveFromGame ();
+		}
 		currentLevel += 1;
         SaveDeadCharacters();
         characterInGameList.Clear();
@@ -428,6 +432,9 @@ public class GameControlScript : MonoBehaviour {
 
     public void FailedLevel()
     {
+		for (int i = characterInGameList.Count - 1; i >= 0; --i) {
+			characterInGameList [i].GetComponent<GenericCharacterScript> ().RemoveFromGame ();
+		}
         SaveDeadCharacters();
         characterInGameList.Clear();
         enemyInGameList.Clear();
