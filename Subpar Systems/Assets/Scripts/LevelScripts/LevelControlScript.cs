@@ -107,7 +107,7 @@ public class LevelControlScript : MonoBehaviour {
 	}
 
 	public void CreateMap(List<List<List<int>>> map, List<int[]> playerSpawnLocations, 
-		List<int[]> enemySpawnLocations , List<EnemySpawner> tempEnemySpawners = default(List<EnemySpawner>))
+		List<int[]> enemySpawnLocations , List<EnemySpawner> tempEnemySpawners)
     {
         minCameraX = 0f;
         minCameraY = 0f;

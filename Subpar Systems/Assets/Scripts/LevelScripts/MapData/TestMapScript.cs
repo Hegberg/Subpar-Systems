@@ -44,6 +44,8 @@ public class TestMapScript : MonoBehaviour {
 
 	private List<int[]> enemySpawnLocations = new List<int[]>();
 
+	private List<EnemySpawner> enemySpawners = new List<EnemySpawner>();
+
 	// Use this for initialization
 	void Start () {
 		playerSpawnLocations.Add(playerSpawn1);
@@ -67,6 +69,6 @@ public class TestMapScript : MonoBehaviour {
 	IEnumerator MapGenerateWait()
 	{
 		yield return new WaitForSeconds(0.01f);
-		LevelControlScript.control.CreateMap (map, playerSpawnLocations, enemySpawnLocations);
+		LevelControlScript.control.CreateMap (map, playerSpawnLocations, enemySpawnLocations, enemySpawners);
 	}
 }
