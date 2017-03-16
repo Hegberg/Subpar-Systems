@@ -422,7 +422,7 @@ public class GameControlScript : MonoBehaviour {
 			characterInGameList [i].GetComponent<GenericCharacterScript> ().RemoveFromGame ();
 		}
 		currentLevel += 1;
-        SaveDeadCharacters();
+        //SaveDeadCharacters();
         characterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
@@ -435,7 +435,7 @@ public class GameControlScript : MonoBehaviour {
 		for (int i = characterInGameList.Count - 1; i >= 0; --i) {
 			characterInGameList [i].GetComponent<GenericCharacterScript> ().RemoveFromGame ();
 		}
-        SaveDeadCharacters();
+        //SaveDeadCharacters();
         characterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
@@ -489,7 +489,7 @@ public class GameControlScript : MonoBehaviour {
     {
 		deadCharacterList.Add(character.GetComponent<GenericCharacterScript>().GetName());
         RemoveCharacterFromInGameList(character);
-        SaveDeadCharacters();
+        //SaveDeadCharacters();
 		//FailedLevel ();
     }
 
