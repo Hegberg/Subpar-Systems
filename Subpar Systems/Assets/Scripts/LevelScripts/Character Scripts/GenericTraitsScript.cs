@@ -91,7 +91,7 @@ public class MachineGunTrait : GenericTraitsScript {
 	public override void InitializeValues() {
 		name = "Machine Gun";
 		numberOfAttacksModifier = 2;
-        attackModifier = 0.66f; //33?
+        attackModifier = 0.70f; //33 above
         defenseModifier = 1.0f; //not affected
         movementModifier = 0.5f; //2
         rangeModifier = 1.5f; //6
