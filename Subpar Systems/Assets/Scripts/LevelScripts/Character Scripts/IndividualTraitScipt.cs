@@ -21,6 +21,7 @@ public class IndividualTraitScipt : MonoBehaviour {
 	}
 
 	public void OnMouseOver(){
+		Debug.Log ("HI");
 		if (infoTrait != null) {
 			Debug.Log (infoTrait.GetName ());
 		}

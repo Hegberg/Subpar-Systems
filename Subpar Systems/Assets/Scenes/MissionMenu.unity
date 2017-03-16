@@ -980,7 +980,8 @@ MonoBehaviour:
     type: 2}
   f27GoodWithF25: {fileID: 224644318050546890, guid: 070241253090880418e172527aab63b3,
     type: 2}
-  brutalEfficiency: {fileID: 0}
+  brutalEfficiency: {fileID: 224371153030898840, guid: cceaf26f70dece746bf47298733465e0,
+    type: 2}
   TraitsInOrderOfCreatedClass: []
 --- !u!1 &221626930
 GameObject:
