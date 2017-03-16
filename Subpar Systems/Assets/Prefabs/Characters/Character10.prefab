@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4540177814229108}
   - component: {fileID: 212497503324339384}
-  - component: {fileID: 114759639165403238}
+  - component: {fileID: 114907986775036546}
   - component: {fileID: 60706209386203952}
   m_Layer: 0
   m_Name: Character10
@@ -66,7 +66,7 @@ PolygonCollider2D:
       - {x: 0.25, y: -1}
       - {x: 1, y: 0.0625}
       - {x: 1, y: 0.75}
---- !u!114 &114759639165403238
+--- !u!114 &114907986775036546
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1128222241900266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4f8eda6b5bfac94184ed16832b5a911, type: 3}
+  m_Script: {fileID: 11500000, guid: ea6c769ef5b26724c8598c36998b5fb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212497503324339384
