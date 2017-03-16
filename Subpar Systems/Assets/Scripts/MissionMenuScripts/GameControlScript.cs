@@ -43,7 +43,7 @@ public class GameControlScript : MonoBehaviour {
     private int selectedSideMissionCharacters = 0;
 
     //level progression, auto increment on victory
-    private int currentLevel;
+    private int currentLevel = 1;
 
     private int testLevel = 0;
     private int firstLevel = 1;
@@ -55,28 +55,46 @@ public class GameControlScript : MonoBehaviour {
     private static List<string> deadCharacterList = new List<string>();
 
     private List<List<GenericTraitsScript>> allCharacterTraits = new List<List<GenericTraitsScript>>();
-
-    //character F27
+    //Characters 1-4 riflemen.
+    //Characters 5-7 Grenadiers
+    //Characters 8-10 Assaults
+    //Characters 11,12 Machinegunners
+   
+    //character F32
     private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript>
-    { new MachineGunTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait(), new F27BadWithM40Trait()};
-    //character M40
+    {new RiflemanTrait(), new F32GoodWithM41Trait()};
+
     private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript>
-    { new GrenedierTrait()};
-	//character F32
-	private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript> 
-	{new RiflemanTrait(), new F32GoodWithM41Trait()};
-	//character M31
-	private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> 
+    {new RiflemanTrait() };
+
+    private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript>
+    {new RiflemanTrait() };
+
+    //character M31
+    private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> 
 	{new M31GoodWithM29Trait(), new M31MarriedToF32Trait(), new M31FriendM29DeadTrait(), new M31WifeF32DeadTrait(), new RiflemanTrait()};
 
-	private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character10InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript> { };
+    //character M40
+    private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript>
+    { new GrenedierTrait()};
+
+    private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript>
+    {new GrenedierTrait() };
+	private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript>
+    { new GrenedierTrait() };
+
+    private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript>
+    { new AssaultTrait() };
+	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript>
+    {new AssaultTrait() };
+	private List<GenericTraitsScript> character10InitialTraits = new List<GenericTraitsScript>
+    { new AssaultTrait() };
+   
+    //character F27
+    private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript>
+    {new MachineGunTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait(), new F27BadWithM40Trait()};
+    private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript>
+    { new MachineGunTrait() };
 
     // Use this for initialization
     void Start () {
