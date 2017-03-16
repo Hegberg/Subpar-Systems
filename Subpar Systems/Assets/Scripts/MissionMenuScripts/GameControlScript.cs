@@ -148,7 +148,7 @@ public class GameControlScript : MonoBehaviour {
 	void Update () {
 
     }
-
+	/*
 	public void Load() {
 		//Debug.Log (deadCharacterList.Count);
 		LoadDeadCharacters ();
@@ -162,6 +162,7 @@ public class GameControlScript : MonoBehaviour {
 		SaveCharacterTraits ();
 		SaveCurrentLevel ();
 	}
+	*/
 
 	//If need to clear traits at any point
 	public void ClearTraits () {
@@ -180,7 +181,7 @@ public class GameControlScript : MonoBehaviour {
 		allCharacterTraits.Add (character12InitialTraits);
 		InitializeTraits ();
 	}
-
+	/*
     //load dead characters
     public void LoadDeadCharacters()
     {
@@ -262,7 +263,7 @@ public class GameControlScript : MonoBehaviour {
 			file.Close();
 		}
 	}
-
+	*/
 	public void InitializeTraits() {
 		for (int i = 0; i < allCharacterTraits.Count; ++i) {
 			for (int j = 0; j < allCharacterTraits [i].Count; ++j) {
@@ -270,7 +271,7 @@ public class GameControlScript : MonoBehaviour {
 			}
 		}
 	}
-
+	/*
 	public void LoadCurrentLevel() {
 		if (File.Exists (Application.persistentDataPath + "/currentLevel.dat")) {
 			BinaryFormatter bf = new BinaryFormatter ();
@@ -299,6 +300,7 @@ public class GameControlScript : MonoBehaviour {
 			file.Close();
 		}
 	}
+	*/
 
     //character selected in list to join team
     public void SelectCharacter(string nameSelected)

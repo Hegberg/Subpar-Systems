@@ -56,10 +56,18 @@
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\GenericTraitsScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\IndividualTraitScipt.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character10Script.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character11Script.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character12Script.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character1Script.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character2Script.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character3Script.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character4Script.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character5Script.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character6Script.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character7Script.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character8Script.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character9Script.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\TraitBackgroudScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemyParentScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemySpawner.cs" />
@@ -92,9 +100,6 @@
      <Compile Include="Assets\Sounds\Music\Royalty Free Music\Credits.cs" />
      <None Include="Assets\Sprites\OpenSans-Familiy\OpenSansLic.txt" />
      <None Include="Assets\Scripts\OLD STAR.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -109,9 +114,6 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
