@@ -116,6 +116,11 @@ public class LevelControlScript : MonoBehaviour {
         float fuckThomasY = 0.0f;
         float fuckThomasZ = 0.0f;
 
+		//reset map lists
+		aStarMap.Clear();
+		aStarMapCost.Clear ();
+		mapData.Clear ();
+
         //0 is earth, 1 is water, 2 is mountian
         //start at bottom row and build up
 
