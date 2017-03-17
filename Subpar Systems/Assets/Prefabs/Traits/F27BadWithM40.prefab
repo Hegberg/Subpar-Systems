@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 224524991070453816}
   - component: {fileID: 212762470509451754}
-  - component: {fileID: 61768856080358028}
   - component: {fileID: 114000489759982642}
   - component: {fileID: 114730109617496038}
   - component: {fileID: 114789466694712918}
+  - component: {fileID: 61628745030903234}
+  - component: {fileID: 114025990351398074}
   m_Layer: 5
   m_Name: F27BadWithM40
   m_TagString: Untagged
@@ -31,7 +32,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &61768856080358028
+--- !u!61 &61628745030903234
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -44,7 +45,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
+  m_Size: {x: 2, y: 2}
 --- !u!114 &114000489759982642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56,6 +57,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114025990351398074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130988430333986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!114 &114730109617496038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -84,7 +98,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 114000489759982642}
-          m_MethodName: OnMouseOver
+          m_MethodName: DisplayInfo
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

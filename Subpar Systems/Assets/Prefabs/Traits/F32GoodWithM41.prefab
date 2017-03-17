@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 224870065814061844}
   - component: {fileID: 212605130690345420}
-  - component: {fileID: 61842724445573118}
   - component: {fileID: 114247337831841984}
   - component: {fileID: 114843633202226222}
   - component: {fileID: 114172634954730974}
+  - component: {fileID: 61602104449233652}
+  - component: {fileID: 114634166414027984}
   m_Layer: 5
   m_Name: F32GoodWithM41
   m_TagString: Untagged
@@ -31,7 +32,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &61842724445573118
+--- !u!61 &61602104449233652
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -44,7 +45,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
+  m_Size: {x: 2, y: 2}
 --- !u!114 &114172634954730974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -62,7 +63,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 114247337831841984}
-          m_MethodName: OnMouseOver
+          m_MethodName: DisplayInfo
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -86,6 +87,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114634166414027984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1592431868384196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!114 &114843633202226222
 MonoBehaviour:
   m_ObjectHideFlags: 1

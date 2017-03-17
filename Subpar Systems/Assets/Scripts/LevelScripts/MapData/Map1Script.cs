@@ -81,14 +81,14 @@ public class Map1Script : MonoBehaviour
 
 
     //x, y, enemy type
-    private int[] enemySpawn1 = { 3, 2, 0 };
+    private int[] enemySpawn1 = { 3, 2, 1 };
     private int[] enemySpawn2 = { 4, 3, 0 };
-    private int[] enemySpawn3 = { 3, 4, 0 };
+    private int[] enemySpawn3 = { 3, 4, 1 };
     private int[] enemySpawn4 = { 0, 7, 0 };
-    private int[] enemySpawn5 = { 5, 6, 0 };
+    private int[] enemySpawn5 = { 5, 6, 1 };
     private int[] enemySpawn6 = { 7, 6, 0 };
     private int[] enemySpawn7 = { 8, 5, 0 };
-    private int[] enemySpawn8 = { 8, 8, 0 };
+    private int[] enemySpawn8 = { 8, 8, 1 };
     private int[] enemySpawn9 = { 7, 9, 0 };
     private int[] enemySpawn10 = { 7, 11, 0 };
     private int[] enemySpawn11 = { 0, 12, 0 }; //Broken

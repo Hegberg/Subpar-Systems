@@ -245,11 +245,14 @@ public class TurnControlScript : MonoBehaviour {
 					}
 				}
 
-				allValidAttackTile = AStarScript.control.FloodFillAttackRange(LevelControlScript.control.GetAStarMap(),
-					LevelControlScript.control.GetAStarMapCost(),
-					GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[0],
-					GetPlayerSelected().GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1],
-					GetPlayerSelected().GetComponent<GenericCharacterScript>().GetRange());
+				//used for second check below
+				if (playerSelected != null) {
+					allValidAttackTile = AStarScript.control.FloodFillAttackRange (LevelControlScript.control.GetAStarMap (),
+						LevelControlScript.control.GetAStarMapCost (),
+						GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
+						GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
+						GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetRange ());
+				}
 
 				//if player is out of attacks remove highlight
 				if (!moveableTile && playerSelected != null && playerSelected.GetComponent<GenericCharacterScript>().GetNumOfAttacks() <= 0) {

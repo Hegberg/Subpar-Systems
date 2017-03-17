@@ -4800,6 +4800,8 @@ MonoBehaviour:
   water: {fileID: 4067026721940710, guid: 427a6c4d1f9fc4547862341a1436679c, type: 2}
   mountian: {fileID: 4092635508423484, guid: 41e3bd51a06fe3843ae5e4c2e6ef5130, type: 2}
   slime: {fileID: 4804943181517326, guid: aa93c90391e3b934b878bb24ac8b3349, type: 2}
+  kiteMonster: {fileID: 4067662715525860, guid: 5d80cb7423e7f9d4b930506cdae8bee8,
+    type: 2}
 --- !u!212 &1575902965
 SpriteRenderer:
   m_ObjectHideFlags: 0

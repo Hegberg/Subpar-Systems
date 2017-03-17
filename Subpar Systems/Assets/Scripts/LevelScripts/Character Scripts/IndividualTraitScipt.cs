@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IndividualTraitScipt : MonoBehaviour {
 
@@ -29,5 +30,9 @@ public class IndividualTraitScipt : MonoBehaviour {
 
 	public void SetInfoTrait(GenericTraitsScript info){
 		infoTrait = info;
+	}
+
+	public void DisplayInfo() {
+		Debug.Log ("HI");
 	}
 }

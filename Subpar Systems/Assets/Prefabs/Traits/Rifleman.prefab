@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 224721456958939102}
   - component: {fileID: 212759498928867798}
-  - component: {fileID: 61669062853930610}
   - component: {fileID: 114785047522703280}
   - component: {fileID: 114873997510616856}
   - component: {fileID: 114655602276448676}
+  - component: {fileID: 61154595975137584}
+  - component: {fileID: 114978603869626192}
   m_Layer: 5
   m_Name: Rifleman
   m_TagString: Untagged
@@ -31,7 +32,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &61669062853930610
+--- !u!61 &61154595975137584
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -44,7 +45,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
+  m_Size: {x: 2, y: 2}
 --- !u!114 &114655602276448676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -62,7 +63,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 114785047522703280}
-          m_MethodName: OnMouseOver
+          m_MethodName: DisplayInfo
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -97,6 +98,19 @@ MonoBehaviour:
   m_Script: {fileID: -146154839, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114978603869626192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1083499560932340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!212 &212759498928867798
 SpriteRenderer:
   m_ObjectHideFlags: 1

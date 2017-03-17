@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 224371153030898840}
   - component: {fileID: 212471250459214918}
-  - component: {fileID: 61516825950266298}
   - component: {fileID: 114549343650716556}
   - component: {fileID: 114953052290754550}
   - component: {fileID: 114432947724711200}
+  - component: {fileID: 61476362005533190}
+  - component: {fileID: 114526091147520322}
   m_Layer: 5
   m_Name: Brutal Effeciency
   m_TagString: Untagged
@@ -31,7 +32,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &61516825950266298
+--- !u!61 &61476362005533190
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -44,7 +45,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
+  m_Size: {x: 2, y: 2}
 --- !u!114 &114432947724711200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -62,7 +63,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 114549343650716556}
-          m_MethodName: OnMouseOver
+          m_MethodName: DisplayInfo
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -74,6 +75,19 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
+--- !u!114 &114526091147520322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1339750189262926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
   delegates: []
 --- !u!114 &114549343650716556
 MonoBehaviour:

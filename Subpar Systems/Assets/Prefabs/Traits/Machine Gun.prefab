@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 224701716609880870}
   - component: {fileID: 212001926418557614}
-  - component: {fileID: 61736810720414868}
   - component: {fileID: 114746625200160400}
   - component: {fileID: 114131034010577904}
   - component: {fileID: 114410126142663770}
+  - component: {fileID: 61020893037461582}
+  - component: {fileID: 114798389564676262}
   m_Layer: 5
   m_Name: Machine Gun
   m_TagString: Untagged
@@ -31,7 +32,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &61736810720414868
+--- !u!61 &61020893037461582
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -44,7 +45,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
+  m_Size: {x: 2, y: 2}
 --- !u!114 &114131034010577904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,7 +74,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 114746625200160400}
-          m_MethodName: OnMouseOver
+          m_MethodName: DisplayInfo
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -97,6 +98,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114798389564676262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1515892818101470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!212 &212001926418557614
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character8Script.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character9Script.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\TraitBackgroudScript.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\CompleteLevelConditions.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemyParentScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\GenericEnemyScript.cs" />
