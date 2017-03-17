@@ -31,7 +31,7 @@ public class GenericEarthScript : TileScript {
 			List<List<int>> returnPath = new List<List<int>> ();
 			List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
 			allValidTile = TurnControlScript.control.GetAllValidMovementTiles ();
-
+			/*
 			List<List<int>> testAStarPath = new List<List<int>>();
 
 			testAStarPath = AStarScript.control.findShitestPath (LevelControlScript.control.GetAStarMap (),
@@ -46,6 +46,7 @@ public class GenericEarthScript : TileScript {
 				Debug.Log ("testAStarPath Results at " + k + " " + testAStarPath[k][0] + "," + testAStarPath[k][1]);
 			}
 			Debug.Log ("=====End Testing AStar=====");
+			*/
 			for (int i = 0; i < allValidTile.Count; ++i) {
 				if (allValidTile [i] [0] == tilePosition [0] && allValidTile [i] [1] == tilePosition [1] 
 					&& TurnControlScript.control.GetPlayerSelected() != null) 

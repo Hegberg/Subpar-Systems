@@ -142,7 +142,7 @@ public class TurnControlScript : MonoBehaviour {
 						GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
 						GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetMovement ());
 
-                    List<List<GameObject>> map = LevelControlScript.control.GetAStarMap();
+					
 
                     for (int i = 0; i < allValidTile.Count; ++i)
                     {
@@ -281,6 +281,26 @@ public class TurnControlScript : MonoBehaviour {
 
         if (playerSelected != null)
         {
+			List<List<List<int>>> testing = new List<List<List<int>>> ();
+
+			testing = AStarScript.control.FloodFillAttackAndMovement(LevelControlScript.control.GetAStarMap (), 
+				LevelControlScript.control.GetAStarMapCost (),
+				GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
+				GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
+				GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetRange(),
+				GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetMovement ()
+			);
+			Debug.Log ("=====Movement=====");
+			for (int i = 0; i < testing [0].Count; ++i) {
+				Debug.Log(" " + testing[0][i] + " ");
+			}
+			Debug.Log ("=====END Movement=====");
+			Debug.Log ("=====ExtendAttack=====");
+			for (int i = 0; i < testing [1].Count; ++i) {
+				Debug.Log(" " + testing[1][i] + " ");
+			}
+			Debug.Log("=====END Attack=====");
+			List<List<GameObject>> map = LevelControlScript.control.GetAStarMap();
             HighlightPlayerTile();
 			//but implement A* and not just teleport player with move player script
 			List<List<int>> returnPath = new List<List<int>> ();
@@ -292,6 +312,8 @@ public class TurnControlScript : MonoBehaviour {
 					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
 					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
 					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetMovement());
+
+
 
                 //Highlight all the valid tiles
 				for (int i = 0; i < allValidTile.Count; ++i) {

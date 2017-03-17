@@ -396,10 +396,49 @@ public class AStarScript : MonoBehaviour {
 		return null;
 	}
 
-	/*
-		WARNING NONE OF THE FOLLOWING CODE IS TEST AND WILL AND COULD BREAK EVERYTHING THAT EXIST!
-	*/
+	public List<List<List<int>>> FloodFillAttackAndMovement(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int attackrange, int movement)
+	{
+		List<List<int>> movementTiles = FloodFillWithinRange (map, mapCost, originRow, originIndex, movement);
+		List<List<int>> enhancedAttackTile = FloodFillAttackRange (map, mapCost, originRow, originIndex, attackrange + movement);
 
+		Dictionary<double, List<int>> hash = new Dictionary<double, List<int>> ();
+
+		List<List<int>> returnAttackTile = new List<List<int>> ();
+		int x = 0;
+		for (int i = 0; i < enhancedAttackTile.Count; ++i) 
+		{
+			List<int> tile = new List<int> ();
+			tile.Add (enhancedAttackTile [i] [0]);
+			tile.Add (enhancedAttackTile [i] [1]);
+			double hashValue = ((0.5) * (tile[0] + tile[1]) * (tile[0] + tile[1] + 1) ) + tile[1];
+			Debug.Log ("H: " + hashValue + " R: " + tile [0] + " I: " + tile [1]);
+			//hash.Add (hashValue, tile);
+			x = x + 1;
+			Debug.Log ("I:" + i + " C " + enhancedAttackTile.Count);
+			if (x == 50) {
+				Debug.Log ("This is looping");
+				break;
+			}
+		}
+
+		for (int i = 0; i < movementTiles.Count; ++i) 
+		{
+			int row = movementTiles [i] [0];
+			int index = movementTiles [i] [1];
+			double hashValue = ((0.5) * (row + index) * (row + index + 1) ) + index;
+		
+			if (!hash.ContainsKey (hashValue)) 
+			{
+				returnAttackTile.Add (hash [hashValue]);
+			}
+		}
+
+		List<List<List<int>>> moveAttack = new List<List<List<int>>> (); 
+		moveAttack.Add (movementTiles);
+		moveAttack.Add (returnAttackTile);
+		return moveAttack;
+
+	}
 
 	//Returns tile that are within the range of the map that can be attacked
 	public List<List<int>> FloodFillAttackRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int attackrange)
