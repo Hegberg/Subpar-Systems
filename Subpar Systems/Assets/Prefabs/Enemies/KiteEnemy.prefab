@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4778625183381806}
   - component: {fileID: 212474284988147050}
-  - component: {fileID: 114690016245098124}
-  - component: {fileID: 60654383631181408}
+  - component: {fileID: 114956321362888802}
+  - component: {fileID: 60299539199831570}
   m_Layer: 0
   m_Name: KiteEnemy
   m_TagString: Untagged
@@ -42,7 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60654383631181408
+--- !u!60 &60299539199831570
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -56,16 +56,16 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 0.28125, y: 1}
-      - {x: -0.71875, y: 0.5625}
-      - {x: -1.03125, y: 0.1875}
-      - {x: -1.03125, y: -0.25}
-      - {x: -0.90625, y: -0.625}
-      - {x: -0.65625, y: -0.6875}
-      - {x: 0.71875, y: -0.6875}
-      - {x: 1.09375, y: 0.125}
-      - {x: 1.09375, y: 1}
---- !u!114 &114690016245098124
+    - - {x: -0.1875, y: 0.8125}
+      - {x: -0.6875, y: 0.5625}
+      - {x: -0.75, y: 0.1875}
+      - {x: -0.75, y: -0.75}
+      - {x: -0.6875, y: -1}
+      - {x: 0.4375, y: -1}
+      - {x: 0.875, y: -0.75}
+      - {x: 0.875, y: 0.5625}
+      - {x: 0.6875, y: 0.8125}
+--- !u!114 &114956321362888802
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1263282159372056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e703bf43f914b144b9223e68542c89f, type: 3}
+  m_Script: {fileID: 11500000, guid: 41a37d4e605f17d4ba8f6070eb135be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212474284988147050
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e8f9b27dcf884024ebe0bf447fe33a0e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b5246888f3f0d04a88cb01af221d062, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
