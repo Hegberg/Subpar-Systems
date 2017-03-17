@@ -408,38 +408,47 @@ public class AStarScript : MonoBehaviour {
 		Dictionary<double, List<int>> hash = new Dictionary<double, List<int>> ();
 
 		List<List<int>> returnAttackTile = new List<List<int>> ();
+		/*
 		int x = 0;
 		Debug.Log ("MTS: " + movementTiles.Count);
 		Debug.Log ("EATS: " + enhancedAttackTile.Count);
+		Debug.Log ("MV: " + movement);
+		Debug.Log ("AR: " + attackrange);
 		return null;
+		*/
+		for (int i = 0; i < movementTiles.Count; ++i) 
+		{
+			List<int> tile = new List<int> ();
+			tile.Add (movementTiles [i] [0]);
+			tile.Add (movementTiles [i] [1]);
+			double hashValue = pairFunction(tile[0],tile[1]);
+			hash[hashValue] = tile;
+
+		}
 
 		for (int i = 0; i < enhancedAttackTile.Count; ++i) 
 		{
 			List<int> tile = new List<int> ();
 			tile.Add (enhancedAttackTile [i] [0]);
 			tile.Add (enhancedAttackTile [i] [1]);
-			double hashValue = ((0.5) * (tile[0] + tile[1]) * (tile[0] + tile[1] + 1) ) + tile[1];
-			Debug.Log ("H: " + hashValue + " R: " + tile [0] + " I: " + tile [1]);
+			double hashValue = pairFunction (tile [0], tile [1]);
+			//Debug.Log ("H: " + hashValue + " R: " + tile [0] + " I: " + tile [1]);
 			//hash.Add (hashValue, tile);
+			if (!hash.ContainsKey (hashValue)) 
+			{
+				returnAttackTile.Add (tile);
+			}
+			/*
 			x = x + 1;
 			Debug.Log ("I:" + i + " C " + enhancedAttackTile.Count);
 			if (x == 50) {
 				Debug.Log ("This is looping");
 				break;
 			}
+			*/
 		}
 
-		for (int i = 0; i < movementTiles.Count; ++i) 
-		{
-			int row = movementTiles [i] [0];
-			int index = movementTiles [i] [1];
-			double hashValue = ((0.5) * (row + index) * (row + index + 1) ) + index;
-		
-			if (!hash.ContainsKey (hashValue)) 
-			{
-				returnAttackTile.Add (hash [hashValue]);
-			}
-		}
+
 
 		List<List<List<int>>> moveAttack = new List<List<List<int>>> (); 
 		moveAttack.Add (movementTiles);
