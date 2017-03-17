@@ -28,7 +28,8 @@ public class TraitSpriteControl : MonoBehaviour {
 	public List<Transform> TraitsInOrderOfCreatedClass;
 
 	private int traitsPerRow = 3;
-	private int denominatorOfFractionOfExtraSpace = 4;
+	private int multipleForSpacing = 15;
+	private int multipleForPushingDown = 50;
 
 	//set anchor to top left
 	private Vector2 anchorMin = new Vector2(0f, 1f);
@@ -78,6 +79,7 @@ public class TraitSpriteControl : MonoBehaviour {
 			-traitBackgroundUI.GetComponent<Renderer>().bounds.size.y / 2, 0);
 		//create first trait vector
 		traitUIParent = GameObject.FindObjectOfType<Canvas>().transform;
+
 		Transform traitBackground = (Transform)Instantiate(traitBackgroundUI, traitVector, Quaternion.identity);
 		RectTransform traitRectBackground = traitBackground.GetComponent<RectTransform> ();
 		traitRectBackground.anchorMin = anchorMin;
@@ -90,10 +92,10 @@ public class TraitSpriteControl : MonoBehaviour {
 		for (int i = 0; i < traitList.Count; ++i) {
 			int tempPos = traitList [i].GetPositionInSpriteControlList ();
 			traitVector.x = (((i % traitsPerRow) + 0.5f) * 
-				(TraitsInOrderOfCreatedClass[tempPos].GetComponent<Renderer>().bounds.size.x + (TraitsInOrderOfCreatedClass[tempPos].GetComponent<Renderer>().bounds.size.x/denominatorOfFractionOfExtraSpace)));
-			traitVector.y = ((i / traitsPerRow) * 
-				(-TraitsInOrderOfCreatedClass[tempPos].GetComponent<Renderer>().bounds.size.y - (TraitsInOrderOfCreatedClass[tempPos].GetComponent<Renderer>().bounds.size.y/denominatorOfFractionOfExtraSpace)));
-			traitVector.y -= traitBackgroundUI.GetComponent<Renderer> ().bounds.size.y / 2;
+				(TraitsInOrderOfCreatedClass[tempPos].GetComponent<RectTransform>().rect.width *  multipleForSpacing));
+			traitVector.y = (((i / traitsPerRow) + 1f) * 
+				(-TraitsInOrderOfCreatedClass[tempPos].GetComponent<RectTransform>().rect.height * multipleForSpacing));
+			traitVector.y -= (TraitsInOrderOfCreatedClass[tempPos].GetComponent<RectTransform> ().rect.height * multipleForPushingDown);
 			traitVector.z = 0;
 			Transform trait = (Transform)Instantiate(TraitsInOrderOfCreatedClass[tempPos], traitVector, Quaternion.identity);
 			trait.gameObject.GetComponent<IndividualTraitScipt> ().SetInfoTrait (traitList [i]);

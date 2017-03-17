@@ -101,11 +101,13 @@ public class TurnControlScript : MonoBehaviour {
     }
 
 	IEnumerator FlashingPlayerTile() {
+		/*
 		Shader shaderGUItext;
 		shaderGUItext = Shader.Find ("GUI/Text Shader");
+		*/
 		while (playerSelected) {
 			playerSelected.GetComponent<GenericCharacterScript>().GetTileOccuping().GetComponent<Renderer>().
-			material.color = Color.Lerp(playerHighlight, playerHighlightSwitch, Mathf.PingPong(Time.time, switchTimer));
+			material.color = Color.Lerp(playerHighlightSwitch, playerHighlight, Mathf.PingPong(Time.time, switchTimer));
 
 			yield return new WaitForSeconds(0.001f);
 		}
