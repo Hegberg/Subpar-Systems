@@ -1,30 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelScripts\MapData\Map1Script.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelScripts\Enemies\KiteEnemyScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\LevelScripts\TurnControlScript.cs" Line="61" Column="18" />
-      <File FileName="Assets\Scripts\LevelScripts\Enemies\GenericEnemyScript.cs" Line="132" Column="20" />
-      <File FileName="Assets\Scripts\LevelScripts\Enemies\KiteEnemyScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\MapData\Map1Script.cs" Line="90" Column="1" />
+      <File FileName="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" Line="42" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\TileScripts\GenericEarthScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\AStarScript.cs" Line="475" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\Enemies\GenericEnemyScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\Enemies\KiteEnemyScript.cs" Line="16" Column="2" />
       <File FileName="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" Line="109" Column="39" />
-      <File FileName="Assets\Scripts\LevelScripts\MapData\Map2Script.cs" Line="86" Column="42" />
-      <File FileName="Assets\Scripts\LevelScripts\MapData\Map1Script.cs" Line="82" Column="2" />
-      <File FileName="Assets\Scripts\LevelScripts\AStarScript.cs" Line="405" Column="152" NotebookId="1" />
-      <File FileName="Assets\Scripts\LevelScripts\TileScripts\GenericEarthScript.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\Scripts\LevelScripts\Enemies\EnemyParentScript.cs" Line="1" Column="1" NotebookId="1" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelScripts\TurnControlScript.cs">
-    <Files>
-      <File FileName="Assets\Scripts\LevelScripts\LevelControlScript.cs" Line="108" Column="2" />
-      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelScripts\TurnControlScript.cs" Line="40" Column="10" />
-      <File FileName="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" Line="46" Column="33" />
-      <File FileName="Assets\Scripts\MissionMenuScripts\TraitSpriteControl.cs" Line="76" Column="36" />
-      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\IndividualTraitScipt.cs" Line="10" Column="17" />
-      <File FileName="Assets\Scripts\LevelScripts\Enemies\EnemyParentScript.cs" Line="64" Column="43" />
-      <File FileName="Assets\Scripts\LevelScripts\TileScripts\GenericEarthScript.cs" Line="35" Column="58" />
->>>>>>> 65892188db8821a1f9eaeaee75e7cc398be0263c
+      <File FileName="Assets\Scripts\LevelScripts\TurnControlScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
