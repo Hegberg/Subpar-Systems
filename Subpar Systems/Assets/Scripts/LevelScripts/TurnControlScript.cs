@@ -281,7 +281,7 @@ public class TurnControlScript : MonoBehaviour {
 
         if (playerSelected != null)
         {
-			
+			/*
 			List<List<List<int>>> testing = new List<List<List<int>>> ();
 
 			testing = AStarScript.control.FloodFillAttackAndMovement(LevelControlScript.control.GetAStarMap (), 
@@ -302,7 +302,7 @@ public class TurnControlScript : MonoBehaviour {
 				Debug.Log("A" + testing[1][i][0] + " " + testing[1][i][1]);
 			}
 			Debug.Log("=====END Attack=====");
-
+			*/
 			List<List<GameObject>> map = LevelControlScript.control.GetAStarMap();
             HighlightPlayerTile();
 			//but implement A* and not just teleport player with move player script
