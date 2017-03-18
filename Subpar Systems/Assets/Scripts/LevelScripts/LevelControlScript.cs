@@ -28,7 +28,7 @@ public class LevelControlScript : MonoBehaviour {
 
 	private int playersAlive = 0;
 
-	private List<EnemySpawner> enemySpawners;
+	private List<EnemySpawner> enemySpawners = new List<EnemySpawner>();
 
 	private List<List<List<int>>> mapData = new List<List<List<int>>>();
 
@@ -107,7 +107,7 @@ public class LevelControlScript : MonoBehaviour {
 	}
 
 	public void CreateMap(List<List<List<int>>> map, List<int[]> playerSpawnLocations, 
-		List<int[]> enemySpawnLocations , List<EnemySpawner> tempEnemySpawners = default(List<EnemySpawner>))
+		List<int[]> enemySpawnLocations , List<EnemySpawner> tempEnemySpawners)
     {
         minCameraX = 0f;
         minCameraY = 0f;
@@ -115,6 +115,12 @@ public class LevelControlScript : MonoBehaviour {
         float fuckThomasX = 0.0f;
         float fuckThomasY = 0.0f;
         float fuckThomasZ = 0.0f;
+
+		//reset map lists
+		aStarMap.Clear();
+		aStarMapCost.Clear ();
+		mapData.Clear ();
+		enemySpawners.Clear ();
 
         //0 is earth, 1 is water, 2 is mountian
         //start at bottom row and build up

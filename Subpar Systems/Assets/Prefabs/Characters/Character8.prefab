@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4453777497457490}
   - component: {fileID: 212632412428292068}
-  - component: {fileID: 114305559026622916}
+  - component: {fileID: 114534228520557262}
   - component: {fileID: 60445227373429162}
   m_Layer: 0
   m_Name: Character8
@@ -63,7 +63,7 @@ PolygonCollider2D:
       - {x: 0.9375, y: -0.5}
       - {x: 0.9375, y: 0.6875}
       - {x: 0.75, y: 1.375}
---- !u!114 &114305559026622916
+--- !u!114 &114534228520557262
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1031067855250880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4f8eda6b5bfac94184ed16832b5a911, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ad5f849511c1aa48b3859a32c8ccb66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212632412428292068
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 21c612f969b659e47b14a1b8c3cb2755, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64f16609bd05bab4c9193640f169724c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -109,12 +109,35 @@ public class GenericCharacterScript : MonoBehaviour {
 	}
 
 	public int GetMovement() {
-		return (int)movement;
+
+        float movementModifier = 1.0f;
+        for (int i = 0; i < currentTraits.Count; ++i)
+        {
+            //add modifiers together so that the defense modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
+            movementModifier += currentTraits[i].ModifyMovement() - 1;
+        }
+        //stop modifier from going below 0%
+        if (movementModifier < 0)
+        {
+            movementModifier = 0;
+        }
+        return (int)(movement * movementModifier);
 	}
 
 	public int GetRange() {
-		return (int)range;
-	}
+        float rangeModifier = 1.0f;
+        for (int i = 0; i < currentTraits.Count; ++i)
+        {
+            //add modifiers together so that the defense modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
+            rangeModifier += currentTraits[i].ModifyRange() - 1;
+        }
+        //stop modifier from going below 0%
+        if (rangeModifier < 0)
+        {
+            rangeModifier = 0;
+        }
+        return (int)(range * rangeModifier);
+    }
 
 	public void DebugShowTraits(){
 		for (int i = 0; i < currentTraits.Count; ++i) {
@@ -222,5 +245,9 @@ public class GenericCharacterScript : MonoBehaviour {
 
 	public string GetName() {
 		return name;
+	}
+
+	public void RemoveFromGame() {
+		Destroy (this.gameObject);
 	}
 }

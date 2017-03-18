@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DebriefScript.cs" />
     <Compile Include="Assets\Scripts\DebriefingScripts\DebriefingScript.cs" />
     <Compile Include="Assets\Scripts\DebriefingScripts\HubButtonScript.cs" />
     <Compile Include="Assets\Scripts\HubScripts\HubConvo.cs" />
@@ -84,13 +85,23 @@
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\GenericTraitsScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\IndividualTraitScipt.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character10Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character11Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character12Script.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character1Script.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character2Script.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character3Script.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character4Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character5Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character6Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character7Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character8Script.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\Specific CharacterScripts\Character9Script.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Character Scripts\TraitBackgroudScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemyParentScript.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Enemies\GenericEnemyScript.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\Enemies\KiteEnemyScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\LevelControlScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\MapData\BlankMapScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\MapData\Map1Script.cs" />
@@ -109,6 +120,7 @@
     <Compile Include="Assets\Scripts\MissionMenuScripts\Character Selection Stuff\CharacterSelectionForSlot.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\Character Selection Stuff\charselect.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" />
+    <Compile Include="Assets\Scripts\MissionMenuScripts\MainMissionBrief.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\ReturntoMainMenuScript.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\SideMissionScripts\SideMissionScript.cs" />
     <Compile Include="Assets\Scripts\MissionMenuScripts\StartMissionScript.cs" />

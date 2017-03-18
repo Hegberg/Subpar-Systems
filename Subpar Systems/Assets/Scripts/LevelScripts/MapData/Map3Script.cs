@@ -126,6 +126,8 @@ public class Map3Script : MonoBehaviour
 
     private List<int[]> enemySpawnLocations = new List<int[]>();
 
+	private List<EnemySpawner> enemySpawners = new List<EnemySpawner>();
+
     // Use this for initialization
     void Start()
     {
@@ -188,6 +190,6 @@ public class Map3Script : MonoBehaviour
     IEnumerator MapGenerateWait()
     {
         yield return new WaitForSeconds(0.01f);
-        LevelControlScript.control.CreateMap(map, playerSpawnLocations, enemySpawnLocations);
+		LevelControlScript.control.CreateMap(map, playerSpawnLocations, enemySpawnLocations, enemySpawners);
     }
 }

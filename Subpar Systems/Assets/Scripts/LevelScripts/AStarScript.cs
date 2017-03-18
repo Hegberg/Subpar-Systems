@@ -387,7 +387,7 @@ public class AStarScript : MonoBehaviour {
 				increment++;
 			}
 
-		*/
+			*/
 
 
 		}//end while loop
@@ -395,6 +395,7 @@ public class AStarScript : MonoBehaviour {
 		//We should never get HERE. LIKE EVER
 		return null;
 	}
+
 
 	public double pairFunction(int row, int index){
 		return ((0.5) * (index + row) * (index + row + 1) ) + row;
@@ -423,6 +424,7 @@ public class AStarScript : MonoBehaviour {
 			tile.Add (movementTiles [i] [1]);
 			double hashValue = pairFunction(tile[0],tile[1]);
 			hash[hashValue] = tile;
+
 
 		}
 

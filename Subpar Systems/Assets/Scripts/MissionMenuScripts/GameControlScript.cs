@@ -37,14 +37,16 @@ public class GameControlScript : MonoBehaviour {
     public static List<GameObject> enemies = new List<GameObject>();
 
     public Transform slime;
-	public Transform kiteSlime;
+
+	public Transform kiteMonster;
+
 
     private int maxCharacters = 4;
     private int selectedCharacters = 0;
     private int selectedSideMissionCharacters = 0;
 
     //level progression, auto increment on victory
-    private int currentLevel;
+    private int currentLevel = 1;
 
     private int testLevel = 0;
     private int firstLevel = 1;
@@ -56,28 +58,46 @@ public class GameControlScript : MonoBehaviour {
     private static List<string> deadCharacterList = new List<string>();
 
     private List<List<GenericTraitsScript>> allCharacterTraits = new List<List<GenericTraitsScript>>();
-
-    //character F27
+    //Characters 1-4 riflemen.
+    //Characters 5-7 Grenadiers
+    //Characters 8-10 Assaults
+    //Characters 11,12 Machinegunners
+   
+    //character F32
     private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript>
-    { new MachineGunTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait(), new F27BadWithM40Trait()};
-    //character M40
+    {new RiflemanTrait(), new F32GoodWithM41Trait()};
+
     private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript>
-    { new GrenedierTrait()};
-	//character F32
-	private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript> 
-	{new RiflemanTrait(), new F32GoodWithM41Trait()};
-	//character M31
-	private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> 
+    {new RiflemanTrait() };
+
+    private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript>
+    {new RiflemanTrait() };
+
+    //character M31
+    private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> 
 	{new M31GoodWithM29Trait(), new M31MarriedToF32Trait(), new M31FriendM29DeadTrait(), new M31WifeF32DeadTrait(), new RiflemanTrait()};
 
-	private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character10InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript> { };
-	private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript> { };
+    //character M40
+    private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript>
+    { new GrenedierTrait()};
+
+    private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript>
+    {new GrenedierTrait() };
+	private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript>
+    { new GrenedierTrait() };
+
+    private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript>
+    { new AssaultTrait() };
+	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript>
+    {new AssaultTrait() };
+	private List<GenericTraitsScript> character10InitialTraits = new List<GenericTraitsScript>
+    { new AssaultTrait() };
+   
+    //character F27
+    private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript>
+    {new MachineGunTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait(), new F27BadWithM40Trait()};
+    private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript>
+    { new MachineGunTrait() };
 
     // Use this for initialization
     void Start () {
@@ -106,7 +126,9 @@ public class GameControlScript : MonoBehaviour {
 
             //add enemy prefabs
             enemies.Add(slime.gameObject);
-			enemies.Add (kiteSlime.gameObject);
+
+			enemies.Add (kiteMonster.gameObject);
+
 
             //initialize chosen list
             for (int i = 0; i < characters.Count; ++i)
@@ -122,16 +144,17 @@ public class GameControlScript : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-
-        SaveDeadCharacters();
-        Load();
+		//ClearDeadCharacters ();
+        //SaveDeadCharacters();
+        //Load();
+		ClearTraits();
     }
 	
 	// Update is called once per frame
 	void Update () {
 
     }
-
+	/*
 	public void Load() {
 		//Debug.Log (deadCharacterList.Count);
 		LoadDeadCharacters ();
@@ -145,6 +168,7 @@ public class GameControlScript : MonoBehaviour {
 		SaveCharacterTraits ();
 		SaveCurrentLevel ();
 	}
+	*/
 
 	//If need to clear traits at any point
 	public void ClearTraits () {
@@ -163,7 +187,7 @@ public class GameControlScript : MonoBehaviour {
 		allCharacterTraits.Add (character12InitialTraits);
 		InitializeTraits ();
 	}
-
+	/*
     //load dead characters
     public void LoadDeadCharacters()
     {
@@ -245,7 +269,7 @@ public class GameControlScript : MonoBehaviour {
 			file.Close();
 		}
 	}
-
+	*/
 	public void InitializeTraits() {
 		for (int i = 0; i < allCharacterTraits.Count; ++i) {
 			for (int j = 0; j < allCharacterTraits [i].Count; ++j) {
@@ -253,7 +277,7 @@ public class GameControlScript : MonoBehaviour {
 			}
 		}
 	}
-
+	/*
 	public void LoadCurrentLevel() {
 		if (File.Exists (Application.persistentDataPath + "/currentLevel.dat")) {
 			BinaryFormatter bf = new BinaryFormatter ();
@@ -282,6 +306,7 @@ public class GameControlScript : MonoBehaviour {
 			file.Close();
 		}
 	}
+	*/
 
     //character selected in list to join team
     public void SelectCharacter(string nameSelected)
@@ -419,8 +444,11 @@ public class GameControlScript : MonoBehaviour {
 
 	//set the level to be loaded to be the next level
 	public void NextLevel(){
+		for (int i = characterInGameList.Count - 1; i >= 0; --i) {
+			characterInGameList [i].GetComponent<GenericCharacterScript> ().RemoveFromGame ();
+		}
 		currentLevel += 1;
-        SaveDeadCharacters();
+        //SaveDeadCharacters();
         characterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
@@ -430,7 +458,10 @@ public class GameControlScript : MonoBehaviour {
 
     public void FailedLevel()
     {
-        SaveDeadCharacters();
+		for (int i = characterInGameList.Count - 1; i >= 0; --i) {
+			characterInGameList [i].GetComponent<GenericCharacterScript> ().RemoveFromGame ();
+		}
+        //SaveDeadCharacters();
         characterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
@@ -484,7 +515,7 @@ public class GameControlScript : MonoBehaviour {
     {
 		deadCharacterList.Add(character.GetComponent<GenericCharacterScript>().GetName());
         RemoveCharacterFromInGameList(character);
-        SaveDeadCharacters();
+        //SaveDeadCharacters();
 		//FailedLevel ();
     }
 
