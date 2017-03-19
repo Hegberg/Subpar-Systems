@@ -38,7 +38,7 @@ public class AStarScript : MonoBehaviour {
 	void run(){
 		LevelControlScript.control.GetAStarMap();
 	}
-	/*
+
 	public List<List<int>> findShitestPath(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int goalRow, int goalIndex)
 	{
 		//Debug.Log ("Original Row and Index: " + originRow + " " + originIndex);
@@ -146,7 +146,7 @@ public class AStarScript : MonoBehaviour {
 		}
         
 		Debug.Log ("Got here");
-
+		*/
 
 		//Visit the nodes in openSet
 		int lowestFScore;
@@ -175,7 +175,7 @@ public class AStarScript : MonoBehaviour {
 						Debug.Log ("element inside: " + openSet[k][j]);
 					}
 				}
-
+				*/
 				if(fScore[openSet[i]] < lowestFScore)
 				{
 					lowestFScore = fScore[openSet[i]];
@@ -196,7 +196,7 @@ public class AStarScript : MonoBehaviour {
 					currentNode = element.Value;
 				}
 			}
-
+			*/
 			//===================TESTING NEW OPENSET====================//
 
 
@@ -387,7 +387,7 @@ public class AStarScript : MonoBehaviour {
 				increment++;
 			}
 
-		
+			*/
 
 
 		}//end while loop
@@ -395,11 +395,69 @@ public class AStarScript : MonoBehaviour {
 		//We should never get HERE. LIKE EVER
 		return null;
 	}
-	*/
-	/*
-		WARNING NONE OF THE FOLLOWING CODE IS TEST AND WILL AND COULD BREAK EVERYTHING THAT EXIST!
-	*/
 
+
+	public double pairFunction(int row, int index){
+		return ((0.5) * (index + row) * (index + row + 1) ) + row;
+	}
+
+	public List<List<List<int>>> FloodFillAttackAndMovement(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int attackrange, int movement)
+	{
+		List<List<int>> movementTiles = FloodFillWithinRange (map, mapCost, originRow, originIndex, movement);
+		List<List<int>> enhancedAttackTile = FloodFillAttackRange (map, mapCost, originRow, originIndex, attackrange + movement);
+
+		Dictionary<double, List<int>> hash = new Dictionary<double, List<int>> ();
+
+		List<List<int>> returnAttackTile = new List<List<int>> ();
+		/*
+		int x = 0;
+		Debug.Log ("MTS: " + movementTiles.Count);
+		Debug.Log ("EATS: " + enhancedAttackTile.Count);
+		Debug.Log ("MV: " + movement);
+		Debug.Log ("AR: " + attackrange);
+		return null;
+		*/
+		for (int i = 0; i < movementTiles.Count; ++i) 
+		{
+			List<int> tile = new List<int> ();
+			tile.Add (movementTiles [i] [0]);
+			tile.Add (movementTiles [i] [1]);
+			double hashValue = pairFunction(tile[0],tile[1]);
+			hash[hashValue] = tile;
+
+
+		}
+
+		for (int i = 0; i < enhancedAttackTile.Count; ++i) 
+		{
+			List<int> tile = new List<int> ();
+			tile.Add (enhancedAttackTile [i] [0]);
+			tile.Add (enhancedAttackTile [i] [1]);
+			double hashValue = pairFunction (tile [0], tile [1]);
+			//Debug.Log ("H: " + hashValue + " R: " + tile [0] + " I: " + tile [1]);
+			//hash.Add (hashValue, tile);
+			if (!hash.ContainsKey (hashValue)) 
+			{
+				returnAttackTile.Add (tile);
+			}
+			/*
+			x = x + 1;
+			Debug.Log ("I:" + i + " C " + enhancedAttackTile.Count);
+			if (x == 50) {
+				Debug.Log ("This is looping");
+				break;
+			}
+			*/
+		}
+
+
+
+		List<List<List<int>>> moveAttack = new List<List<List<int>>> (); 
+		moveAttack.Add (movementTiles);
+		moveAttack.Add (returnAttackTile);
+		return moveAttack;
+
+	}
 
 	//Returns tile that are within the range of the map that can be attacked
 	public List<List<int>> FloodFillAttackRange(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int attackrange)
@@ -417,6 +475,9 @@ public class AStarScript : MonoBehaviour {
 
 		attackRangeRemain[startPosition] = attackrange;
 		openSet.Add(startPosition);
+
+		Dictionary<double, List<int>> hash = new Dictionary<double, List<int>> ();
+		hash[pairFunction(originRow, originIndex)] = startPosition;
 
 		while(!(openSet.Count == 0))
 		{
@@ -463,9 +524,14 @@ public class AStarScript : MonoBehaviour {
 							List<int> neighborNode = new List<int> ();
 							neighborNode.Add (gRow);
 							neighborNode.Add (gIndex);
-							openSet.Add (neighborNode);
-							attackSet.Add (neighborNode);
-							attackRangeRemain [neighborNode] = newCost;
+							if (!hash.ContainsKey (pairFunction (gRow, gIndex))) 
+							{
+								openSet.Add (neighborNode);
+								attackSet.Add (neighborNode);
+								attackRangeRemain [neighborNode] = newCost;
+								hash[pairFunction (gRow, gIndex)] = neighborNode;
+							}
+
 						} else {
 							continue;
 						}
@@ -475,11 +541,11 @@ public class AStarScript : MonoBehaviour {
 			}//end for loop
 
 		}//end while loop
-
+		/*
 		for (int i = 0; i < attackSet.Count; ++i) {
-			//Debug.Log ("attackSet Results at " + i + " " + attackSet[i][0] + "," + attackSet[i][1]);
+			Debug.Log ("attackSet Results at " + i + " " + attackSet[i][0] + "," + attackSet[i][1]);
 		}
-
+		*/
 
 		//Return tiles that are within attack range
 		return attackSet;
@@ -501,6 +567,9 @@ public class AStarScript : MonoBehaviour {
 
 		movementRemain[startPosition] = movementRange;
 		openSet.Add(startPosition);
+
+		Dictionary<double, List<int>> hash = new Dictionary<double, List<int>> ();
+		hash[pairFunction(originRow, originIndex)] = startPosition;
 
 		bool isEnemy = false;
 		//Check to see if this is enemy
@@ -559,8 +628,11 @@ public class AStarScript : MonoBehaviour {
 							List<int> neighborNode = new List<int> ();
 							neighborNode.Add (gRow);
 							neighborNode.Add (gIndex);
-							openSet.Add (neighborNode);
-							movementRemain [neighborNode] = newCost;
+							if (!hash.ContainsKey (pairFunction (gRow, gIndex))) {
+								openSet.Add (neighborNode);
+								movementRemain [neighborNode] = newCost;
+								hash[pairFunction (gRow, gIndex)] = neighborNode;
+							}
 						}
 						//Debug.Log ("Current node cost " + currentNodeRow + "," + currentNodeIndex + " movement " + movementRemain [currentNode] + " COST " + newCost);
 						else if (newCost >= 0 && !CheckIfOccupied(map[gRow][gIndex])) {
@@ -568,9 +640,12 @@ public class AStarScript : MonoBehaviour {
 							neighborNode.Add (gRow);
 							neighborNode.Add (gIndex);
 							//Debug.Log ("Added the neighborNode " + neighborNode [0] + "," + neighborNode [1]);
-							openSet.Add (neighborNode);
-							cameFromSet.Add (neighborNode);
-							movementRemain [neighborNode] = newCost;
+							if (!hash.ContainsKey (pairFunction (gRow, gIndex))) {
+								openSet.Add (neighborNode);
+								cameFromSet.Add (neighborNode);
+								movementRemain [neighborNode] = newCost;
+								hash[pairFunction (gRow, gIndex)] = neighborNode;
+							}
 						} else {
 							continue;
 						}

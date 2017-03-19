@@ -9,7 +9,9 @@ public class KiteEnemyScript : GenericEnemyScript {
 	public void checkAttack()
 	{
 		didKite = false;
-		this.Attack ();
+		//Debug.Log ("dK: " + didKite);
+		Attack();
+		//Debug.Log ("dk Post: " + didKite);
 	}
 
 	public override void Move()
@@ -47,6 +49,7 @@ public class KiteEnemyScript : GenericEnemyScript {
 			List<List<GameObject>> tempMap = LevelControlScript.control.GetAStarMap();
 			if (!didKite) {
 				//find closest tile to that character
+				//Debug.Log("I should not be kiting");
 				foreach (var elementTile in FloodFillTiles) {
 
 					int difference = Mathf.Abs (elementTile [0] - closest [0]) + Mathf.Abs (elementTile [1] - closest [1]);
@@ -60,15 +63,18 @@ public class KiteEnemyScript : GenericEnemyScript {
 				}//end find the closest tile to enemy
 			} else {
 				//find closest tile to that character
+				closestTileValue = int.MinValue;
+				//Debug.Log("I should be kiting");
 				foreach (var elementTile in FloodFillTiles)
 				{
 
 					int difference = Mathf.Abs(elementTile[0] - closest[0]) + Mathf.Abs(elementTile[1] - closest[1]);
+					//Debug.Log ("Dif: " + difference + " ER: " + elementTile [0] + " EI: " + elementTile [1]);
 					//Check to see if the tile total different in coordinate is less than the current closest
 					if (difference >= closestTileValue && tempMap[elementTile[0]][elementTile[1]].GetComponent<GenericEarthScript>().GetOccupingObject() == null)
 					{
 						//Swap the values
-						//Debug.Log("The cloeset Tile currently is " + elementTile[0] + "," + elementTile[1] + " with difference of " + difference);
+						//Debug.Log("The far Tile currently is " + elementTile[0] + "," + elementTile[1] + " with difference of " + difference);
 						closestTileValue = difference;
 						nearestTile = elementTile;
 					}
@@ -89,6 +95,7 @@ public class KiteEnemyScript : GenericEnemyScript {
     public override void Attack()
     {
 		if (didKite) {
+			//Debug.Log ("Already attacked");
 			return;
 		}
 
