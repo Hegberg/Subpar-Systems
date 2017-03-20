@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 224340682570559032}
   - component: {fileID: 212946091023723648}
-  - component: {fileID: 61368633988573998}
   - component: {fileID: 114523958718259932}
   - component: {fileID: 114606279729539270}
+  - component: {fileID: 61127197198448056}
   m_Layer: 5
   m_Name: TraitBackgroundUI
   m_TagString: Untagged
@@ -30,7 +30,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &61368633988573998
+--- !u!61 &61127197198448056
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -43,7 +43,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
+  m_Size: {x: 0.2, y: 0.4}
 --- !u!114 &114523958718259932
 MonoBehaviour:
   m_ObjectHideFlags: 1

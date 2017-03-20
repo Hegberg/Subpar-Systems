@@ -46,14 +46,39 @@ public class GenericCharacterScript : MonoBehaviour {
         }
         */
     }
-
+	/*
     void OnGUI()
     {
+		
         Vector2 targetPos;
         targetPos = Camera.main.WorldToScreenPoint(transform.position);
-        GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20), hp + "/" + 100);
+        //GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20), hp + "/" + 100);
+		if (hp >= 66) {
+			GUI.color = Color.green;
+		} else if (hp >= 33) {
+			GUI.color = Color.yellow;
+		} else {
+			GUI.color = Color.red;
+		}
+
+		GUI.HorizontalScrollbar (new Rect (targetPos.x - (this.gameObject.GetComponent<SpriteRenderer>().bounds.size.x * 10), 
+			Screen.height - targetPos.y - (this.gameObject.GetComponent<SpriteRenderer>().bounds.size.y * 10), 
+			30, 10), 0, hp, 0, 100);
 
     }
+    */
+
+	public virtual void ShowHealthOnPlayer() {
+		Color colour = new Color();
+		if (hp >= 66) {
+			colour = Color.white;
+		} else if (hp >= 33) {
+			colour = Color.yellow;
+		} else {
+			colour = Color.red;
+		}
+		this.gameObject.GetComponent<SpriteRenderer> ().material.color = colour;
+	}
 
     public virtual void OnMouseOver()
     {
@@ -166,6 +191,8 @@ public class GenericCharacterScript : MonoBehaviour {
         hasMoved = false;
 		//unvoid character
 		GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
+		//update player health
+		ShowHealthOnPlayer();
     }
 
     public void RemoveActions()
