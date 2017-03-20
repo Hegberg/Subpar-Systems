@@ -5,6 +5,7 @@ using UnityEngine;
 public class TraitSpriteControl : MonoBehaviour {
 
 	public static TraitSpriteControl control;
+
 	private Transform traitUIParent;
 
 	public Transform testUISprite;
@@ -108,5 +109,9 @@ public class TraitSpriteControl : MonoBehaviour {
 
 	public void UnShowTraits(){
 		traitUIParent.BroadcastMessage ("DestroyItem");
+	}
+
+	public Transform GetUIParent() {
+		return traitUIParent;
 	}
 }

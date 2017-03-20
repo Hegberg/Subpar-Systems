@@ -26,6 +26,14 @@ public class IndividualTraitScipt : MonoBehaviour, IPointerEnterHandler, IPointe
 	public void OnPointerEnter(PointerEventData eventData) {
 		Debug.Log ("Another happy landing");
 		Debug.Log ("Info " + infoTrait.GetName());
+		/*
+		GameObject infoName = new GameObject ("text", typeof(RectTransform));
+		var textComponent = infoName.AddComponent<Text> ();
+		textComponent.text = infoTrait.GetName ();
+		textComponent.alignment = TextAnchor.UpperLeft;
+		textComponent.fontSize = 24;
+		infoName.transform.SetParent (TraitSpriteControl.control.GetUIParent ());
+		*/
 	}
 
 	public void OnPointerExit(PointerEventData eventData) {
