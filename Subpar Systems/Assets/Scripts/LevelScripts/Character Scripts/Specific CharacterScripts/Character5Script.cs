@@ -11,7 +11,6 @@ public class Character5Script : GenericCharacterScript
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(4);
         name = "Character5";
         RefreshActions();
-        ModifyStats();
     }
 
     // Update is called once per frame

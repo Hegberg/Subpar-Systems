@@ -24,11 +24,17 @@ public class IndividualTraitScipt : MonoBehaviour, IPointerEnterHandler, IPointe
 	}
 
 	public void OnPointerEnter(PointerEventData eventData) {
-		Debug.Log ("Another happy landing");
-		Debug.Log ("Info " + infoTrait.GetName());
+		//Debug.Log ("Another happy landing");
+		//Debug.Log ("Info " + infoTrait.GetName());
+
+		GameObject textDescription = GameObject.Find ("TraitDescription");
+		Debug.Log (textDescription.name.ToString());
+		textDescription.GetComponent<Text> ().text = infoTrait.GetName ();
 		/*
 		GameObject infoName = new GameObject ("text", typeof(RectTransform));
 		Text textComponent = infoName.AddComponent<Text> ();
+		infoName.transform.SetParent (TraitSpriteControl.control.GetUIParent ());
+
 		textComponent.text = infoTrait.GetName ();
 		textComponent.alignment = TextAnchor.UpperLeft;
 		textComponent.fontSize = 24;
@@ -47,10 +53,14 @@ public class IndividualTraitScipt : MonoBehaviour, IPointerEnterHandler, IPointe
 		generator.Populate (infoTrait.GetName (), settings);
 		Debug.Log ("I generated: " + generator.vertexCount + "verts!");
 		*/
+
 	}
 
 	public void OnPointerExit(PointerEventData eventData) {
-		Debug.Log ("Another happy takeOff");
+		//Debug.Log ("Another happy takeOff");
+		GameObject textDescription = GameObject.Find ("TraitDescription");
+		Debug.Log (textDescription.name.ToString());
+		textDescription.GetComponent<Text> ().text = "";
 	}
 
 	public void DestroyItem() {

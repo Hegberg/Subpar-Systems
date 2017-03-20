@@ -23,12 +23,13 @@ public class GenericCharacterScript : MonoBehaviour {
 	//range character can fire
 	protected float range = 4;
 
+	Color colour = Color.white;
+
 	protected List<GenericTraitsScript> currentTraits = new List<GenericTraitsScript>();
 
     // Use this for initialization
     void Start () {
         RefreshActions();
-        ModifyStats();
     }
 	
 	// Update is called once per frame
@@ -36,16 +37,6 @@ public class GenericCharacterScript : MonoBehaviour {
 		
 	}
 
-    public void ModifyStats()
-    {
-        /*
-        for (int i = 0; i < currentTraits.Count; ++i)
-        {
-            //add modifiers together so that the attack modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
-            attackModifier += currentTraits[i].ModifyAttack() - 1;
-        }
-        */
-    }
 	/*
     void OnGUI()
     {
@@ -69,7 +60,6 @@ public class GenericCharacterScript : MonoBehaviour {
     */
 
 	public virtual void ShowHealthOnPlayer() {
-		Color colour = new Color();
 		if (hp >= 66) {
 			colour = Color.white;
 		} else if (hp >= 33) {
@@ -190,9 +180,9 @@ public class GenericCharacterScript : MonoBehaviour {
         //Debug.Log("character attacks = " + gameObject.name.ToString() + " " + attacksLeft);
         hasMoved = false;
 		//unvoid character
-		GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
-		//update player health
-		ShowHealthOnPlayer();
+		//GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
+		colour.a = 1f;
+		GetComponent<SpriteRenderer> ().color = colour;
     }
 
     public void RemoveActions()
@@ -221,7 +211,8 @@ public class GenericCharacterScript : MonoBehaviour {
 		//if player out of actions, make them fade out slightly
 		if (attacksLeft <= 0 && hasMoved) {
 			TurnControlScript.control.SetPlayerSelected (null);
-			GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0.50f);
+			colour.a = 0.5f;
+			GetComponent<SpriteRenderer> ().color = colour;
 		} 
 	}
 
@@ -258,6 +249,9 @@ public class GenericCharacterScript : MonoBehaviour {
 			LevelControlScript.control.PlayerDied ();
             Destroy(this.gameObject);
         }
+
+		//update player health
+		ShowHealthOnPlayer();
     }
 
     public GameObject GetTileOccuping()
