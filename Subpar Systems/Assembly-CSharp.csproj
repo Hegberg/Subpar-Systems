@@ -98,6 +98,9 @@
      <Compile Include="Assets\Scripts\MissionMenuScripts\StartMissionScript.cs" />
      <Compile Include="Assets\Scripts\MissionMenuScripts\TitleText.cs" />
      <Compile Include="Assets\Scripts\MissionMenuScripts\TraitSpriteControl.cs" />
+     <Compile Include="Assets\Scripts\Thomas_magical_UI_Land\ExitButton.cs" />
+     <Compile Include="Assets\Scripts\Thomas_magical_UI_Land\LoadButton.cs" />
+     <Compile Include="Assets\Scripts\Thomas_magical_UI_Land\StartButton.cs" />
      <Compile Include="Assets\Sounds\Music\Royalty Free Music\Credits.cs" />
      <None Include="Assets\Sprites\OpenSans-Familiy\OpenSansLic.txt" />
      <None Include="Assets\Scripts\OLD STAR.txt" />

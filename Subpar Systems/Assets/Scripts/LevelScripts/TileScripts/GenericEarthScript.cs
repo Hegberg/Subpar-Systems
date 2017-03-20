@@ -31,7 +31,7 @@ public class GenericEarthScript : TileScript {
 			List<List<int>> returnPath = new List<List<int>> ();
 			List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap();
 			allValidTile = TurnControlScript.control.GetAllValidMovementTiles ();
-
+			/*
 			List<List<int>> testAStarPath = new List<List<int>>();
 			/*
 			testAStarPath = AStarScript.control.findShitestPath (LevelControlScript.control.GetAStarMap (),
