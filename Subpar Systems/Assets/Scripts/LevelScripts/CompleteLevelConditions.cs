@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CompleteLevelConditions : MonoBehaviour {
 
-	public CompleteLevelConditions control;
+	public static CompleteLevelConditions control;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +17,8 @@ public class CompleteLevelConditions : MonoBehaviour {
 			Destroy(this.gameObject);
 		}
 
+		DontDestroyOnLoad (this.gameObject);
+
 	}
 	
 	// Update is called once per frame
@@ -24,5 +26,16 @@ public class CompleteLevelConditions : MonoBehaviour {
 		
 	}
 
+	public void LevelFailed() {
+		GameControlScript.control.FailedLevel ();
+	}
 
+	public void AllEnimiesDead () {
+		GameControlScript.control.NextLevel ();
+	}
+
+	public void CheckIfTankIsDead(){
+
+	}
+		
 }

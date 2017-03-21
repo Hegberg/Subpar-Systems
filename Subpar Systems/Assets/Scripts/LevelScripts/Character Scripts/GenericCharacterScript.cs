@@ -23,12 +23,13 @@ public class GenericCharacterScript : MonoBehaviour {
 	//range character can fire
 	protected float range = 4;
 
+	Color colour = Color.white;
+
 	protected List<GenericTraitsScript> currentTraits = new List<GenericTraitsScript>();
 
     // Use this for initialization
     void Start () {
         RefreshActions();
-        ModifyStats();
     }
 	
 	// Update is called once per frame
@@ -36,24 +37,38 @@ public class GenericCharacterScript : MonoBehaviour {
 		
 	}
 
-    public void ModifyStats()
-    {
-        /*
-        for (int i = 0; i < currentTraits.Count; ++i)
-        {
-            //add modifiers together so that the attack modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
-            attackModifier += currentTraits[i].ModifyAttack() - 1;
-        }
-        */
-    }
-
+	/*
     void OnGUI()
     {
+		
         Vector2 targetPos;
         targetPos = Camera.main.WorldToScreenPoint(transform.position);
-        GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20), hp + "/" + 100);
+        //GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20), hp + "/" + 100);
+		if (hp >= 66) {
+			GUI.color = Color.green;
+		} else if (hp >= 33) {
+			GUI.color = Color.yellow;
+		} else {
+			GUI.color = Color.red;
+		}
+
+		GUI.HorizontalScrollbar (new Rect (targetPos.x - (this.gameObject.GetComponent<SpriteRenderer>().bounds.size.x * 10), 
+			Screen.height - targetPos.y - (this.gameObject.GetComponent<SpriteRenderer>().bounds.size.y * 10), 
+			30, 10), 0, hp, 0, 100);
 
     }
+    */
+
+	public virtual void ShowHealthOnPlayer() {
+		if (hp >= 66) {
+			colour = Color.white;
+		} else if (hp >= 33) {
+			colour = Color.yellow;
+		} else {
+			colour = Color.red;
+		}
+		this.gameObject.GetComponent<SpriteRenderer> ().material.color = colour;
+	}
 
     public virtual void OnMouseOver()
     {
@@ -165,7 +180,9 @@ public class GenericCharacterScript : MonoBehaviour {
         //Debug.Log("character attacks = " + gameObject.name.ToString() + " " + attacksLeft);
         hasMoved = false;
 		//unvoid character
-		GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
+		//GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
+		colour.a = 1f;
+		GetComponent<SpriteRenderer> ().color = colour;
     }
 
     public void RemoveActions()
@@ -194,7 +211,8 @@ public class GenericCharacterScript : MonoBehaviour {
 		//if player out of actions, make them fade out slightly
 		if (attacksLeft <= 0 && hasMoved) {
 			TurnControlScript.control.SetPlayerSelected (null);
-			GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0.50f);
+			colour.a = 0.5f;
+			GetComponent<SpriteRenderer> ().color = colour;
 		} 
 	}
 
@@ -231,6 +249,9 @@ public class GenericCharacterScript : MonoBehaviour {
 			LevelControlScript.control.PlayerDied ();
             Destroy(this.gameObject);
         }
+
+		//update player health
+		ShowHealthOnPlayer();
     }
 
     public GameObject GetTileOccuping()

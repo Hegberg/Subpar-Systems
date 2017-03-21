@@ -37,7 +37,7 @@ public class EnemyParentScript : MonoBehaviour {
 	public void CheckAmountOfRemainingEnemies(){
 		if (enemiesAlive <= 0) {
 			enemiesAlive = 0;
-			TurnControlScript.control.LevelPassed ();
+			CompleteLevelConditions.control.AllEnimiesDead();
 		}
 	}
 

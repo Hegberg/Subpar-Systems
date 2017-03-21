@@ -9,7 +9,6 @@ public class Character3Script : GenericCharacterScript {
 		currentTraits = GameControlScript.control.GetTraitsOfACharacter (2);
 		name = "F32";
         RefreshActions();
-        ModifyStats();
     }
 	
 	// Update is called once per frame
