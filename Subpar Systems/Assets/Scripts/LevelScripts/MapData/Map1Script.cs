@@ -131,9 +131,10 @@ public class Map1Script : MonoBehaviour
 
 	private List<EnemySpawner> enemySpawners = new List<EnemySpawner>();
 
-	//Parameters are - position of spawn, maxSpawnCount, spawnRate(turns between each spawn), enemyType
+	//Parameters are - position of spawn, maxSpawnCount, spawnRate(turns between each spawn), enemyType, turns to first spawn
+
+	//private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{6,0}, 1, 2 , 1, 2); 
 	/*
-	private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{6,0}, 5, 2 , 0, 2); 
 	private EnemySpawner enemySpawner2 = new EnemySpawner(new List<int>{5,0}, 5, 2 , 0, 2); 
 	private EnemySpawner enemySpawner3 = new EnemySpawner(new List<int>{4,1}, 5, 2 , 0, 1); 
 	private EnemySpawner enemySpawner4 = new EnemySpawner(new List<int>{3,2}, 5, 2 , 0, 1); 

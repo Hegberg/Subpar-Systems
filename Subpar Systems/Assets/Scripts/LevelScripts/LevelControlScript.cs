@@ -375,7 +375,7 @@ public class LevelControlScript : MonoBehaviour {
 	public void PlayerDied (){
 		playersAlive = GameControlScript.control.GetInGameCharacterList().Count;
 		if (playersAlive <= 0) {
-			TurnControlScript.control.LevelFailed ();
+			CompleteLevelConditions.control.LevelFailed();
 		}
 	}
 		
