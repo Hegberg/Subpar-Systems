@@ -7,7 +7,7 @@ public class Character1Script : GenericCharacterScript {
 	// Use this for initialization
 	void Start () {
 		currentTraits = GameControlScript.control.GetTraitsOfACharacter (0);
-		name = "F27";
+		name = "F32";
         RefreshActions();
     }
 	

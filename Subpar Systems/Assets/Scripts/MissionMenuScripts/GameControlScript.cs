@@ -39,6 +39,8 @@ public class GameControlScript : MonoBehaviour {
 
     public Transform slime;
 	public Transform kiteMonster;
+	public Transform fastMonster;
+	public Transform tankMonster;
 
 
     private int maxCharacters = 4;
@@ -133,8 +135,10 @@ public class GameControlScript : MonoBehaviour {
 			tiles.Add (voidTile.gameObject);
 
             //add enemy prefabs
-            enemies.Add(slime.gameObject);
+            enemies.Add (slime.gameObject);
 			enemies.Add (kiteMonster.gameObject);
+			enemies.Add (fastMonster.gameObject);
+			enemies.Add (tankMonster.gameObject);
 
             //initialize chosen list
             for (int i = 0; i < characters.Count; ++i)
