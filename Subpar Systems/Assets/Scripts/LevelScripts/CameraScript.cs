@@ -26,7 +26,7 @@ public class CameraScript : MonoBehaviour {
         //modificatoreSchermo = 1f;
         float ResolutionHeight = Screen.height;
         int currentPixelsToUnits = 16;
-        int scale = 2;
+        int scale = 3;
 
         Camera.main.orthographicSize = (1.0f * ResolutionHeight) / 2 / currentPixelsToUnits/ scale;
 

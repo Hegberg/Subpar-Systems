@@ -33,6 +33,7 @@ public class GameControlScript : MonoBehaviour {
     public Transform earth;
     public Transform water;
     public Transform mountian;
+	public Transform voidTile;
 
     public static List<GameObject> enemies = new List<GameObject>();
 
@@ -123,12 +124,11 @@ public class GameControlScript : MonoBehaviour {
             tiles.Add(earth.gameObject);
             tiles.Add(water.gameObject);
             tiles.Add(mountian.gameObject);
+			tiles.Add (voidTile.gameObject);
 
             //add enemy prefabs
             enemies.Add(slime.gameObject);
-
 			enemies.Add (kiteMonster.gameObject);
-
 
             //initialize chosen list
             for (int i = 0; i < characters.Count; ++i)

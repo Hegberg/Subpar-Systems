@@ -1443,7 +1443,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501598e807ed39941a2f320b5ef15942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  control: {fileID: 0}
 --- !u!212 &370485214
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5003,6 +5002,7 @@ MonoBehaviour:
   earth: {fileID: 4484349548748366, guid: e316bc9414a0cbd42b2895205424161f, type: 2}
   water: {fileID: 4067026721940710, guid: 427a6c4d1f9fc4547862341a1436679c, type: 2}
   mountian: {fileID: 4092635508423484, guid: 41e3bd51a06fe3843ae5e4c2e6ef5130, type: 2}
+  voidTile: {fileID: 4619437683655224, guid: 4365f1ce6d4c34d46b5f9b24c18e4e98, type: 2}
   slime: {fileID: 4804943181517326, guid: aa93c90391e3b934b878bb24ac8b3349, type: 2}
   kiteMonster: {fileID: 4067662715525860, guid: 5d80cb7423e7f9d4b930506cdae8bee8,
     type: 2}

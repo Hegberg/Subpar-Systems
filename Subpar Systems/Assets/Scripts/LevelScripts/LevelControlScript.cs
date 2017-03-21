@@ -314,9 +314,9 @@ public class LevelControlScript : MonoBehaviour {
 
 	private void ExtraWaterSpawnCode(List<GameObject> tiles, bool offset, float fuckThomasX, 
 		float fuckThomasY, float fuckThomasZ, int i, int j){
-		int water = 1;
+		int voidTile = 3;
 
-		GameObject oneTile = tiles [water];
+		GameObject oneTile = tiles [voidTile];
 
 		tileWidth = oneTile.GetComponent<Renderer> ().bounds.size.x;
 		tileHeight = oneTile.GetComponent<Renderer> ().bounds.size.y;
