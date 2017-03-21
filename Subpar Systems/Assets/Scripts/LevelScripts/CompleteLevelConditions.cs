@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CompleteLevelConditions : MonoBehaviour {
 
@@ -37,5 +38,9 @@ public class CompleteLevelConditions : MonoBehaviour {
 	public void CheckIfTankIsDead(){
 
 	}
-		
+
+	public void ShowObjective() {
+		GameObject gameObjective = GameObject.Find ("GameObjective");
+		gameObjective.GetComponent<Text> ().text = GameControlScript.control.GetMissionObjective ();
+	}
 }

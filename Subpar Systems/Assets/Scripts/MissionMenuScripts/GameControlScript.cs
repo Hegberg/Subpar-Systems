@@ -38,7 +38,6 @@ public class GameControlScript : MonoBehaviour {
     public static List<GameObject> enemies = new List<GameObject>();
 
     public Transform slime;
-
 	public Transform kiteMonster;
 
 
@@ -51,6 +50,10 @@ public class GameControlScript : MonoBehaviour {
 
     private int testLevel = 0;
     private int firstLevel = 1;
+
+	private string level1Objective = "Defeat all the enemies";
+	private string level2Objective = "Defeat all the enemies";
+	private string level3Objective = "Defend the tank";
 
     //public Transform characterParent;
 
@@ -68,15 +71,16 @@ public class GameControlScript : MonoBehaviour {
     private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript>
     {new RiflemanTrait(), new F32GoodWithM41Trait()};
 
+	//character F29
     private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait() };
+	{new RiflemanTrait(), new F29FriendsWithF28(), new BacklineCommanderTrait(), new SleepDeprived()};
 
     private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript>
     {new RiflemanTrait() };
 
     //character M31
     private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> 
-	{new M31GoodWithM29Trait(), new M31MarriedToF32Trait(), new M31FriendM29DeadTrait(), new M31WifeF32DeadTrait(), new RiflemanTrait()};
+	{new RiflemanTrait(), new M31GoodWithM29Trait(), new M31MarriedToF32Trait(), new M31FriendM29DeadTrait(), new M31WifeF32DeadTrait()};
 
     //character M40
     private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript>
@@ -523,4 +527,15 @@ public class GameControlScript : MonoBehaviour {
 		return deadCharacterList;
 	}
 
+	public string GetMissionObjective() {
+		if (currentLevel == 1) {
+			return level1Objective;
+		} else if (currentLevel == 2) {
+			return level2Objective;
+		} else if (currentLevel == 3) {
+			return level3Objective;
+		}
+
+		return "";
+	}
 }
