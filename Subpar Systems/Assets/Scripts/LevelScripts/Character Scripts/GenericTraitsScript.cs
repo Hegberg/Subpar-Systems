@@ -437,4 +437,47 @@ public class SleepDeprived : GenericTraitsScript
 		return attackModifier;
 	}
 }
+	
+public class F28FriendsWithF29 : GenericTraitsScript
+{
+	public override void InitializeValues ()
+	{
+		name = "F28FriendsWithF29";
+		attackModifier = 1;
+		defenseModifier = 1;
+		movementModifier = 1.00f; //
+		rangeModifier = 1.00f; //
+		positionInSpriteUIList = 16;
+	}
 
+	public override float ModifyAttack ()
+	{
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F29") {
+				attackModifier = 1.2f;
+				break;
+			}
+		}
+		return attackModifier;
+	}
+
+	public override float ModifyDefense ()
+	{
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F29") {
+				defenseModifier = 1.2f;
+				break;
+			}
+		}
+		return defenseModifier;
+	}
+}
+
+public class FrontLineCommander : GenericTraitsScript
+{
+	public override void InitializeValues ()
+	{
+		name = "FrontLineCommander";
+		positionInSpriteUIList = 17;
+	}
+}

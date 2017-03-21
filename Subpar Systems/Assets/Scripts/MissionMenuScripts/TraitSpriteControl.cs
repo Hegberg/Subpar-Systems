@@ -27,6 +27,8 @@ public class TraitSpriteControl : MonoBehaviour {
 	public Transform brutalEfficiency;
 	public Transform f29GoodWithF28;
 	public Transform sleepDeprived;
+	public Transform f28GoodWithF29;
+	public Transform frontLineCommander;
 
 	public List<Transform> TraitsInOrderOfCreatedClass;
 
@@ -64,6 +66,8 @@ public class TraitSpriteControl : MonoBehaviour {
 			TraitsInOrderOfCreatedClass.Add (assault);
 			TraitsInOrderOfCreatedClass.Add (f29GoodWithF28);
 			TraitsInOrderOfCreatedClass.Add (sleepDeprived);
+			TraitsInOrderOfCreatedClass.Add (f28GoodWithF29);
+			TraitsInOrderOfCreatedClass.Add (frontLineCommander);
 
 			//Debug.Log (TraitsInOrderOfCreatedClass.Count);
 		}

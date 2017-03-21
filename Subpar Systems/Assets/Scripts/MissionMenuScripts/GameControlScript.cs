@@ -86,8 +86,10 @@ public class GameControlScript : MonoBehaviour {
     private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript>
     { new GrenedierTrait()};
 
+	//character F28
     private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript>
-    {new GrenedierTrait() };
+	{new GrenedierTrait(), new F28FriendsWithF29(), new FrontLineCommander()};
+
 	private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript>
     { new GrenedierTrait() };
 

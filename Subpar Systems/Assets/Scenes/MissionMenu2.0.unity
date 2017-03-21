@@ -1052,6 +1052,10 @@ MonoBehaviour:
     type: 2}
   sleepDeprived: {fileID: 224285277584462546, guid: 14b4cdd6be278974ea2ffd88eca6e968,
     type: 2}
+  f28GoodWithF29: {fileID: 224401941872476446, guid: 0e46ddd42aacaed4f8d874faabf79167,
+    type: 2}
+  frontLineCommander: {fileID: 224630820730617406, guid: 8b09b6ebeb2b99d418268aebc18586a9,
+    type: 2}
   TraitsInOrderOfCreatedClass: []
 --- !u!1 &221626930
 GameObject:
