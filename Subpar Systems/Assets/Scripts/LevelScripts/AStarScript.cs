@@ -498,6 +498,14 @@ public class AStarScript : MonoBehaviour {
 				index.Add (currentNodeIndex-1);
 				index.Add (currentNodeIndex);
 			}
+
+			bool isEnemy = false;
+			//Check to see if this is enemy
+			if (map[originRow][originIndex].GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy() == true)
+			{
+				isEnemy = true;
+			}	
+
 			//Debug.Log ("What is in the row " + rows [0] + "," + rows [1]);
 			//Debug.Log ("What is in the index " + index [0] + "," + index [1]);
 
@@ -524,12 +532,19 @@ public class AStarScript : MonoBehaviour {
 							List<int> neighborNode = new List<int> ();
 							neighborNode.Add (gRow);
 							neighborNode.Add (gIndex);
-							if (!hash.ContainsKey (pairFunction (gRow, gIndex))) 
-							{
+							if (!CheckIfWalkable (mapCost [gRow] [gIndex] [0]) || CheckIfFriendly(map[gRow][gIndex], isEnemy)) {
+								if (!hash.ContainsKey (pairFunction (gRow, gIndex))) {
+									openSet.Add (neighborNode);
+									attackRangeRemain [neighborNode] = newCost;
+									hash [pairFunction (gRow, gIndex)] = neighborNode;
+								}
+							} else if (!hash.ContainsKey (pairFunction (gRow, gIndex))) {
 								openSet.Add (neighborNode);
 								attackSet.Add (neighborNode);
 								attackRangeRemain [neighborNode] = newCost;
-								hash[pairFunction (gRow, gIndex)] = neighborNode;
+								hash [pairFunction (gRow, gIndex)] = neighborNode;
+							} else {
+								continue;
 							}
 
 						} else {

@@ -339,7 +339,7 @@ public class TurnControlScript : MonoBehaviour {
 
 	public void RemoveExtraReachAttackTiles(){
 		//Highlight all the reachable attack tiles
-		for (int i = 0; i < allValidTile.Count; ++i) {
+		for (int i = 0; i < allValidAttackReachTile.Count; ++i) {
 			movementmap [allValidAttackReachTile [i] [0]] [allValidAttackReachTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = restoreOriginalColor;
 		}
 	}
@@ -420,13 +420,25 @@ public class TurnControlScript : MonoBehaviour {
 				allValidTile = allTiles [0];
 				allValidAttackReachTile = allTiles [1];
 
+				/*
+				Debug.Log ("=====Movement=====");
+				for (int i = 0; i < allTiles [0].Count; ++i) {
+					Debug.Log("M:" + allTiles[0][i][0] + " " + allTiles[1][i][1]);
+				}
+				Debug.Log ("=====END Movement=====");
+				Debug.Log ("=====ExtendAttack=====");
+				for (int i = 0; i < allTiles [1].Count; ++i) {
+					Debug.Log("A" + allTiles[1][i][0] + " " + allTiles[1][i][1]);
+				}
+				Debug.Log("=====END Attack=====");
+				*/
 				//Highlight all the valid tiles
 				for (int i = 0; i < allValidTile.Count; ++i) {
 					movementmap [allValidTile [i] [0]] [allValidTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = movementHighlight;
 				}
 
 				//Highlight all the reachable attack tiles
-				for (int i = 0; i < allValidTile.Count; ++i) {
+				for (int i = 0; i < allValidAttackReachTile.Count; ++i) {
 					movementmap [allValidAttackReachTile [i] [0]] [allValidAttackReachTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = enemyCanAttackHighlight;
 				}
 
