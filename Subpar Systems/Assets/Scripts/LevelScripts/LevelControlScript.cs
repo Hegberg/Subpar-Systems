@@ -271,6 +271,8 @@ public class LevelControlScript : MonoBehaviour {
 		//set enemy spawners for the map
 		enemySpawners = tempEnemySpawners;
 
+		/* //comment out from here to disable extra spawn code
+
 		//if i start even, offset starts false
 		offset = false;
 		//water index in GameControl
@@ -282,9 +284,7 @@ public class LevelControlScript : MonoBehaviour {
 
 		int iReplaceHigh = map.Count;
 
-
-
-		//create extra water
+		//create extra map tiles
 		for (int i = -20; i < map.Count + 20; ++i) {
 			//overlaying map
 			if (i >= 0 && i < map.Count) {
@@ -310,6 +310,7 @@ public class LevelControlScript : MonoBehaviour {
 			offset = !offset;
 
 		}
+		*/
     }
 
 	private void ExtraWaterSpawnCode(List<GameObject> tiles, bool offset, float fuckThomasX, 
