@@ -65,9 +65,58 @@ public class GenericEnemyScript : MonoBehaviour {
                     //calculate damage taken, if it is 0 attack doesn't happen
                     if (TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetAttack() != 0)
                     {
-                        hp -= TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetAttack();
-                        //set player attacked to true
-						TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().PlayerAttacked(1);
+
+						List<GenericTraitsScript> playerTraits = TurnControlScript.control.GetPlayerSelected ().
+							GetComponent<GenericCharacterScript> ().GetTraits ();
+						bool splash = false;
+						for (int i = 0; i < playerTraits.Count; ++i) {
+							if (playerTraits [i].GetName () == "Grenedier") {
+								splash = true;
+								break;
+							}
+						}
+
+						if (splash) {
+							List<List<int>> splashTiles = AStarScript.control.traitSplash (LevelControlScript.control.GetAStarMap(), 
+								tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0], 
+								tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
+							Debug.Log (splashTiles.Count);
+
+							bool attacked = false;
+
+							for (int i = 0; i < splashTiles.Count; ++i) {
+								for (int j = 0; j < GameControlScript.control.GetInGameEnemyList ().Count; ++j) {
+									if (GameControlScript.control.GetInGameEnemyList () [j].GetComponent<GenericEnemyScript> ().
+										GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition ()[0] == splashTiles [i][0] &&
+										GameControlScript.control.GetInGameEnemyList () [j].GetComponent<GenericEnemyScript> ().
+										GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition ()[1] == splashTiles [i][1]) {
+
+										if (GameControlScript.control.GetInGameEnemyList () [j] != this.gameObject) {
+
+											GameControlScript.control.GetInGameEnemyList () [j].GetComponent<GenericEnemyScript> ().
+											SetHP (GameControlScript.control.GetInGameEnemyList () [j].GetComponent<GenericEnemyScript> ().GetHP() - TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ());
+											Debug.Log (TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ());
+											attacked = true;
+											Debug.Log ("Secondary hp" + hp);
+										} else {
+											//this doesn't perform death check until after everything else resolves
+											hp -= TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ();
+											Debug.Log ("Primary hp" + hp);
+											attacked = true;
+										}
+									}
+								}
+							}
+							if (attacked) {
+								//set player attacked to true
+								TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().PlayerAttacked (1);
+							}
+						} else {
+							hp -= TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetAttack();
+							//set player attacked to true
+							TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().PlayerAttacked(1);
+						}
+
                         isSelected = false;
                         //check if enemy still alive
 						if (hp <= 0) {
@@ -304,4 +353,24 @@ public class GenericEnemyScript : MonoBehaviour {
 
         this.gameObject.transform.position = tempTile;
     }
+
+	public void SetHP(float newHP) {
+		hp = newHP;
+		Debug.Log ("Secondary hp" + hp);
+		//check if less then 0, and do appropiate actions
+		if (hp <= 0) {
+			EnemyParentScript.control.EnemyDied ();
+			GameControlScript.control.RemoveEnemyFromInGameList (this.gameObject);
+			tileOccuping.GetComponent<GenericEarthScript> ().SetOccupingObject (null);
+			//need this repeated twice since if this is before the line above, the line above will malfunction, 
+			//but if not in else than code malfunction
+			TurnControlScript.control.SetEnemySelected(null);
+
+			Destroy (gameObject);
+		}
+	}
+
+	public float GetHP() {
+		return hp;
+	}
 }

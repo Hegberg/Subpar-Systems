@@ -158,7 +158,7 @@ public class LevelControlScript : MonoBehaviour {
 
                 Vector3 tempVector = new Vector3(fuckThomasX, fuckThomasY, fuckThomasZ);
 
-                Transform tile = (Transform)Instantiate(oneTile.transform,tempVector, Quaternion.identity);
+                Transform tile = (Transform)Instantiate(oneTile.transform, tempVector, Quaternion.identity);
                 tile.SetParent(TileParent);
 
 				//created for tile filler below
@@ -235,6 +235,7 @@ public class LevelControlScript : MonoBehaviour {
                             GameControlScript.control.GetEnemies()[enemySpawnLocations[k][2]].transform,
                             tempVector, Quaternion.identity);
                         enemy.gameObject.GetComponent<GenericEnemyScript>().SetTileOccuping(tile.gameObject);
+						//Debug.Log (enemy.gameObject.GetComponent<GenericEnemyScript> ().GetTileOccuping ());
                         enemy.SetParent(enemyParent);
 						EnemyParentScript.control.EnemyCreated ();
                         GameControlScript.control.AddEnemyToInGameList(enemy.gameObject);
