@@ -78,6 +78,7 @@ public class GenericEnemyScript : MonoBehaviour {
 
 						if (splash) {
 							List<List<int>> splashTiles = AStarScript.control.traitSplash (LevelControlScript.control.GetAStarMap(), 
+								LevelControlScript.control.GetAStarMapCost(),
 								tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0], 
 								tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
 							Debug.Log (splashTiles.Count);
@@ -97,11 +98,11 @@ public class GenericEnemyScript : MonoBehaviour {
 											SetHP (GameControlScript.control.GetInGameEnemyList () [j].GetComponent<GenericEnemyScript> ().GetHP() - TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ());
 											Debug.Log (TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ());
 											attacked = true;
-											Debug.Log ("Secondary hp" + hp);
+											//Debug.Log ("Secondary hp" + hp);
 										} else {
 											//this doesn't perform death check until after everything else resolves
 											hp -= TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ();
-											Debug.Log ("Primary hp" + hp);
+											//Debug.Log ("Primary hp" + hp);
 											attacked = true;
 										}
 									}
@@ -356,7 +357,7 @@ public class GenericEnemyScript : MonoBehaviour {
 
 	public void SetHP(float newHP) {
 		hp = newHP;
-		Debug.Log ("Secondary hp" + hp);
+		//Debug.Log ("Secondary hp" + hp);
 		//check if less then 0, and do appropiate actions
 		if (hp <= 0) {
 			EnemyParentScript.control.EnemyDied ();

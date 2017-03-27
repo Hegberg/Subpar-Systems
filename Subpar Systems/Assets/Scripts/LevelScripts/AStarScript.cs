@@ -39,7 +39,7 @@ public class AStarScript : MonoBehaviour {
 		LevelControlScript.control.GetAStarMap();
 	}
 
-	public List<List<int>> traitSplash(List<List<GameObject>> map, int originRow, int originIndex)
+	public List<List<int>> traitSplash(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex)
 	{
 		List<List<int>> returnList = new List<List<int>> ();
 
@@ -67,7 +67,7 @@ public class AStarScript : MonoBehaviour {
 					//Debug.Log ("I left in gRow and gIndex");
 					continue;
 				}
-				if (CheckIfFriendly (map [gRow] [gIndex], true)) {
+				if (CheckIfWalkable(mapCost[gRow][gIndex][0]) && CheckIfFriendly (map [gRow] [gIndex], true)) {
 					List<int> validTile = new List<int> ();
 					validTile.Add (gRow);
 					validTile.Add (gIndex);
@@ -874,7 +874,7 @@ public class AStarScript : MonoBehaviour {
 		else
 		{
 			if ((mapTile.GetComponent<GenericEarthScript> ().GetOccupingObject () != null)
-			    && (mapTile.GetComponent<GenericEarthScript> ().GetIsOccupyingObjectAnEnemy () == false)) 
+				&& (mapTile.GetComponent<GenericEarthScript> ().GetIsOccupyingObjectAnEnemy () == false)) 
 			{
 				return true;
 			}	
@@ -882,6 +882,9 @@ public class AStarScript : MonoBehaviour {
 			return false;
 		}
 		//Debug.Log ("Did not meet either condition in CheckIfFriendly");
+
+
+
 	}
 
 	private bool CheckIfOccupied(GameObject mapTile)
