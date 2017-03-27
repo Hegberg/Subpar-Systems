@@ -311,6 +311,9 @@ public class LevelControlScript : MonoBehaviour {
 
 		}
 		*/
+
+		//Set objective for the level
+		CompleteLevelConditions.control.ShowObjective();
     }
 
 	private void ExtraWaterSpawnCode(List<GameObject> tiles, bool offset, float fuckThomasX, 

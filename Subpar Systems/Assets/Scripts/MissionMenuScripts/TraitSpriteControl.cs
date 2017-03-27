@@ -25,6 +25,10 @@ public class TraitSpriteControl : MonoBehaviour {
 	public Transform f27BadWithM40;
 	public Transform f27GoodWithF25;
 	public Transform brutalEfficiency;
+	public Transform f29GoodWithF28;
+	public Transform sleepDeprived;
+	public Transform f28GoodWithF29;
+	public Transform frontLineCommander;
 
 	public List<Transform> TraitsInOrderOfCreatedClass;
 
@@ -60,6 +64,10 @@ public class TraitSpriteControl : MonoBehaviour {
 			TraitsInOrderOfCreatedClass.Add (rifleman);
 			TraitsInOrderOfCreatedClass.Add (grenedier);
 			TraitsInOrderOfCreatedClass.Add (assault);
+			TraitsInOrderOfCreatedClass.Add (f29GoodWithF28);
+			TraitsInOrderOfCreatedClass.Add (sleepDeprived);
+			TraitsInOrderOfCreatedClass.Add (f28GoodWithF29);
+			TraitsInOrderOfCreatedClass.Add (frontLineCommander);
 
 			//Debug.Log (TraitsInOrderOfCreatedClass.Count);
 		}
@@ -92,6 +100,7 @@ public class TraitSpriteControl : MonoBehaviour {
 		//create each trait
 		for (int i = 0; i < traitList.Count; ++i) {
 			int tempPos = traitList [i].GetPositionInSpriteControlList ();
+			//Debug.Log (tempPos);
 			traitVector.x = (((i % traitsPerRow) + 0.5f) * 
 				(TraitsInOrderOfCreatedClass[tempPos].GetComponent<RectTransform>().rect.width *  multipleForSpacing));
 			traitVector.y = (((i / traitsPerRow) + 1f) * 

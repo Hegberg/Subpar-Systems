@@ -81,8 +81,8 @@ public class Map1Script : MonoBehaviour
 
 
     //x, y, enemy type
-    private int[] enemySpawn1 = { 3, 2, 1 };
-    private int[] enemySpawn2 = { 4, 3, 0 };
+    private int[] enemySpawn1 = { 3, 2, 2 };
+    private int[] enemySpawn2 = { 4, 3, 3 };
 
     private int[] enemySpawn3 = { 3, 4, 1 };
     private int[] enemySpawn4 = { 0, 7, 0 };
@@ -92,11 +92,11 @@ public class Map1Script : MonoBehaviour
     private int[] enemySpawn7 = { 8, 5, 0 };
     private int[] enemySpawn8 = { 8, 8, 1 };
     private int[] enemySpawn9 = { 7, 9, 0 };
-    private int[] enemySpawn10 = { 7, 11, 0 };
+    private int[] enemySpawn10 = { 7, 11, 1 };
     private int[] enemySpawn11 = { 0, 12, 0 }; //Broken
-    private int[] enemySpawn12 = { 3, 17, 0 };
+    private int[] enemySpawn12 = { 3, 17, 3 };
     private int[] enemySpawn13 = { 3, 19, 0 };
-    private int[] enemySpawn14 = { 7, 15, 0 };
+    private int[] enemySpawn14 = { 7, 15, 2 };
     private int[] enemySpawn15 = { 7, 19, 0 };
 
     //LAST 4 ARE THE OBJECTIVE TARGETS

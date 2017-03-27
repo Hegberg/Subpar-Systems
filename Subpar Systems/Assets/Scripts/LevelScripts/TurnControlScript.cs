@@ -81,7 +81,7 @@ public class TurnControlScript : MonoBehaviour {
         if (playerTurn)
         {
             playerTurn = false;
-            Debug.Log("Player Turn Ended");
+            //Debug.Log("Player Turn Ended");
             //need this broadcast first, so checks in Unhighlight that are rellying on what state the character in are correct
             LevelControlScript.control.BroadcastRemoveActionsToCharacters();
             UnHighlightPlayerTile();
@@ -94,7 +94,7 @@ public class TurnControlScript : MonoBehaviour {
     public void StartTurn()
     {
         playerTurn = true;
-        Debug.Log("Player Turn Started");
+        //Debug.Log("Player Turn Started");
         LevelControlScript.control.BroadcastRefreshActionsToCharacters();
     }
 
@@ -188,9 +188,15 @@ public class TurnControlScript : MonoBehaviour {
 				enemySelected.GetComponent<GenericEnemyScript> ().SetIsSelected (false);
 				enemySelected.GetComponent<GenericEnemyScript> ().GetTileOccuping ().GetComponent<SpriteRenderer> ().
 				material.color = enemyCanAttackHighlight;
-				
+				//Debug.Log ("1");
 
-
+				//Highlight enemies the player can attack
+				for (int i = 0; i < allValidAttackTile.Count; ++i) {
+					if (movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].name.ToString () == "Earth(Clone)" &&
+						movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<GenericEarthScript> ().GetIsOccupyingObjectAnEnemy ()) {
+						movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = enemyCanAttackHighlight;
+					}
+				}
 
 			} else { //if no enemy selected, set tile back to unhighlighted
 				bool moveableTile = false;
@@ -231,6 +237,8 @@ public class TurnControlScript : MonoBehaviour {
                     {
                         movementmap[allValidTile[i][0]][allValidTile[i][1]].GetComponent<SpriteRenderer>().material.color = movementHighlight;
                     }
+
+					//Debug.Log ("2");
                 }
 
 				//player has no attacks left, so unhighlight enemies
@@ -243,6 +251,7 @@ public class TurnControlScript : MonoBehaviour {
 							movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = restoreOriginalColor;
 						}
 					}
+					//Debug.Log ("3");
 				}
 
 				bool contains = false;
@@ -268,16 +277,28 @@ public class TurnControlScript : MonoBehaviour {
 				if (!moveableTile && playerSelected != null && playerSelected.GetComponent<GenericCharacterScript>().GetNumOfAttacks() <= 0) {
 					enemySelected.GetComponent<GenericEnemyScript> ().GetTileOccuping ().GetComponent<SpriteRenderer> ().
 					material.color = restoreOriginalColor;
+					//Debug.Log ("a");
 				//if player has attacks and enemy alive and within range set to enemy attackHighlight
 				} else if (!moveableTile && playerSelected != null && playerSelected.GetComponent<GenericCharacterScript>().GetNumOfAttacks() > 0 &&
 					enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetOccupingObject() != null &&
 					contains) {
                     enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
                     	material.color = enemyCanAttackHighlight;
+					//Debug.Log ("b");
+
+					for (int i = 0; i < allValidAttackTile.Count; ++i)
+					{
+						if (movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].name.ToString() == "Earth(Clone)" &&
+							movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy())
+						{
+							movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<SpriteRenderer>().material.color = enemyCanAttackHighlight;
+						}
+					}
 				//if tile not able to get to restore original colour
                 } else if (!moveableTile) {
                     enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
                     material.color = restoreOriginalColor;
+					//Debug.Log ("c");
 				}
 			}
 		}
@@ -487,19 +508,41 @@ public class TurnControlScript : MonoBehaviour {
 
     public void SetEnemySelected(GameObject selected)
     {
+		bool removedExtraTiles = false;
+
 		if (enemySelected != null || (playerSelected != null && playerSelected.GetComponent<GenericCharacterScript>().GetNumOfAttacks() <= 0))
         {
+			RemoveExtraReachAttackTiles ();
+			removedExtraTiles = true;
+
 			if (playerSelected != null) {
 				//Debug.Log ("Number of player attacks: " + playerSelected.GetComponent<GenericCharacterScript> ().GetNumOfAttacks ());
 			}
 			UnHighlightEnemyTile();
 		}
 
-		if (playerSelected != null) {
+        enemySelected = selected;
+
+		if (!removedExtraTiles) {
 			RemoveExtraReachAttackTiles ();
+
+			if (playerSelected != null) {
+				allValidAttackTile = AStarScript.control.FloodFillAttackRange (LevelControlScript.control.GetAStarMap (), 
+					LevelControlScript.control.GetAStarMapCost (),
+					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
+					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
+					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetRange ());
+
+				//Highlight enemies the player can attack
+				for (int i = 0; i < allValidAttackTile.Count; ++i) {
+					if (movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].name.ToString () == "Earth(Clone)" &&
+					   movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<GenericEarthScript> ().GetIsOccupyingObjectAnEnemy ()) {
+						movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = enemyCanAttackHighlight;
+					}
+				}
+			}
 		}
 
-        enemySelected = selected;
 		if (enemySelected != null) {
 			HighlightEnemyTile ();
 		}

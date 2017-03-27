@@ -72,8 +72,10 @@
      <Compile Include="Assets\Scripts\LevelScripts\CompleteLevelConditions.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemyParentScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\EnemySpawner.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Enemies\FastEnemyScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\GenericEnemyScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Enemies\KiteEnemyScript.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Enemies\TankEnemyScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\LevelControlScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\MapData\BlankMapScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\MapData\Map1Script.cs" />

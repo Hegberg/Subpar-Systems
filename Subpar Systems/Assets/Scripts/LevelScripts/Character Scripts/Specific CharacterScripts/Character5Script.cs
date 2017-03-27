@@ -9,7 +9,7 @@ public class Character5Script : GenericCharacterScript
     void Start()
     {
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(4);
-        name = "Character5";
+        name = "M40";
         RefreshActions();
     }
 
