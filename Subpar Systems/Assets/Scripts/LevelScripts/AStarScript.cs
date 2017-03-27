@@ -39,6 +39,45 @@ public class AStarScript : MonoBehaviour {
 		LevelControlScript.control.GetAStarMap();
 	}
 
+	public List<List<int>> traitSplash(List<List<GameObject>> map, int originRow, int originIndex)
+	{
+		List<List<int>> returnList = new List<List<int>> ();
+
+		List<int> tempTile = new List<int> ();
+		tempTile.Add (originRow);
+		tempTile.Add (originIndex);
+		returnList.Add (tempTile);
+
+		List<int> index = new List<int> ();
+		List<int> rows = new List<int> () { originRow - 1, originRow + 1 };
+		if (originRow % 2 == 0) {
+			index.Add (originIndex);
+			index.Add (originIndex+1);
+		} else {
+			index.Add (originIndex-1);
+			index.Add (originIndex);
+		}
+
+		for (int i = 0; i < 2; ++i) {
+			int gRow = rows [i];
+			for (int j = 0; j < 2; ++j) {
+				int gIndex = index [j];
+				//Debug.Log ("Current Node we are Checking: " + gRow + "," + gIndex);
+				if (gRow < 0 || gRow >= map.Count || gIndex < 0 || gIndex >= map [gIndex].Count) {
+					//Debug.Log ("I left in gRow and gIndex");
+					continue;
+				}
+				if (CheckIfFriendly (map [gRow] [gIndex], true)) {
+					List<int> validTile = new List<int> ();
+					validTile.Add (gRow);
+					validTile.Add (gIndex);
+					returnList.Add (validTile);
+				}
+			}
+		}
+		return returnList;
+	}
+
 	public List<List<int>> findShitestPath(List<List<GameObject>> map, List<List<List<int>>> mapCost, int originRow, int originIndex, int goalRow, int goalIndex)
 	{
 		//Debug.Log ("Original Row and Index: " + originRow + " " + originIndex);
