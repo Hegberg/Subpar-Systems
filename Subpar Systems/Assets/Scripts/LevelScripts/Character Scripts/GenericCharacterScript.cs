@@ -171,6 +171,16 @@ public class GenericCharacterScript : MonoBehaviour {
 	//refresh actions and get rid of fade out
     public void RefreshActions()
     {
+		bool underControl = true;
+		for (int i = 0; i < currentTraits.Count; ++i) {
+			if (currentTraits [i].GetIfCrazy ()) {
+				underControl = false;
+				break;
+			}
+		}
+
+		//make character not refresh if has gone mad
+
 		float attacks = 1;
 		for (int i = 0; i < currentTraits.Count; ++i) {
 			//add modifiers together so that the defense modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
@@ -254,6 +264,191 @@ public class GenericCharacterScript : MonoBehaviour {
 		ShowHealthOnPlayer();
     }
 
+	public void GoneCrazy() {
+		Move ();
+		Attack ();
+	}
+
+	public void Move() {
+		//if any players alive, move
+		if (GameControlScript.control.GetInGameCharacterList().Count > 0)
+		{
+			List<List<int>> FloodFillTiles = new List<List<int>>();
+			//Return all valid movement tiles
+
+			//broken, not giving tiles in a few cases, breaks nearest tile code below
+			//Debug.Log("Current tile position is row " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0] + ", Index " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
+			FloodFillTiles = AStarScript.control.FloodFillWithinRange(LevelControlScript.control.GetAStarMap(),
+				LevelControlScript.control.GetAStarMapCost(),
+				tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0],
+				tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1],
+				(int)movement);
+
+			//Debug.Log("FloodFillTiles Count = " + FloodFillTiles.Count + " with movement range " + (int)movement);
+			//Debug.Log(FloodFillTiles.Count + " count " + (int)movement + " movement");
+			//Debug.Log("what");
+
+			//Find the closest "player character"
+			GameObject nearestEnemy = new GameObject();
+			nearestEnemy =	FindClosestEnemy();
+
+			List<int> closest = new List<int>();
+
+			closest = nearestEnemy.GetComponent<GenericCharacterScript>().GetTileOccuping().
+				GetComponent<GenericEarthScript>().GetTilePosition();
+			//Debug.Log ("I am at row " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [0] + " ,  " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [1]);
+			//Debug.Log("Closest Player position is row " + closest[0] + "," + closest[1]);
+
+			List<int> nearestTile = new List<int>();
+			int closestTileValue = int.MaxValue;
+
+			List<List<GameObject>> tempMap = LevelControlScript.control.GetAStarMap();
+
+			//find closest tile to that character
+			foreach (var elementTile in FloodFillTiles)
+			{
+				//if(nearestTile == null && tempMap[elementTile[0]][elementTile[1]])
+				//{
+				//    nearestTile = elementTile;
+				//}
+				int difference = Mathf.Abs(elementTile[0] - closest[0]) + Mathf.Abs(elementTile[1] - closest[1]);
+				//Check to see if the tile total different in coordinate is less than the current closest
+				if (difference <= closestTileValue && tempMap[elementTile[0]][elementTile[1]].GetComponent<GenericEarthScript>().GetOccupingObject() == null)
+				{
+					//Swap the values
+					//Debug.Log("The cloeset Tile currently is " + elementTile[0] + "," + elementTile[1] + " with difference of " + difference);
+					closestTileValue = difference;
+					nearestTile = elementTile;
+				}
+			}//end find the closest tile to enemy
+
+			//Move the enemy to the tile coordinates
+			//Debug.Log("END OF TESTING FIRST HALF");
+			//Debug.Log(nearestTile.Count);
+			//Debug.Log(nearestTile[0]);
+			//Debug.Log(nearestTile[1]);
+
+			//this is broken, nearest tile should give a tile, without this check, errors that shouldn't happen get thrown
+			if (nearestTile.Count > 0)
+			{
+				GameObject tile = tempMap[nearestTile[0]][nearestTile[1]];
+				MoveToTile(tile);
+			}
+		}
+	}
+
+	public void Attack() {
+		//if any players alive, attack
+		if (GameControlScript.control.GetInGameEnemyList().Count > 0)
+		{
+			List<List<int>> FloodFillTiles = new List<List<int>>();
+			List<List<GameObject>> map = LevelControlScript.control.GetAStarMap();
+			//Return all valid movement tiles
+			FloodFillTiles = AStarScript.control.FloodFillAttackRange(LevelControlScript.control.GetAStarMap(),
+				LevelControlScript.control.GetAStarMapCost(),
+				tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0],
+				tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1],
+				(int)range);
+
+			//Find the closest "player character"
+			GameObject nearestEnemy = FindClosestEnemy();
+
+			List<int> targetPos = new List<int>();
+
+			targetPos = nearestEnemy.GetComponent<GenericEnemyScript>().GetTileOccuping().
+				GetComponent<GenericEarthScript>().GetTilePosition();
+
+			bool playerTileFound = false;
+
+			//if character is within character tile, allow them to attack that character
+			for (int i = 0; i < FloodFillTiles.Count; ++i)
+			{
+				if (targetPos[0] == FloodFillTiles[i][0] && targetPos[1] == FloodFillTiles[i][1])
+				{
+					playerTileFound = true;
+					break;
+				}
+			}
+
+			//Now attack the player standing on the neartestTile
+			if (playerTileFound)
+			{
+				nearestEnemy.GetComponent<GenericEnemyScript>().HPLost((int)attack);
+			}
+		}
+	}
+
+	public GameObject FindClosestEnemy()
+	{
+		int closestEnemyTileValue = int.MaxValue;
+		GameObject nearestEnemy = new GameObject();
+		//when no players alive do nothing
+		if (GameControlScript.control.GetInGameCharacterList().Count > 0)
+		{
+
+			nearestEnemy = GameControlScript.control.GetInGameEnemyList()[0];
+			List<int> closest = new List<int>();
+			closest = GameControlScript.control.GetInGameEnemyList()[0].GetComponent<GenericEnemyScript>().
+				GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition();
+
+			int sourceTileRow = tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [0];
+			int sourceTileIndex = tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1];
+
+			int closestDis = AStarScript.control.CalculateHeuristicCost (sourceTileRow, sourceTileIndex, closest [0], closest [1]);
+			int x = 0;
+			foreach (var enemy in GameControlScript.control.GetInGameEnemyList())
+			{
+				//stop from checking against itself if that condition happens, will always happen for [0]
+				//if (character != nearestPlayer)
+				//{
+				x = x + 1;
+				int newClosestDis = AStarScript.control.CalculateHeuristicCostEnemy (
+					sourceTileRow,
+					sourceTileIndex,
+					enemy.GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0], 
+					enemy.GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1] 
+				);                    	
+				//int difference = Mathf.Abs(character.GetComponent<GenericCharacterScript>().GetTileOccuping().
+				//GetComponent<GenericEarthScript>().GetTilePosition()[0] - closest[0]) + Mathf.Abs(character.GetComponent<GenericCharacterScript>().
+				//GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition()[1] - closest[1]);
+				//Check to see if the tile total different in coordinate is less than the current closest
+				/*
+				Debug.Log("SR: " + sourceTileRow + " SI: " + sourceTileIndex  + " SWAP:" + nearestPlayer.name.ToString() + " - " + character.name.ToString() + "\n"
+					+ "NC: " + newClosestDis + " OC: "+ closestDis + " C:" + x + "\n" + "CSR: " + character.GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0] + 
+					" CSI:" + character.GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1]
+				);
+*/
+				if (newClosestDis <= closestDis)
+				{
+
+					//Swap the values
+					closestDis = newClosestDis;
+					nearestEnemy = enemy;
+					//closest = nearestPlayer.GetComponent<GenericCharacterScript>().GetTileOccuping().
+					//    GetComponent<GenericEarthScript>().GetTilePosition();
+				}
+				//}
+			}
+		}
+		//return null;
+		return nearestEnemy;
+	}
+
+	public void MoveToTile(GameObject tileMovingTo)
+	{
+		tileOccuping.GetComponent<GenericEarthScript>().SetOccupingObject(null);
+		tileOccuping.GetComponent<GenericEarthScript>().SetIsAnEnemyOccupyingThisTile(false);
+
+		SetTileOccuping(tileMovingTo);
+
+		//get correct position (so tile placement but slightly up so goes to middle of tile)
+		Vector3 tempTile = tileMovingTo.transform.position;
+		tempTile.z -= 0.01f;
+		tempTile.y += (tileMovingTo.gameObject.GetComponent<Renderer>().bounds.size.y / (LevelControlScript.control.GetTileHeightRatio() * 2));
+
+		this.gameObject.transform.position = tempTile;
+	}
+
     public GameObject GetTileOccuping()
     {
         return tileOccuping;
@@ -262,6 +457,7 @@ public class GenericCharacterScript : MonoBehaviour {
     public void SetTileOccuping(GameObject setTo)
     {
         tileOccuping = setTo;
+		tileOccuping.GetComponent<GenericEarthScript>().SetOccupingObject(this.gameObject);
     }
 
 	public string GetName() {

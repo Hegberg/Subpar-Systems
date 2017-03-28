@@ -150,6 +150,10 @@ public class GenericEnemyScript : MonoBehaviour {
         }
     }
 
+	public void HPLost(int hpLost) {
+		SetHP (hp - hpLost);
+	}
+
 	public virtual void Move()
     {
         //if any players alive, move

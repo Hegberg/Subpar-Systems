@@ -12,6 +12,7 @@ public class GenericTraitsScript {
 	protected float rangeModifier = 1.0f; //not affected
 	protected float numberOfAttacksModifier = 1;
 	protected int positionInSpriteUIList = 0;
+	protected bool isCrazy = false;
 
 	public virtual void InitializeValues() {
 		name = "temp";
@@ -58,6 +59,14 @@ public class GenericTraitsScript {
 		
 	public virtual int GetPositionInSpriteControlList(){
 		return positionInSpriteUIList;
+	}
+
+	public virtual bool GetIfCrazy() {
+		return isCrazy;
+	}
+
+	public virtual void AttemptToSetCrazy(){
+		//Traits that have something die set crazy to true here
 	}
 }
 
@@ -305,6 +314,16 @@ public class M31WifeF32DeadTrait : GenericTraitsScript {
 	{
 		name = "M31WifeF32Dead";
 		positionInSpriteUIList = 9;
+	}
+
+	public override void AttemptToSetCrazy ()
+	{
+		for (int i = 0; i < GameControlScript.control.GetDeadCharacters ().Count; ++i) {
+			if (GameControlScript.control.GetDeadCharacters ()[i] == "F32") {
+				isCrazy = true;
+				break;
+			}
+		}
 	}
 
 	public override float ModifyAttack ()
