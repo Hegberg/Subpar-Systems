@@ -1,20 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelScripts\LevelControlScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelScripts\Enemies\GenericEnemyScript.cs">
     <Files>
-<<<<<<< HEAD
-      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" Line="224" Column="30" />
+      <File FileName="Assets\Scripts\LevelScripts\AStarScript.cs" Line="70" Column="10" />
       <File FileName="Assets\Scripts\LevelScripts\TurnControlScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelScripts\MapData\Map1Script.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelScripts\AStarScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" Line="127" Column="34" />
-      <File FileName="Assets\Scripts\LevelScripts\LevelControlScript.cs" Line="274" Column="57" />
-=======
-      <File FileName="Assets\Scripts\LevelScripts\Character Scripts\GenericCharacterScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelScripts\TurnControlScript.cs" Line="343" Column="40" />
-      <File FileName="Assets\Scripts\LevelScripts\MapData\Map1Script.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelScripts\AStarScript.cs" Line="535" Column="61" />
->>>>>>> d131914b6bec1dc5d8edb9db9b88e4db6c69a183
+      <File FileName="Assets\Scripts\LevelScripts\Enemies\GenericEnemyScript.cs" Line="223" Column="77" />
+      <File FileName="Assets\Scripts\MissionMenuScripts\GameControlScript.cs" Line="498" Column="47" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
