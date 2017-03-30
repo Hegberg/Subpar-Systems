@@ -9,6 +9,10 @@ public class TitleText : MonoBehaviour {
     // Use this for initialization
     void Start () { //will be changed after prototype to grab right info
         mission = GetComponent<Text>();
+        if (missonlevel != 0)
+        {
+            missonlevel = GameControlScript.control.GetLevel();
+        }
         missonlevel += 1; //should be changed to getlevel
         if (missonlevel == 1)
         {
