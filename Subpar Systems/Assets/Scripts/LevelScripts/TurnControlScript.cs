@@ -28,7 +28,8 @@ public class TurnControlScript : MonoBehaviour {
 	//private Color playerHighlightSwitch = Color.white;
 
 	private Color movementHighlight = Color.cyan;
-	private Color enemyCanAttackHighlight = Color.red;
+	private Color enemyCanAttackHighlight = Color.yellow;
+	private Color enemyWithinAttackRange = Color.red;
 
 	private Color enemyTargetedHighlight = new Color(1,0.0f,0.0f,1); //bright red
 	//private Color enemyTargetedHighlightSwitch = new Color(0.2f,0,0,1); //dark red
@@ -187,14 +188,14 @@ public class TurnControlScript : MonoBehaviour {
 
 				enemySelected.GetComponent<GenericEnemyScript> ().SetIsSelected (false);
 				enemySelected.GetComponent<GenericEnemyScript> ().GetTileOccuping ().GetComponent<SpriteRenderer> ().
-				material.color = enemyCanAttackHighlight;
+				material.color = enemyWithinAttackRange;
 				//Debug.Log ("1");
 
 				//Highlight enemies the player can attack
 				for (int i = 0; i < allValidAttackTile.Count; ++i) {
 					if (movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].name.ToString () == "Earth(Clone)" &&
 						movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<GenericEarthScript> ().GetIsOccupyingObjectAnEnemy ()) {
-						movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = enemyCanAttackHighlight;
+						movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = enemyWithinAttackRange;
 					}
 				}
 
@@ -283,7 +284,7 @@ public class TurnControlScript : MonoBehaviour {
 					enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<GenericEarthScript>().GetOccupingObject() != null &&
 					contains) {
                     enemySelected.GetComponent<GenericEnemyScript>().GetTileOccuping().GetComponent<SpriteRenderer>().
-                    	material.color = enemyCanAttackHighlight;
+					material.color = enemyWithinAttackRange;
 					//Debug.Log ("b");
 
 					for (int i = 0; i < allValidAttackTile.Count; ++i)
@@ -291,7 +292,7 @@ public class TurnControlScript : MonoBehaviour {
 						if (movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].name.ToString() == "Earth(Clone)" &&
 							movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy())
 						{
-							movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<SpriteRenderer>().material.color = enemyCanAttackHighlight;
+							movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<SpriteRenderer>().material.color = enemyWithinAttackRange;
 						}
 					}
 				//if tile not able to get to restore original colour
@@ -347,7 +348,7 @@ public class TurnControlScript : MonoBehaviour {
                 if (movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].name.ToString() == "Earth(Clone)" &&
                     movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy())
                 {
-					movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<SpriteRenderer>().material.color = enemyCanAttackHighlight;
+					movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<SpriteRenderer>().material.color = enemyWithinAttackRange;
                 }
             }
         }
@@ -494,7 +495,7 @@ public class TurnControlScript : MonoBehaviour {
                     if (movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].name.ToString() == "Earth(Clone)" &&
                         movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<GenericEarthScript>().GetIsOccupyingObjectAnEnemy())
                     {
-						movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<SpriteRenderer>().material.color = enemyCanAttackHighlight;
+						movementmap[allValidAttackTile[i][0]][allValidAttackTile[i][1]].GetComponent<SpriteRenderer>().material.color = enemyWithinAttackRange;
                     }
                 }
             }
@@ -512,8 +513,12 @@ public class TurnControlScript : MonoBehaviour {
 
 		if (enemySelected != null || (playerSelected != null && playerSelected.GetComponent<GenericCharacterScript>().GetNumOfAttacks() <= 0))
         {
-			RemoveExtraReachAttackTiles ();
-			removedExtraTiles = true;
+			if (playerSelected != null && !playerSelected.GetComponent<GenericCharacterScript> ().GetHasMoved ()) {
+				//Do not remove extra reach tiles
+			} else {
+				RemoveExtraReachAttackTiles ();
+				removedExtraTiles = true;
+			}
 
 			if (playerSelected != null) {
 				//Debug.Log ("Number of player attacks: " + playerSelected.GetComponent<GenericCharacterScript> ().GetNumOfAttacks ());
@@ -524,7 +529,11 @@ public class TurnControlScript : MonoBehaviour {
         enemySelected = selected;
 
 		if (!removedExtraTiles) {
-			RemoveExtraReachAttackTiles ();
+			if (playerSelected != null && !playerSelected.GetComponent<GenericCharacterScript> ().GetHasMoved ()) {
+				//Do not remove extra reach tiles
+			} else {
+				RemoveExtraReachAttackTiles ();
+			}
 
 			if (playerSelected != null) {
 				allValidAttackTile = AStarScript.control.FloodFillAttackRange (LevelControlScript.control.GetAStarMap (), 
@@ -537,7 +546,7 @@ public class TurnControlScript : MonoBehaviour {
 				for (int i = 0; i < allValidAttackTile.Count; ++i) {
 					if (movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].name.ToString () == "Earth(Clone)" &&
 					   movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<GenericEarthScript> ().GetIsOccupyingObjectAnEnemy ()) {
-						movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = enemyCanAttackHighlight;
+						movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = enemyWithinAttackRange;
 					}
 				}
 			}
