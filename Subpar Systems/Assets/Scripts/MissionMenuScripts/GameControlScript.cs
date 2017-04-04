@@ -392,14 +392,14 @@ public class GameControlScript : MonoBehaviour {
 		}
 
 		//if not selected it and only selected less then max then select it
-		else if (!sideMissionChosen[selected] && selectedCharacters < maxCharacters)
+		else if (!sideMissionChosen[selected] && selectedSideMissionCharacters < maxCharacters)
 		{
 			team[selected] = !team[selected];
 			sideMissionChosen[selected] = !sideMissionChosen[selected];
-			selectedCharacters += 1;
+            selectedSideMissionCharacters += 1;
 		}
 		//not selected but have max selected
-		else if (!sideMissionChosen[selected] && selectedCharacters == maxCharacters)
+		else if (!sideMissionChosen[selected] && selectedSideMissionCharacters == maxCharacters)
 		{
 			//replace with proper in game warning
 			//Debug.Log("Have max side already");
@@ -409,7 +409,7 @@ public class GameControlScript : MonoBehaviour {
 		{
 			team[selected] = !team[selected];
 			sideMissionChosen[selected] = !sideMissionChosen[selected];
-			selectedCharacters -= 1;
+            selectedSideMissionCharacters -= 1;
 		}
 
 		//Debug.Log("selected characters = " + selectedCharacters);

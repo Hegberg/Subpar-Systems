@@ -14,8 +14,6 @@ public class CharacterSelectionForSlot : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
-
         btn = GetComponent<Button>();
         btn.onClick.AddListener(OnMouseOver);
 
