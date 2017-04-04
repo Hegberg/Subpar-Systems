@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 0
 --- !u!114 &329214259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1550,7 +1550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 3
 --- !u!114 &386721069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1832,7 +1832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 0
 --- !u!114 &530482117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2043,7 +2043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 5
 --- !u!114 &580215993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2168,7 +2168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 0
 --- !u!114 &604281254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2996,7 +2996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 4
 --- !u!114 &907641970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3703,7 +3703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 2
 --- !u!114 &1167914877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4766,7 +4766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 1
 --- !u!114 &1507657835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5488,7 +5488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 0
 --- !u!114 &1739198686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6100,7 +6100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 0
 --- !u!114 &1933891724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6347,7 +6347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 0
 --- !u!114 &1949511647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6610,7 +6610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIButt: {fileID: 0}
   happened: 0
-  buttonSelected: 0
+  characterPlace: 0
 --- !u!114 &1971738659
 MonoBehaviour:
   m_ObjectHideFlags: 0

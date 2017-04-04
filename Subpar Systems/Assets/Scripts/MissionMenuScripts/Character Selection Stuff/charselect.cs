@@ -35,6 +35,7 @@ public class charselect : MonoBehaviour {
     public void buttselected(Button charac)
     {
         clicked = charac;
+        Debug.Log(clicked);
         //Debug.Log(clicked.name.ToString().ToLower());
 
     }
@@ -65,8 +66,17 @@ public class charselect : MonoBehaviour {
         GameObject.FindWithTag("Mission Text").GetComponent<Canvas>().enabled = true;
         clicked.GetComponent<Image>().sprite = add;
         clicked.GetComponent<Button>().name = characterSelected;
-        //Debug.Log(clicked.name.ToString().ToLower());
-        GameControlScript.control.SelectCharacter(characterSelected);
+        if (clicked.name.ToString().ToLower() == "Character5")  {
+            GameControlScript.control.SelectSideMissionCharacter(characterSelected);
+        }
+        else if (clicked.name.ToString().ToLower() == "Character6")
+        {
+            GameControlScript.control.SelectSideMissionCharacter(characterSelected);
+        }
+        else
+        {
+            GameControlScript.control.SelectCharacter(characterSelected);
+        }
     }
 
     public void AddButtonClicked(Button setTo)

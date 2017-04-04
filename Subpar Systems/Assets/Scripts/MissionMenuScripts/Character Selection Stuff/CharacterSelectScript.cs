@@ -11,7 +11,7 @@ public class CharacterSelectScript : MonoBehaviour
     string CharName;
     public bool happened = false;
     GameObject[] Characters1;
-	public int buttonSelected;
+	public int characterPlace;
 
     void Start()  {
         UIButt = GetComponent<Button>();
@@ -60,7 +60,6 @@ public class CharacterSelectScript : MonoBehaviour
         UI1 = UI.GetComponent<Canvas>();
         Characters1 = GameObject.FindGameObjectsWithTag("Characters");
         UI1.enabled = true;
-		int characterPlace;
         foreach (GameObject character in Characters1)
         {
             
@@ -69,10 +68,10 @@ public class CharacterSelectScript : MonoBehaviour
             CharName = character.GetComponent<Button>().name.ToString().ToLower();
 
 			characterPlace = character.GetComponent<CharacterSelectionForSlot> ().GetCharacterPlace ();
-			//Debug.Log (characterPlace);
-			//Debug.Log (GameControlScript.control.GetTeam()[characterPlace]);
 
-			if (GameControlScript.control.GetTeam()[characterPlace])
+            Debug.Log (GameControlScript.control.GetTeam()[characterPlace]);
+            Debug.Log(GameControlScript.control.GetTeam().Count);
+            if (GameControlScript.control.GetTeam()[characterPlace])
             {
                 character.GetComponent<Button>().interactable = false;
                 character.GetComponent<CanvasGroup>().alpha = 0.5f;
@@ -80,7 +79,7 @@ public class CharacterSelectScript : MonoBehaviour
 
             for (int i = 0; i < GameControlScript.control.GetDeadCharacters().Count; ++i)
             {
-                if (GameControlScript.control.GetDeadCharacters()[i].ToLower() == CharName)
+                if (GameControlScript.control.GetDeadCharacters()[i].ToLower() == CharName) 
                 {
                     character.GetComponent<Button>().interactable = false;
                     character.GetComponent<CanvasGroup>().alpha = 0.5f;
