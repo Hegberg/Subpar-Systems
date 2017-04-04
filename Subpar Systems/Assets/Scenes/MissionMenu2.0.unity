@@ -250,7 +250,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &5685076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,8 +280,8 @@ Canvas:
   m_GameObject: {fileID: 5685074}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1793672559}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -289,7 +289,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &5685078
 RectTransform:
@@ -942,6 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cee074c4b1378439165d112aaf08cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missonlevel: 0
 --- !u!1 &218854123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,8 +1195,8 @@ Canvas:
   m_GameObject: {fileID: 277025425}
   m_Enabled: 0
   serializedVersion: 2
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1793672559}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1203,7 +1204,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &277025429
 RectTransform:
@@ -1687,8 +1688,8 @@ Canvas:
   m_GameObject: {fileID: 409373317}
   m_Enabled: 0
   serializedVersion: 2
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1793672559}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -1696,7 +1697,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!224 &409373321
 RectTransform:
@@ -1974,7 +1975,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mission Text
+  m_Text: Search And Destroy
 --- !u!222 &564620429
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2742,7 +2743,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &902538141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2772,8 +2773,8 @@ Canvas:
   m_GameObject: {fileID: 902538139}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1793672559}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -2781,7 +2782,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!224 &902538143
 RectTransform:
@@ -3923,6 +3924,7 @@ GameObject:
   - component: {fileID: 1214709096}
   - component: {fileID: 1214709098}
   - component: {fileID: 1214709097}
+  - component: {fileID: 1214709099}
   m_Layer: 5
   m_Name: Side Mission Bio 1
   m_TagString: Untagged
@@ -3989,6 +3991,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1214709095}
+--- !u!114 &1214709099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1214709095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6295c01f8d9b8c4190c18b81e03f603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1217323705
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,6 +35,14 @@ public class CompleteLevelConditions : MonoBehaviour {
 		GameControlScript.control.NextLevel ();
 	}
 
+	public void CheckIfSurvivedEnoughTurns(int turns) {
+		if (turns > 0) {
+			if (TurnControlScript.control.GetCurrentTurn () >= turns) {
+				GameControlScript.control.NextLevel ();
+			}
+		}
+	}
+
 	public void CheckIfTankIsDead(){
 
 	}

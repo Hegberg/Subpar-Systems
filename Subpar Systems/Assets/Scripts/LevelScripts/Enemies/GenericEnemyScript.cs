@@ -10,8 +10,10 @@ public class GenericEnemyScript : MonoBehaviour {
 	protected float attack = 10;
 	protected float movement = 3;
 	protected float range = 3;
-
+	protected float tempDetectRadius = 10;
+	protected bool Detected = false;
 	protected bool isSelected = false;
+
 
     // Use this for initialization
     void Start () {
@@ -160,7 +162,8 @@ public class GenericEnemyScript : MonoBehaviour {
         if (GameControlScript.control.GetInGameCharacterList().Count > 0)
         {
             List<List<int>> FloodFillTiles = new List<List<int>>();
-            //Return all valid movement tiles
+			List<List<int>> CheckDetectRadius = new List<List<int>> ();
+			//Return all valid movement tiles
 
             //broken, not giving tiles in a few cases, breaks nearest tile code below
             //Debug.Log("Current tile position is row " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0] + ", Index " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
@@ -169,6 +172,12 @@ public class GenericEnemyScript : MonoBehaviour {
                 tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0],
                 tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1],
                 (int)movement);
+
+			CheckDetectRadius = AStarScript.control.FloodFillAttackRange(LevelControlScript.control.GetAStarMap(),
+				LevelControlScript.control.GetAStarMapCost(),
+				tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0],
+				tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1],
+				(int)tempDetectRadius);
 
             //Debug.Log("FloodFillTiles Count = " + FloodFillTiles.Count + " with movement range " + (int)movement);
             //Debug.Log(FloodFillTiles.Count + " count " + (int)movement + " movement");
@@ -189,6 +198,21 @@ public class GenericEnemyScript : MonoBehaviour {
 			int closestTileValue = int.MaxValue;
 
 			List<List<GameObject>> tempMap = LevelControlScript.control.GetAStarMap();
+
+			foreach (var elementTile in CheckDetectRadius) {
+				if (elementTile [0] == closest [0] &&
+				   elementTile [1] == closest [1]) 
+				{
+					Detected = true;
+					break;
+				}
+			}
+
+			if (!Detected) 
+			{
+				Detected = false;
+				return; 
+			}
 
 			//find closest tile to that character
 			foreach (var elementTile in FloodFillTiles)
@@ -220,6 +244,7 @@ public class GenericEnemyScript : MonoBehaviour {
 				GameObject tile = tempMap[nearestTile[0]][nearestTile[1]];
 				MoveToTile(tile);
 			}
+
 		}
 	}
 

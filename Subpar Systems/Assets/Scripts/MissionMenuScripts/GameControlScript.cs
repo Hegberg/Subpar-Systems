@@ -53,8 +53,11 @@ public class GameControlScript : MonoBehaviour {
     private int testLevel = 0;
     private int firstLevel = 1;
 
+	private int surviveToThisTurn = 25;
+
 	private string level1Objective = "Defeat all the enemies";
-	private string level2Objective = "Defeat all the enemies";
+	private string level2Objective = "Survive ";
+	private string level2ObjectiveEnd = " turns";
 	private string level3Objective = "Defend the tank";
 
     //public Transform characterParent;
@@ -139,6 +142,8 @@ public class GameControlScript : MonoBehaviour {
 			enemies.Add (kiteMonster.gameObject);
 			enemies.Add (fastMonster.gameObject);
 			enemies.Add (tankMonster.gameObject);
+
+			level2Objective = level2Objective + surviveToThisTurn.ToString () + level2ObjectiveEnd;
 
             //initialize chosen list
             for (int i = 0; i < characters.Count; ++i)
@@ -424,10 +429,12 @@ public class GameControlScript : MonoBehaviour {
 	public List<GenericTraitsScript> GetTraitsOfACharacter(int indexOfCharacter) {
 		return allCharacterTraits [indexOfCharacter];
 	}
+
     public List<bool> GetTeam()
     {
         return team;
     }
+
     public List<GameObject> GetTiles()
     {
         return tiles;
@@ -550,5 +557,9 @@ public class GameControlScript : MonoBehaviour {
 		}
 
 		return "";
+	}
+
+	public int GetSurviveToThisTurn() {
+		return surviveToThisTurn;
 	}
 }
