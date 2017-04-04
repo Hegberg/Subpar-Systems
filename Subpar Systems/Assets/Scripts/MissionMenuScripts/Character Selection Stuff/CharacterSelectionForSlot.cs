@@ -55,7 +55,7 @@ public class CharacterSelectionForSlot : MonoBehaviour
         pict.GetComponent<Image>().sprite = picture;
         pict.GetComponent<Image>().color = Color.white;
 
-        GameObject.FindWithTag("name").GetComponent<Text>().text = btn.GetComponent<Button>().name.ToString();
+        GameObject.FindWithTag("name").GetComponent<Text>().text = Name.ToString();
         GameObject.FindWithTag("bio").GetComponent<Text>().text = bios;
         UI1 = UI.GetComponent<Canvas>();
         UI1.enabled = true;
