@@ -42,10 +42,9 @@ public class Pause : MonoBehaviour {
 		//Set time.timescale to 0, this will cause animations and physics to stop updating
 		Time.timeScale = 0;
         //call the ShowPausePanel function of the ShowPanels script
-        GUI.BringWindowToFront(1);
         showPanels.ShowPausePanel ();
         GameObject.FindWithTag("pause").GetComponent<Image>().enabled = true;
-        transform.FindChild("camera").GetComponent<Camera>().enabled = true;
+
 
     }
 
@@ -59,7 +58,7 @@ public class Pause : MonoBehaviour {
 		//call the HidePausePanel function of the ShowPanels script
 		showPanels.HidePausePanel ();
         GameObject.FindWithTag("pause").GetComponent<Image>().enabled = false;
-        transform.FindChild("camera").GetComponent<Camera>().enabled = false;
+
     }
 
 
