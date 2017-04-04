@@ -5,15 +5,13 @@ using UnityEngine.UI;
 
 public class MainMissionBrief : MonoBehaviour {
     Text mission;
-    int missonlevel = 0;
+    public int missonlevel = 0;
+    int level;
     // Use this for initialization
     void Start () { //will be changed after prototype to grab right info
         mission = GetComponent<Text>();
-        if (missonlevel != 0)
-        {
-            missonlevel = GameControlScript.control.GetLevel();
-        }
-        missonlevel += 1; //should be changed to getlevel
+        missonlevel = GameControlScript.control.GetLevel() + 1;
+//should be changed to getlevel
         if (missonlevel == 1)
         {
             mission.text = "Sir, nests of Swarmers and Slimes have been spotted on the south-east corner of the Forest sector. It is imperative that we eliminate all hostile life in the location so we can begin the extraction of mineral resources from the area. ";
