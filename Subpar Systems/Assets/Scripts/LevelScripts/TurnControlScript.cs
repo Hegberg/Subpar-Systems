@@ -39,6 +39,9 @@ public class TurnControlScript : MonoBehaviour {
 
 	private float switchTimer = 0.5f;
 
+	private int turnCounter = 0;
+	private bool usingTurnCounter = false;
+
     // Use this for initialization
     void Start () {
         if (control == null)
@@ -82,6 +85,7 @@ public class TurnControlScript : MonoBehaviour {
         if (playerTurn)
         {
             playerTurn = false;
+			UpdateTurn ();
             //Debug.Log("Player Turn Ended");
             //need this broadcast first, so checks in Unhighlight that are rellying on what state the character in are correct
             LevelControlScript.control.BroadcastRemoveActionsToCharacters();
@@ -91,6 +95,13 @@ public class TurnControlScript : MonoBehaviour {
 			EnemyParentScript.control.StartAITurn();
         }
     }
+
+	public void AllEnemiesHaveAttacked() {
+		if (usingTurnCounter) {
+			CompleteLevelConditions.control.CheckIfSurvivedEnoughTurns(GameControlScript.control.GetSurviveToThisTurn());
+		}
+		StartTurn ();
+	}
 
     public void StartTurn()
     {
@@ -244,6 +255,9 @@ public class TurnControlScript : MonoBehaviour {
 
 				//player has no attacks left, so unhighlight enemies
 				if (playerSelected != null && playerSelected.GetComponent<GenericCharacterScript> ().GetNumOfAttacks () <= 0) {
+
+					RemoveExtraReachAttackTiles ();
+
 					List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap ();
 					//UnHighlight enemies the player can attack
 					for (int i = 0; i < allValidAttackTile.Count; ++i) {
@@ -535,7 +549,7 @@ public class TurnControlScript : MonoBehaviour {
 				RemoveExtraReachAttackTiles ();
 			}
 
-			if (playerSelected != null) {
+			if (playerSelected != null && playerSelected.GetComponent<GenericCharacterScript> ().GetNumOfAttacks() > 0) {
 				allValidAttackTile = AStarScript.control.FloodFillAttackRange (LevelControlScript.control.GetAStarMap (), 
 					LevelControlScript.control.GetAStarMapCost (),
 					GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
@@ -547,6 +561,7 @@ public class TurnControlScript : MonoBehaviour {
 					if (movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].name.ToString () == "Earth(Clone)" &&
 					   movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<GenericEarthScript> ().GetIsOccupyingObjectAnEnemy ()) {
 						movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = enemyWithinAttackRange;
+						Debug.Log ("7");
 					}
 				}
 			}
@@ -556,6 +571,22 @@ public class TurnControlScript : MonoBehaviour {
 			HighlightEnemyTile ();
 		}
     }
+
+	public void UpdateTurn() {
+		++turnCounter;
+	}
+
+	public void ResetTurnCounter(){
+		turnCounter = 0;
+	}
+
+	public void SetUsingTurnCounter(bool newUsingTurnCounter){
+		usingTurnCounter = newUsingTurnCounter;
+	}
+
+	public int GetCurrentTurn() {
+		return turnCounter;
+	}
 
     public GameObject GetEnemySelected()
     {

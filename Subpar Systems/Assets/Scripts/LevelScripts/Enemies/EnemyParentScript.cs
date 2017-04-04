@@ -77,7 +77,7 @@ public class EnemyParentScript : MonoBehaviour {
 
 		yield return new WaitForSeconds(0.01f);
 
-		TurnControlScript.control.StartTurn ();
+		TurnControlScript.control.AllEnemiesHaveAttacked ();
 	}
 
     private void BroadcastMove()
