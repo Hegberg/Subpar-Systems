@@ -525,6 +525,13 @@ public class GameControlScript : MonoBehaviour {
     {
 		deadCharacterList.Add(character.GetComponent<GenericCharacterScript>().GetName());
         RemoveCharacterFromInGameList(character);
+
+		for (int i = 0; i < characterInGameList.Count; ++i) {
+			characterInGameList [i].GetComponent<GenericCharacterScript> ().GetTraits ();
+			for (int j = 0; j < characterInGameList [i].GetComponent<GenericCharacterScript> ().GetTraits ().Count; ++j) {
+				characterInGameList [i].GetComponent<GenericCharacterScript> ().GetTraits () [j].AttemptToSetCrazy ();
+			}
+		}
         //SaveDeadCharacters();
 		//FailedLevel ();
     }
