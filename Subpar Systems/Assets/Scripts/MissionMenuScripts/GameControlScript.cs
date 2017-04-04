@@ -546,8 +546,13 @@ public class GameControlScript : MonoBehaviour {
 	public List<string> GetDeadCharacters(){
 		return deadCharacterList;
 	}
+    
+    public List<bool> GetSideMissionChosen()
+    {
+        return sideMissionChosen;
+    }
 
-	public string GetMissionObjective() {
+    public string GetMissionObjective() {
 		if (currentLevel == 1) {
 			return level1Objective;
 		} else if (currentLevel == 2) {
