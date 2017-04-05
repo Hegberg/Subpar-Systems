@@ -328,6 +328,7 @@ public class GenericCharacterScript : MonoBehaviour {
 			//Debug.Log(nearestTile[0]);
 			//Debug.Log(nearestTile[1]);
 
+
 			//this is broken, nearest tile should give a tile, without this check, errors that shouldn't happen get thrown
 			if (nearestTile.Count > 0)
 			{

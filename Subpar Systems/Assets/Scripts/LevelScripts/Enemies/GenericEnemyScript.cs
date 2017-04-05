@@ -10,7 +10,7 @@ public class GenericEnemyScript : MonoBehaviour {
 	protected float attack = 10;
 	protected float movement = 3;
 	protected float range = 3;
-	protected float tempDetectRadius = 10;
+	protected float tempDetectRadius = 5;
 	protected bool Detected = false;
 	protected bool isSelected = false;
 
@@ -83,7 +83,7 @@ public class GenericEnemyScript : MonoBehaviour {
 								LevelControlScript.control.GetAStarMapCost(),
 								tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0], 
 								tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
-							Debug.Log (splashTiles.Count);
+							//Debug.Log (splashTiles.Count);
 
 							bool attacked = false;
 
@@ -204,6 +204,26 @@ public class GenericEnemyScript : MonoBehaviour {
 				   elementTile [1] == closest [1]) 
 				{
 					Detected = true;
+
+					List<List<int>> testing = new List<List<int>>();
+					//Return all valid movement tiles
+
+					//broken, not giving tiles in a few cases, breaks nearest tile code below
+					//Debug.Log("Current tile position is row " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0] + ", Index " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
+					testing = AStarScript.control.findShitestPath(LevelControlScript.control.GetAStarMap(),
+						LevelControlScript.control.GetAStarMapCost(),
+						tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0],
+						tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1],
+						closest[0],
+						closest[1]);
+
+					Debug.Log ("===Starting Test===");
+					Debug.Log ("SR: " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [0] + " ,SI: " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [1]);
+					for (int i = 0; i < testing.Count; ++i) {
+						Debug.Log ("R: " + testing[i][0] + " ,I: " + testing[i][1]);
+					}
+					Debug.Log ("===Ending Test===");
+
 					break;
 				}
 			}
