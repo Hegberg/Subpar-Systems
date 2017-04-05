@@ -205,25 +205,6 @@ public class GenericEnemyScript : MonoBehaviour {
 				{
 					Detected = true;
 
-					List<List<int>> testing = new List<List<int>>();
-					//Return all valid movement tiles
-
-					//broken, not giving tiles in a few cases, breaks nearest tile code below
-					//Debug.Log("Current tile position is row " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0] + ", Index " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
-					testing = AStarScript.control.findShitestPath(LevelControlScript.control.GetAStarMap(),
-						LevelControlScript.control.GetAStarMapCost(),
-						tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0],
-						tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1],
-						closest[0],
-						closest[1]);
-
-					Debug.Log ("===Starting Test===");
-					Debug.Log ("SR: " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [0] + " ,SI: " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [1]);
-					for (int i = 0; i < testing.Count; ++i) {
-						Debug.Log ("R: " + testing[i][0] + " ,I: " + testing[i][1]);
-					}
-					Debug.Log ("===Ending Test===");
-
 					break;
 				}
 			}
@@ -233,38 +214,59 @@ public class GenericEnemyScript : MonoBehaviour {
 				Detected = false;
 				return; 
 			}
+				
+			List<List<int>> testing = new List<List<int>>();
+			//Return all valid movement tiles
 
-			//find closest tile to that character
-			foreach (var elementTile in FloodFillTiles)
-			{
-				//if(nearestTile == null && tempMap[elementTile[0]][elementTile[1]])
-				//{
-				//    nearestTile = elementTile;
-				//}
-				int difference = Mathf.Abs(elementTile[0] - closest[0]) + Mathf.Abs(elementTile[1] - closest[1]);
-				//Check to see if the tile total different in coordinate is less than the current closest
-				if (difference <= closestTileValue && tempMap[elementTile[0]][elementTile[1]].GetComponent<GenericEarthScript>().GetOccupingObject() == null)
-				{
-					//Swap the values
-					//Debug.Log("The cloeset Tile currently is " + elementTile[0] + "," + elementTile[1] + " with difference of " + difference);
-					closestTileValue = difference;
-					nearestTile = elementTile;
-				}
-			}//end find the closest tile to enemy
-
-			//Move the enemy to the tile coordinates
-			//Debug.Log("END OF TESTING FIRST HALF");
-			//Debug.Log(nearestTile.Count);
-			//Debug.Log(nearestTile[0]);
-			//Debug.Log(nearestTile[1]);
-
-			//this is broken, nearest tile should give a tile, without this check, errors that shouldn't happen get thrown
-			if (nearestTile.Count > 0)
-			{
-				GameObject tile = tempMap[nearestTile[0]][nearestTile[1]];
-				MoveToTile(tile);
+			//broken, not giving tiles in a few cases, breaks nearest tile code below
+			//Debug.Log("Current tile position is row " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0] + ", Index " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
+			testing = AStarScript.control.findShitestPath(LevelControlScript.control.GetAStarMap(),
+				LevelControlScript.control.GetAStarMapCost(),
+				tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0],
+				tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1],
+				closest[0],
+				closest[1]);
+			/*
+			Debug.Log ("===Starting Test===");
+			Debug.Log ("SR: " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [0] + " ,SI: " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [1]);
+			for (int i = 0; i < testing.Count; ++i) {
+				Debug.Log ("R: " + testing[i][0] + " ,I: " + testing[i][1]);
+			}
+			Debug.Log ("===Ending Test===");
+			*/
+			if (testing == null) {
+				return;
 			}
 
+			GameObject tile = null;
+			Debug.Log("Current tile position is row " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0] + ", Index " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
+			Debug.Log("TestCount: " + testing.Count + " Movement: " + ((int)movement));
+			if (testing.Count < ((int)movement)) {
+				int temp = 1;
+				tile = tempMap[testing[testing.Count-temp][0]][testing[testing.Count-temp][1]];
+				if (tile.GetComponent<GenericEarthScript> ().GetOccupingObject () != null) {
+					if ((testing.Count-temp) > 0) {
+						temp += 1;
+						tile = tempMap [testing [testing.Count - temp] [0]] [testing [testing.Count - temp] [1]];
+					} else {
+						return;
+					}
+				}
+			} else {
+				int temp = 0;
+				tile = tempMap[testing[(int)movement - temp][0]][testing[(int)movement- temp][1]];
+				if (tile.GetComponent<GenericEarthScript> ().GetOccupingObject () != null) {
+					if (((int)movement - temp) > 0) {
+						temp += 1;
+						tile = tempMap[testing[(int)movement - temp][0]][testing[(int)movement- temp][1]];
+					} else {
+						return;
+					}
+				}
+			}
+			//this is broken, nearest tile should give a tile, without this check, errors that shouldn't happen get thrown
+
+			MoveToTile(tile);
 		}
 	}
 
