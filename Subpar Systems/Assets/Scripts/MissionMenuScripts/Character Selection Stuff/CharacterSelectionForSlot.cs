@@ -33,14 +33,6 @@ public class CharacterSelectionForSlot : MonoBehaviour
     private void OnMouseOver()
     {
         //expermental, need to fix, for preventing duplicates
-        int selected = -1;
-        for (int i = 0; i < GameControlScript.control.GetCharacters().Count; ++i)
-        {
-            if (GameControlScript.control.GetCharacters()[i].name.ToString().ToLower() == btn.name.ToString().ToLower())
-            {
-                selected = i;
-            }
-        }
 
         //if (GameControlScript.control.Get)
 
@@ -49,16 +41,15 @@ public class CharacterSelectionForSlot : MonoBehaviour
         Canvas UI1;
         Sprite picture;
         picture = GetComponent<Image>().sprite;
-
+        
         pict.GetComponent<Image>().sprite = picture;
         pict.GetComponent<Image>().color = Color.white;
-
+        GameObject.FindWithTag("name").GetComponent<Text>().name = GetComponent<Button>().name.ToString();
         GameObject.FindWithTag("name").GetComponent<Text>().text = Name.ToString();
         GameObject.FindWithTag("bio").GetComponent<Text>().text = bios;
         UI1 = UI.GetComponent<Canvas>();
         UI1.enabled = true;
-
-        charselect.control.CharacterSelected(btn.name.ToString().ToLower());
+        //charselect.control.CharacterSelected(btn.name.ToString().ToLower());
     }
 
 	public int GetCharacterPlace() {

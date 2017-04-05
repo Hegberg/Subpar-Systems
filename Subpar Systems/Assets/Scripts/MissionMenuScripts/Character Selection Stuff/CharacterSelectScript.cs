@@ -47,14 +47,20 @@ public class CharacterSelectScript : MonoBehaviour
         }
         else
         {
-          GameControlScript.control.SelectCharacter(GetComponent<Button>().name.ToString());
-          OnMouseOver();
+            if (UIButt.name.ToString() == "Character5" || UIButt.name.ToString() == "Character6")
+            {
+                GameControlScript.control.SelectSideMissionCharacter(GetComponentInChildren<Text>().text.ToString().ToLower());
+
+            }
+            else { GameControlScript.control.SelectCharacter(GetComponentInChildren<Text>().text.ToString().ToLower());
+            }
+            
+            OnMouseOver();
         }
     }
 
     public void OnMouseOver()
     {
-        Characters1 = null;
         GameObject.FindWithTag("Mission Text").GetComponent<Canvas>().enabled = false;
         GameObject.FindWithTag("Mission").GetComponent<Canvas>().enabled = false;
         var UI = GameObject.FindWithTag("CharSelect");
@@ -70,18 +76,20 @@ public class CharacterSelectScript : MonoBehaviour
             CharName = character.GetComponent<Button>().name.ToString().ToLower();
 
 			characterPlace = character.GetComponent<CharacterSelectionForSlot> ().GetCharacterPlace();
+            Debug.Log("NEW");
             Debug.Log(character.GetComponent<CharacterSelectionForSlot>().GetCharacterPlace());
             Debug.Log (GameControlScript.control.GetChosen()[characterPlace]);
-            if (GameControlScript.control.GetChosen()[characterPlace])
+            Debug.Log("Old");
+            for (int i = 0; i < GameControlScript.control.GetChosen().Count; ++i)
             {
-                character.GetComponent<Button>().interactable = false;
-                character.GetComponent<CanvasGroup>().alpha = 0.5f;
+                if (GameControlScript.control.GetChosen()[characterPlace] || GameControlScript.control.GetSideMissionChosen()[characterPlace])
+                {
+                    character.GetComponent<Button>().interactable = false;
+                    character.GetComponent<CanvasGroup>().alpha = 0.5f;
+                }
             }
-            if (GameControlScript.control.GetSideMissionChosen()[characterPlace])
-            {
-                character.GetComponent<Button>().interactable = false;
-                character.GetComponent<CanvasGroup>().alpha = 0.5f;
-            }
+
+
             for (int i = 0; i < GameControlScript.control.GetDeadCharacters().Count; ++i)
             {
                 if (GameControlScript.control.GetDeadCharacters()[i].ToLower() == CharName) 

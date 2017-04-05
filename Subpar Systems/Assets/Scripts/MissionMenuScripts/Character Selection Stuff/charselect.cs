@@ -59,19 +59,24 @@ public class charselect : MonoBehaviour {
         var UI1 = GameObject.FindWithTag("UIChar"); 
         var UI = GameObject.FindWithTag("CharSelect");
         var pict = GameObject.FindWithTag("UIImage");
+        var names = GameObject.FindWithTag("name");
+        name = names.GetComponent<Text>().name;
         add = pict.GetComponent<Image>().sprite;
         UI.GetComponent<Canvas>().enabled = false;
         UI1.GetComponent<Canvas>().enabled = false;
         GameObject.FindWithTag("Mission").GetComponent<Canvas>().enabled = true;
         GameObject.FindWithTag("Mission Text").GetComponent<Canvas>().enabled = true;
         butselected.GetComponent<Image>().sprite = add;
-        Debug.Log(butselected.name.ToString());
+        if (butselected.GetComponentInChildren<Text>().text != name)
+        {
+            butselected.GetComponentInChildren<Text>().text = name;
+        }
         if (butselected.name.ToString() == "Character5" || butselected.name.ToString() == "Character6") {
-            GameControlScript.control.SelectSideMissionCharacter(characterSelected);
+            GameControlScript.control.SelectSideMissionCharacter(butselected.GetComponentInChildren<Text>().text.ToString().ToLower());
         }
         else
         {
-            GameControlScript.control.SelectCharacter(characterSelected);
+            GameControlScript.control.SelectCharacter(butselected.GetComponentInChildren<Text>().text.ToString().ToLower());
         }
     }
 
