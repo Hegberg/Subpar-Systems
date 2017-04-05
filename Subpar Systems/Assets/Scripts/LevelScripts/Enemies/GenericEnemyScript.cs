@@ -10,7 +10,7 @@ public class GenericEnemyScript : MonoBehaviour {
 	protected float attack = 10;
 	protected float movement = 3;
 	protected float range = 3;
-	protected float tempDetectRadius = 5;
+	protected float DetectRadius = 5;
 	protected bool Detected = false;
 	protected bool isSelected = false;
 
@@ -177,7 +177,7 @@ public class GenericEnemyScript : MonoBehaviour {
 				LevelControlScript.control.GetAStarMapCost(),
 				tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0],
 				tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1],
-				(int)tempDetectRadius);
+				(int)DetectRadius);
 
             //Debug.Log("FloodFillTiles Count = " + FloodFillTiles.Count + " with movement range " + (int)movement);
             //Debug.Log(FloodFillTiles.Count + " count " + (int)movement + " movement");
@@ -239,9 +239,9 @@ public class GenericEnemyScript : MonoBehaviour {
 			}
 
 			GameObject tile = null;
-			Debug.Log("Current tile position is row " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0] + ", Index " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
-			Debug.Log("TestCount: " + testing.Count + " Movement: " + ((int)movement));
-			if (testing.Count < ((int)movement)) {
+			//Debug.Log("Current tile position is row " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0] + ", Index " + tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
+			//Debug.Log("TestCount: " + testing.Count + " Movement: " + ((int)movement));
+			if (testing.Count <= ((int)movement)) {
 				int temp = 1;
 				tile = tempMap[testing[testing.Count-temp][0]][testing[testing.Count-temp][1]];
 				if (tile.GetComponent<GenericEarthScript> ().GetOccupingObject () != null) {
