@@ -5,18 +5,75 @@ using UnityEngine;
 public class SideMissionScript : MonoBehaviour {
     private static List<GenericTraitsScript> missionTraits;
     private static List<GameObject> sideCharacters;
+    private static List<bool> sideCharactersBool;
     private float successProb;
+    public static SideMissionScript control;
+
+
+    private static List<GameObject> characters = new List<GameObject>();
+
     // Use this for initialization
-    void Start() { 
+    void Start() {
         //Assume we are given a list of characters chosen for sidemissions. Until then, just pulling from the full list. 
         //Until hooked up, this shouldn't cause problems
         //FOR EARLY USE ONLY DO NOT ALLOW IT TO REMAIN
         //characters = GameControlScript.control.GetCharacters();
 
+        //add character prefabs
+        if (control == null)
+        {
+            control = this;
+            if (characters.Count == 0)
+            {
+                characters.Add(GameControlScript.control.character1.gameObject);
+                characters.Add(GameControlScript.control.character2.gameObject);
+                characters.Add(GameControlScript.control.character3.gameObject);
+                characters.Add(GameControlScript.control.character4.gameObject);
+                characters.Add(GameControlScript.control.character5.gameObject);
+                characters.Add(GameControlScript.control.character6.gameObject);
+                characters.Add(GameControlScript.control.character7.gameObject);
+                characters.Add(GameControlScript.control.character8.gameObject);
+                characters.Add(GameControlScript.control.character9.gameObject);
+                characters.Add(GameControlScript.control.character10.gameObject);
+                characters.Add(GameControlScript.control.character11.gameObject);
+                characters.Add(GameControlScript.control.character12.gameObject);
+
+            }
+            sideCharactersBool = GameControlScript.control.GetSideMissionChosen();
+            //determine character to spawn
+
+            for (int l = 0; l < sideCharactersBool.Count; ++l)
+            {
+                //Debug.Log(charactersChosen[l]);
+                if (sideCharactersBool[l])
+                {
+                    sideCharacters.Add(characters[l]);
+                }
+            }
+        }
+     
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 	}
 
@@ -46,9 +103,9 @@ public class SideMissionScript : MonoBehaviour {
     void selectCurrentUnits(List<GameObject> selectedCharacters)
     {
         //getUnits for current mission.
-        sideCharacters = selectedCharacters;
+        //sideCharacters = selectedCharacters;
     }
-    int runSideMission1()
+    public int runSideMission1()
     {
         /* SIDE MISSION 1:
          * An imperial tank was lost in the latest of several skirmishes with the indigenous populations. 
@@ -83,6 +140,7 @@ public class SideMissionScript : MonoBehaviour {
                 }
                 if (missionTraits[i].GetName() == "Assault")
                 {
+
                     assault = true;
                     successProb += 15.0f;
                 }
