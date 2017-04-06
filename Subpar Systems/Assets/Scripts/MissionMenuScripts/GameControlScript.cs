@@ -167,7 +167,11 @@ public class GameControlScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (Input.GetKeyDown("k"))
+        {
+            
+            KillAllEnemies();
+        }
     }
 	/*
 	public void Load() {
@@ -568,4 +572,12 @@ public class GameControlScript : MonoBehaviour {
 	public int GetSurviveToThisTurn() {
 		return surviveToThisTurn;
 	}
+
+    public void KillAllEnemies()
+    {
+        foreach (var enemy in enemyInGameList)
+        {
+            enemy.GetComponent<GenericEnemyScript>().SetHP(0);
+        }
+    }
 }

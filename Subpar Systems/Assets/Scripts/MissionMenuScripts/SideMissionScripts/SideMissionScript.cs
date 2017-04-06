@@ -10,7 +10,6 @@ public class SideMissionScript : MonoBehaviour {
     public static SideMissionScript control;
 
 
-    private static List<GameObject> characters = new List<GameObject>();
 
     // Use this for initialization
     void Start() {
@@ -23,58 +22,16 @@ public class SideMissionScript : MonoBehaviour {
         if (control == null)
         {
             control = this;
-            if (characters.Count == 0)
-            {
-                characters.Add(GameControlScript.control.character1.gameObject);
-                characters.Add(GameControlScript.control.character2.gameObject);
-                characters.Add(GameControlScript.control.character3.gameObject);
-                characters.Add(GameControlScript.control.character4.gameObject);
-                characters.Add(GameControlScript.control.character5.gameObject);
-                characters.Add(GameControlScript.control.character6.gameObject);
-                characters.Add(GameControlScript.control.character7.gameObject);
-                characters.Add(GameControlScript.control.character8.gameObject);
-                characters.Add(GameControlScript.control.character9.gameObject);
-                characters.Add(GameControlScript.control.character10.gameObject);
-                characters.Add(GameControlScript.control.character11.gameObject);
-                characters.Add(GameControlScript.control.character12.gameObject);
-
-            }
             sideCharactersBool = GameControlScript.control.GetSideMissionChosen();
             //determine character to spawn
 
-            for (int l = 0; l < sideCharactersBool.Count; ++l)
-            {
-                //Debug.Log(charactersChosen[l]);
-                if (sideCharactersBool[l])
-                {
-                    sideCharacters.Add(characters[l]);
-                }
-            }
+
         }
      
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
 	}
 
     void getMissionTraits()
