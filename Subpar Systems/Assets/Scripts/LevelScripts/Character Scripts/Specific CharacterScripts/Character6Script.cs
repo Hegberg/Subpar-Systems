@@ -9,7 +9,8 @@ public class Character6Script : GenericCharacterScript
     void Start()
     {
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(5);
-        name = "F28";
+        name = "Ashe";
+        role = "Grenadier";
         RefreshActions();
     }
 

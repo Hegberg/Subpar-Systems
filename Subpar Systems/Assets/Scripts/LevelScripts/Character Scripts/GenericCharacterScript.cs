@@ -11,6 +11,11 @@ public class GenericCharacterScript : MonoBehaviour {
 
 	//name of character
 	protected string name = "temp";
+    
+    //A string of the class name. In my opinion, it would be better
+    //if we displayed their class and name, instead of just class. 
+    //In case sprites aren't clear enough.
+    protected string role = "Soldier";
 
 	//hp of character
 	protected float hp = 100;

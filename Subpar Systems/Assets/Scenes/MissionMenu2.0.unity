@@ -702,8 +702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  bios: I am bio
+  Name: Jai Ono
+  bios: 'Class: Assault'
   characterPlace: 8
 --- !u!114 &194252723
 MonoBehaviour:
@@ -765,7 +765,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 21c612f969b659e47b14a1b8c3cb2755, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 665ed4f233fdfdd47bebcd3bc75fef3a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -840,8 +840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  bios: I am bio
+  Name: Yuri Sokolov
+  bios: 'Class: Assault'
   characterPlace: 9
 --- !u!114 &200437428
 MonoBehaviour:
@@ -903,7 +903,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ce5bd94d49f70dc40b07585703d2e259, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f4f248e95c485c47a8e72f37f1691a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1199,7 +1199,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: F27 (Machinegunner)
+  m_Text: Larry
 --- !u!222 &221626933
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1491,7 +1491,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rifleman
+  m_Text: Terry
 --- !u!222 &335883449
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2546,8 +2546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  bios: I am bio
+  Name: Roy
+  bios: 'Class: Rifleman'
   characterPlace: 3
 --- !u!114 &659821650
 MonoBehaviour:
@@ -2609,7 +2609,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8fde9d4d4e8c1d647a602bcd13f0679c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0dcab6fce3ff1b34f83e80c7f25ccc92, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2701,7 +2701,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Assault
+  m_Text: Jai
 --- !u!222 &678758834
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3008,8 +3008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: F32
-  bios: I am bio
+  Name: Terry Winters
+  bios: 'Class: Rifleman'
   characterPlace: 1
 --- !u!225 &906484252
 CanvasGroup:
@@ -3272,8 +3272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: M31
-  bios: I am bio
+  Name: Geoff
+  bios: 'Class: Grenadier'
   characterPlace: 4
 --- !u!114 &978363889
 MonoBehaviour:
@@ -3410,8 +3410,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  bios: I am bio
+  Name: Devi Devai
+  bios: 'Class: Machine Gunner'
   characterPlace: 11
 --- !u!114 &986664279
 MonoBehaviour:
@@ -3473,7 +3473,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 2f4f248e95c485c47a8e72f37f1691a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be8e4fcd793a34442bea490cd2ddd2da, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4071,7 +4071,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rifleman
+  m_Text: Sabrina
 --- !u!222 &1173373865
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4346,8 +4346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  bios: I am bio
+  Name: Lt-Col George Murphy
+  bios: 'Class: Grenadier'
   characterPlace: 6
 --- !u!114 &1248812250
 MonoBehaviour:
@@ -4409,7 +4409,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e1deee384bbdcd345bf91914cb3ea1ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e84f29f830a054c4f957c127972684cd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4579,7 +4579,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Assault
+  m_Text: Yuri
 --- !u!222 &1268199293
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4707,8 +4707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: F27
-  bios: I am bio
+  Name: Taliyah
+  bios: 'Class: Riflewoman'
   characterPlace: 0
 --- !u!225 &1362627929
 CanvasGroup:
@@ -4781,7 +4781,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 784e7a87a05217540834015beeaaaec2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c6b8a42fa749a54491ba4b7b4ff8508, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4935,7 +4935,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Grenedier
+  m_Text: Ashe
 --- !u!222 &1475944915
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5303,8 +5303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  bios: I am bio
+  Name: Annie Winters
+  bios: 'Class: Assault'
   characterPlace: 7
 --- !u!114 &1628791588
 MonoBehaviour:
@@ -5458,7 +5458,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Grenedier
+  m_Text: George
 --- !u!222 &1638737632
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5532,7 +5532,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Machinegunner
+  m_Text: Devi
 --- !u!222 &1651081987
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5589,8 +5589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  bios: I am bio
+  Name: Larry Winters
+  bios: 'Class: Machine Gunner'
   characterPlace: 10
 --- !u!114 &1699266899
 MonoBehaviour:
@@ -6013,8 +6013,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: M40
-  bios: I am bio
+  Name: Sabrina
+  bios: 'Class: Riflewoman'
   characterPlace: 2
 --- !u!114 &1827890285
 MonoBehaviour:
@@ -6076,7 +6076,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e940acf65abdc7c4d96be05e41d61869, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 784e7a87a05217540834015beeaaaec2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6168,7 +6168,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: M40 (Grenedier)
+  m_Text: Geoff
 --- !u!222 &1869525456
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6430,7 +6430,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: M31 (Rifleman)
+  m_Text: Roy
 --- !u!222 &1930866950
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6860,8 +6860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  bios: I am bio
+  Name: Ashley
+  bios: 'Class: Grenadier'
   characterPlace: 5
 --- !u!114 &1963329403
 MonoBehaviour:
@@ -7211,7 +7211,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Assault
+  m_Text: Annie
 --- !u!222 &2039090506
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7359,7 +7359,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: F32 (Rifleman)
+  m_Text: Taliyah
 --- !u!222 &2090894453
 CanvasRenderer:
   m_ObjectHideFlags: 0

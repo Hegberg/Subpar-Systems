@@ -71,43 +71,53 @@ public class GameControlScript : MonoBehaviour {
     //Characters 5-7 Grenadiers
     //Characters 8-10 Assaults
     //Characters 11,12 Machinegunners
-   
-    //character F32
+
+    //character F27, Taliyah
     private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new F32GoodWithM41Trait()};
+    {new RiflemanTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait(), new F27BadWithM40Trait()};
 
-	//character F29
+    //character M31, Terry
     private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript>
-	{new RiflemanTrait(), new F29FriendsWithF28(), new BacklineCommanderTrait(), new SleepDeprived()};
+    {new RiflemanTrait(), new M31GoodWithM29Trait(), new M31MarriedToF32Trait(), new M31FriendM29DeadTrait(), new M31WifeF32DeadTrait()};
 
+    //character F29, sabrina
     private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript>
+    {new RiflemanTrait(), new F29FriendsWithF28(), new BacklineCommanderTrait(), new SleepDeprived()};
+
+    //Character Roy
+    private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript>
     {new RiflemanTrait() };
 
-    //character M31
-    private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript> 
-	{new RiflemanTrait(), new M31GoodWithM29Trait(), new M31MarriedToF32Trait(), new M31FriendM29DeadTrait(), new M31WifeF32DeadTrait()};
-
-    //character M40
+    //character M40, Geoff
     private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript>
     { new GrenedierTrait()};
 
-	//character F28
+    //character F28, Ashe
     private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript>
-	{new GrenedierTrait(), new F28FriendsWithF29(), new FrontLineCommander()};
+    {new GrenedierTrait(), new F28FriendsWithF29(), new FrontLineCommander()};
 
-	private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript>
+    //Character Lt-Col George Murphy
+    private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript>
     { new GrenedierTrait() };
 
+
+    //character F32, Annie
     private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript>
-    { new AssaultTrait() };
+    {new AssaultTrait(), new F32GoodWithM41Trait()};
+
+    //character Jai Ono, the beserker.
 	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript>
     {new AssaultTrait() };
+
+    //character Yuri Sokolov
 	private List<GenericTraitsScript> character10InitialTraits = new List<GenericTraitsScript>
     { new AssaultTrait() };
-   
-    //character F27
+
+    //Character Larry Winters
     private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript>
-    {new MachineGunTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait(), new F27BadWithM40Trait()};
+    { new MachineGunTrait() };
+
+    //Character Devi Devai.
     private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript>
     { new MachineGunTrait() };
 

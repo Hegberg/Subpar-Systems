@@ -7,7 +7,8 @@ public class Character3Script : GenericCharacterScript {
 	// Use this for initialization
 	void Start () {
 		currentTraits = GameControlScript.control.GetTraitsOfACharacter (2);
-		name = "Character3";
+		name = "Sabrina";
+        role = "Riflewoman";
         RefreshActions();
     }
 	

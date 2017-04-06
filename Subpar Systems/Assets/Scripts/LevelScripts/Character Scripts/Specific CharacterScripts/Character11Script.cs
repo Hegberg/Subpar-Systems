@@ -9,7 +9,8 @@ public class Character11Script : GenericCharacterScript
     void Start()
     {
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(10);
-        name = "character11";
+        name = "Larry Winters";
+        role = "Machine Gunner";
         RefreshActions();
     }
 

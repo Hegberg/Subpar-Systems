@@ -9,7 +9,8 @@ public class Character8Script : GenericCharacterScript
     void Start()
     {
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(7);
-        name = "character8";
+        name = "Annie Winters";
+        role = "Assault";
         RefreshActions();
     }
 

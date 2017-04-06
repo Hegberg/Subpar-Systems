@@ -376,7 +376,7 @@ public class GrenedierTrait : GenericTraitsScript
     public override void InitializeValues()
     {
         name = "Grenedier";
-        attackModifier = 1.0f; //not affected
+        attackModifier = .75f; //lower
         defenseModifier = 1.0f; //not affected
         movementModifier = 0.75f; //3
         rangeModifier = 0.75f; //3
