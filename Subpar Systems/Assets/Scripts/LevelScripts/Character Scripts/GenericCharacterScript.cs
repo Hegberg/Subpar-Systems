@@ -10,7 +10,7 @@ public class GenericCharacterScript : MonoBehaviour {
 	protected GameObject tileOccuping;
 
 	//name of character
-	protected string name = "temp";
+	protected string Name = "temp";
     
     //A string of the class name. In my opinion, it would be better
     //if we displayed their class and name, instead of just class. 
@@ -466,7 +466,7 @@ public class GenericCharacterScript : MonoBehaviour {
     }
 
 	public string GetName() {
-		return name;
+		return Name;
 	}
 
 	public void RemoveFromGame() {

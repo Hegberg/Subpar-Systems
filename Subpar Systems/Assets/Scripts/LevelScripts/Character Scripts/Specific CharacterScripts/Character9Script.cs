@@ -9,7 +9,7 @@ public class Character9Script : GenericCharacterScript
     void Start()
     {
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(8);
-        name = "Jai Ono";
+        Name = "Jai Ono";
         role = "Assault";
         RefreshActions();
     }

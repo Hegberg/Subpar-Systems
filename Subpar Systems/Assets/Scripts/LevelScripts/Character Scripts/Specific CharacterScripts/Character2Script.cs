@@ -7,7 +7,7 @@ public class Character2Script : GenericCharacterScript {
 	// Use this for initialization
 	void Start () {
 		currentTraits = GameControlScript.control.GetTraitsOfACharacter (1);
-        name = "Terry Winters";
+        Name = "Terry Winters";
         role = "Rifleman";
         RefreshActions();
     }

@@ -66,6 +66,7 @@ public class GameControlScript : MonoBehaviour {
     private static List<GameObject> enemyInGameList = new List<GameObject>();
     private static List<string> deadCharacterList = new List<string>();
 
+
     private List<List<GenericTraitsScript>> allCharacterTraits = new List<List<GenericTraitsScript>>();
     //Characters 1-4 riflemen.
     //Characters 5-7 Grenadiers
@@ -126,7 +127,6 @@ public class GameControlScript : MonoBehaviour {
 		if (control == null)
         {
             control = this;
-
             //add character prefabs
             characters.Add(character1);
             characters.Add(character2);

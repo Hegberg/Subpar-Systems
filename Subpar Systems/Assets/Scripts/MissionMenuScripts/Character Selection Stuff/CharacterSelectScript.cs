@@ -87,8 +87,13 @@ public class CharacterSelectScript : MonoBehaviour
 
             for (int i = 0; i < GameControlScript.control.GetDeadCharacters().Count; ++i)
             {
+                Debug.Log("DEAD");
+                Debug.Log(GameControlScript.control.GetDeadCharacters()[i]);
+                Debug.Log(CharName);
+                Debug.Log(character.GetComponentInChildren<Text>().text.ToString().ToLower());
                 if (GameControlScript.control.GetDeadCharacters()[i].ToLower() == CharName || GameControlScript.control.GetDeadCharacters()[i].ToLower() == character.GetComponentInChildren<Text>().text.ToString().ToLower()) 
                 {
+                    Debug.Log("HERE");
                     character.GetComponent<Button>().interactable = false;
                     character.GetComponent<CanvasGroup>().alpha = 0.5f;
                 }

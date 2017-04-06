@@ -2546,7 +2546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Roy
+  Name: Roy LeGaul
   bios: 'Class: Rifleman'
   characterPlace: 3
 --- !u!114 &659821650
@@ -6860,7 +6860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bda3ea63e2c5b4f966bddbb6e194db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Ashley
+  Name: Ashe
   bios: 'Class: Grenadier'
   characterPlace: 5
 --- !u!114 &1963329403

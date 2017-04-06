@@ -7,7 +7,7 @@ public class Character12Script : GenericCharacterScript {
     // Use this for initialization
     void Start () {
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(11);
-        name = "Devi Devai";
+        Name = "Devi Devai";
         role = "Machine Gunner";
         RefreshActions();
     }
