@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 147410556}
   m_Layer: 5
   m_Name: person1
-  m_TagString: Untagged
+  m_TagString: Characters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,10 +247,10 @@ RectTransform:
   m_Father: {fileID: 783616343}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90, y: -187.51}
-  m_SizeDelta: {x: 98, y: 124.97}
+  m_AnchorMin: {x: 0.3325012, y: 0.080000006}
+  m_AnchorMax: {x: 0.68875897, y: 0.5}
+  m_AnchoredPosition: {x: -98.5, y: -61.509995}
+  m_SizeDelta: {x: -187, y: -127.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &147410556
 MonoBehaviour:
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 554868146}
   m_Layer: 5
   m_Name: person2
-  m_TagString: Untagged
+  m_TagString: Characters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

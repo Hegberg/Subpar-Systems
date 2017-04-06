@@ -74,12 +74,7 @@ public class CharacterSelectScript : MonoBehaviour
             character.GetComponent<Button>().interactable = true;
             character.GetComponent<CanvasGroup>().alpha = 1;
             CharName = character.GetComponent<Button>().name.ToString().ToLower();
-
 			characterPlace = character.GetComponent<CharacterSelectionForSlot> ().GetCharacterPlace();
-            Debug.Log("NEW");
-            Debug.Log(character.GetComponent<CharacterSelectionForSlot>().GetCharacterPlace());
-            Debug.Log (GameControlScript.control.GetChosen()[characterPlace]);
-            Debug.Log("Old");
             for (int i = 0; i < GameControlScript.control.GetChosen().Count; ++i)
             {
                 if (GameControlScript.control.GetChosen()[characterPlace] || GameControlScript.control.GetSideMissionChosen()[characterPlace])
@@ -92,7 +87,7 @@ public class CharacterSelectScript : MonoBehaviour
 
             for (int i = 0; i < GameControlScript.control.GetDeadCharacters().Count; ++i)
             {
-                if (GameControlScript.control.GetDeadCharacters()[i].ToLower() == CharName) 
+                if (GameControlScript.control.GetDeadCharacters()[i].ToLower() == CharName || GameControlScript.control.GetDeadCharacters()[i].ToLower() == character.GetComponentInChildren<Text>().text.ToString().ToLower()) 
                 {
                     character.GetComponent<Button>().interactable = false;
                     character.GetComponent<CanvasGroup>().alpha = 0.5f;
