@@ -32,6 +32,9 @@ public class LevelControlScript : MonoBehaviour {
 
 	private List<List<List<int>>> mapData = new List<List<List<int>>>();
 
+	private List<int> tankSpawn = new List<int> { 6, 8 };
+	int levelTankSpawn = 2;
+
     // Use this for initialization
     void Start () {
 
@@ -189,6 +192,29 @@ public class LevelControlScript : MonoBehaviour {
                 aStarMapCost[map.Count - i - 1][j].Add(map[i][j][0]);
                 //then add tile height
                 aStarMapCost[map.Count - i - 1][j].Add(map[i][j][1]);
+
+				//spawn tank code
+				if (GameControlScript.control.GetLevel() == levelTankSpawn && tankSpawn[0] == j && tankSpawn[1] == i) {
+					
+					tempVector.z -= 0.01f;
+
+					tempVector.y += (oneTile.GetComponent<Renderer>().bounds.size.y / (tileHeightRatio + 2));
+
+					//12 is tank spot in list
+					Transform tank = (Transform)Instantiate(
+						GameControlScript.control.GetCharacters()[12],
+						tempVector, Quaternion.identity);
+
+					tank.gameObject.GetComponent<GenericCharacterScript>().SetTileOccuping(tile.gameObject);
+					tile.gameObject.GetComponent<GenericEarthScript>().SetOccupingObject(tank.gameObject);
+					tank.SetParent(characterParent);
+					//characterSpawning += 1;
+					GameControlScript.control.AddCharacterToInGameList(tank.gameObject);
+					break;
+				}
+
+				//reset temp vector
+				tempVector = new Vector3(fuckThomasX, fuckThomasY, fuckThomasZ);
 
                 //spawn character code
                 for (int k = 0; k < playerSpawnLocations.Count; ++k)
