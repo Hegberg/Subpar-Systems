@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TraitSpriteControl : MonoBehaviour {
 
@@ -10,7 +11,7 @@ public class TraitSpriteControl : MonoBehaviour {
 
 	public Transform testUISprite;
 	public Transform traitBackgroundUI;
-
+    /*
 	public Transform machineGun;
 	public Transform backLineCommander;
 	public Transform assault;
@@ -29,8 +30,25 @@ public class TraitSpriteControl : MonoBehaviour {
 	public Transform sleepDeprived;
 	public Transform f28GoodWithF29;
 	public Transform frontLineCommander;
+    */
+    public Sprite machineGun;
+    public Sprite backLineCommander;
+    public Sprite assault;
+    public Sprite grenedier;
+    public Sprite rifleman;
+    public Sprite adrenalineJunky;
+    public Sprite m31MarriedToF32;
+    public Sprite m31GoodWithM29;
+    public Sprite f32GoodWithM41;
+    public Sprite f27BadWithM40;
+    public Sprite f27GoodWithF25;
+    public Sprite brutalEfficiency;
+    public Sprite f29GoodWithF28;
+    public Sprite sleepDeprived;
+    public Sprite f28GoodWithF29;
+    public Sprite frontLineCommander;
 
-	public List<Transform> TraitsInOrderOfCreatedClass;
+    public List<Sprite> TraitsInOrderOfCreatedClass;
 
 	private int traitsPerRow = 3;
 	private int multipleForSpacing = 15;
@@ -58,8 +76,6 @@ public class TraitSpriteControl : MonoBehaviour {
 			TraitsInOrderOfCreatedClass.Add (f32GoodWithM41);
 			TraitsInOrderOfCreatedClass.Add (m31GoodWithM29);
 			TraitsInOrderOfCreatedClass.Add (m31MarriedToF32);
-			TraitsInOrderOfCreatedClass.Add (m31FriendM29Dead);
-			TraitsInOrderOfCreatedClass.Add (m31WifeF32Dead);
 			TraitsInOrderOfCreatedClass.Add (adrenalineJunky);
 			TraitsInOrderOfCreatedClass.Add (rifleman);
 			TraitsInOrderOfCreatedClass.Add (grenedier);
@@ -83,44 +99,68 @@ public class TraitSpriteControl : MonoBehaviour {
 	}
 
 	public void ShowTraits(List<GenericTraitsScript> traitList){
-		//set trait vector for background
-		Vector3 traitVector = new Vector3( traitBackgroundUI.GetComponent<Renderer>().bounds.size.x / 2,
-			-traitBackgroundUI.GetComponent<Renderer>().bounds.size.y / 2, 0);
-		//create first trait vector
-		traitUIParent = GameObject.FindObjectOfType<Canvas>().transform;
 
-		Transform traitBackground = (Transform)Instantiate(traitBackgroundUI, traitVector, Quaternion.identity);
-		RectTransform traitRectBackground = traitBackground.GetComponent<RectTransform> ();
-		traitRectBackground.anchorMin = anchorMin;
-		traitRectBackground.anchorMax = anchorMax;
-		traitBackground.SetParent (traitUIParent, false);
+        GameObject background = GameObject.Find("Background");
 
-		//Debug.Log (TraitsInOrderOfCreatedClass.Count);
+        background.GetComponent<Image>().enabled = true;
+        //background.SetActive(true);
 
-		//create each trait
-		for (int i = 0; i < traitList.Count; ++i) {
-			int tempPos = traitList [i].GetPositionInSpriteControlList ();
-			//Debug.Log (tempPos);
-			traitVector.x = (((i % traitsPerRow) + 0.5f) * 
-				(TraitsInOrderOfCreatedClass[tempPos].GetComponent<RectTransform>().rect.width *  multipleForSpacing));
-			traitVector.y = (((i / traitsPerRow) + 1f) * 
-				(-TraitsInOrderOfCreatedClass[tempPos].GetComponent<RectTransform>().rect.height * multipleForSpacing));
-			traitVector.y -= (TraitsInOrderOfCreatedClass[tempPos].GetComponent<RectTransform> ().rect.height * multipleForPushingDown);
-			traitVector.z = 0;
-			Transform trait = (Transform)Instantiate(TraitsInOrderOfCreatedClass[tempPos], traitVector, Quaternion.identity);
-			trait.gameObject.GetComponent<IndividualTraitScipt> ().SetInfoTrait (traitList [i]);
-			RectTransform traitRect = trait.GetComponent<RectTransform> ();
-			traitRect.anchorMin = anchorMin;
-			traitRect.anchorMax = anchorMax;
-			trait.SetParent (traitUIParent, false);
-		}
-	}
+        string textBase = "Trait";
+        int loopHeight = 0;
+
+        for (int i = 0; i < traitList.Count; ++i)
+        {
+            //can only handle 9 traits
+            if (i < 9)
+            {
+                int temp = i + 1;
+                string textToFind = textBase + temp;
+                //Debug.Log(textToFind);
+                GameObject trait = GameObject.Find(textToFind);
+                //Debug.Log(trait.name);
+                //Debug.Log(traitList[i].GetName() + " " + traitList[i].GetPositionInSpriteControlList());
+                trait.GetComponent<Image>().sprite = TraitsInOrderOfCreatedClass[traitList[i].GetPositionInSpriteControlList()];
+                trait.GetComponent<Image>().enabled = true;
+                //trait.SetActive(true);
+                //increase safetycheck
+                ++loopHeight;
+            }
+        }
+
+        //disable unused icon spots
+        for (int i = loopHeight; i < 9; ++i)
+        {
+            int temp = i + 1;
+            string textToFind = textBase + temp;
+            //Debug.Log(textToFind + " " + i);
+            GameObject trait = GameObject.Find(textToFind);
+            //Debug.Log(trait.name);
+            trait.GetComponent<Image>().enabled = false;
+            //trait.SetActive(false);
+        }
+    }
 
 	public void UnShowTraits(){
-		traitUIParent.BroadcastMessage ("DestroyItem");
-	}
+        GameObject background = GameObject.Find("Background");
+
+        background.GetComponent<Image>().enabled = false;
+        //background.SetActive(false);
+
+        string textBase = "Trait";
+
+        for (int i = 0; i < 9; ++i)
+        {
+            int temp = i + 1;
+            string textToFind = textBase + temp;
+            //Debug.Log(textToFind + " " + i);
+            GameObject trait = GameObject.Find(textToFind);
+            //Debug.Log(trait.name);
+            trait.GetComponent<Image>().enabled = false;
+            //trait.SetActive(false);
+        }
+    }
 
 	public Transform GetUIParent() {
-		return traitUIParent;
+        return traitUIParent;
 	}
 }

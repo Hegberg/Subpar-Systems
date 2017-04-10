@@ -561,7 +561,7 @@ public class TurnControlScript : MonoBehaviour {
 					if (movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].name.ToString () == "Earth(Clone)" &&
 					   movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<GenericEarthScript> ().GetIsOccupyingObjectAnEnemy ()) {
 						movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = enemyWithinAttackRange;
-						Debug.Log ("7");
+						//Debug.Log ("7");
 					}
 				}
 			}

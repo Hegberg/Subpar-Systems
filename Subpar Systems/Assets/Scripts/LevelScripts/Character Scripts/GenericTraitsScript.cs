@@ -14,6 +14,8 @@ public class GenericTraitsScript {
 	protected int positionInSpriteUIList = 0;
 	protected bool isCrazy = false;
 
+    //protected Sprite icon;
+
 	public virtual void InitializeValues() {
 		name = "temp";
 	}
@@ -237,22 +239,36 @@ public class M31GoodWithM29Trait : GenericTraitsScript {
 	public override float ModifyAttack ()
 	{
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M29") {
+            //if friend alive
+            if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M29") {
 				attackModifier = 1.2f;
 				break;
 			}
-		}
+            //if friend dead
+            if (GameControlScript.control.GetDeadCharacters()[i] == "M29")
+            {
+                attackModifier = 0.45f;
+                break;
+            }
+        }
 		return attackModifier;
 	}
 
 	public override float ModifyDefense ()
 	{
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M29") {
+            //if friend alive
+            if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M29") {
 				defenseModifier = 1.2f;
 				break;
 			}
-		}
+            //if friend dead
+            if (GameControlScript.control.GetDeadCharacters()[i] == "M29")
+            {
+                defenseModifier = 0.45f;
+                break;
+            }
+        }
 		return defenseModifier;
 	}
 }
@@ -268,85 +284,45 @@ public class M31MarriedToF32Trait : GenericTraitsScript {
 	public override float ModifyDefense ()
 	{
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+            //if spouse alive
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F32") {
 				defenseModifier = 1.5f;
 				break;
 			}
-		}
+            //if spouse dead
+            if (GameControlScript.control.GetDeadCharacters()[i] == "F32")
+            {
+                defenseModifier = 0.45f;
+                break;
+            }
+        }
 		return defenseModifier;
 	}
-}
 
-public class M31FriendM29DeadTrait : GenericTraitsScript {
-	//massive debuff if M29 dies
-	public override void InitializeValues ()
-	{
-		name = "M31FriendM29Dead";
-		positionInSpriteUIList = 8;
-	}
+    public override void AttemptToSetCrazy()
+    {
+        for (int i = 0; i < GameControlScript.control.GetDeadCharacters().Count; ++i)
+        {
+            if (GameControlScript.control.GetDeadCharacters()[i] == "F32")
+            {
+                isCrazy = true;
+                break;
+            }
+        }
+    }
 
-	public override float ModifyAttack ()
-	{
-		for (int i = 0; i < GameControlScript.control.GetDeadCharacters ().Count; ++i) {
-			if (GameControlScript.control.GetDeadCharacters ()[i] == "M29") {
-				attackModifier = 0.45f;
-				break;
-			}
-		}
-		return attackModifier;
-	}
-
-	public override float ModifyDefense ()
-	{
-		for (int i = 0; i < GameControlScript.control.GetDeadCharacters ().Count; ++i) {
-			if (GameControlScript.control.GetDeadCharacters ()[i] == "M29") {
-				defenseModifier = 0.45f;
-				break;
-			}
-		}
-		return defenseModifier;
-	}
-}
-
-public class M31WifeF32DeadTrait : GenericTraitsScript {
-	//massive debuff if F32 dies
-	public override void InitializeValues ()
-	{
-		name = "M31WifeF32Dead";
-		positionInSpriteUIList = 9;
-	}
-
-	public override void AttemptToSetCrazy ()
-	{
-		for (int i = 0; i < GameControlScript.control.GetDeadCharacters ().Count; ++i) {
-			if (GameControlScript.control.GetDeadCharacters ()[i] == "F32") {
-				isCrazy = true;
-				break;
-			}
-		}
-	}
-
-	public override float ModifyAttack ()
-	{
-		for (int i = 0; i < GameControlScript.control.GetDeadCharacters ().Count; ++i) {
-			if (GameControlScript.control.GetDeadCharacters ()[i] == "F32") {
-				attackModifier = 0.45f;
-				break;
-			}
-		}
-		return attackModifier;
-	}
-
-	public override float ModifyDefense ()
-	{
-		for (int i = 0; i < GameControlScript.control.GetDeadCharacters ().Count; ++i) {
-			if (GameControlScript.control.GetDeadCharacters ()[i] == "F32") {
-				defenseModifier = 0.45f;
-				break;
-			}
-		}
-		return defenseModifier;
-	}
+    public override float ModifyAttack()
+    {
+        for (int i = 0; i < GameControlScript.control.GetDeadCharacters().Count; ++i)
+        {
+            if (GameControlScript.control.GetDeadCharacters()[i] == "F32")
+            {
+                attackModifier = 0.45f;
+                break;
+            }
+        }
+        return attackModifier;
+    }
 }
 
 public class AdrenalineJunky : GenericTraitsScript {
@@ -354,7 +330,7 @@ public class AdrenalineJunky : GenericTraitsScript {
 	public override void InitializeValues ()
 	{
 		name = "Adrenaline Junky";
-		positionInSpriteUIList = 10;
+		positionInSpriteUIList = 8;
 	}
 }
 
@@ -367,7 +343,7 @@ public class RiflemanTrait : GenericTraitsScript
         defenseModifier = 1.0f; //not affected
         movementModifier = 0.75f; //3 
         rangeModifier = 1.0f; //not affected
-        positionInSpriteUIList = 11;
+        positionInSpriteUIList = 9;
     }
 }
 
@@ -384,7 +360,7 @@ public class GrenedierTrait : GenericTraitsScript
         //so grenadiers have a role.  
         //Two ideas, make it so grenades weaken targets, or that they have
         //advantages against other targets. Testing required.
-        positionInSpriteUIList = 12;
+        positionInSpriteUIList = 10;
     }
 }
 
@@ -397,7 +373,7 @@ public class AssaultTrait : GenericTraitsScript
         defenseModifier = 1.0f; //not affected
         movementModifier = 1.25f; //5
         rangeModifier = 0.25f; //1
-        positionInSpriteUIList = 13;
+        positionInSpriteUIList = 11;
     }
 }
 
@@ -410,7 +386,7 @@ public class F29FriendsWithF28 : GenericTraitsScript
 		defenseModifier = 1;
 		movementModifier = 1.00f; //
 		rangeModifier = 1.00f; //
-		positionInSpriteUIList = 14;
+		positionInSpriteUIList = 12;
 	}
 
 	public override float ModifyAttack ()
@@ -441,7 +417,7 @@ public class SleepDeprived : GenericTraitsScript
 	public override void InitializeValues ()
 	{
 		name = "SleepDeprived";
-		positionInSpriteUIList = 15;
+		positionInSpriteUIList = 13;
 	}
 
 	//50% chance to do half damage
@@ -466,7 +442,7 @@ public class F28FriendsWithF29 : GenericTraitsScript
 		defenseModifier = 1;
 		movementModifier = 1.00f; //
 		rangeModifier = 1.00f; //
-		positionInSpriteUIList = 16;
+		positionInSpriteUIList = 14;
 	}
 
 	public override float ModifyAttack ()
@@ -497,6 +473,6 @@ public class FrontLineCommander : GenericTraitsScript
 	public override void InitializeValues ()
 	{
 		name = "FrontLineCommander";
-		positionInSpriteUIList = 17;
+		positionInSpriteUIList = 15;
 	}
 }

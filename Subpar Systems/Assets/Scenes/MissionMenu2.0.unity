@@ -1097,40 +1097,22 @@ MonoBehaviour:
     type: 2}
   traitBackgroundUI: {fileID: 224340682570559032, guid: 2a16334506b6fbf4280650045fa3b5a7,
     type: 2}
-  machineGun: {fileID: 224701716609880870, guid: 69cc28d5e7406024c8607ccee39ebb68,
-    type: 2}
-  backLineCommander: {fileID: 224053611901702662, guid: 7a6257ea25e479b4386f2222c4db4699,
-    type: 2}
-  assault: {fileID: 224941040374858884, guid: 89d0d917e1b302042b27b293d325c52b, type: 2}
-  grenedier: {fileID: 224917170251028822, guid: 59b5c8b29dde1ee4e954d9fac1370bdb,
-    type: 2}
-  rifleman: {fileID: 224721456958939102, guid: 727c3611f6fd26a479ce1d407424ec6d, type: 2}
-  adrenalineJunky: {fileID: 224179191622151156, guid: 68b772edd0d513146baac6c4c67396a9,
-    type: 2}
-  m31WifeF32Dead: {fileID: 224934568149872474, guid: fecc02fcfd51d064781a032bf8b7f719,
-    type: 2}
-  m31FriendM29Dead: {fileID: 224408826644070672, guid: f64f0a00c0b0ce34aa076cd82a4b7e03,
-    type: 2}
-  m31MarriedToF32: {fileID: 224748932160657260, guid: 5fd946b6632a2244691d4475671928fb,
-    type: 2}
-  m31GoodWithM29: {fileID: 224226243114070230, guid: 97df184fb5b00d2439ca343b95316b7c,
-    type: 2}
-  f32GoodWithM41: {fileID: 224870065814061844, guid: a7c409272ffce194687dfe55ffa4d2be,
-    type: 2}
-  f27BadWithM40: {fileID: 224524991070453816, guid: 692dcdc16c9c3de4faab3b76e79a5a6e,
-    type: 2}
-  f27GoodWithF25: {fileID: 224644318050546890, guid: 070241253090880418e172527aab63b3,
-    type: 2}
-  brutalEfficiency: {fileID: 224371153030898840, guid: cceaf26f70dece746bf47298733465e0,
-    type: 2}
-  f29GoodWithF28: {fileID: 224126688834038642, guid: 9f8d01a3724e1184bbdf335bb9ae73cc,
-    type: 2}
-  sleepDeprived: {fileID: 224285277584462546, guid: 14b4cdd6be278974ea2ffd88eca6e968,
-    type: 2}
-  f28GoodWithF29: {fileID: 224401941872476446, guid: 0e46ddd42aacaed4f8d874faabf79167,
-    type: 2}
-  frontLineCommander: {fileID: 224630820730617406, guid: 8b09b6ebeb2b99d418268aebc18586a9,
-    type: 2}
+  machineGun: {fileID: 21300000, guid: ebefab7876420b346a02a8f4503ce977, type: 3}
+  backLineCommander: {fileID: 21300000, guid: c87602a0843ca404cbc6285699baa223, type: 3}
+  assault: {fileID: 21300000, guid: 23874fecd2c67b24cab9ce2dfd924365, type: 3}
+  grenedier: {fileID: 21300000, guid: ea8e3154d0c90804db5e95a5d6b13445, type: 3}
+  rifleman: {fileID: 21300000, guid: d2413c57967093b44837b47497a29352, type: 3}
+  adrenalineJunky: {fileID: 21300000, guid: e1d2f9b4e41ec014f9899dc7363c9eab, type: 3}
+  m31MarriedToF32: {fileID: 21300000, guid: 125b6e247e805b84a893cebea6ef87d4, type: 3}
+  m31GoodWithM29: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
+  f32GoodWithM41: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
+  f27BadWithM40: {fileID: 21300000, guid: 9c83ebc7846a2b24984001b965a5eca6, type: 3}
+  f27GoodWithF25: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
+  brutalEfficiency: {fileID: 21300000, guid: b1c75055975ddbd4bbcf436ca4e2f99b, type: 3}
+  f29GoodWithF28: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
+  sleepDeprived: {fileID: 21300000, guid: 4e1d0ccb0d8588448af4e734c868fd27, type: 3}
+  f28GoodWithF29: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
+  frontLineCommander: {fileID: 21300000, guid: 7272d0dc8abce28438d7dd900ffa810f, type: 3}
   TraitsInOrderOfCreatedClass: []
 --- !u!1 &221626930
 GameObject:

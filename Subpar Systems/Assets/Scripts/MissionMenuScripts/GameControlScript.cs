@@ -80,7 +80,7 @@ public class GameControlScript : MonoBehaviour {
 
     //character M31, Terry
     private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new M31GoodWithM29Trait(), new M31MarriedToF32Trait(), new M31FriendM29DeadTrait(), new M31WifeF32DeadTrait()};
+    {new RiflemanTrait(), new M31GoodWithM29Trait(), new M31MarriedToF32Trait() };
 
     //character F29, sabrina
     private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript>

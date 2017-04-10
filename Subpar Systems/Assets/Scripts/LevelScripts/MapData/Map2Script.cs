@@ -192,6 +192,7 @@ public class Map2Script : MonoBehaviour
 
     IEnumerator MapGenerateWait()
     {
+        TraitSpriteControl.control.UnShowTraits();
         yield return new WaitForSeconds(0.01f);
 		LevelControlScript.control.CreateMap(map, playerSpawnLocations, enemySpawnLocations, enemySpawners);
     }
