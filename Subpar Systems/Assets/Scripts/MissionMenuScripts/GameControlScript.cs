@@ -611,9 +611,9 @@ public class GameControlScript : MonoBehaviour {
 
     public void KillAllEnemies()
     {
-        foreach (var enemy in enemyInGameList)
+        for(int i = enemyInGameList.Count -1; i >= 0; --i)
         {
-            enemy.GetComponent<GenericEnemyScript>().SetHP(0);
+            enemyInGameList[i].GetComponent<GenericEnemyScript>().SetHP(0);
         }
     }
 }

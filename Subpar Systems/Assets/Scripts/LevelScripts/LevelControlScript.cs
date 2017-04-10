@@ -282,10 +282,9 @@ public class LevelControlScript : MonoBehaviour {
         //determine character to spawn
         for (int l = 0; l < sideCharactersChosen.Count; ++l)
         {
-            Debug.Log(sideCharactersChosen[l] + " " + l);
+            //Debug.Log(sideCharactersChosen[l] + " " + l);
             if (sideCharactersChosen[l])
             {
-                Debug.Log("Chosen");
                 Transform character = (Transform)Instantiate(
                     GameControlScript.control.GetCharacters()[l],
                     tempSideVector, Quaternion.identity);
