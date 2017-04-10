@@ -220,6 +220,7 @@ public class GameControlScript : MonoBehaviour {
 		allCharacterTraits.Add (character10InitialTraits);
 		allCharacterTraits.Add (character11InitialTraits);
 		allCharacterTraits.Add (character12InitialTraits);
+		allCharacterTraits.Add (tankTraits);
 		InitializeTraits ();
 	}
 	/*
