@@ -81,7 +81,7 @@ public class GenericEnemyScript : MonoBehaviour {
 								LevelControlScript.control.GetAStarMapCost(),
 								tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[0], 
 								tileOccuping.GetComponent<GenericEarthScript>().GetTilePosition()[1]);
-							Debug.Log (splashTiles.Count);
+							//Debug.Log (splashTiles.Count);
 
 							bool attacked = false;
 

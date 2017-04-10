@@ -13,7 +13,7 @@ EditorBuildSettings:
     path: Assets/Scenes/HubArea.unity
   - enabled: 0
     path: Assets/Scenes/MissionMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestLevel.unity
   - enabled: 1
     path: Assets/Scenes/Level1.unity
@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level3.unity
   - enabled: 1
     path: Assets/Scenes/Level2.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BlankLevel.unity
   - enabled: 1
     path: Assets/Scenes/Game Over.unity

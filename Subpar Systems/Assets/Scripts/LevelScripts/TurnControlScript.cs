@@ -212,6 +212,23 @@ public class TurnControlScript : MonoBehaviour {
 
 			} else { //if no enemy selected, set tile back to unhighlighted
 				bool moveableTile = false;
+
+				//player has no attacks left, so unhighlight enemies
+				if (playerSelected != null && playerSelected.GetComponent<GenericCharacterScript> ().GetNumOfAttacks () <= 0) {
+
+					RemoveExtraReachAttackTiles ();
+
+					List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap ();
+					//UnHighlight enemies the player can attack
+					for (int i = 0; i < allValidAttackTile.Count; ++i) {
+						if (movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].name.ToString () == "Earth(Clone)" &&
+							movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<GenericEarthScript> ().GetIsOccupyingObjectAnEnemy ()) {
+							movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = restoreOriginalColor;
+						}
+					}
+					//Debug.Log ("3");
+				}
+
 				//but if player hasn't moved and can move there, set it to moveable highlight
 				if (playerSelected != null && !playerSelected.GetComponent<GenericCharacterScript> ().GetHasMoved ()) {
 					/*
@@ -224,8 +241,6 @@ public class TurnControlScript : MonoBehaviour {
 						GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [0],
 						GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetTileOccuping ().GetComponent<GenericEarthScript> ().GetTilePosition () [1],
 						GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetMovement ());
-
-					
 
                     for (int i = 0; i < allValidTile.Count; ++i)
                     {
@@ -251,23 +266,8 @@ public class TurnControlScript : MonoBehaviour {
                     }
 
 					//Debug.Log ("2");
+
                 }
-
-				//player has no attacks left, so unhighlight enemies
-				if (playerSelected != null && playerSelected.GetComponent<GenericCharacterScript> ().GetNumOfAttacks () <= 0) {
-
-					RemoveExtraReachAttackTiles ();
-
-					List<List<GameObject>> movementmap = LevelControlScript.control.GetAStarMap ();
-					//UnHighlight enemies the player can attack
-					for (int i = 0; i < allValidAttackTile.Count; ++i) {
-						if (movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].name.ToString () == "Earth(Clone)" &&
-						    movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<GenericEarthScript> ().GetIsOccupyingObjectAnEnemy ()) {
-							movementmap [allValidAttackTile [i] [0]] [allValidAttackTile [i] [1]].GetComponent<SpriteRenderer> ().material.color = restoreOriginalColor;
-						}
-					}
-					//Debug.Log ("3");
-				}
 
 				bool contains = false;
 
