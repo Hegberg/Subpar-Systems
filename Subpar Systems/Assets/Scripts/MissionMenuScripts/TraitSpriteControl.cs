@@ -93,12 +93,13 @@ public class TraitSpriteControl : MonoBehaviour {
             {
                 int temp = i + 1;
                 string textToFind = textBase + temp;
-                //Debug.Log(textToFind);
+                Debug.Log(textToFind);
                 GameObject trait = GameObject.Find(textToFind);
-                //Debug.Log(trait.name);
-                //Debug.Log(traitList[i].GetName() + " " + traitList[i].GetPositionInSpriteControlList());
+                Debug.Log(trait.name);
+                Debug.Log(traitList[i].GetName() + " " + traitList[i].GetPositionInSpriteControlList());
                 trait.GetComponent<Image>().sprite = TraitsInOrderOfCreatedClass[traitList[i].GetPositionInSpriteControlList()];
                 trait.GetComponent<Image>().enabled = true;
+				trait.GetComponent<IndividualTraitScipt> ().SetInfo (traitList [i].GetName ());
                 //trait.SetActive(true);
                 //increase safetycheck
                 ++loopHeight;
@@ -136,6 +137,9 @@ public class TraitSpriteControl : MonoBehaviour {
             trait.GetComponent<Image>().enabled = false;
             //trait.SetActive(false);
         }
+
+		GameObject textBackground = GameObject.Find("TextBackground");
+		textBackground.GetComponent<Image>().enabled = false;
     }
 
 	public Transform GetUIParent() {

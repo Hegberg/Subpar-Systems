@@ -375,7 +375,7 @@ public class GameControlScript : MonoBehaviour {
         //unselecting character
         else if (chosen[selected])
         {
-            Debug.Log("check");
+            //Debug.Log("check");
 			team[selected] = !team[selected];
             chosen[selected] = !chosen[selected];
             selectedCharacters -= 1;
