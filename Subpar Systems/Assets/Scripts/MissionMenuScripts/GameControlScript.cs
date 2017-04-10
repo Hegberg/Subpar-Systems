@@ -27,6 +27,7 @@ public class GameControlScript : MonoBehaviour {
     public Transform character10;
     public Transform character11;
     public Transform character12;
+	public Transform tank;
 
     private static List<GameObject> tiles = new List<GameObject>();
 
@@ -123,6 +124,10 @@ public class GameControlScript : MonoBehaviour {
     private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript>
     { new MachineGunTrait() };
 
+	//Character Tank.
+	private List<GenericTraitsScript> tankTraits = new List<GenericTraitsScript>
+	{  };
+
     // Use this for initialization
     void Start () {
 		if (control == null)
@@ -141,6 +146,7 @@ public class GameControlScript : MonoBehaviour {
             characters.Add(character10);
             characters.Add(character11);
             characters.Add(character12);
+			characters.Add(tank);
 
             //add tile prefabs, need to ad walkable tiles first so earth, then everything else right now
             tiles.Add(earth.gameObject);
@@ -180,7 +186,6 @@ public class GameControlScript : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown("k"))
         {
-            
             KillAllEnemies();
         }
     }

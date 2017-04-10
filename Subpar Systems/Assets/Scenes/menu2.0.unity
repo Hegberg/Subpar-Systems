@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -493,6 +493,7 @@ MonoBehaviour:
     type: 2}
   character12: {fileID: 4983213136680378, guid: 1735483f5cbf97440a2f987b1501f3b0,
     type: 2}
+  tank: {fileID: 4213951349795476, guid: b6569a8b753a04b409c70b4ab800b6f9, type: 2}
   earth: {fileID: 4484349548748366, guid: e316bc9414a0cbd42b2895205424161f, type: 2}
   water: {fileID: 4067026721940710, guid: 427a6c4d1f9fc4547862341a1436679c, type: 2}
   mountian: {fileID: 4092635508423484, guid: 41e3bd51a06fe3843ae5e4c2e6ef5130, type: 2}
