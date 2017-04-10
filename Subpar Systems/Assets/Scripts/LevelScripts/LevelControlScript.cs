@@ -126,7 +126,9 @@ public class LevelControlScript : MonoBehaviour {
         //start at bottom row and build up
 
         List<bool> charactersChosen = GameControlScript.control.GetChosen();
+
         int characterSpawning = 0;
+
         bool offset = false;
 		List<GameObject> tiles = GameControlScript.control.GetTiles();
 
@@ -272,7 +274,29 @@ public class LevelControlScript : MonoBehaviour {
 		//set enemy spawners for the map
 		enemySpawners = tempEnemySpawners;
 
-		/* //comment out from here to disable extra spawn code
+        //spawn sidemission character code
+        Vector3 tempSideVector = new Vector3(0, 0, 0);
+
+        List<bool> sideCharactersChosen = GameControlScript.control.GetSideMissionChosen();
+
+        //determine character to spawn
+        for (int l = 0; l < sideCharactersChosen.Count; ++l)
+        {
+            //Debug.Log(sideCharactersChosen[l] + " " + l);
+            if (sideCharactersChosen[l])
+            {
+                Transform character = (Transform)Instantiate(
+                    GameControlScript.control.GetCharacters()[l],
+                    tempSideVector, Quaternion.identity);
+                //hide
+                character.gameObject.GetComponent<Renderer>().enabled = false;
+                character.gameObject.GetComponent<Collider2D>().enabled = false;
+                GameControlScript.control.AddSideCharacterToInSideMissionList(character.gameObject);
+                //GameControlScript.control.AddCharacterToInGameList(character.gameObject);
+            }
+        }
+
+        /* //comment out from here to disable extra spawn code
 
 		//if i start even, offset starts false
 		offset = false;
@@ -313,8 +337,8 @@ public class LevelControlScript : MonoBehaviour {
 		}
 		*/
 
-		//Set objective for the level
-		CompleteLevelConditions.control.ShowObjective();
+        //Set objective for the level
+        CompleteLevelConditions.control.ShowObjective();
     }
 
 	private void ExtraWaterSpawnCode(List<GameObject> tiles, bool offset, float fuckThomasX, 

@@ -63,6 +63,7 @@ public class GameControlScript : MonoBehaviour {
     //public Transform characterParent;
 
     private static List<GameObject> characterInGameList = new List<GameObject>();
+    private static List<GameObject> sideCharacterInGameList = new List<GameObject>();
     private static List<GameObject> enemyInGameList = new List<GameObject>();
     private static List<string> deadCharacterList = new List<string>();
 
@@ -479,9 +480,14 @@ public class GameControlScript : MonoBehaviour {
 		for (int i = characterInGameList.Count - 1; i >= 0; --i) {
 			characterInGameList [i].GetComponent<GenericCharacterScript> ().RemoveFromGame ();
 		}
-		currentLevel += 1;
+        for (int i = sideCharacterInGameList.Count - 1; i >= 0; --i)
+        {
+            sideCharacterInGameList[i].GetComponent<GenericCharacterScript>().RemoveFromGame();
+        }
+        currentLevel += 1;
         //SaveDeadCharacters();
         characterInGameList.Clear();
+        sideCharacterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
         SceneManager.LoadScene("Debriefing");
@@ -493,8 +499,13 @@ public class GameControlScript : MonoBehaviour {
 		for (int i = characterInGameList.Count - 1; i >= 0; --i) {
 			characterInGameList [i].GetComponent<GenericCharacterScript> ().RemoveFromGame ();
 		}
+        for (int i = sideCharacterInGameList.Count - 1; i >= 0; --i)
+        {
+            sideCharacterInGameList[i].GetComponent<GenericCharacterScript>().RemoveFromGame();
+        }
         //SaveDeadCharacters();
         characterInGameList.Clear();
+        sideCharacterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
 		SceneManager.LoadScene ("Game Over");
@@ -517,6 +528,11 @@ public class GameControlScript : MonoBehaviour {
         return characterInGameList;
     }
 
+    public List<GameObject> GetInGameSideCharacterList()
+    {
+        return sideCharacterInGameList;
+    }
+
     public List<GameObject> GetInGameEnemyList()
     {
         return enemyInGameList;
@@ -527,6 +543,11 @@ public class GameControlScript : MonoBehaviour {
         characterInGameList.Add(character);
     }
 
+    public void AddSideCharacterToInSideMissionList(GameObject character)
+    {
+        sideCharacterInGameList.Add(character);
+    }
+
     public void AddEnemyToInGameList(GameObject enemy)
     {
         enemyInGameList.Add(enemy);
@@ -535,6 +556,11 @@ public class GameControlScript : MonoBehaviour {
     public void RemoveCharacterFromInGameList(GameObject character)
     {
         characterInGameList.Remove(character);
+    }
+
+    public void RemoveSideCharacterFromInSideMissionList(GameObject character)
+    {
+        sideCharacterInGameList.Remove(character);
     }
 
     public void RemoveEnemyFromInGameList(GameObject enemy)
@@ -585,9 +611,9 @@ public class GameControlScript : MonoBehaviour {
 
     public void KillAllEnemies()
     {
-        foreach (var enemy in enemyInGameList)
+        for(int i = enemyInGameList.Count -1; i >= 0; --i)
         {
-            enemy.GetComponent<GenericEnemyScript>().SetHP(0);
+            enemyInGameList[i].GetComponent<GenericEnemyScript>().SetHP(0);
         }
     }
 }
