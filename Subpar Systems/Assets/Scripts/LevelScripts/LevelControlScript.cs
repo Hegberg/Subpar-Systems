@@ -126,7 +126,6 @@ public class LevelControlScript : MonoBehaviour {
         //start at bottom row and build up
 
         List<bool> charactersChosen = GameControlScript.control.GetChosen();
-        List<bool> sideCharactersChosen = GameControlScript.control.GetSideMissionChosen();
 
         int characterSpawning = 0;
 
@@ -278,17 +277,21 @@ public class LevelControlScript : MonoBehaviour {
         //spawn sidemission character code
         Vector3 tempSideVector = new Vector3(0, 0, 0);
 
+        List<bool> sideCharactersChosen = GameControlScript.control.GetSideMissionChosen();
+
         //determine character to spawn
         for (int l = 0; l < sideCharactersChosen.Count; ++l)
         {
-            //Debug.Log(charactersChosen[l]);
+            Debug.Log(sideCharactersChosen[l] + " " + l);
             if (sideCharactersChosen[l])
             {
+                Debug.Log("Chosen");
                 Transform character = (Transform)Instantiate(
-                    GameControlScript.control.GetCharacters()[characterSpawning],
+                    GameControlScript.control.GetCharacters()[l],
                     tempSideVector, Quaternion.identity);
-                //hide behind map
-                character.gameObject.layer = -10;
+                //hide
+                character.gameObject.GetComponent<Renderer>().enabled = false;
+                character.gameObject.GetComponent<Collider2D>().enabled = false;
                 GameControlScript.control.AddSideCharacterToInSideMissionList(character.gameObject);
                 //GameControlScript.control.AddCharacterToInGameList(character.gameObject);
             }
