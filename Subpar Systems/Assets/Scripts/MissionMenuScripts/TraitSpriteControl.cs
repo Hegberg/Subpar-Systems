@@ -9,28 +9,6 @@ public class TraitSpriteControl : MonoBehaviour {
 
 	private Transform traitUIParent;
 
-	public Transform testUISprite;
-	public Transform traitBackgroundUI;
-    /*
-	public Transform machineGun;
-	public Transform backLineCommander;
-	public Transform assault;
-	public Transform grenedier;
-	public Transform rifleman;
-	public Transform adrenalineJunky;
-	public Transform m31WifeF32Dead;
-	public Transform m31FriendM29Dead;
-	public Transform m31MarriedToF32;
-	public Transform m31GoodWithM29;
-	public Transform f32GoodWithM41;
-	public Transform f27BadWithM40;
-	public Transform f27GoodWithF25;
-	public Transform brutalEfficiency;
-	public Transform f29GoodWithF28;
-	public Transform sleepDeprived;
-	public Transform f28GoodWithF29;
-	public Transform frontLineCommander;
-    */
     public Sprite machineGun;
     public Sprite backLineCommander;
     public Sprite assault;

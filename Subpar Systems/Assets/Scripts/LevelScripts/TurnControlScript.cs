@@ -214,6 +214,7 @@ public class TurnControlScript : MonoBehaviour {
 				bool moveableTile = false;
 
 				//player has no attacks left, so unhighlight enemies
+				//need this check before movement check below, or else tiles do not get higlighted properly
 				if (playerSelected != null && playerSelected.GetComponent<GenericCharacterScript> ().GetNumOfAttacks () <= 0) {
 
 					RemoveExtraReachAttackTiles ();
