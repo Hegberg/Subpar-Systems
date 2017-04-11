@@ -35,9 +35,17 @@ public class CharacterSelectionForSlot : MonoBehaviour
         //expermental, need to fix, for preventing duplicates
 
         //if (GameControlScript.control.Get)
-
+        var bio = GameObject.FindWithTag("bio");
+        var pict2 = GameObject.FindWithTag("Circle");
+        var bio2 = GameObject.FindWithTag("Traits");
         var UI = GameObject.FindWithTag("UIChar");
         var pict = GameObject.FindWithTag("UIImage");
+        var names = GameObject.FindWithTag("name");
+        pict.GetComponent<Image>().enabled = true;
+        names.GetComponent<Text>().enabled = true;
+        pict2.GetComponent<Image>().enabled = true;
+        bio.GetComponent<Text>().enabled = true;
+        bio2.GetComponent<Text>().enabled = false;
         Canvas UI1;
         Sprite picture;
         picture = GetComponent<Image>().sprite;
