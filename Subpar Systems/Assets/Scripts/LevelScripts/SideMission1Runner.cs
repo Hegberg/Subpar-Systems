@@ -16,7 +16,7 @@ public class SideMission1Runner : MonoBehaviour {
             //determine character to spawn
         }
 
-    sideMission1Result = SideMissionScript.control.runSideMission1();
+    //sideMission1Result = SideMissionScript.control.runSideMission1();
     }
 
     // Update is called once per frame

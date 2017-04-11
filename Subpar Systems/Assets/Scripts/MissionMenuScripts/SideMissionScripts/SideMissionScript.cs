@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SideMissionScript : MonoBehaviour {
-    private static List<GenericTraitsScript> missionTraits;
+	private static List<GenericTraitsScript> missionTraits = new List<GenericTraitsScript>();
     private static List<GameObject> sideCharacters;
     private static List<bool> sideCharactersBool;
     private float successProb;
@@ -24,7 +24,9 @@ public class SideMissionScript : MonoBehaviour {
             control = this;
             //sideCharactersBool = GameControlScript.control.GetSideMissionChosen();
             //determine character to spawn
+			DontDestroyOnLoad(this.gameObject);
         }
+
      
     }
 	
@@ -32,21 +34,41 @@ public class SideMissionScript : MonoBehaviour {
 	void Update () {
 	}
 
-    void getMissionTraits()
+	IEnumerator getMissionTraits()
     {
         //Used to get traits on current mission.
         
+		yield return new WaitForSeconds(1.0f);
          
-        List<GenericTraitsScript> characterTraits;
+		sideCharacters = GameControlScript.control.GetInGameSideCharacterList();
+		List<GenericTraitsScript> characterTraits = new List<GenericTraitsScript> {};
+		//Debug.Log (sideCharacters.Count + " side characters count");
+		//Debug.Log (sideCharacters [0].GetComponent<GenericCharacterScript> ().GetName () + " side character 1 name");
+		//Debug.Log (sideCharacters [1].GetComponent<GenericCharacterScript> ().GetName () + " side character 2 name");
         for (int i = 0; i < sideCharacters.Count; ++i)
         {
 
             characterTraits = sideCharacters[i].GetComponent<GenericCharacterScript>().GetTraits();
+			//Debug.Log (characterTraits.Count + " character list object");
+			//Debug.Log (sideCharacters[i].GetComponent<GenericCharacterScript>().GetTraits().Count + " character list object 2");
             for (int k = 0; k < characterTraits.Count; ++k)
             {
                 missionTraits.Add(characterTraits[k]);
             }
+			characterTraits.Clear ();
         }
+
+		int sideMissionResult;
+		if (GameControlScript.control.GetLevel () == 1) {
+			sideMissionResult = runSideMission1Calculation ();
+			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+		} else if (GameControlScript.control.GetLevel () == 2) {
+			sideMissionResult = runSideMission1Calculation ();
+			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+		} else if (GameControlScript.control.GetLevel () == 3) {
+			sideMissionResult = runSideMission1Calculation ();
+			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+		}
        
     }
 
@@ -58,7 +80,11 @@ public class SideMissionScript : MonoBehaviour {
         return (successProb - rand);
     }
 
-    public int runSideMission1()
+	public void runSideMission() {
+		StartCoroutine (getMissionTraits());
+	}
+
+    public int runSideMission1Calculation()
     {
         /* SIDE MISSION 1:
          * An imperial tank was lost in the latest of several skirmishes with the indigenous populations. 
@@ -68,15 +94,15 @@ public class SideMissionScript : MonoBehaviour {
         //before this is called, you must pass units on current mission. 
         //returns 1 for success, 0 for fail. Using int so we can have different results on a mission, instead
         //of just pass or fail
-        sideCharacters = GameControlScript.control.GetInGameSideCharacterList();
-        Debug.Log(sideCharacters);
+        
+        //Debug.Log(sideCharacters);
         bool assault = false;
         bool rifleman = false;
         float success = 0.0f;
         if (sideCharacters.Count == 0 )
         {
             //Run mission failed code since no one was sent.
-            Debug.Log("No one detected sent on the mission.");
+            //Debug.Log("No one detected sent on the mission.");
 
             return 0;
         }  
@@ -85,7 +111,7 @@ public class SideMissionScript : MonoBehaviour {
             //Problem, traits wont stack with certain implementation.
             //UNTILL THEN, NOT DEALING WITH IT.
             //CURRENT PERCENTAGES: 1 ASSAULT 1 Riflemen = 100.
-            getMissionTraits();
+            //getMissionTraits();
             successProb = 60.0f;
             for (int i = 0; i < missionTraits.Count; ++i)
             {
@@ -104,8 +130,8 @@ public class SideMissionScript : MonoBehaviour {
                 if (missionTraits[i].GetName() == "Machine Gun") successProb -= 10.0f;
             }
             if (assault && rifleman) successProb = 100.0f;
-            Debug.Log("Success Prob");
-            Debug.Log(successProb);
+            //Debug.Log("Success Prob");
+            //Debug.Log(successProb);
             success = runProbability(successProb);
             if (success >= 0)
             {

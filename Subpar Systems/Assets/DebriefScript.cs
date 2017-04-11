@@ -19,9 +19,8 @@ public class DebriefScript : MonoBehaviour {
 
         if (missonlevel == 1)
         {
-            sideSuccess = SideMission1Runner.control.GetSideMission1Result();
-            Debug.Log(sideSuccess);
-            if (sideSuccess == 1)
+			int sideMissionSuccess = GameControlScript.control.GetSideMissionResult ();
+			if (sideMissionSuccess == 1)
             {
                 //sideMission = "Side mission passed.";
                 mission.text = "The Monster nests have been eliminated, and side mission passed. Mission Success.";

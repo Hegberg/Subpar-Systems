@@ -91,6 +91,7 @@
      <Compile Include="Assets\Scripts\LevelScripts\MapData\Map2Script.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\MapData\Map3Script.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\MapData\TestMapScript.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\SideMission1Runner.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\TileScripts\GenericEarthScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\TileScripts\GenericMountianScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\TileScripts\GenericWaterScript.cs" />

@@ -19,7 +19,7 @@ public class GameControlScript : MonoBehaviour {
     public Transform character2;
     public Transform character3;
     public Transform character4;
-    public Transform character5;
+	public Transform character5;
     public Transform character6;
     public Transform character7;
     public Transform character8;
@@ -50,6 +50,8 @@ public class GameControlScript : MonoBehaviour {
 
     //level progression, auto increment on victory
     private int currentLevel = 1;
+
+	private int sideMissionResult;
 
     private int testLevel = 0;
     private int firstLevel = 1;
@@ -622,4 +624,12 @@ public class GameControlScript : MonoBehaviour {
             enemyInGameList[i].GetComponent<GenericEnemyScript>().SetHP(0);
         }
     }
+
+	public int GetSideMissionResult() {
+		return sideMissionResult;
+	}
+
+	public void SetSideMissionResult(int missionResult) {
+		sideMissionResult = missionResult;
+	}
 }

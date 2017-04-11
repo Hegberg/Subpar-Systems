@@ -8,7 +8,7 @@ public class HubController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         missonlevel = GameControlScript.control.GetLevel();
-        Debug.Log(missonlevel);
+        //Debug.Log(missonlevel);
         if (missonlevel == 1)
         {
             var scene = GameObject.FindWithTag("Level 1");

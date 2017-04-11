@@ -243,6 +243,7 @@ public class LevelControlScript : MonoBehaviour {
                         character.SetParent(characterParent);
                         characterSpawning += 1;
                         GameControlScript.control.AddCharacterToInGameList(character.gameObject);
+						//Debug.Log (character.GetComponent<GenericCharacterScript> ().GetName () + " character ini name in game");
                         break;
                     }
                 }
@@ -304,7 +305,7 @@ public class LevelControlScript : MonoBehaviour {
 
         List<bool> sideCharactersChosen = GameControlScript.control.GetSideMissionChosen();
 
-        //determine character to spawn
+        //determine side mission character to spawn
         for (int l = 0; l < sideCharactersChosen.Count; ++l)
         {
             //Debug.Log(sideCharactersChosen[l] + " " + l);
@@ -317,9 +318,28 @@ public class LevelControlScript : MonoBehaviour {
                 character.gameObject.GetComponent<Renderer>().enabled = false;
                 character.gameObject.GetComponent<Collider2D>().enabled = false;
                 GameControlScript.control.AddSideCharacterToInSideMissionList(character.gameObject);
+				//Debug.Log (character.GetComponent<GenericCharacterScript> ().GetName () + " character ini name");
                 //GameControlScript.control.AddCharacterToInGameList(character.gameObject);
+				//Debug.Log(GameControlScript.control.GetInGameSideCharacterList().Count + " in game shit");
             }
         }
+		//Debug.Log(GameControlScript.control.GetInGameSideCharacterList().Count + " in game shit after loop");
+
+		//run side mission scripts\
+		SideMissionScript.control.runSideMission();
+		/*
+		int sideMissionResult;
+		if (GameControlScript.control.GetLevel () == 1) {
+			sideMissionResult = SideMissionScript.control.runSideMission1 ();
+			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+		} else if (GameControlScript.control.GetLevel () == 2) {
+			sideMissionResult = SideMissionScript.control.runSideMission1 ();
+			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+		} else if (GameControlScript.control.GetLevel () == 3) {
+			sideMissionResult = SideMissionScript.control.runSideMission1 ();
+			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+		}
+		*/
 
         /* //comment out from here to disable extra spawn code
 
