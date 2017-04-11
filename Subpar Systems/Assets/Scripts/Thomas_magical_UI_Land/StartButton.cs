@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour {
+    public AudioSource buttonSound;
 
-	// Use this for initialization
-	void Start () {
-		
+    // Use this for initialization
+    void Start () {
+        buttonSound = GetComponent<AudioSource>();
+
         foreach (Transform child in transform)
         {
+
             child.gameObject.SetActive(false);
         }
 
@@ -34,6 +37,9 @@ public class StartButton : MonoBehaviour {
 
     void OnMouseDown()
     {
+        //This works, but scene switches too fast. Deal with later.
+        buttonSound.Play();
+        
         SceneManager.LoadScene("HubArea");
     }
 }
