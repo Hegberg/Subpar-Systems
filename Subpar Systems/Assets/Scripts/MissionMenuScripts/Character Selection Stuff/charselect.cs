@@ -64,6 +64,7 @@ public class charselect : MonoBehaviour {
         add = pict.GetComponent<Image>().sprite;
         UI.GetComponent<Canvas>().enabled = false;
         UI1.GetComponent<Canvas>().enabled = false;
+
         GameObject.FindWithTag("Mission").GetComponent<Canvas>().enabled = true;
         GameObject.FindWithTag("Mission Text").GetComponent<Canvas>().enabled = true;
         butselected.GetComponent<Image>().sprite = add;

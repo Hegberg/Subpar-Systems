@@ -19,6 +19,8 @@ TagManager:
   - Convo2
   - pause
   - camera
+  - Traits
+  - Circle
   layers:
   - Default
   - TransparentFX

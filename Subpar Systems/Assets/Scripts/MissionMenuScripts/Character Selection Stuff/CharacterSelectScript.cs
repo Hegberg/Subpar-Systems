@@ -61,6 +61,8 @@ public class CharacterSelectScript : MonoBehaviour
 
     public void OnMouseOver()
     {
+        charselect.control.buttselected(UIButt);
+        charselect.control.AddButtonClicked(UIButt);
         GameObject.FindWithTag("Mission Text").GetComponent<Canvas>().enabled = false;
         GameObject.FindWithTag("Mission").GetComponent<Canvas>().enabled = false;
         var UI = GameObject.FindWithTag("CharSelect");
@@ -98,8 +100,6 @@ public class CharacterSelectScript : MonoBehaviour
                     character.GetComponent<CanvasGroup>().alpha = 0.5f;
                 }
             }
-            charselect.control.buttselected(UIButt);
-            charselect.control.AddButtonClicked(UIButt);
         }
     }
 }
