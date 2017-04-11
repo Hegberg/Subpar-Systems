@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DebriefScript.cs" />
+     <Compile Include="Assets\HubController.cs" />
      <Compile Include="Assets\PauseMenu\Scripts\DontDestroy.cs" />
      <Compile Include="Assets\PauseMenu\Scripts\EventSystemChecker.cs" />
      <Compile Include="Assets\PauseMenu\Scripts\Pause.cs" />
@@ -113,11 +114,10 @@
      <Compile Include="Assets\Scripts\Thomas_magical_UI_Land\StartButton.cs" />
      <Compile Include="Assets\Sounds\Music\Royalty Free Music\Credits.cs" />
      <Compile Include="Assets\Traits.cs" />
+     <Compile Include="Assets\hubnames.cs" />
      <Compile Include="Assets\pause.cs" />
      <Compile Include="Assets\sidemissionbio.cs" />
      <None Include="Assets\Sprites\OpenSans-Familiy\OpenSansLic.txt" />
-     <None Include="Assets\Dialogue\JaiAndAsheChill.txt" />
-     <None Include="Assets\Dialogue\RoyVMurphy.txt" />
      <None Include="Assets\PauseMenu\Fonts\OpenSans\License!.txt" />
      <None Include="Assets\Scripts\OLD STAR.txt" />
  <Reference Include="UnityEngine.UI">
