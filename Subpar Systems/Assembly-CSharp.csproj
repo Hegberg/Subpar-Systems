@@ -116,6 +116,8 @@
      <Compile Include="Assets\pause.cs" />
      <Compile Include="Assets\sidemissionbio.cs" />
      <None Include="Assets\Sprites\OpenSans-Familiy\OpenSansLic.txt" />
+     <None Include="Assets\Dialogue\JaiAndAsheChill.txt" />
+     <None Include="Assets\Dialogue\RoyVMurphy.txt" />
      <None Include="Assets\PauseMenu\Fonts\OpenSans\License!.txt" />
      <None Include="Assets\Scripts\OLD STAR.txt" />
  <Reference Include="UnityEngine.UI">
