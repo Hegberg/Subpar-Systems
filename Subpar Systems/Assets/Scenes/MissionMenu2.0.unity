@@ -1109,6 +1109,7 @@ MonoBehaviour:
   sleepDeprived: {fileID: 21300000, guid: 4e1d0ccb0d8588448af4e734c868fd27, type: 3}
   f28GoodWithF29: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
   frontLineCommander: {fileID: 21300000, guid: 7272d0dc8abce28438d7dd900ffa810f, type: 3}
+  tank: {fileID: 21300000, guid: c41fc40e0300d854bba3e534a54ce7af, type: 3}
   TraitsInOrderOfCreatedClass: []
 --- !u!1 &221626930
 GameObject:

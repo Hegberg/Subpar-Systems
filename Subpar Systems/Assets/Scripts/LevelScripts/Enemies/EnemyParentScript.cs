@@ -59,19 +59,22 @@ public class EnemyParentScript : MonoBehaviour {
 	{
 		int x = 5;
 		//yield return new WaitForSeconds(0.01f);
-		foreach(var enemy in GameControlScript.control.GetInGameEnemyList())
-		{
-			yield return new WaitForSeconds(0.01f);
-			enemy.GetComponent<GenericEnemyScript>().Move();
-			yield return new WaitForSeconds(0.01f);
-			enemy.GetComponent<GenericEnemyScript>().Attack();
+		for (int i = 0; i < GameControlScript.control.GetInGameEnemyList ().Count; ++i) {
+			GameObject enemy = GameControlScript.control.GetInGameEnemyList () [i];
 
-
+			yield return new WaitForSeconds(0.01f);
+			if (enemy != null) {
+				enemy.GetComponent<GenericEnemyScript> ().Move ();
+			}
+			yield return new WaitForSeconds(0.01f);
+			if (enemy != null) {
+				enemy.GetComponent<GenericEnemyScript> ().Attack ();
+			}
 		}
 
 		foreach (var enemySpawner in LevelControlScript.control.GetEnemySpawners()) {
 			yield return new WaitForSeconds (0.01f);
-			Debug.Log ("Enemy Spawn Attempt");
+			//Debug.Log ("Enemy Spawn Attempt");
 			enemySpawner.SpawnEnemy ();
 		}
 

@@ -29,6 +29,37 @@ public class TankScript : GenericCharacterScript {
 		}
 	}
 
+	public override void HPLost (int hpLost)
+	{
+		hp -= hpLost;
+		bool stopFromDieing = false;
+		bool check = false;
+		for (int i = 0; i < currentTraits.Count; ++i) {
+			check = currentTraits[i].StopFromDieing();
+			//if stop from dieing is true, set stop from dieng to true
+			if (check) {
+				stopFromDieing = true;
+			}
+		}
+		//if hp <= 0 but stop from dieing true, set hp to 1
+		if (stopFromDieing && hp <= 0) {
+			hp = 1;
+		}
+		if (hp <= 0) {
+			GameControlScript.control.CharacterDied(this.gameObject);
+			//this after gamecontrol call since levelControl call relies on game control count
+			LevelControlScript.control.PlayerDied ();
+
+			//if the tank dies the level needs to fail
+			CompleteLevelConditions.control.LevelFailed ();
+
+			Destroy(this.gameObject);
+		}
+
+		//update player health
+		ShowHealthOnPlayer();
+	}
+
 	public void SetCanAttack(bool setTo) {
 		canAttack = setTo;
 	}

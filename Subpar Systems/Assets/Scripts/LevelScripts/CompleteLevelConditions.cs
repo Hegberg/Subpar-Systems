@@ -43,8 +43,8 @@ public class CompleteLevelConditions : MonoBehaviour {
 		}
 	}
 
-	public void CheckIfTankIsDead(){
-
+	public void TankDied(){
+		GameControlScript.control.FailedLevel ();
 	}
 
 	public void ShowObjective() {

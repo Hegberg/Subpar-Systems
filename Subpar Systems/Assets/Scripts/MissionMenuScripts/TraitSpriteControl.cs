@@ -25,6 +25,7 @@ public class TraitSpriteControl : MonoBehaviour {
     public Sprite sleepDeprived;
     public Sprite f28GoodWithF29;
     public Sprite frontLineCommander;
+	public Sprite tank;
 
     public List<Sprite> TraitsInOrderOfCreatedClass;
 
@@ -62,6 +63,7 @@ public class TraitSpriteControl : MonoBehaviour {
 			TraitsInOrderOfCreatedClass.Add (sleepDeprived);
 			TraitsInOrderOfCreatedClass.Add (f28GoodWithF29);
 			TraitsInOrderOfCreatedClass.Add (frontLineCommander);
+			TraitsInOrderOfCreatedClass.Add (tank);
 
 			//Debug.Log (TraitsInOrderOfCreatedClass.Count);
 		}

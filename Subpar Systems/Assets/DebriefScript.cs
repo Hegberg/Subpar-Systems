@@ -12,7 +12,7 @@ public class DebriefScript : MonoBehaviour {
     void Start () {
         mission = GetComponent<Text>();
         missonlevel = GameControlScript.control.GetLevel() - 1;
-        Debug.Log(missonlevel);
+        //Debug.Log(missonlevel);
         //should be changed to getlevel
         //sideSuccess = SideMissionScript.control.runSideMission1();
         //Debug.Log(sideSuccess);

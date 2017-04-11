@@ -18,7 +18,7 @@ public class HubConvo : MonoBehaviour {
     // Use this for initialization
     void Start() {
         missonlevel = GameControlScript.control.GetLevel();
-        Debug.Log(missonlevel);
+        //Debug.Log(missonlevel);
         if (missonlevel == 1)
         {
             var convo = GameObject.FindGameObjectsWithTag("Characters");

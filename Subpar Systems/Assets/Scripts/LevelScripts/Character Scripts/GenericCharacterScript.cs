@@ -156,6 +156,10 @@ public class GenericCharacterScript : MonoBehaviour {
         {
             rangeModifier = 0;
         }
+		/*
+		int temp = (int)(range * rangeModifier);
+		Debug.Log (temp + " range");
+		*/
         return (int)(range * rangeModifier);
     }
 
@@ -242,7 +246,7 @@ public class GenericCharacterScript : MonoBehaviour {
     }
 
 	//need to implement permenant death
-    public void HPLost(int hpLost)
+	public virtual void HPLost(int hpLost)
     {
 		hp -= hpLost;
 		bool stopFromDieing = false;

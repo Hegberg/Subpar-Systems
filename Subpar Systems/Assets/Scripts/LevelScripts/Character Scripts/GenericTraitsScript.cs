@@ -476,3 +476,14 @@ public class FrontLineCommander : GenericTraitsScript
 		positionInSpriteUIList = 15;
 	}
 }
+
+public class TankTrait : GenericTraitsScript
+{
+	public override void InitializeValues ()
+	{
+		name = "Tank";
+		positionInSpriteUIList = 16;
+		movementModifier = 0;
+		rangeModifier = 1;
+	}
+}

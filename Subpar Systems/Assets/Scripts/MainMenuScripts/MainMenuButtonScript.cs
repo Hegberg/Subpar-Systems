@@ -22,6 +22,6 @@ public class MainMenuButtonScript : MonoBehaviour
 
     private void OnMouseOver()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("menu2.0");
     }
 }
