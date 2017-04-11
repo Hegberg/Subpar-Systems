@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DebriefScript.cs" />
+     <Compile Include="Assets\HubController.cs" />
      <Compile Include="Assets\PauseMenu\Scripts\DontDestroy.cs" />
      <Compile Include="Assets\PauseMenu\Scripts\EventSystemChecker.cs" />
      <Compile Include="Assets\PauseMenu\Scripts\Pause.cs" />
@@ -113,11 +114,15 @@
      <Compile Include="Assets\Scripts\Thomas_magical_UI_Land\StartButton.cs" />
      <Compile Include="Assets\Sounds\Music\Royalty Free Music\Credits.cs" />
      <Compile Include="Assets\Traits.cs" />
+     <Compile Include="Assets\hubnames.cs" />
      <Compile Include="Assets\pause.cs" />
      <Compile Include="Assets\sidemissionbio.cs" />
-     <None Include="Assets\Sprites\OpenSans-Familiy\OpenSansLic.txt" />
+     <None Include="Assets\Resources\Sprites\OpenSans-Familiy\OpenSansLic.txt" />
      <None Include="Assets\PauseMenu\Fonts\OpenSans\License!.txt" />
      <None Include="Assets\Scripts\OLD STAR.txt" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -132,6 +137,9 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Purchasing">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
