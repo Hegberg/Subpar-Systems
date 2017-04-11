@@ -7183,7 +7183,7 @@ GameObject:
   - component: {fileID: 2059434299}
   - component: {fileID: 2059434298}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SideMissionScript
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

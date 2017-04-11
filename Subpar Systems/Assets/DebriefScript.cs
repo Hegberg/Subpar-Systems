@@ -19,7 +19,8 @@ public class DebriefScript : MonoBehaviour {
 
         if (missonlevel == 1)
         {
-            /*
+            sideSuccess = SideMission1Runner.control.GetSideMission1Result();
+            Debug.Log(sideSuccess);
             if (sideSuccess == 1)
             {
                 //sideMission = "Side mission passed.";
@@ -30,7 +31,7 @@ public class DebriefScript : MonoBehaviour {
                 //sideMission = "Side mission failed though.";
                 mission.text = "The Monster nests have been eliminated, but side mission failed. Mission Success.";
             }
-            */
+            /*
             if (Random.Range(0, 2) >= 1) { 
               mission.text = "The Monster nests have been eliminated. Mission Success. The teams sent to extract the tank crew were successful.";//need a way to track side missions/char death/ traits unlocked to display
             }
@@ -39,6 +40,7 @@ public class DebriefScript : MonoBehaviour {
                 mission.text = "The Monster nests have been eliminated. Mission Success. The teams sent to extract the tank crew failed, but returned unharmed.";//need a way to track side missions/char death/ traits unlocked to display
 
             }
+            */
         }
         if (missonlevel == 2)
         {

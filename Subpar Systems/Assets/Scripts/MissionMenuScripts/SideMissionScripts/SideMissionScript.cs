@@ -22,7 +22,7 @@ public class SideMissionScript : MonoBehaviour {
         if (control == null)
         {
             control = this;
-            sideCharactersBool = GameControlScript.control.GetSideMissionChosen();
+            //sideCharactersBool = GameControlScript.control.GetSideMissionChosen();
             //determine character to spawn
         }
      
@@ -35,6 +35,8 @@ public class SideMissionScript : MonoBehaviour {
     void getMissionTraits()
     {
         //Used to get traits on current mission.
+        
+         
         List<GenericTraitsScript> characterTraits;
         for (int i = 0; i < sideCharacters.Count; ++i)
         {
@@ -45,7 +47,7 @@ public class SideMissionScript : MonoBehaviour {
                 missionTraits.Add(characterTraits[k]);
             }
         }
-
+       
     }
 
     float runProbability(float successProb)
@@ -55,11 +57,7 @@ public class SideMissionScript : MonoBehaviour {
         float rand = Random.Range(0.0f, 100.0f);
         return (successProb - rand);
     }
-    void selectCurrentUnits(List<GameObject> selectedCharacters)
-    {
-        //getUnits for current mission.
-        //sideCharacters = selectedCharacters;
-    }
+
     public int runSideMission1()
     {
         /* SIDE MISSION 1:
@@ -70,13 +68,16 @@ public class SideMissionScript : MonoBehaviour {
         //before this is called, you must pass units on current mission. 
         //returns 1 for success, 0 for fail. Using int so we can have different results on a mission, instead
         //of just pass or fail
-
+        sideCharacters = GameControlScript.control.GetInGameSideCharacterList();
+        Debug.Log(sideCharacters);
         bool assault = false;
         bool rifleman = false;
         float success = 0.0f;
         if (sideCharacters.Count == 0 )
         {
             //Run mission failed code since no one was sent.
+            Debug.Log("No one detected sent on the mission.");
+
             return 0;
         }  
         else
@@ -103,7 +104,8 @@ public class SideMissionScript : MonoBehaviour {
                 if (missionTraits[i].GetName() == "Machine Gun") successProb -= 10.0f;
             }
             if (assault && rifleman) successProb = 100.0f;
-
+            Debug.Log("Success Prob");
+            Debug.Log(successProb);
             success = runProbability(successProb);
             if (success >= 0)
             {
