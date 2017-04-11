@@ -1177,7 +1177,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Larry
+  m_Text: Larry Winters
 --- !u!222 &221626933
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1469,7 +1469,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Terry
+  m_Text: Terry Winters
 --- !u!222 &335883449
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2756,7 +2756,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jai
+  m_Text: Jai Ono
 --- !u!222 &678758834
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4635,7 +4635,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Yuri
+  m_Text: Yuri Sokolov
 --- !u!222 &1268199293
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5400,7 +5400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: George
+  m_Text: Lt-Col George Murphy
 --- !u!222 &1638737632
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5474,7 +5474,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Devi
+  m_Text: Devi Devai
 --- !u!222 &1651081987
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6384,7 +6384,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Roy
+  m_Text: Roy LeGaul
 --- !u!222 &1930866950
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7165,7 +7165,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Annie
+  m_Text: Annie Winters
 --- !u!222 &2039090506
 CanvasRenderer:
   m_ObjectHideFlags: 0

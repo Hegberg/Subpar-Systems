@@ -11,7 +11,7 @@ public class sidemissionbio : MonoBehaviour {
     void Start()
     { //will be changed after prototype to grab right info
         mission = GetComponent<Text>();
-        missonlevel = GameControlScript.control.GetLevel() + 1;
+        missonlevel = GameControlScript.control.GetLevel();
         //should be changed to getlevel
         if (missonlevel == 1)
         {

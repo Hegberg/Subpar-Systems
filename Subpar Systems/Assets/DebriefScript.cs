@@ -11,7 +11,9 @@ public class DebriefScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         mission = GetComponent<Text>();
-        missonlevel += 1; //should be changed to getlevel
+        missonlevel = GameControlScript.control.GetLevel() - 1;
+        Debug.Log(missonlevel);
+        //should be changed to getlevel
         //sideSuccess = SideMissionScript.control.runSideMission1();
         //Debug.Log(sideSuccess);
 
