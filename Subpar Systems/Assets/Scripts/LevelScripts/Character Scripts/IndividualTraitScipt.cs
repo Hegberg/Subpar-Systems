@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class IndividualTraitScipt : MonoBehaviour {
+public class IndividualTraitScipt : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 	//public GenericTraitsScript infoTrait;
 	private string infoToDisplay;
@@ -24,8 +24,7 @@ public class IndividualTraitScipt : MonoBehaviour {
 		Destroy (this.gameObject);
 	}
 
-	public void OnMouseEnter() {
-		//Debug.Log ("MouseOver");
+	public void OnPointerEnter(PointerEventData eventData) {
 		if (infoToDisplay != null) {
 			//Debug.Log (infoToDisplay);
 			GameObject textBackground = GameObject.Find("TextBackground");
@@ -37,7 +36,7 @@ public class IndividualTraitScipt : MonoBehaviour {
 		}
 	}
 
-	public void OnMouseExit() {
+	public void OnPointerExit(PointerEventData eventData) {
 		GameObject textDescription = GameObject.Find ("TraitDescription");
 		textDescription.GetComponent<Text> ().text = "";
 

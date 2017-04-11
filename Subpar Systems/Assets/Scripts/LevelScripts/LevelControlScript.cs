@@ -210,7 +210,6 @@ public class LevelControlScript : MonoBehaviour {
 					tank.SetParent(characterParent);
 					//characterSpawning += 1;
 					GameControlScript.control.AddCharacterToInGameList(tank.gameObject);
-					break;
 				}
 
 				//reset temp vector

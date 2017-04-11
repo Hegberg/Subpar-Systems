@@ -126,7 +126,7 @@ public class GameControlScript : MonoBehaviour {
 
 	//Character Tank.
 	private List<GenericTraitsScript> tankTraits = new List<GenericTraitsScript>
-	{  };
+	{ new AssaultTrait() };
 
     // Use this for initialization
     void Start () {

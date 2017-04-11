@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4062253415205380}
   - component: {fileID: 212548998921851228}
-  - component: {fileID: 60661397058891966}
   - component: {fileID: 114554660350580994}
+  - component: {fileID: 60863378714400792}
   m_Layer: 0
   m_Name: FastMonster
   m_TagString: Untagged
@@ -42,7 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60661397058891966
+--- !u!60 &60863378714400792
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -56,15 +56,14 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -0.1875, y: 0.8125}
-      - {x: -0.6875, y: 0.5625}
-      - {x: -0.75, y: 0.1875}
-      - {x: -0.75, y: -0.75}
-      - {x: -0.6875, y: -1}
-      - {x: 0.4375, y: -1}
-      - {x: 0.875, y: -0.75}
-      - {x: 0.875, y: 0.5625}
-      - {x: 0.6875, y: 0.8125}
+    - - {x: -0.625, y: 0.6875}
+      - {x: -0.875, y: 0.5625}
+      - {x: -0.875, y: 0.125}
+      - {x: -0.5625, y: -0.625}
+      - {x: -0.125, y: -0.9375}
+      - {x: 0.625, y: -0.9375}
+      - {x: 0.875, y: -0.5}
+      - {x: 0.875, y: 0.6875}
 --- !u!114 &114554660350580994
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4067662715525860}
   - component: {fileID: 212244626225327670}
   - component: {fileID: 114331355917542138}
-  - component: {fileID: 60298978987813370}
+  - component: {fileID: 60467380384257324}
   m_Layer: 0
   m_Name: KiteMonster
   m_TagString: Untagged
@@ -42,7 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60298978987813370
+--- !u!60 &60467380384257324
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -56,14 +56,16 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -0.625, y: 0.6875}
-      - {x: -0.875, y: 0.5625}
-      - {x: -0.875, y: 0.125}
-      - {x: -0.5625, y: -0.625}
-      - {x: -0.125, y: -0.9375}
-      - {x: 0.625, y: -0.9375}
-      - {x: 0.875, y: -0.5}
-      - {x: 0.875, y: 0.6875}
+    - - {x: 1.1875, y: 0.9375}
+      - {x: 0.875, y: 0.9375}
+      - {x: -0.9375, y: 0.3125}
+      - {x: -1, y: 0.25}
+      - {x: -1, y: -0.5}
+      - {x: -0.75, y: -0.75}
+      - {x: -0.125, y: -0.75}
+      - {x: 0.8125, y: -0.375}
+      - {x: 1.3125, y: 0.4375}
+      - {x: 1.3125, y: 0.75}
 --- !u!114 &114331355917542138
 MonoBehaviour:
   m_ObjectHideFlags: 1

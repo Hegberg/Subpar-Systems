@@ -24,8 +24,6 @@ public class SideMissionScript : MonoBehaviour {
             control = this;
             sideCharactersBool = GameControlScript.control.GetSideMissionChosen();
             //determine character to spawn
-
-
         }
      
     }
