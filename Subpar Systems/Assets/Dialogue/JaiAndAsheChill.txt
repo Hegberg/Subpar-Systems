@@ -1,0 +1,46 @@
+Location: Courtyard. Jai is alone, Ashe walks over.
+Ashe: Hey, we haven’t really ever talked before. 
+A: I’m Ashe. I lead a group of Grenadiers.
+Jai: I’m Jai. Assault.
+A: I notice you tend to stick to yourself a lot. 
+J: Yeah? I guess I do.
+A: What about your squad? Why don’t you spend time with them?
+J: I don’t have a squad.
+A: Oh god... What happened?
+J: No, it’s nothing like that. I’ve never had a squad.
+A: That’s… What? 
+A: But I heard how your assault team managed hold back a horde of monsters swarming a machine gun team.
+J: Uh huh.
+A: You mean to tell me all these reports I’ve seen of “Jai’s Squad” were just about you? 
+J: The short of it? Yeah. 
+J: I mean, I don’t do everything myself. 
+J: The other squads usually weaken the monsters or cover me.
+A: Why? I can’t imagine anyone would allow you deploy by yourself.
+J: They didn’t originally. But I have… problems with other people. They make me angry usually. 
+J:I think my psychiatrist mentioned something about “Anger management issues,” but I don’t see him anymore. 
+J: He was an idiot.
+A: So you don’t talk to anyone?
+J: Not really. I mean, I really only talk to Devi. A friend of mine from school. 
+J: Kind of my only friend, really.
+A: You and Devi know each other from school?
+J: Yeah. She was really the only one that talked to me. I scared the other students, and I didn’t really fit in with social situations.
+A: I know the feeling. I didn’t really fit in with my classmates either. They were all rich posh kids, 
+A: and my mother was a crack addict, so... 
+J: Sorry. That sucks.
+A: Yeah. 
+A: It wasn’t all bad though. I mean, I did get to go to an excellent school. 
+A: And Sabrina and I are friends now.
+J: Sabrina? Which one is that. I uh… Don’t really pay attention to the other officers.
+A: Ha, yeah, I can see why. She’s the one with the hood. Leads a Riflemen squad.
+J: Now that you mention it, I remember seeing you two together a lot. 
+J: You two are close huh?
+A: I guess. I think she’s a bit more important to me than I am to her. 
+A: Oh damn it, look at the time. I’m running drills with my squad in a few moments. 
+A: I know you aren’t a grenadier, but you’re welcome to tag along if you want. 
+A: I could use someone else to help whip them into shape.
+J: Thanks for the offer, but I think I’ll pass. 
+A: Yeah, I figured. 
+A: I’ll see you around, Jai.
+J: Yeah. It was nice meeting you, Ashe.
+[Ashe leaves]
+J: … That went rather well.
