@@ -83,6 +83,62 @@ public class Traits : MonoBehaviour {
                 {
                     text += "Sleep Deprived: You try shooting straight on your 5th night without any sleep." + "\r\n" + "\r\n";
                 }
+                else if (trait == "AggressionTrait")
+                {
+                    text += "Aggression: You try focusing when you find out your wife is cheating." + "\r\n" + "\r\n";
+                }
+                else if (trait == "WimpTrait")
+                {
+                    text += "Wimp: Almost as bad as the weenie." + "\r\n" + "\r\n";
+                }
+                else if (trait == "WimpTrait")
+                {
+                    text += "Wimp: Almost as bad as the weenie." + "\r\n" + "\r\n";
+                }
+                else if (trait == "MalnourishedTrait")
+                {
+                    text += "Malnourished: You are hungry...You should eat something." + "\r\n" + "\r\n";
+                }
+                else if (trait == "BrutalEfficiencyTrait")
+                {
+                    text += "Brutal Efficiency: They get very excited when they get to kill mobs of enemies, as it makes them both look good and feel good." + "\r\n" + "\r\n";
+                }
+                else if (trait == "F27GoodWithF25Trait")
+                {
+                    text += "Friendship: Those that say the power of friendship is fake, has never had a true friend.." + "\r\n" + "\r\n";
+                }
+                else if (trait == "F27BadWithM40Trait")
+                {
+                    text += "Hated: Ask one of them for their side of the story sometime." + "\r\n" + "\r\n";
+                }
+                else if (trait == "F32GoodWithM41Trait")
+                {
+                    text += "Friendship: Those that say the power of friendship is fake, has never had a true friend." + "\r\n" + "\r\n";
+                }
+                else if (trait == "M31GoodWithM29Trait")
+                {
+                    text += "Friendship: Those that say the power of friendship is fake, has never had a true friend." + "\r\n" + "\r\n";
+                }
+                else if (trait == "M31MarriedToF32Trait")
+                {
+                    text += "Married Life: Just knowing that their significant other is somewhere else in the battlefield spurs on this officer to do a little bit better, so their spouse doesn’t have to." + "\r\n" + "\r\n";
+                }
+                else if (trait == "AdrenalineJunky")
+                {
+                    text += "Adrenaline Junky: The assault core gives them a thrill they can’t find anywhere else. The adrenaline of charging straight towards a rampaging monster gives them that little boost they need to kill it, before it kills them.." + "\r\n" + "\r\n";
+                }
+                else if (trait == "F29FriendsWithF28")
+                {
+                    text += "Friendship: Those that say the power of friendship is fake, has never had a true friend." + "\r\n" + "\r\n";
+                }
+                else if (trait == "F28FriendsWithF29")
+                {
+                    text += "Friendship: Those that say the power of friendship is fake, has never had a true friend." + "\r\n" + "\r\n";
+                }
+                else if (trait == "TankTrait")
+                {
+                    text += "Tank: What more do you need to know. It is a tank." + "\r\n" + "\r\n";
+                }
                 else
                 {
                     text += skills[i] + "\r\n" + "\r\n";
