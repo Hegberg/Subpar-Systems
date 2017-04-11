@@ -21,6 +21,16 @@ TagManager:
   - camera
   - Traits
   - Circle
+  - level1a
+  - ConvoHub
+  - Level 1
+  - Jai
+  - Ashe
+  - Geoff
+  - Terry
+  - Level 2
+  - Roy
+  - Murphy
   layers:
   - Default
   - TransparentFX
