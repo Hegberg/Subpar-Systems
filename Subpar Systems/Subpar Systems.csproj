@@ -141,10 +141,13 @@
     <Compile Include="Assets\Scripts\Thomas_magical_UI_Land\LoadButton.cs" />
     <Compile Include="Assets\Scripts\Thomas_magical_UI_Land\StartButton.cs" />
     <Compile Include="Assets\Sounds\Music\Royalty Free Music\Credits.cs" />
+    <Compile Include="Assets\Traits.cs" />
     <Compile Include="Assets\pause.cs" />
     <Compile Include="Assets\sidemissionbio.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Dialogue\JaiAndAsheChill.txt" />
+    <None Include="Assets\Dialogue\RoyVMurphy.txt" />
     <None Include="Assets\PauseMenu\Fonts\OpenSans\License!.txt" />
     <None Include="Assets\Scripts\OLD STAR.txt" />
     <None Include="Assets\Sprites\OpenSans-Familiy\OpenSansLic.txt" />
