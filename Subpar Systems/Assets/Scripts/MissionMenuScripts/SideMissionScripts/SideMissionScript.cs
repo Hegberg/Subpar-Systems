@@ -61,13 +61,13 @@ public class SideMissionScript : MonoBehaviour {
 		int sideMissionResult;
 		if (GameControlScript.control.GetLevel () == 1) {
 			sideMissionResult = runSideMission1Calculation ();
-			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+			GameControlScript.control.SetSideMissionResult (1, sideMissionResult);
 		} else if (GameControlScript.control.GetLevel () == 2) {
 			sideMissionResult = runSideMission1Calculation ();
-			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+			GameControlScript.control.SetSideMissionResult (2, sideMissionResult);
 		} else if (GameControlScript.control.GetLevel () == 3) {
 			sideMissionResult = runSideMission1Calculation ();
-			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+			GameControlScript.control.SetSideMissionResult (3, sideMissionResult);
 		}
        
     }
@@ -142,6 +142,34 @@ public class SideMissionScript : MonoBehaviour {
                 return 0;
             }
         }
+    }
+    public int runSideMission2Calculation()
+    {
+        //A signal fire can be seen off in the distance. Send a team to investigate.
+        if (sideCharacters.Count == 0)
+        {
+            //Run mission failed code since no one was sent.
+            return 0;
+        }
+        //if murphy sent, fail the mission with unique text.
+
+        //
+        return 1;
+
+    }
+    public int runSideMission3Calculation()
+    {
+        //Lure away enemy Ultras
+        if (sideCharacters.Count == 0)
+        {
+            //Run mission failed code since no one was sent.
+            //Debug.Log("No one detected sent on the mission.");
+
+            return 0;
+        }
+        //Patriotism trait gives bonuses.
+
+        return 1;
     }
 }
 

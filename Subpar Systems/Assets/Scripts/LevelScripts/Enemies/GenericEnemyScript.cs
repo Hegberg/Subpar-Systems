@@ -5,9 +5,9 @@ using UnityEngine;
 public class GenericEnemyScript : MonoBehaviour {
 
 	protected GameObject tileOccuping;
-
 	protected float hp = 100;
-	protected float attack = 10;
+    protected float maxHP = 100;
+    protected float attack = 15;
 	protected float movement = 3;
 	protected float range = 3;
 	protected float DetectRadius = 5;
@@ -24,12 +24,11 @@ public class GenericEnemyScript : MonoBehaviour {
 	void Update () {
 		
 	}
-
     void OnGUI()
     {
         Vector2 targetPos;
         targetPos = Camera.main.WorldToScreenPoint(transform.position);
-        GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20), hp + "/" + 100);
+        GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20), hp + "/" + maxHP);
     }
 
 	void OnMouseOver()

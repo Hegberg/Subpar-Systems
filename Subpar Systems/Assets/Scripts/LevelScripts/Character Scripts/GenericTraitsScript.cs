@@ -614,7 +614,7 @@ public class HandsOffLeaderShip : GenericTraitsScript
 public class Comradery : GenericTraitsScript
 {
 	//f27, f25 work good together
-	//Taliyah, 
+	//Taliyah, Annie
 	public override void InitializeValues ()
 	{
 		name = "HandsOffLeaderShip";
@@ -625,17 +625,17 @@ public class Comradery : GenericTraitsScript
 	public override float ModifyAttack ()
 	{
 		bool taliyah = false;
-		bool f25 = false;
+		bool annie = false;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Taliyah") {
 				taliyah = true;
 			}
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F25") {
-				f25 = true;
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Annie Winters") {
+				annie = true;
 			}
 		}
 
-		if (taliyah && f25) {
+		if (taliyah && annie) {
 			attackModifier = 1.5f;
 		}
 
