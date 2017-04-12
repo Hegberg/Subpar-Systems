@@ -7,7 +7,7 @@ public class GenericEnemyScript : MonoBehaviour {
 	protected GameObject tileOccuping;
 	protected float hp = 100;
     protected float maxHP = 100;
-    protected float attack = 10;
+    protected float attack = 15;
 	protected float movement = 3;
 	protected float range = 3;
 	protected float DetectRadius = 5;

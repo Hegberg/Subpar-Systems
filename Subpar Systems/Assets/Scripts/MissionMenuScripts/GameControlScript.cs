@@ -95,7 +95,7 @@ public class GameControlScript : MonoBehaviour {
 
     //Character Roy
     private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait() };
+    {new RiflemanTrait(), new FrontLineCommander(), new SSTraining(),  };
 
     //character M40, Geoff
     private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript>
@@ -116,15 +116,15 @@ public class GameControlScript : MonoBehaviour {
 
     //character Jai Ono, the beserker.
 	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript>
-    {new AssaultTrait() };
+    {new AssaultTrait(), new BerserkRage(), new AngerIssues(), new TooAngryToFeelPain(),  };
 
     //character Yuri Sokolov
 	private List<GenericTraitsScript> character10InitialTraits = new List<GenericTraitsScript>
-    { new AssaultTrait() };
+    { new AssaultTrait(), new LackOfHumour(), new CanuckistanEquipment(), new Patriotism() };
 
     //Character Larry Winters
     private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript>
-    { new MachineGunTrait() };
+    { new MachineGunTrait(), new DistractingThoughts(), new Attachment(), new Hardworking()   };
 
     //Character Devi Devai.
     private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript>
