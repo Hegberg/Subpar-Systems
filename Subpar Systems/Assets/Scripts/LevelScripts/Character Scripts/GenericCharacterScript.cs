@@ -28,7 +28,7 @@ public class GenericCharacterScript : MonoBehaviour {
 	//range character can fire
 	protected float range = 4;
 
-	Color colour = Color.white;
+	protected Color colour = Color.white;
 
 	protected List<GenericTraitsScript> currentTraits = new List<GenericTraitsScript>();
 

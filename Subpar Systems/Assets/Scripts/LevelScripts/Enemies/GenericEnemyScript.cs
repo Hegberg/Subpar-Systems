@@ -14,6 +14,7 @@ public class GenericEnemyScript : MonoBehaviour {
 	protected bool Detected = false;
 	protected bool isSelected = false;
 	private int shakeAmount = 10;
+	protected Color colour = Color.white;
 
 	public GUIStyle guiStyle;
 
@@ -27,6 +28,25 @@ public class GenericEnemyScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public void UpdateDamge() {
+		ShowDamageOnEnemy ();
+		StartCoroutine (Shake ());
+	}
+
+	public virtual void ShowDamageOnEnemy() {
+		// 2/3
+		if (hp >= (maxHP * 2) / 3) {
+			colour = Color.white;
+		// 1/3
+		} else if (hp >= maxHP / 3) {
+			colour = Color.yellow;
+		} else {
+			colour = Color.red;
+		}
+		this.gameObject.GetComponent<SpriteRenderer> ().material.color = colour;
+	}
+
     void OnGUI()
     {
         Vector2 targetPos;
@@ -135,7 +155,7 @@ public class GenericEnemyScript : MonoBehaviour {
 
 							Destroy (gameObject);
 						} else {
-							StartCoroutine (Shake ());
+							UpdateDamge ();
 							TurnControlScript.control.SetEnemySelected(null);
 						}
                     }
@@ -437,7 +457,7 @@ public class GenericEnemyScript : MonoBehaviour {
 			Destroy (gameObject);
 		}
 
-		StartCoroutine (Shake ());
+		UpdateDamge ();
 	}
 
 	public float GetHP() {

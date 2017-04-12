@@ -17,4 +17,5 @@ public class FastEnemyScript : GenericEnemyScript {
 	void Update () {
 		
 	}
+
 }
