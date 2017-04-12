@@ -19,12 +19,17 @@ public class HubController : MonoBehaviour {
                 if (deadpeoples.Contains("Geoff")|| deadpeoples.Contains("Taliyah"))
                 {
                     GameObject.FindWithTag("Level1A").GetComponent<Button>().enabled=false;
-                    //GameObject.FindWithTag("Level1A").GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+                    GameObject.FindWithTag("Level1A").GetComponent<Image>().enabled = false;
                 }
                 if (deadpeoples.Contains("Jai Ono") || deadpeoples.Contains("Ashe"))
                 {
                     GameObject.FindWithTag("Level1B").GetComponent<Button>().enabled = false;
-                    //GameObject.FindWithTag("Level1B").GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+                    GameObject.FindWithTag("Level1B").GetComponent<Image>().enabled = false;
+                }
+                if (deadpeoples.Contains("Annie Winters") || deadpeoples.Contains("Terry Winters") || deadpeoples.Contains("Larry Winters"))
+                {
+                    GameObject.FindWithTag("Level1C").GetComponent<Button>().enabled = false;
+                    GameObject.FindWithTag("Level1C").GetComponent<Image>().enabled = false;
                 }
                 scene.GetComponent<Canvas>().enabled = true;
             }
@@ -35,7 +40,22 @@ public class HubController : MonoBehaviour {
                 if (deadpeoples.Contains("Lt-Col George Murphy") || deadpeoples.Contains("Roy LeGaul"))
                 {
                     GameObject.FindWithTag("Level2A").GetComponent<Button>().enabled = false;
-                    //GameObject.FindWithTag("Level2A").GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+                    GameObject.FindWithTag("Level2A").GetComponent<Image>().enabled = false;
+                }
+                if (deadpeoples.Contains("Yuri Sokolov") || deadpeoples.Contains("Roy LeGaul"))
+                {
+                    GameObject.FindWithTag("Level2B").GetComponent<Button>().enabled = false;
+                    GameObject.FindWithTag("Level2B").GetComponent<Image>().enabled = false;
+                }
+                if (deadpeoples.Contains("Devi Devai") || deadpeoples.Contains("Jai Ono") || deadpeoples.Contains("Larry Winters"))
+                {
+                    GameObject.FindWithTag("Level2C").GetComponent<Button>().enabled = false;
+                    GameObject.FindWithTag("Level2C").GetComponent<Image>().enabled = false;
+                }
+                if (deadpeoples.Contains("Devi Devai") || deadpeoples.Contains("Ashe") || deadpeoples.Contains("Sabrina"))
+                {
+                    GameObject.FindWithTag("Level2D").GetComponent<Button>().enabled = false;
+                    GameObject.FindWithTag("Level2D").GetComponent<Image>().enabled = false;
                 }
                 //activate scenes for 2
             }
