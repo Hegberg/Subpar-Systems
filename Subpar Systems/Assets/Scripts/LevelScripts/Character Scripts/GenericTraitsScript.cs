@@ -469,6 +469,7 @@ public class TankTrait : GenericTraitsScript
 		name = "Tank";
 		positionInSpriteUIList = 16;
 		movementModifier = 0;
+        hpModifier = 2.0f;
 		rangeModifier = 1;
 	}
 }
@@ -617,7 +618,7 @@ public class Comradery : GenericTraitsScript
 	//Taliyah, Annie
 	public override void InitializeValues ()
 	{
-		name = "HandsOffLeaderShip";
+		name = "Comradery";
 		positionInSpriteUIList = 24;
 		attackModifier = 0.8f;
 	}
