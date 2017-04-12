@@ -33,15 +33,18 @@ public class HubConvo : MonoBehaviour
     public void Setscene(string scenename)
     {
         scene = scenename;
-    }
+}
     public void StartScene()
     {
+
         var convo = GameObject.FindGameObjectsWithTag("Characters");
         convo[2].GetComponent<Image>().enabled = false;
         go3 = convo[2].GetComponent<Button>();
         if (scene == "Scene1")
         {
-          
+
+            GameObject.FindWithTag("Level1A").GetComponent<Button>().enabled = false;
+            GameObject.FindWithTag("Level1A").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
             theSourceFile = new FileInfo("HubScene1level1.txt");
@@ -59,7 +62,8 @@ public class HubConvo : MonoBehaviour
         }
         if (scene == "Scene2")
         {
-            
+            GameObject.FindWithTag("Level1B").GetComponent<Button>().enabled = false;
+            GameObject.FindWithTag("Level1B").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
             theSourceFile = new FileInfo("JaiAndAsheChill.txt");
@@ -78,7 +82,9 @@ public class HubConvo : MonoBehaviour
         if (scene == "Scene3")
         {
             Debug.Log("IAMHERE2");
-           
+
+            GameObject.FindWithTag("Level1C").GetComponent<Button>().enabled = false;
+            GameObject.FindWithTag("Level1C").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
             theSourceFile = new FileInfo("TerryLarryAnnie.txt");
@@ -100,6 +106,8 @@ public class HubConvo : MonoBehaviour
         }
         if (scene == "Level2A")
         {
+            GameObject.FindWithTag("Level2A").GetComponent<Button>().enabled = false;
+            GameObject.FindWithTag("Level2A").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
             theSourceFile = new FileInfo("RoyVMurphy.txt");
@@ -118,6 +126,8 @@ public class HubConvo : MonoBehaviour
         if (scene == "Level2B")
         {
             Debug.Log("IAMHERE");
+            GameObject.FindWithTag("Level2B").GetComponent<Button>().enabled = false;
+            GameObject.FindWithTag("Level2B").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
             theSourceFile = new FileInfo("RoyVYuri.txt");
@@ -135,6 +145,8 @@ public class HubConvo : MonoBehaviour
         }
         if (scene == "Level2C")
         {
+            GameObject.FindWithTag("Level2C").GetComponent<Button>().enabled = false;
+            GameObject.FindWithTag("Level2C").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
             theSourceFile = new FileInfo("DeviJaiLarry.txt");
@@ -156,6 +168,8 @@ public class HubConvo : MonoBehaviour
         }
         if (scene == "Level2D")
         {
+            GameObject.FindWithTag("Level2D").GetComponent<Button>().enabled = false;
+            GameObject.FindWithTag("Level2D").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
             theSourceFile = new FileInfo("AsheSabrinaDevi.txt");
@@ -204,7 +218,7 @@ public class HubConvo : MonoBehaviour
             var scene = GameObject.FindWithTag("ConvoHub");
             scene.GetComponent<Canvas>().enabled = true;
             theSourceFile = null;
-            reader = null;
+            reader.Dispose();
             text = " ";
             //error handle
         }
