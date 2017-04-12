@@ -11,21 +11,34 @@ public class TraitSpriteControl : MonoBehaviour {
 
     public Sprite machineGun;
     public Sprite backLineCommander;
+	public Sprite schoolBonds;
+	public Sprite personalGrudges;
+	public Sprite lackOfHumour;
+	public Sprite distractingThoughts;
+	public Sprite marriedLife;
     public Sprite assault;
     public Sprite grenedier;
     public Sprite rifleman;
     public Sprite adrenalineJunky;
-    public Sprite m31MarriedToF32;
-    public Sprite m31GoodWithM29;
-    public Sprite f32GoodWithM41;
-    public Sprite f27BadWithM40;
-    public Sprite f27GoodWithF25;
     public Sprite brutalEfficiency;
-    public Sprite f29GoodWithF28;
+	public Sprite canuckistanEquipment;
     public Sprite sleepDeprived;
-    public Sprite f28GoodWithF29;
     public Sprite frontLineCommander;
 	public Sprite tank;
+	public Sprite patriotism;
+	public Sprite sSTraining;
+	public Sprite attachment;
+	public Sprite hardworking;
+	public Sprite berserkRage;
+	public Sprite angerIssues;
+	public Sprite tooAngryToFeelPain;
+	public Sprite handsOffLeaderShip;
+	public Sprite comradery;
+	public Sprite runningTally;
+	public Sprite lovedByTroops;
+	public Sprite drugAddiction;
+	public Sprite somethingToLiveFor;
+
 
     public List<Sprite> TraitsInOrderOfCreatedClass;
 
@@ -50,20 +63,32 @@ public class TraitSpriteControl : MonoBehaviour {
 			TraitsInOrderOfCreatedClass.Add (machineGun);
 			TraitsInOrderOfCreatedClass.Add (brutalEfficiency);
 			TraitsInOrderOfCreatedClass.Add (backLineCommander);
-			TraitsInOrderOfCreatedClass.Add (f27GoodWithF25);
-			TraitsInOrderOfCreatedClass.Add (f27BadWithM40);
-			TraitsInOrderOfCreatedClass.Add (f32GoodWithM41);
-			TraitsInOrderOfCreatedClass.Add (m31GoodWithM29);
-			TraitsInOrderOfCreatedClass.Add (m31MarriedToF32);
+			TraitsInOrderOfCreatedClass.Add (schoolBonds);
+			TraitsInOrderOfCreatedClass.Add (personalGrudges);
+			TraitsInOrderOfCreatedClass.Add (lackOfHumour);
+			TraitsInOrderOfCreatedClass.Add (distractingThoughts);
+			TraitsInOrderOfCreatedClass.Add (marriedLife);
 			TraitsInOrderOfCreatedClass.Add (adrenalineJunky);
 			TraitsInOrderOfCreatedClass.Add (rifleman);
 			TraitsInOrderOfCreatedClass.Add (grenedier);
 			TraitsInOrderOfCreatedClass.Add (assault);
-			TraitsInOrderOfCreatedClass.Add (f29GoodWithF28);
+			TraitsInOrderOfCreatedClass.Add (canuckistanEquipment);
 			TraitsInOrderOfCreatedClass.Add (sleepDeprived);
-			TraitsInOrderOfCreatedClass.Add (f28GoodWithF29);
+			TraitsInOrderOfCreatedClass.Add (patriotism);
 			TraitsInOrderOfCreatedClass.Add (frontLineCommander);
 			TraitsInOrderOfCreatedClass.Add (tank);
+			TraitsInOrderOfCreatedClass.Add (sSTraining);
+			TraitsInOrderOfCreatedClass.Add (attachment);
+			TraitsInOrderOfCreatedClass.Add (hardworking);
+			TraitsInOrderOfCreatedClass.Add (berserkRage);
+			TraitsInOrderOfCreatedClass.Add (angerIssues);
+			TraitsInOrderOfCreatedClass.Add (tooAngryToFeelPain);
+			TraitsInOrderOfCreatedClass.Add (handsOffLeaderShip);
+			TraitsInOrderOfCreatedClass.Add (comradery);
+			TraitsInOrderOfCreatedClass.Add (runningTally);
+			TraitsInOrderOfCreatedClass.Add (lovedByTroops);
+			TraitsInOrderOfCreatedClass.Add (drugAddiction);
+			TraitsInOrderOfCreatedClass.Add (somethingToLiveFor);
 
 			//Debug.Log (TraitsInOrderOfCreatedClass.Count);
 		}

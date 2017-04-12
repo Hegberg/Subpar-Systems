@@ -22,7 +22,7 @@ public class GenericCharacterScript : MonoBehaviour {
 	//attack damamage of the character's attack
 	protected float attack = 50;
 	//damage mitigated of any incoming attack
-	protected float defense = 20;
+	protected float defense = 1;
 	//amount of squares a character can move
 	protected float movement = 4;
 	//range character can fire
@@ -97,9 +97,14 @@ public class GenericCharacterScript : MonoBehaviour {
 	public float GetAttack()
 	{
 		float attackModifier = 1.0f;
+		bool angerIssues = false;
 		for (int i = 0; i < currentTraits.Count; ++i) {
 			//add modifiers together so that the attack modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
 			attackModifier += currentTraits[i].ModifyAttack() - 1;
+			if (currentTraits[i].GetName() == "AngerIssues") {
+				//0.5 increase for 50% health gone, 0.2 for 20%, etc
+				attackModifier += ((100 - hp) / 100);
+			}
 		}
 		//stop modifier from going below 0%, and if at 0% stop attack
 		//to be completed
@@ -195,6 +200,13 @@ public class GenericCharacterScript : MonoBehaviour {
 			//add modifiers together so that the defense modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
 			attacks += currentTraits[i].ModifyNumOfAttacks() - 1;
 		}
+		//reset amount of turns attacked in a row if did not attack
+		if (attacksLeft == (int)attacks) {
+			for (int i = 0; i < currentTraits.Count; ++i) {
+				//add modifiers together so that the defense modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
+				currentTraits[i].SetConsecutiveAttacks(0);
+			}
+		}
 		attacksLeft = (int)attacks;
         //Debug.Log("character attacks = " + gameObject.name.ToString() + " " + attacksLeft);
         hasMoved = false;
@@ -248,13 +260,24 @@ public class GenericCharacterScript : MonoBehaviour {
 	//need to implement permenant death
 	public virtual void HPLost(int hpLost)
     {
-		hp -= hpLost;
+		//only take damge if defense doesn't override health lost
+		float damageTaken = hpLost - GetDefense();
+		if (damageTaken > 0) {
+			hp -= hpLost;
+		}
+
 		bool stopFromDieing = false;
 		bool check = false;
 		for (int i = 0; i < currentTraits.Count; ++i) {
 			check = currentTraits[i].StopFromDieing();
 			//if stop from dieing is true, set stop from dieng to true
 			if (check) {
+				stopFromDieing = true;
+			}
+
+			//if safety shield present, stop from dieing but remove shield
+			if (currentTraits [i].GetSafetyShield () == true) {
+				currentTraits [i].SetSafetyShield (false);
 				stopFromDieing = true;
 			}
 		}

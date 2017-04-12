@@ -1095,21 +1095,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   machineGun: {fileID: 21300000, guid: ebefab7876420b346a02a8f4503ce977, type: 3}
   backLineCommander: {fileID: 21300000, guid: c87602a0843ca404cbc6285699baa223, type: 3}
+  schoolBonds: {fileID: 21300000, guid: 9f583f7ed462c874d88ac65ab072bb59, type: 3}
+  personalGrudges: {fileID: 21300000, guid: 18a8ecddbf206d646b1035e74fa647f7, type: 3}
+  lackOfHumour: {fileID: 21300000, guid: 04fa93e31bc7dd041874241005e18fb2, type: 3}
+  distractingThoughts: {fileID: 21300000, guid: 9c83ebc7846a2b24984001b965a5eca6,
+    type: 3}
+  marriedLife: {fileID: 21300000, guid: 125b6e247e805b84a893cebea6ef87d4, type: 3}
   assault: {fileID: 21300000, guid: 23874fecd2c67b24cab9ce2dfd924365, type: 3}
   grenedier: {fileID: 21300000, guid: ea8e3154d0c90804db5e95a5d6b13445, type: 3}
   rifleman: {fileID: 21300000, guid: d2413c57967093b44837b47497a29352, type: 3}
   adrenalineJunky: {fileID: 21300000, guid: e1d2f9b4e41ec014f9899dc7363c9eab, type: 3}
-  m31MarriedToF32: {fileID: 21300000, guid: 125b6e247e805b84a893cebea6ef87d4, type: 3}
-  m31GoodWithM29: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
-  f32GoodWithM41: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
-  f27BadWithM40: {fileID: 21300000, guid: 9c83ebc7846a2b24984001b965a5eca6, type: 3}
-  f27GoodWithF25: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
   brutalEfficiency: {fileID: 21300000, guid: b1c75055975ddbd4bbcf436ca4e2f99b, type: 3}
-  f29GoodWithF28: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
+  canuckistanEquipment: {fileID: 21300000, guid: 7543dfcabfedd4a4a85e40b339ebc57b,
+    type: 3}
   sleepDeprived: {fileID: 21300000, guid: 4e1d0ccb0d8588448af4e734c868fd27, type: 3}
-  f28GoodWithF29: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
   frontLineCommander: {fileID: 21300000, guid: 7272d0dc8abce28438d7dd900ffa810f, type: 3}
   tank: {fileID: 21300000, guid: c41fc40e0300d854bba3e534a54ce7af, type: 3}
+  patriotism: {fileID: 21300000, guid: 7272d0dc8abce28438d7dd900ffa810f, type: 3}
+  sSTraining: {fileID: 21300000, guid: c87602a0843ca404cbc6285699baa223, type: 3}
+  attachment: {fileID: 21300000, guid: b2f7293f5dd56784fad3c8b8a1ea5e7e, type: 3}
+  hardworking: {fileID: 21300000, guid: e1bb1192ab5bffd44a5a599867c90fd2, type: 3}
+  berserkRage: {fileID: 21300000, guid: f7d975e593612394e99d5c6634a8c33c, type: 3}
+  angerIssues: {fileID: 21300000, guid: 214468c98d5b5774ba80e0879659052f, type: 3}
+  tooAngryToFeelPain: {fileID: 21300000, guid: 311c9f12ce9b1414d94f01faf46d2c7a, type: 3}
+  handsOffLeaderShip: {fileID: 21300000, guid: c82003591e062694f9c73291359cc7e2, type: 3}
+  comradery: {fileID: 21300000, guid: 2a42ef1f1069ce54f9d5d6a8ab913980, type: 3}
+  runningTally: {fileID: 21300000, guid: e7547c8a554eca74fb4de9e5a2acdb5f, type: 3}
+  lovedByTroops: {fileID: 21300000, guid: b0b609f9639b5f540be3d11e2d15d97a, type: 3}
+  drugAddiction: {fileID: 21300000, guid: 474c46d41818e6e42bbae4e99c61b8e0, type: 3}
+  somethingToLiveFor: {fileID: 21300000, guid: aba67fcd3b05d054b95109f9770525e7, type: 3}
   TraitsInOrderOfCreatedClass: []
 --- !u!1 &221626930
 GameObject:

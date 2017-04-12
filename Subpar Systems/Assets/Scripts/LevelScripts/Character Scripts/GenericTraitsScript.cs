@@ -13,6 +13,8 @@ public class GenericTraitsScript {
 	protected float numberOfAttacksModifier = 1;
 	protected int positionInSpriteUIList = 0;
 	protected bool isCrazy = false;
+	protected int consecutiveAttacks = 0;
+	protected bool safetyShield = false; //if set true, stops death for 1 turn
 
     //protected Sprite icon;
 
@@ -70,6 +72,18 @@ public class GenericTraitsScript {
 	public virtual void AttemptToSetCrazy(){
 		//Traits that have something die set crazy to true here
 	}
+
+	public virtual void SetConsecutiveAttacks(int setTo) {
+		consecutiveAttacks = setTo;
+	}
+
+	public virtual bool GetSafetyShield() {
+		return safetyShield;
+	}
+
+	public virtual void SetSafetyShield(bool safe) {
+		safetyShield = safe;
+	}
 }
 
 public class AggressionTrait : GenericTraitsScript {
@@ -117,6 +131,7 @@ public class BrutalEfficiencyTrait : GenericTraitsScript {
 	{
 		name = "Brutal Efficiency";
 		defenseModifier = 0.5f;
+		attackModifier = 1.5f;
 		positionInSpriteUIList = 1;
 	}
 }
@@ -135,168 +150,190 @@ public class BacklineCommanderTrait : GenericTraitsScript {
 	}
 }
 
-public class F27GoodWithF25Trait : GenericTraitsScript {
+public class SchoolBonds : GenericTraitsScript {
+	//F-28 better with F-29
+	//Ashe, Sabrina
 	//small general buff between the 2 characters
 	public override void InitializeValues ()
 	{
-		name = "F27GoodWithF25";
+		name = "SchoolBonds";
 		positionInSpriteUIList = 3;
 	}
 
 	public override float ModifyAttack ()
 	{
+		bool ashe = false;
+		bool sabrina = false;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F25") {
-				attackModifier = 1.2f;
-				break;
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Ashe") {
+				ashe = true;
+			}
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Sabrina") {
+				sabrina = true;
 			}
 		}
+
+		if (ashe && sabrina) {
+			attackModifier = 1.5f;
+		}
+
 		return attackModifier;
 	}
 
 	public override float ModifyDefense ()
 	{
+		bool ashe = false;
+		bool sabrina = false;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F25") {
-				defenseModifier = 1.2f;
-				break;
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Ashe") {
+				ashe = true;
+			}
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Sabrina") {
+				sabrina = true;
 			}
 		}
+
+		if (ashe && sabrina) {
+			defenseModifier = 1.5f;
+		}
+
 		return defenseModifier;
 	}
 }
 
-public class F27BadWithM40Trait : GenericTraitsScript {
+public class PersonalGrudges: GenericTraitsScript {
 	//small general debuff between the 2 characters
+	//f27, m40
+	//Taliyah, Geoff
 	public override void InitializeValues ()
 	{
-		name = "F27BadWithM40";
+		name = "PersonalGrudges";
 		positionInSpriteUIList = 4;
 	}
 
 	public override float ModifyAttack ()
 	{
+		bool taliyah = false;
+		bool geoff = false;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M40") {
-				attackModifier = 0.8f;
-				break;
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Taliyah") {
+				taliyah = true;
+			}
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Geoff") {
+				geoff = true;
 			}
 		}
+
+		if (taliyah && geoff) {
+			attackModifier = 0.5f;
+		}
+
 		return attackModifier;
 	}
 
 	public override float ModifyDefense ()
 	{
+		bool taliyah = false;
+		bool geoff = false;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M40") {
-				defenseModifier = 0.8f;
-				break;
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Taliyah") {
+				taliyah = true;
+			}
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Geoff") {
+				geoff = true;
 			}
 		}
+
+		if (taliyah && geoff) {
+			defenseModifier = 0.5f;
+		}
+
 		return defenseModifier;
 	}
 }
 
-public class F32GoodWithM41Trait : GenericTraitsScript {
-	//small general buff between the 2 characters
+public class LackOfHumour: GenericTraitsScript {
+	//does not work well with Roy LeGaul
 	public override void InitializeValues ()
 	{
-		name = "F32GoodWithM41";
+		name = "LackOfHumour";
 		positionInSpriteUIList = 5;
 	}
 
 	public override float ModifyAttack ()
 	{
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M41") {
-				attackModifier = 1.2f;
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Roy LeGaul") {
+				attackModifier = 0.5f;
 				break;
 			}
 		}
+
 		return attackModifier;
 	}
 
 	public override float ModifyDefense ()
 	{
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M41") {
-				defenseModifier = 1.2f;
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Roy LeGaul") {
+				defenseModifier = 0.5f;
 				break;
 			}
 		}
+
 		return defenseModifier;
 	}
 }
 
-public class M31GoodWithM29Trait : GenericTraitsScript {
-	//small general buff between the 2 characters
+public class DistractingThoughts: GenericTraitsScript {
+	//less damage with Devi Devai
 	public override void InitializeValues ()
 	{
-		name = "M31GoodWithM29";
+		name = "Distracting Thoughts";
 		positionInSpriteUIList = 6;
 	}
 
 	public override float ModifyAttack ()
 	{
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-            //if friend alive
-            if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M29") {
-				attackModifier = 1.2f;
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Devi Devai") {
+				attackModifier = 0.5f;
 				break;
 			}
-            //if friend dead
-            if (GameControlScript.control.GetDeadCharacters()[i] == "M29")
-            {
-                attackModifier = 0.45f;
-                break;
-            }
-        }
-		return attackModifier;
-	}
+		}
 
-	public override float ModifyDefense ()
-	{
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-            //if friend alive
-            if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "M29") {
-				defenseModifier = 1.2f;
-				break;
-			}
-            //if friend dead
-            if (GameControlScript.control.GetDeadCharacters()[i] == "M29")
-            {
-                defenseModifier = 0.45f;
-                break;
-            }
-        }
-		return defenseModifier;
+		return attackModifier;
 	}
 }
 
-public class M31MarriedToF32Trait : GenericTraitsScript {
+public class MarriedLife: GenericTraitsScript {
 	//defense buff between the 2 characters (to protect each other
+	//good with m31, Terry Winters
+	//Annie Winters
 	public override void InitializeValues ()
 	{
-		name = "M31MarriedToF32";
+		name = "MarriedLife";
 		positionInSpriteUIList = 7;
 	}
 
-	public override float ModifyDefense ()
+	public override float ModifyAttack ()
 	{
+		bool terry = false;
+		bool annie = false;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-            //if spouse alive
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F32") {
-				defenseModifier = 1.5f;
-				break;
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Terry Winters") {
+				terry = true;
 			}
-            //if spouse dead
-            if (GameControlScript.control.GetDeadCharacters()[i] == "F32")
-            {
-                defenseModifier = 0.45f;
-                break;
-            }
-        }
-		return defenseModifier;
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Annie Winters") {
+				annie = true;
+			}
+		}
+
+		if (terry && annie) {
+			attackModifier = 1.5f;
+		}
+
+		return attackModifier;
 	}
 
     public override void AttemptToSetCrazy()
@@ -309,19 +346,6 @@ public class M31MarriedToF32Trait : GenericTraitsScript {
                 break;
             }
         }
-    }
-
-    public override float ModifyAttack()
-    {
-        for (int i = 0; i < GameControlScript.control.GetDeadCharacters().Count; ++i)
-        {
-            if (GameControlScript.control.GetDeadCharacters()[i] == "F32")
-            {
-                attackModifier = 0.45f;
-                break;
-            }
-        }
-        return attackModifier;
     }
 }
 
@@ -377,38 +401,14 @@ public class AssaultTrait : GenericTraitsScript
     }
 }
 
-public class F29FriendsWithF28 : GenericTraitsScript
+public class CanuckistanEquipment : GenericTraitsScript
 {
 	public override void InitializeValues ()
 	{
-		name = "F29FriendsWithF28";
-		attackModifier = 1;
-		defenseModifier = 1;
-		movementModifier = 1.00f; //
-		rangeModifier = 1.00f; //
+		name = "CanuckistanSuperiorEquipment";
 		positionInSpriteUIList = 12;
-	}
-
-	public override float ModifyAttack ()
-	{
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F28") {
-				attackModifier = 1.2f;
-				break;
-			}
-		}
-		return attackModifier;
-	}
-
-	public override float ModifyDefense ()
-	{
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F28") {
-				defenseModifier = 1.2f;
-				break;
-			}
-		}
-		return defenseModifier;
+		rangeModifier = 2f;
+		movementModifier = 0.5f;
 	}
 }
 
@@ -433,38 +433,23 @@ public class SleepDeprived : GenericTraitsScript
 	}
 }
 	
-public class F28FriendsWithF29 : GenericTraitsScript
+public class Patriotism : GenericTraitsScript
 {
 	public override void InitializeValues ()
 	{
-		name = "F28FriendsWithF29";
-		attackModifier = 1;
-		defenseModifier = 1;
-		movementModifier = 1.00f; //
-		rangeModifier = 1.00f; //
+		name = "Patriotism";
 		positionInSpriteUIList = 14;
 	}
 
 	public override float ModifyAttack ()
 	{
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F29") {
-				attackModifier = 1.2f;
-				break;
-			}
+		if (GameControlScript.control.GetLevel() == 3) {
+			attackModifier = 2.0f;
+		} else {
+			attackModifier = 1;
 		}
-		return attackModifier;
-	}
 
-	public override float ModifyDefense ()
-	{
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F29") {
-				defenseModifier = 1.2f;
-				break;
-			}
-		}
-		return defenseModifier;
+		return attackModifier;
 	}
 }
 
@@ -485,5 +470,240 @@ public class TankTrait : GenericTraitsScript
 		positionInSpriteUIList = 16;
 		movementModifier = 0;
 		rangeModifier = 1;
+	}
+}
+
+public class SSTraining : GenericTraitsScript
+{
+	public override void InitializeValues ()
+	{
+		name = "SSTraining";
+		positionInSpriteUIList = 17;
+		rangeModifier = 1.25f;
+	}
+}
+
+public class Attachment : GenericTraitsScript
+{
+	//penalty if m31 ( Terry Winters ) or Devi dies
+	public override void InitializeValues ()
+	{
+		name = "Attachment";
+		positionInSpriteUIList = 18;
+	}
+
+	public override float ModifyAttack()
+	{
+		bool terry = false;
+		bool devi = false;
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Terry Winters") {
+				terry = true;
+			}
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Devi Devai") {
+				devi = true;
+			}
+		}
+
+		if (terry && devi) {
+			attackModifier = 1.0f;
+		} else if (terry && !devi || !terry && devi) {
+			attackModifier = 0.5f;
+		}
+
+		return attackModifier;
+	}
+
+	public override float ModifyDefense()
+	{
+		bool terry = false;
+		bool devi = false;
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Terry Winters") {
+				terry = true;
+			}
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Devi Devai") {
+				devi = true;
+			}
+		}
+
+		if (terry && devi) {
+			defenseModifier = 1.0f;
+		} else if (terry && !devi || !terry && devi) {
+			defenseModifier = 0.5f;
+		}
+
+		return defenseModifier;
+	}
+}
+
+public class Hardworking : GenericTraitsScript
+{
+	public override void InitializeValues ()
+	{
+		name = "Hardworking";
+		positionInSpriteUIList = 19;
+		defenseModifier = 1.5f;
+	}
+}
+
+public class BerserkRage : GenericTraitsScript
+{
+	//more damage for each turn attacking
+	public override void InitializeValues ()
+	{
+		name = "BerserkRage";
+		positionInSpriteUIList = 20;
+	}
+
+	public override float ModifyAttack ()
+	{
+		float additionalDamage = 0.1f * consecutiveAttacks;
+		attackModifier = 1.0f + additionalDamage;
+		consecutiveAttacks += 1;
+		return attackModifier;
+	}
+}
+
+public class AngerIssues : GenericTraitsScript
+{
+	//more damage for health gone, calculated in GenericCharacter
+	public override void InitializeValues ()
+	{
+		name = "AngerIssues";
+		positionInSpriteUIList = 21;
+	}
+}
+
+public class TooAngryToFeelPain : GenericTraitsScript
+{
+	//more defense if devi dead
+	public override void InitializeValues ()
+	{
+		name = "AngerIssues";
+		positionInSpriteUIList = 22;
+	}
+
+	public override float ModifyDefense ()
+	{
+		defenseModifier = 1.5f;
+		for (int i = 0; i < GameControlScript.control.GetDeadCharacters().Count; ++i)
+		{
+			if (GameControlScript.control.GetDeadCharacters()[i] == "Devi Devai")
+			{
+				defenseModifier = 2.0f;
+				break;
+			}
+		}
+
+		return defenseModifier;
+	}
+}
+	
+public class HandsOffLeaderShip : GenericTraitsScript
+{
+	//less attack
+	public override void InitializeValues ()
+	{
+		name = "HandsOffLeaderShip";
+		positionInSpriteUIList = 23;
+		attackModifier = 0.8f;
+	}
+}
+
+public class Comradery : GenericTraitsScript
+{
+	//f27, f25 work good together
+	//Taliyah, 
+	public override void InitializeValues ()
+	{
+		name = "HandsOffLeaderShip";
+		positionInSpriteUIList = 24;
+		attackModifier = 0.8f;
+	}
+
+	public override float ModifyAttack ()
+	{
+		bool taliyah = false;
+		bool f25 = false;
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Taliyah") {
+				taliyah = true;
+			}
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "F25") {
+				f25 = true;
+			}
+		}
+
+		if (taliyah && f25) {
+			attackModifier = 1.5f;
+		}
+
+		return attackModifier;
+	}
+}
+
+public class RunningTally : GenericTraitsScript
+{
+	//more attack
+	public override void InitializeValues ()
+	{
+		name = "RunnungTally";
+		positionInSpriteUIList = 25;
+		attackModifier = 1.5f;
+	}
+}
+
+public class LovedByTroops : GenericTraitsScript
+{
+	//more attack
+	public override void InitializeValues ()
+	{
+		name = "LovedByTroops";
+		positionInSpriteUIList = 26;
+		attackModifier = 1.5f;
+	}
+}
+
+public class DrugAddiction : GenericTraitsScript
+{
+	public override void InitializeValues ()
+	{
+		name = "DrugAddiction";
+		positionInSpriteUIList = 26;
+	}
+
+	//33% chance to do half damage
+	public override float ModifyAttack ()
+	{
+		if (Random.Range (0, 1) < 0.33f) {
+			attackModifier = 0.5f;
+		} else {
+			attackModifier = 1;
+		}
+
+		return attackModifier;
+	}
+
+	//33% chance to have more movement 
+	public override float ModifyMovement ()
+	{
+		if (Random.Range (0, 1) < 0.33f) {
+			movementModifier = 1.5f;
+		} else {
+			movementModifier = 1;
+		}
+
+		return movementModifier;
+	}
+}
+
+public class SomethingToLiveFor : GenericTraitsScript
+{
+	public override void InitializeValues ()
+	{
+		name = "SomethingToLiveFor";
+		positionInSpriteUIList = 27;
+		safetyShield = true;
 	}
 }

@@ -79,15 +79,15 @@ public class GameControlScript : MonoBehaviour {
 
     //character F27, Taliyah
     private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new BacklineCommanderTrait(), new F27GoodWithF25Trait(), new F27BadWithM40Trait()};
+    {new RiflemanTrait(), new BacklineCommanderTrait() };
 
     //character M31, Terry
     private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new M31GoodWithM29Trait(), new M31MarriedToF32Trait() };
+    {new RiflemanTrait() };
 
-    //character F29, sabrina
+    //character F29, Sabrina
     private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new F29FriendsWithF28(), new BacklineCommanderTrait(), new SleepDeprived()};
+    {new RiflemanTrait(), new BacklineCommanderTrait(), new SleepDeprived()};
 
     //Character Roy
     private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript>
@@ -99,7 +99,7 @@ public class GameControlScript : MonoBehaviour {
 
     //character F28, Ashe
     private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript>
-    {new GrenedierTrait(), new F28FriendsWithF29(), new FrontLineCommander()};
+    {new GrenedierTrait(), new FrontLineCommander()};
 
     //Character Lt-Col George Murphy
     private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript>
@@ -108,7 +108,7 @@ public class GameControlScript : MonoBehaviour {
 
     //character F32, Annie
     private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript>
-    {new AssaultTrait(), new F32GoodWithM41Trait()};
+    {new AssaultTrait() };
 
     //character Jai Ono, the beserker.
 	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript>
