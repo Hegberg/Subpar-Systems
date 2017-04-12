@@ -107,7 +107,7 @@ public class GameControlScript : MonoBehaviour {
 
     //Character Lt-Col George Murphy
     private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript>
-    { new GrenedierTrait() };
+    { new GrenedierTrait(), new Patriotism() };
 
 
     //character F32, Annie
@@ -128,7 +128,7 @@ public class GameControlScript : MonoBehaviour {
 
     //Character Devi Devai.
     private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript>
-    { new MachineGunTrait() };
+    { new MachineGunTrait(), new HandsOffLeaderShip(),  };
 
 	//Character Tank.
 	private List<GenericTraitsScript> tankTraits = new List<GenericTraitsScript>
