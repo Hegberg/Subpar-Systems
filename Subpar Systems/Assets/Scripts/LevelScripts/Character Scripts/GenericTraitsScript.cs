@@ -580,7 +580,7 @@ public class TooAngryToFeelPain : GenericTraitsScript
 	//more defense if devi dead
 	public override void InitializeValues ()
 	{
-		name = "AngerIssues";
+		name = "TooAngryToFeelPain";
 		positionInSpriteUIList = 22;
 	}
 
