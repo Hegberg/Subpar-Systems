@@ -51,7 +51,9 @@ public class GameControlScript : MonoBehaviour {
     //level progression, auto increment on victory
     private int currentLevel = 1;
 
-	private int sideMissionResult;
+	private int sideMissionResult1;
+	private int sideMissionResult2;
+	private int sideMissionResult3;
 
     private int testLevel = 0;
     private int firstLevel = 1;
@@ -625,11 +627,25 @@ public class GameControlScript : MonoBehaviour {
         }
     }
 
-	public int GetSideMissionResult() {
-		return sideMissionResult;
+	public int GetSideMission1Result() {
+		return sideMissionResult1;
 	}
 
-	public void SetSideMissionResult(int missionResult) {
-		sideMissionResult = missionResult;
+	public int GetSideMission2Result() {
+		return sideMissionResult1;
+	}
+
+	public int GetSideMission3Result() {
+		return sideMissionResult1;
+	}
+
+	public void SetSideMissionResult(int mission, int missionResult) {
+		if (mission == 1) {
+			sideMissionResult1 = missionResult;
+		} else if (mission == 2) {
+			sideMissionResult2 = missionResult;
+		} else if (mission == 3) {
+			sideMissionResult3 = missionResult;
+		}
 	}
 }

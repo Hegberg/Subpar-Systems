@@ -61,13 +61,13 @@ public class SideMissionScript : MonoBehaviour {
 		int sideMissionResult;
 		if (GameControlScript.control.GetLevel () == 1) {
 			sideMissionResult = runSideMission1Calculation ();
-			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+			GameControlScript.control.SetSideMissionResult (1, sideMissionResult);
 		} else if (GameControlScript.control.GetLevel () == 2) {
 			sideMissionResult = runSideMission1Calculation ();
-			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+			GameControlScript.control.SetSideMissionResult (2, sideMissionResult);
 		} else if (GameControlScript.control.GetLevel () == 3) {
 			sideMissionResult = runSideMission1Calculation ();
-			GameControlScript.control.SetSideMissionResult (sideMissionResult);
+			GameControlScript.control.SetSideMissionResult (3, sideMissionResult);
 		}
        
     }

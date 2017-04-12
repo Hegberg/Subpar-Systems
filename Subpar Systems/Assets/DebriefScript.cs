@@ -19,7 +19,7 @@ public class DebriefScript : MonoBehaviour {
 
         if (missonlevel == 1)
         {
-			int sideMissionSuccess = GameControlScript.control.GetSideMissionResult ();
+			int sideMissionSuccess = GameControlScript.control.GetSideMission1Result ();
 			if (sideMissionSuccess == 1)
             {
                 //sideMission = "Side mission passed.";
