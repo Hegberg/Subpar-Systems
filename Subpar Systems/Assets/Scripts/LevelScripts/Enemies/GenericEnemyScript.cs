@@ -14,6 +14,8 @@ public class GenericEnemyScript : MonoBehaviour {
 	protected bool Detected = false;
 	protected bool isSelected = false;
 
+	public GUIStyle guiStyle;
+
 
     // Use this for initialization
     void Start () {
@@ -27,8 +29,10 @@ public class GenericEnemyScript : MonoBehaviour {
     void OnGUI()
     {
         Vector2 targetPos;
+		guiStyle.fontSize = (int)(250 / GameControlScript.control.GetCameraZoom ());
         targetPos = Camera.main.WorldToScreenPoint(transform.position);
-        GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20), hp + "/" + maxHP);
+		GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 600 / GameControlScript.control.GetCameraZoom(), 
+			200 / GameControlScript.control.GetCameraZoom()), hp + "/" + maxHP, guiStyle);
     }
 
 	void OnMouseOver()

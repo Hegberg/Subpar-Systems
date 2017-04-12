@@ -48,6 +48,8 @@ public class GameControlScript : MonoBehaviour {
     private int selectedCharacters = 0;
     private int selectedSideMissionCharacters = 0;
 
+	private float cameraZoom = 0;
+
     //level progression, auto increment on victory
     private int currentLevel = 1;
 
@@ -647,5 +649,13 @@ public class GameControlScript : MonoBehaviour {
 		} else if (mission == 3) {
 			sideMissionResult3 = missionResult;
 		}
+	}
+
+	public float GetCameraZoom() {
+		return cameraZoom;
+	}
+
+	public void SetCameraZoom(float newZoom) {
+		cameraZoom = newZoom;
 	}
 }
