@@ -6,10 +6,11 @@ public class TankEnemyScript : GenericEnemyScript {
 
 	// Use this for initialization
 	void Start () {
-		hp = 100;
-		attack = 30;
+		hp = 500;
+        maxHP = 500;
+        attack = 250;
 		movement = 2;
-		range = 2;
+		range = 1;
 	}
 	
 	// Update is called once per frame

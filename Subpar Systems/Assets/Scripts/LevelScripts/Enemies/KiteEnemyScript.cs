@@ -5,14 +5,22 @@ using UnityEngine;
 public class KiteEnemyScript : GenericEnemyScript {
 
     private bool didKite = false;
-
-	public void checkAttack()
+    void Start()
+    {
+        hp = 75;
+        maxHP = 75;
+        attack = 10;
+        movement = 4;
+        range = 4;
+    }
+    public void checkAttack()
 	{
 		didKite = false;
 		//Debug.Log ("dK: " + didKite);
 		Attack();
 		//Debug.Log ("dk Post: " + didKite);
 	}
+
 
 	public override void Move()
     {

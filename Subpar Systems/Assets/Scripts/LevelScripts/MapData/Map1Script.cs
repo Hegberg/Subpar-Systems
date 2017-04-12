@@ -82,7 +82,7 @@ public class Map1Script : MonoBehaviour
 
     //x, y, enemy type
     private int[] enemySpawn1 = { 3, 2, 2 };
-    private int[] enemySpawn2 = { 4, 3, 3 };
+    private int[] enemySpawn2 = { 4, 3, 2 };
 
     private int[] enemySpawn3 = { 3, 4, 1 };
     private int[] enemySpawn4 = { 0, 7, 0 };
@@ -94,16 +94,16 @@ public class Map1Script : MonoBehaviour
     private int[] enemySpawn9 = { 7, 9, 0 };
     private int[] enemySpawn10 = { 7, 11, 1 };
     private int[] enemySpawn11 = { 0, 12, 0 }; //Broken
-    private int[] enemySpawn12 = { 3, 17, 3 };
+    private int[] enemySpawn12 = { 3, 17, 2 };
     private int[] enemySpawn13 = { 3, 19, 0 };
     private int[] enemySpawn14 = { 7, 15, 2 };
     private int[] enemySpawn15 = { 7, 19, 0 };
 
     //LAST 4 ARE THE OBJECTIVE TARGETS
-    private int[] enemySpawn16 = { 9, 11, 0 };
-    private int[] enemySpawn17 = { 8, 13, 0 };
-    private int[] enemySpawn18 = { 9, 15, 0 };
-    private int[] enemySpawn19 = { 8, 17, 0 };
+    private int[] enemySpawn16 = { 9, 11, 3 };
+    private int[] enemySpawn17 = { 8, 13, 3 };
+    private int[] enemySpawn18 = { 9, 15, 3 };
+    private int[] enemySpawn19 = { 8, 17, 3 };
     // private int[] enemySpawn20 = { 0, 10, 0 };
 
     // //private int[] enemySpawn21 = { 0, 0, 0 };
@@ -130,7 +130,7 @@ public class Map1Script : MonoBehaviour
     private List<int[]> enemySpawnLocations = new List<int[]>();
 
 	private List<EnemySpawner> enemySpawners = new List<EnemySpawner>();
-
+    //NO SPAWNERS IN FIRST LEVEL
 	//Parameters are - position of spawn, maxSpawnCount, spawnRate(turns between each spawn), enemyType, turns to first spawn
 
 	//private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{6,0}, 1, 2 , 1, 2); 

@@ -143,5 +143,33 @@ public class SideMissionScript : MonoBehaviour {
             }
         }
     }
+    public int runSideMission2Calculation()
+    {
+        //A signal fire can be seen off in the distance. Send a team to investigate.
+        if (sideCharacters.Count == 0)
+        {
+            //Run mission failed code since no one was sent.
+            return 0;
+        }
+        //if murphy sent, fail the mission with unique text.
+
+        //
+        return 1;
+
+    }
+    public int runSideMission3Calculation()
+    {
+        //Lure away enemy Ultras
+        if (sideCharacters.Count == 0)
+        {
+            //Run mission failed code since no one was sent.
+            //Debug.Log("No one detected sent on the mission.");
+
+            return 0;
+        }
+        //Patriotism trait gives bonuses.
+
+        return 1;
+    }
 }
 
