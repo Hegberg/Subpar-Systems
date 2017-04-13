@@ -23,12 +23,12 @@ public class DebriefScript : MonoBehaviour {
 			if (sideMissionSuccess == 1)
             {
                 //sideMission = "Side mission passed.";
-                mission.text = "The Monster nests have been eliminated, and side mission passed. Mission Success.";
+                mission.text = "The Monsters have been eliminated, and the Tank Crew was successfully retrieved. Mission Success.";
             }
             else
             {
                 //sideMission = "Side mission failed though.";
-                mission.text = "The Monster nests have been eliminated, but side mission failed. Mission Success.";
+                mission.text = "The Monsters have been eliminated, but the tank crew was not able to be rescued. Mission Success.";
             }
             /*
             if (Random.Range(0, 2) >= 1) { 
@@ -43,8 +43,21 @@ public class DebriefScript : MonoBehaviour {
         }
         if (missonlevel == 2)
         {
-            mission.text = "The tank was secured. Mission Success. ";
-        }
+            int sideMissionSuccess = GameControlScript.control.GetSideMission2Result();
+            if (sideMissionSuccess == 1)
+            {
+                mission.text = "The tank was secured. The smoke signals were from Canuckistan soldiers. They were sympathetic to our cause, and warned us about a plan to herd monsters through a recently opened portal. This portal appeared next to a major population center. You must stop this.";
+            }
+            if (sideMissionSuccess == 0)
+            {
+                mission.text = "The tank was secured. There was signs of Canuckistan soldiers, however when your soldiers arrived they could not find anything. Mission Success.";
+
+            }
+            if (sideMissionSuccess == -1)
+            {
+                mission.text = "The tank was secured. The smoke signals were from Canuckistan soldiers. George Murphy found the Canuckistan soldiers, and swiftly elimanted them. Mission Success.";
+            }
+        } 
         if (missonlevel == 3)
         {
             mission.text = "Our forces have survived the attack. Mission Success";
