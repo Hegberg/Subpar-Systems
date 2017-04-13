@@ -53,9 +53,9 @@ public class GameControlScript : MonoBehaviour {
     //level progression, auto increment on victory
     private int currentLevel = 1;
 
-	private int sideMissionResult1;
-	private int sideMissionResult2;
-	private int sideMissionResult3;
+	private int sideMissionResult1 = 0;
+	private int sideMissionResult2 = 0;
+	private int sideMissionResult3 = 0;
 
     private int testLevel = 0;
     private int firstLevel = 1;
@@ -521,6 +521,8 @@ public class GameControlScript : MonoBehaviour {
         sideCharacterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
+		currentLevel = 1;
+		deadCharacterList.Clear ();
 		SceneManager.LoadScene ("Game Over");
     }
 
