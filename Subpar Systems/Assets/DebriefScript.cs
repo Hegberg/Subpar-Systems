@@ -23,7 +23,7 @@ public class DebriefScript : MonoBehaviour {
 			if (sideMissionSuccess == 1)
             {
                 //sideMission = "Side mission passed.";
-                mission.text = "The Monsters have been eliminated, and the Tank Crew was successfully retrieved. Mission Success.";
+                mission.text = "The Monsters have been eliminated, and the Tank Crew was successfully retrieved. You will be able to control a tank in the next mission. Mission Success. ";
             }
             else
             {

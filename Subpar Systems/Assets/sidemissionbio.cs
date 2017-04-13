@@ -15,15 +15,15 @@ public class sidemissionbio : MonoBehaviour {
         //should be changed to getlevel
         if (missonlevel == 1)
         {
-            mission.text = "An imperial tank was lost in the latest of several skirmishes with the indigenous populations. The tank’s crew escaped, but is currently holed up in a cave and will require extraction.";
+            mission.text = "An imperial tank was damaged in the latest of several skirmishes with the indigenous populations. The tank’s crew escaped, but is currently holed up in a cave and will require immediate extraction. Time is of the essence.";
         }
         if (missonlevel == 2)
         {
-            mission.text = "We have also discerned the location of one Sir Frederick McGaffin, a veritable genius in the world of flora and fauna. He may be able to give us insight into the region and where we should next focus our attacks. A small team could extract him from his research base and bring him here for questioning.";
+            mission.text = "Several smoke signals have been spotted by our scouts. Send a squad or two to investigate.";
         }
         if (missonlevel == 3)
         {
-            mission.text = "The enemy force coming toward the front gate is huge, though it is nowhere near as big as our reports indicated. It can be assumed those forces will be attacking the base from another direction. We should station some officers on our perimeter to hold off alternative enemy attacks. ";
+            mission.text = "A number of Ultra’s and  have been spotted in the backlines of the enemy forces. We should send a strike team to attempt to lure these ultra's away, otherwise we may have to face them all at once. ";
         }
     }
     // Update is called once per frame

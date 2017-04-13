@@ -14,15 +14,15 @@ public class MainMissionBrief : MonoBehaviour {
 //should be changed to getlevel
         if (missonlevel == 1)
         {
-            mission.text = "Sir, I understand you just arrived but we have an issue that requires your immediate attention. Nests of Swarmers and Slimes have been spotted on the south-east corner of the Forest sector.";
+            mission.text = "Sir, I understand you just arrived but we have an issue that requires your immediate attention. Nests of Swarmers and Slimes have been spotted on the south-east corner of the Forest sector. It is imperative that we eliminate all hostile life in the location so we can begin the extraction of mineral resources from the area. ";
         }
         if (missonlevel == 2)
         {
-            mission.text = "The extraction zone has been cleared of hostiles, however we will need all the firepower we can acquire to complete our objectives. The recently lost tank would provide us with excellent artillery support, and reports have shown that the tank hasn’t moved from where it was first lost. We must escort an engineering team to the tank and hold its position until they fix it.";
+            mission.text = "Our tanks are worth too much to be left behind, and reports have shown that the damage the tank recieved has only immobilized it. Send a team to protect the tank and kill all creatures nearby.";
         }
         if (missonlevel == 3)
         {
-            mission.text = "Enemy forces have engaged the extraction zone. We must hold the main gate while we wait for the portal to open. ";
+            mission.text = "A large swarm of monsters is charging towards a portal nearby. We must prevent any monsters from getting through. ";
         }
     }
 	
