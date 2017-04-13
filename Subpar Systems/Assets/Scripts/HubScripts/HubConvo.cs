@@ -216,6 +216,29 @@ public class HubConvo : MonoBehaviour
             convo[1].GetComponentInChildren<Image>().enabled = true;
             convo[2].GetComponentInChildren<Image>().enabled = false;
         }
+        if (scene == "Level3E")
+        {
+            Debug.Log("IAMHERE");
+            GameObject.FindWithTag("Level3E").GetComponent<Button>().enabled = false;
+            GameObject.FindWithTag("Level3E").GetComponent<Image>().enabled = false;
+            var UI1 = GameObject.FindWithTag("MissionHubConvo2");
+            var convo1 = GameObject.FindWithTag("Convo2");
+            theSourceFile = new FileInfo("AnnieShaken.txt");
+            reader = theSourceFile.OpenText();
+            go = convo[1].GetComponent<Button>();
+            Sprite sprite;
+            sprite = GameObject.FindWithTag("Annie").GetComponent<Image>().sprite;
+            convo[0].GetComponent<Image>().sprite = sprite;
+            sprite = GameObject.FindWithTag("Terry").GetComponent<Image>().sprite;
+            convo[1].GetComponent<Image>().sprite = sprite;
+            go1 = convo[2].GetComponent<Button>();
+            UI1.GetComponent<Image>().enabled = false;
+            convo1.GetComponent<Text>().enabled = false;
+            go2 = UI1.GetComponent<Button>();
+            convo[0].GetComponentInChildren<Image>().enabled = false;
+            convo[1].GetComponentInChildren<Image>().enabled = true;
+            convo[2].GetComponentInChildren<Image>().enabled = false;
+        }
         go.onClick.AddListener(clicked);
         go2.onClick.AddListener(clicked);
         go1.onClick.AddListener(clicked);
