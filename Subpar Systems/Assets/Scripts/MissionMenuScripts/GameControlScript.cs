@@ -63,9 +63,9 @@ public class GameControlScript : MonoBehaviour {
 	private int surviveToThisTurn = 25;
 
 	private string level1Objective = "Defeat all the enemies";
-	private string level2Objective = "Survive ";
-	private string level2ObjectiveEnd = " turns";
-	private string level3Objective = "Defend the tank";
+	private string level3Objective = "Survive ";
+	private string level3ObjectiveEnd = " turns";
+	private string level2Objective = "Defend the tank";
 
     //public Transform characterParent;
 
@@ -167,7 +167,7 @@ public class GameControlScript : MonoBehaviour {
 			enemies.Add (fastMonster.gameObject);
 			enemies.Add (tankMonster.gameObject);
 
-			level2Objective = level2Objective + surviveToThisTurn.ToString () + level2ObjectiveEnd;
+			level3Objective = level3Objective + surviveToThisTurn.ToString () + level3ObjectiveEnd;
 
             //initialize chosen list
             for (int i = 0; i < characters.Count; ++i)
