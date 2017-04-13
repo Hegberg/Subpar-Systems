@@ -675,7 +675,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0837501, y: 1.0837501, z: 1.0837501}
   m_Children: []
-  m_Father: {fileID: 1786952180}
+  m_Father: {fileID: 1447084357}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3325012, y: 0.080000006}
@@ -798,7 +798,7 @@ RectTransform:
   m_LocalScale: {x: 1.0836222, y: 1.0836222, z: 1.0836222}
   m_Children: []
   m_Father: {fileID: 1786952180}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3325012, y: 0.080000006}
   m_AnchorMax: {x: 0.68875897, y: 0.5}
@@ -920,7 +920,7 @@ RectTransform:
   m_LocalScale: {x: 1.0836222, y: 1.0836222, z: 1.0836222}
   m_Children: []
   m_Father: {fileID: 1786952180}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3325012, y: 0.080000006}
   m_AnchorMax: {x: 0.68875897, y: 0.5}
@@ -998,7 +998,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 21c612f969b659e47b14a1b8c3cb2755, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 80e659884103baa40941a1058284a968, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2741,6 +2741,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.92277426, y: 0.92277426, z: 0.92277426}
   m_Children:
+  - {fileID: 347624918}
   - {fileID: 1988433559}
   m_Father: {fileID: 783616343}
   m_RootOrder: 5
@@ -3091,7 +3092,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.92277426, y: 0.92277426, z: 0.92277426}
   m_Children:
-  - {fileID: 347624918}
   - {fileID: 361943564}
   - {fileID: 1948708940}
   - {fileID: 370207566}
@@ -3268,7 +3268,7 @@ RectTransform:
   m_LocalScale: {x: 1.0836222, y: 1.0836222, z: 1.0836222}
   m_Children: []
   m_Father: {fileID: 1786952180}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3325012, y: 0.080000006}
   m_AnchorMax: {x: 0.68875897, y: 0.5}
@@ -3458,7 +3458,7 @@ RectTransform:
   m_LocalScale: {x: 1.0836222, y: 1.0836222, z: 1.0836222}
   m_Children: []
   m_Father: {fileID: 1447084357}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3325012, y: 0.080000006}
   m_AnchorMax: {x: 0.68875897, y: 0.5}
