@@ -15,6 +15,7 @@ public class GenericEnemyScript : MonoBehaviour {
 	protected bool isSelected = false;
 	private int shakeAmount = 10;
 	protected Color colour = Color.white;
+	protected int hpShown;
 
 	public GUIStyle guiStyle;
 
@@ -52,8 +53,9 @@ public class GenericEnemyScript : MonoBehaviour {
         Vector2 targetPos;
 		guiStyle.fontSize = (int)(250 / GameControlScript.control.GetCameraZoom ());
         targetPos = Camera.main.WorldToScreenPoint(transform.position);
+		hpShown = (int)hp;
 		GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 600 / GameControlScript.control.GetCameraZoom(), 
-			200 / GameControlScript.control.GetCameraZoom()), hp + "/" + maxHP, guiStyle);
+			200 / GameControlScript.control.GetCameraZoom()), hpShown + "/" + maxHP, guiStyle);
     }
 
 	void OnMouseOver()
