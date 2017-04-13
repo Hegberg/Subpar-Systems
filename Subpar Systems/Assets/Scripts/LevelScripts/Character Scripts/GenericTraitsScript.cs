@@ -286,7 +286,7 @@ public class LackOfHumour: GenericTraitsScript {
 }
 
 public class DistractingThoughts: GenericTraitsScript {
-	//less damage with Devi Devai
+	//less range with Devi Devai
 	public override void InitializeValues ()
 	{
 		name = "Distracting Thoughts";
@@ -297,12 +297,12 @@ public class DistractingThoughts: GenericTraitsScript {
 	{
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Devi Devai") {
-				attackModifier = 0.5f;
+				rangeModifier = 0.75f;
 				break;
 			}
 		}
 
-		return attackModifier;
+		return rangeModifier;
 	}
 }
 
@@ -407,8 +407,9 @@ public class CanuckistanEquipment : GenericTraitsScript
 	{
 		name = "CanuckistanSuperiorEquipment";
 		positionInSpriteUIList = 12;
-		rangeModifier = 2f;
+		rangeModifier = 1.25f;
 		movementModifier = 0.5f;
+        
 	}
 }
 
@@ -780,7 +781,7 @@ public class MedicalProffesional : GenericTraitsScript
 	{
 		name = "MedicalProffesional";
 		positionInSpriteUIList = 32;
-		defenseModifier = 10f;
+		defenseModifier = 5f;
 	}
 }
 
