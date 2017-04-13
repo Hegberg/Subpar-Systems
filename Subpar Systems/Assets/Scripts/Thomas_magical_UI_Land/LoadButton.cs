@@ -35,7 +35,7 @@ public class LoadButton : MonoBehaviour {
 
     void OnMouseDown()
     {
-        //load level here
+        SceneManager.LoadScene("Credits");
     }
 }
 
