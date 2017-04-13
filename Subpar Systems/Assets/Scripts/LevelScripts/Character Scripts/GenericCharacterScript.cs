@@ -229,6 +229,13 @@ public class GenericCharacterScript : MonoBehaviour {
 		//GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
 		colour.a = 1f;
 		GetComponent<SpriteRenderer> ().color = colour;
+
+		for (int i = 0; i < currentTraits.Count; ++i)
+		{
+			if (currentTraits [i].GetName () == "RecklessAbandon") {
+				hp = hp * 0.75;
+			}
+		}
     }
 
     public void RemoveActions()

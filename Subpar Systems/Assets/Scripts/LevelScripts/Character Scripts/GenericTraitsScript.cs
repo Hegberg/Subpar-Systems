@@ -783,3 +783,14 @@ public class MedicalProffesional : GenericTraitsScript
 		defenseModifier = 10f;
 	}
 }
+
+public class RecklessAbandon : GenericTraitsScript
+{
+	//decrease health 25%, increase damage
+	public override void InitializeValues ()
+	{
+		name = "MedicalProffesional";
+		positionInSpriteUIList = 33;
+		attackModifier = 1.5f;
+	}
+}
