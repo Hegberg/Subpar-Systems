@@ -520,6 +520,8 @@ public class GameControlScript : MonoBehaviour {
         sideCharacterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
+		currentLevel = 1;
+		deadCharacterList.Clear ();
 		SceneManager.LoadScene ("Game Over");
     }
 

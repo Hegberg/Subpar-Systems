@@ -750,3 +750,25 @@ public class ImAWarHeroDammit : GenericTraitsScript
 		movementModifier = 0.75f;
 	}
 }
+
+public class IveKilledSeveralBoysJustLikeYou : GenericTraitsScript
+{
+	//debff if with sokolov
+	public override void InitializeValues ()
+	{
+		name = "IveKilledSeveralBoysJustLikeYou";
+		positionInSpriteUIList = 30;
+	}
+
+	public override float ModifyAttack ()
+	{
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Yuri Sokolov") {
+				attackModifier = 0.5f;
+				break;
+			}
+		}
+
+		return attackModifier;
+	}
+}
