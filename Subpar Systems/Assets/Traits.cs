@@ -207,6 +207,18 @@ public class Traits : MonoBehaviour {
                 {
                     text += "Something To Live For: has a greater purpose in life than the military that he feels he needs to live for" + "\r\n" + "\r\n";
                 }
+                else if (trait == "ImAWarHeroDammit")
+                {
+                    text += "Im A War Hero Dammit: A squad is only as fast as it’s slowest member, and Murphy isn’t getting any younger." + "\r\n" + "\r\n";
+                }
+                else if (trait == "IveKilledSeveralBoysJustLikeYou")
+                {
+                    text += "Ive Killed Several Boys Just Like You: Having fought a war against the Canuckistans, Murphy might have a few problems working with one." + "\r\n" + "\r\n";
+                }
+                else if (trait == "MedicalProffesional")
+                {
+                    text += "Medical Proffesional: While she may no longer be a medical professional, she still have enough knowledge that can save a soldier." + "\r\n" + "\r\n";
+                }
                 else
                 {
                     text += skills[i] + "\r\n" + "\r\n";
