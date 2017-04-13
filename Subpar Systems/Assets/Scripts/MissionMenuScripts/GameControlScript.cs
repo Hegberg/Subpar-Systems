@@ -107,12 +107,12 @@ public class GameControlScript : MonoBehaviour {
 
     //Character Lt-Col George Murphy
     private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript>
-    { new GrenedierTrait(), new Patriotism() };
+    { new GrenedierTrait(), new Patriotism(), new IveKilledSeveralBoysJustLikeYou(), new ImAWarHeroDammit() };
 
 
     //character F32, Annie
     private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript>
-    {new AssaultTrait(), new MarriedLife(), new AdrenalineJunky()  };
+    {new AssaultTrait(), new MarriedLife(), new AdrenalineJunky(), new MedicalProffesional()  };
 
     //character Jai Ono, the beserker.
 	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript>
@@ -129,7 +129,7 @@ public class GameControlScript : MonoBehaviour {
     //Character Devi Devai 
     //maybe give her running tally? Tali has too many traits.
     private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript>
-    { new MachineGunTrait(), new HandsOffLeaderShip(),  };
+    { new MachineGunTrait(), new HandsOffLeaderShip()  };
 
 	//Character Tank.
 	private List<GenericTraitsScript> tankTraits = new List<GenericTraitsScript>
