@@ -49,12 +49,12 @@ public class HubController : MonoBehaviour
             {
                 var scene = GameObject.FindWithTag("Level 3");
                 scene.GetComponent<Canvas>().enabled = true;
-                if (deadpeoples.Contains("Lt-Col George Murphy") || deadpeoples.Contains("Roy Legaul"))
+                if (deadpeoples.Contains("Lt-Col George Murphy") || deadpeoples.Contains("Roy LeGaul"))
                 {
                     GameObject.FindWithTag("Level3A").GetComponent<Button>().enabled = false;
                     GameObject.FindWithTag("Level3A").GetComponent<Image>().enabled = false;
                 }
-                if (deadpeoples.Contains("Yuri Sokolov") || deadpeoples.Contains("Roy Legaul"))
+                if (deadpeoples.Contains("Yuri Sokolov") || deadpeoples.Contains("Roy LeGaul"))
                 {
                     GameObject.FindWithTag("Level3B").GetComponent<Button>().enabled = false;
                     GameObject.FindWithTag("Level3B").GetComponent<Image>().enabled = false;
