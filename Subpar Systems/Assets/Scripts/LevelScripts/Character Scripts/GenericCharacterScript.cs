@@ -284,9 +284,10 @@ public class GenericCharacterScript : MonoBehaviour {
     {
 		//only take damge if defense doesn't override health lost
 		float damageTaken = hpLost - GetDefense();
-		if (damageTaken > 0) {
-			hp -= hpLost;
+		if (damageTaken < 5) {
+			damageTaken = 5;
 		}
+		hp -= damageTaken;
 
 		bool stopFromDieing = false;
 		bool check = false;
