@@ -81,15 +81,13 @@ public class Map3Script : MonoBehaviour
 
     //x, y, enemy type
     private int[] enemySpawn1 = { 3, 10, 0 };
-    private int[] enemySpawn2 = { 3, 11, 0 };
-    private int[] enemySpawn3 = { 4, 7, 0 };
+    private int[] enemySpawn2 = { 3, 11, 1 };
+    private int[] enemySpawn3 = { 4, 7, 1 };
     private int[] enemySpawn4 = { 4, 6, 0 };
-    private int[] enemySpawn5 = { 5, 6, 0 };
-    private int[] enemySpawn6 = { 5, 12, 0 };
-    private int[] enemySpawn7 = { 6, 11, 0 };
-    private int[] enemySpawn8 = { 4, 14, 0 };
-    private int[] enemySpawn9 = { 6, 15, 0 };
-    private int[] enemySpawn10 = { 5, 8, 0 };
+    private int[] enemySpawn5 = { 5, 6, 1 };
+    private int[] enemySpawn6 = { 5, 12, 1 };
+    private int[] enemySpawn7 = { 4, 14, 1 };
+    private int[] enemySpawn8 = { 5, 8, 0 };
     // private int[] enemySpawn11 = { 0, 1, 0 }; //Broken
     // private int[] enemySpawn12 = { 0, 2, 0 };
     // private int[] enemySpawn13 = { 0, 3, 0 };
@@ -127,8 +125,25 @@ public class Map3Script : MonoBehaviour
     private List<int[]> enemySpawnLocations = new List<int[]>();
 
 	private List<EnemySpawner> enemySpawners = new List<EnemySpawner>();
+    //Parameters are - position of spawn, maxSpawnCount, spawnRate(turns between each spawn), enemyType, turns to first spawn
 
-    private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{7,15}, 1, 2 , 3, 2); 
+    //y's have a max x of 6, 
+
+    //Avaialbe y's, 7 8 9 10 11 12 13 14 15 16 17 18 19
+    private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{6,8}, 10, 2 , 1, 1);
+    //private EnemySpawner enemySpawner2 = new EnemySpawner(new List<int> { 6, 9 }, 10, 2, 2, 2);
+    private EnemySpawner enemySpawner3 = new EnemySpawner(new List<int> { 6, 10 }, 10, 2, 1, 0);
+    //private EnemySpawner enemySpawner4 = new EnemySpawner(new List<int> { 6, 11 }, 10, 2, 2, 1);
+    private EnemySpawner enemySpawner5 = new EnemySpawner(new List<int> { 6, 12 }, 10, 2, 3, 0);
+    //private EnemySpawner enemySpawner6 = new EnemySpawner(new List<int> { 6, 13 }, 10, 2, 1, 1);
+    private EnemySpawner enemySpawner7 = new EnemySpawner(new List<int> { 6, 14 }, 10, 3, 2, 2);
+    //private EnemySpawner enemySpawner8 = new EnemySpawner(new List<int> { 6, 15 }, 10, 2, 1, 1);
+    private EnemySpawner enemySpawner9 = new EnemySpawner(new List<int> { 6, 16 }, 10, 3, 2, 0);
+    //private EnemySpawner enemySpawner10 = new EnemySpawner(new List<int> { 6, 17 }, 10, 2, 1, 2);
+
+    //ULTRA SPAWNS. DISABLE IF SIDE MISSION PASSED
+    private EnemySpawner enemySpawner11 = new EnemySpawner(new List<int> { 6, 18 }, 1, 2, 3, 2);
+    private EnemySpawner enemySpawner12 = new EnemySpawner(new List<int> { 6, 19 }, 1, 2, 3, 2);
 
     // Use this for initialization
     void Start()
@@ -146,8 +161,7 @@ public class Map3Script : MonoBehaviour
         enemySpawnLocations.Add(enemySpawn6);
         enemySpawnLocations.Add(enemySpawn7);
         enemySpawnLocations.Add(enemySpawn8);
-        enemySpawnLocations.Add(enemySpawn9);
-        enemySpawnLocations.Add(enemySpawn10);
+
         //enemySpawnLocations.Add(enemySpawn11);
         //enemySpawnLocations.Add(enemySpawn12);
         //enemySpawnLocations.Add(enemySpawn13);
@@ -181,6 +195,17 @@ public class Map3Script : MonoBehaviour
         //enemySpawnLocations.Add(enemySpawn40);
 
         enemySpawners.Add(enemySpawner1);
+        //enemySpawners.Add(enemySpawner2);
+        enemySpawners.Add(enemySpawner3);
+        //enemySpawners.Add(enemySpawner4);
+        enemySpawners.Add(enemySpawner5);
+        //enemySpawners.Add(enemySpawner6);
+        enemySpawners.Add(enemySpawner7);
+        //enemySpawners.Add(enemySpawner8);
+        enemySpawners.Add(enemySpawner9);
+        //enemySpawners.Add(enemySpawner10);
+        enemySpawners.Add(enemySpawner11);
+        //enemySpawners.Add(enemySpawner12);
 
         StartCoroutine(MapGenerateWait());
         //LevelControlScript.control.CreateMap (map, playerSpawnLocations, enemySpawnLocations);
