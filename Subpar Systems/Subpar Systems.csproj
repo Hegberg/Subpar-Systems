@@ -126,6 +126,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\TileScripts\GenericWaterScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TileScripts\TileScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TurnControlScript.cs" />
+    <Compile Include="Assets\Scripts\MainMenuScripts\BackButton.cs" />
     <Compile Include="Assets\Scripts\MainMenuScripts\ExitButtonScript.cs" />
     <Compile Include="Assets\Scripts\MainMenuScripts\MainMenuButtonScript.cs" />
     <Compile Include="Assets\Scripts\MainMenuScripts\StartButtonScript.cs" />

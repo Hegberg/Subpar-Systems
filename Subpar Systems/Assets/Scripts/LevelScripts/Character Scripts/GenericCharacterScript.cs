@@ -111,6 +111,7 @@ public class GenericCharacterScript : MonoBehaviour {
 
 	public float GetAttack()
 	{
+        //Debug.Log("GetAttack");
 		float attackModifier = 1.0f;
 		bool angerIssues = false;
 		for (int i = 0; i < currentTraits.Count; ++i) {
@@ -214,7 +215,7 @@ public class GenericCharacterScript : MonoBehaviour {
 		for (int i = 0; i < currentTraits.Count; ++i) {
 			//add modifiers together so that the defense modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
 			attacks += currentTraits[i].ModifyNumOfAttacks() - 1;
-		}
+        }
 		//reset amount of turns attacked in a row if did not attack
 		if (attacksLeft == (int)attacks) {
 			for (int i = 0; i < currentTraits.Count; ++i) {
@@ -254,9 +255,10 @@ public class GenericCharacterScript : MonoBehaviour {
 	public void PlayerAttacked(int numOfTimesAttacked)
     {
 		attacksLeft -= numOfTimesAttacked;
-		if (attacksLeft <= 0) {
-			TurnControlScript.control.UnHighlightEnemyTile ();
-		}
+        if (attacksLeft <= 0)
+        {
+            TurnControlScript.control.UnHighlightEnemyTile();
+        }
 		OutOfActions ();
     }
 

@@ -154,6 +154,12 @@ public class GenericEnemyScript : MonoBehaviour {
 							//need this repeated twice since if this is before the line above, the line above will malfunction, 
 							//but if not in else than code malfunction
 							TurnControlScript.control.SetEnemySelected(null);
+                            //if has attacks left and movement left, and ground needs to be rechecked, do rehighlighting
+                            if (TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetNumOfAttacks() > 0 &&
+                                !TurnControlScript.control.GetPlayerSelected().GetComponent<GenericCharacterScript>().GetHasMoved())
+                            {
+                                TurnControlScript.control.SetPlayerSelected(TurnControlScript.control.GetPlayerSelected());
+                            }
 
 							Destroy (gameObject);
 						} else {

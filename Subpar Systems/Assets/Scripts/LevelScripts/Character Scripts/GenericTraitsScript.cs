@@ -164,6 +164,7 @@ public class SchoolBonds : GenericTraitsScript {
 	{
 		bool ashe = false;
 		bool sabrina = false;
+        attackModifier = 1.0f;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Ashe") {
 				ashe = true;
@@ -175,6 +176,7 @@ public class SchoolBonds : GenericTraitsScript {
 
 		if (ashe && sabrina) {
 			attackModifier = 1.5f;
+            Debug.Log("SchoolBonds attack activated " + attackModifier);
 		}
 
 		return attackModifier;
@@ -184,6 +186,7 @@ public class SchoolBonds : GenericTraitsScript {
 	{
 		bool ashe = false;
 		bool sabrina = false;
+        defenseModifier = 1.0f;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Ashe") {
 				ashe = true;
@@ -195,7 +198,8 @@ public class SchoolBonds : GenericTraitsScript {
 
 		if (ashe && sabrina) {
 			defenseModifier = 1.5f;
-		}
+            Debug.Log("SchoolBonds defense activated " + defenseModifier);
+        }
 
 		return defenseModifier;
 	}
@@ -215,6 +219,7 @@ public class PersonalGrudges: GenericTraitsScript {
 	{
 		bool taliyah = false;
 		bool geoff = false;
+        attackModifier = 1.0f;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Taliyah") {
 				taliyah = true;
@@ -226,7 +231,8 @@ public class PersonalGrudges: GenericTraitsScript {
 
 		if (taliyah && geoff) {
 			attackModifier = 0.5f;
-		}
+            Debug.Log("PersonalGrudges attack activated " + attackModifier);
+        }
 
 		return attackModifier;
 	}
@@ -235,6 +241,7 @@ public class PersonalGrudges: GenericTraitsScript {
 	{
 		bool taliyah = false;
 		bool geoff = false;
+        defenseModifier = 1.0f;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Taliyah") {
 				taliyah = true;
@@ -246,7 +253,8 @@ public class PersonalGrudges: GenericTraitsScript {
 
 		if (taliyah && geoff) {
 			defenseModifier = 0.5f;
-		}
+            Debug.Log("PersonalGrudges defense activated " + defenseModifier);
+        }
 
 		return defenseModifier;
 	}
@@ -262,10 +270,12 @@ public class LackOfHumour: GenericTraitsScript {
 
 	public override float ModifyAttack ()
 	{
+        attackModifier = 1.0f;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Roy LeGaul") {
 				attackModifier = 0.5f;
-				break;
+                Debug.Log("LackOfHumour attack activated " + attackModifier);
+                break;
 			}
 		}
 
@@ -274,10 +284,12 @@ public class LackOfHumour: GenericTraitsScript {
 
 	public override float ModifyDefense ()
 	{
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+        defenseModifier = 1.0f;
+        for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Roy LeGaul") {
 				defenseModifier = 0.5f;
-				break;
+                Debug.Log("LackOfHumour defense activated " + defenseModifier);
+                break;
 			}
 		}
 
@@ -322,7 +334,8 @@ public class MarriedLife: GenericTraitsScript {
 	{
 		bool terry = false;
 		bool annie = false;
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+        attackModifier = 1.0f;
+        for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Terry Winters") {
 				terry = true;
 			}
@@ -333,7 +346,8 @@ public class MarriedLife: GenericTraitsScript {
 
 		if (terry && annie) {
 			attackModifier = 1.5f;
-		}
+            Debug.Log("MarriedLife attack activated " + attackModifier);
+        }
 
 		return attackModifier;
 	}
@@ -426,7 +440,8 @@ public class SleepDeprived : GenericTraitsScript
 	//50% chance to do half damage
 	public override float ModifyAttack ()
 	{
-		if (Random.Range (0, 1) < 0.5f) {
+        attackModifier = 1.0f;
+        if (Random.Range (0, 1) < 0.5f) {
 			attackModifier = 0.5f;
 		} else {
 			attackModifier = 1;
@@ -446,7 +461,8 @@ public class Patriotism : GenericTraitsScript
 
 	public override float ModifyAttack ()
 	{
-		if (GameControlScript.control.GetLevel() == 3) {
+        attackModifier = 1.0f;
+        if (GameControlScript.control.GetLevel() == 3) {
 			attackModifier = 2.0f;
 		} else {
 			attackModifier = 1;
@@ -513,8 +529,8 @@ public class Attachment : GenericTraitsScript
 			hpModifier = 1.0f;
 		} else if (terry && !devi || !terry && devi) {
 			hpModifier = 0.5f;
-			
-		}
+            Debug.Log("Attachment hp activated " + hpModifier);
+        }
 
 		return hpModifier;
 	}
@@ -523,7 +539,8 @@ public class Attachment : GenericTraitsScript
 	{
 		bool terry = false;
 		bool devi = false;
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+        defenseModifier = 1.0f;
+        for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Terry Winters") {
 				terry = true;
 			}
@@ -536,7 +553,8 @@ public class Attachment : GenericTraitsScript
 			defenseModifier = 1.0f;
 		} else if (terry && !devi || !terry && devi) {
 			defenseModifier = 0.5f;
-		}
+            Debug.Log("Attachment defense activated " + defenseModifier);
+        }
 
 		return defenseModifier;
 	}
@@ -597,7 +615,8 @@ public class TooAngryToFeelPain : GenericTraitsScript
 			if (GameControlScript.control.GetDeadCharacters()[i] == "Devi Devai")
 			{
 				defenseModifier = 2.0f;
-				break;
+                Debug.Log("TooAngryToFeelPain defense activated " + defenseModifier);
+                break;
 			}
 		}
 
@@ -631,7 +650,8 @@ public class Comradery : GenericTraitsScript
 	{
 		bool taliyah = false;
 		bool annie = false;
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+        attackModifier = 1.0f;
+        for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Taliyah") {
 				taliyah = true;
 			}
@@ -642,7 +662,8 @@ public class Comradery : GenericTraitsScript
 
 		if (taliyah && annie) {
 			attackModifier = 1.5f;
-		}
+            Debug.Log("Comradery attack activated " + attackModifier);
+        }
 
 		return attackModifier;
 	}
@@ -681,7 +702,8 @@ public class DrugAddiction : GenericTraitsScript
 	//33% chance to do half damage
 	public override float ModifyAttack ()
 	{
-		if (Random.Range (0, 1) < 0.33f) {
+        attackModifier = 1.0f;
+        if (Random.Range (0, 1) < 0.33f) {
 			attackModifier = 0.5f;
 		} else {
 			attackModifier = 1;
@@ -727,7 +749,8 @@ public class BrotherBonds : GenericTraitsScript
 	{
 		bool terry = false;
 		bool larry = false;
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+        attackModifier = 1.0f;
+        for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Terry Winters") {
 				terry = true;
 			}
@@ -738,7 +761,8 @@ public class BrotherBonds : GenericTraitsScript
 
 		if (terry && larry) {
 			attackModifier = 1.5f;
-		}
+            Debug.Log("BrotherBonds attack activated " + attackModifier);
+        }
 
 		return attackModifier;
 	}
@@ -766,10 +790,12 @@ public class IveKilledSeveralBoysJustLikeYou : GenericTraitsScript
 
 	public override float ModifyAttack ()
 	{
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+        attackModifier = 1.0f;
+        for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Yuri Sokolov") {
 				attackModifier = 0.5f;
-				break;
+                Debug.Log("IveKilledSeveralBoysJustLikeYou attack activated " + attackModifier);
+                break;
 			}
 		}
 
@@ -810,11 +836,13 @@ public class Flashbacks : GenericTraitsScript
 	public override float ModifyAttack ()
 	{
 		List<GameObject> listOfPeople = GameControlScript.control.GetInGameCharacterList ();
-		for (int i = 0; i < listOfPeople.Count; ++i) {
+        attackModifier = 1.0f;
+        for (int i = 0; i < listOfPeople.Count; ++i) {
 			for (int j = 0; j < listOfPeople[i].GetComponent<GenericCharacterScript> ().GetTraits().Count; ++j) {
 				if (listOfPeople[i].GetComponent<GenericCharacterScript> ().GetTraits()[j].GetName() == "Grenedier") {
 					attackModifier = 0.5f;
-					return attackModifier;
+                    Debug.Log("Flashbacks attack activated " + attackModifier);
+                    return attackModifier;
 				}
 			}
 		}

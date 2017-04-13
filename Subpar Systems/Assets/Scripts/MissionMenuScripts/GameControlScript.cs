@@ -87,7 +87,7 @@ public class GameControlScript : MonoBehaviour {
 
     //character M31, Terry
     private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new MarriedLife() };
+    {new RiflemanTrait(), new MarriedLife(), new BrotherBonds() };
 
     //character F29, Sabrina
     private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript>
@@ -124,7 +124,7 @@ public class GameControlScript : MonoBehaviour {
 
     //Character Larry Winters
     private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript>
-    { new MachineGunTrait(), new DistractingThoughts(), new Attachment(), new Hardworking()   };
+    { new MachineGunTrait(), new DistractingThoughts(), new Attachment(), new Hardworking(), new BrotherBonds()  };
 
     //Character Devi Devai 
     //maybe give her running tally? Tali has too many traits.
