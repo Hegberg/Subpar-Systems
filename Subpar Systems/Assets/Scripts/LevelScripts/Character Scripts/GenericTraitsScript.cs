@@ -89,7 +89,7 @@ public class GenericTraitsScript {
 public class AggressionTrait : GenericTraitsScript {
 
 	public override void InitializeValues() {
-		name = "Agresion";
+		name = "Aggresion";
 		attackModifier = 1.5f;
 	}
 }
@@ -115,7 +115,7 @@ public class MalnourishedTrait : GenericTraitsScript {
 public class MachineGunTrait : GenericTraitsScript {
 	public override void InitializeValues() {
 		name = "Machine Gun";
-		numberOfAttacksModifier = 2;
+		numberOfAttacksModifier += 1;
         attackModifier = 0.70f; //33 above
         defenseModifier = 1.0f; //not affected
         movementModifier = 0.5f; //2
@@ -291,9 +291,11 @@ public class DistractingThoughts: GenericTraitsScript {
 	{
 		name = "Distracting Thoughts";
 		positionInSpriteUIList = 6;
-	}
+        numberOfAttacksModifier -= 1;
 
-	public override float ModifyAttack ()
+    }
+
+    public override float ModifyRange ()
 	{
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Devi Devai") {
@@ -470,7 +472,7 @@ public class TankTrait : GenericTraitsScript
 		name = "Tank";
 		positionInSpriteUIList = 16;
 		movementModifier = 0;
-        hpModifier = 2.0f;
+        hpModifier = 4.0f;
 		rangeModifier = 1;
 	}
 }
@@ -494,26 +496,27 @@ public class Attachment : GenericTraitsScript
 		positionInSpriteUIList = 18;
 	}
 
-	public override float ModifyAttack()
+	public override float ModifyHP()
 	{
 		bool terry = false;
 		bool devi = false;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Terry Winters") {
+			if (GameControlScript.control.GetDeadCharacters () [i] == "Terry Winters") {
 				terry = true;
 			}
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Devi Devai") {
+			if (GameControlScript.control.GetDeadCharacters () [i] == "Devi Devai") {
 				devi = true;
 			}
 		}
 
 		if (terry && devi) {
-			attackModifier = 1.0f;
+			hpModifier = 1.0f;
 		} else if (terry && !devi || !terry && devi) {
-			attackModifier = 0.5f;
+			hpModifier = 0.5f;
+			
 		}
 
-		return attackModifier;
+		return hpModifier;
 	}
 
 	public override float ModifyDefense()

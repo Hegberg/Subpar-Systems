@@ -91,11 +91,11 @@ public class GameControlScript : MonoBehaviour {
 
     //character F29, Sabrina
     private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new SchoolBonds(), new BacklineCommanderTrait(), new SleepDeprived()};
+    {new RiflemanTrait(), new SchoolBonds(), new BacklineCommanderTrait(), new SleepDeprived(), new Flashbacks()};
 
     //Character Roy
     private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new FrontLineCommander(), new SSTraining()  };
+    {new RiflemanTrait(), new FrontLineCommander(), new SSTraining(), new RecklessAbandon()  };
 
     //character M40, Geoff
     private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript>
