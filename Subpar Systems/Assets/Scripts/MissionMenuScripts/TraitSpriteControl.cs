@@ -41,6 +41,7 @@ public class TraitSpriteControl : MonoBehaviour {
 	public Sprite brotherBonds;
 	public Sprite imAWarHeroDammit;
 	public Sprite iveKilledSeveralBoysJustLikeYou;
+	public Sprite medicalProfessional;
 
     public List<Sprite> TraitsInOrderOfCreatedClass;
 
@@ -94,6 +95,7 @@ public class TraitSpriteControl : MonoBehaviour {
 			TraitsInOrderOfCreatedClass.Add (brotherBonds);
 			TraitsInOrderOfCreatedClass.Add (imAWarHeroDammit);
 			TraitsInOrderOfCreatedClass.Add (iveKilledSeveralBoysJustLikeYou);
+			TraitsInOrderOfCreatedClass.Add (medicalProfessional);
 
 			//Debug.Log (TraitsInOrderOfCreatedClass.Count);
 		}

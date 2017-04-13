@@ -671,7 +671,7 @@ public class DrugAddiction : GenericTraitsScript
 	public override void InitializeValues ()
 	{
 		name = "DrugAddiction";
-		positionInSpriteUIList = 26;
+		positionInSpriteUIList = 27;
 	}
 
 	//33% chance to do half damage
@@ -704,7 +704,7 @@ public class SomethingToLiveFor : GenericTraitsScript
 	public override void InitializeValues ()
 	{
 		name = "SomethingToLiveFor";
-		positionInSpriteUIList = 27;
+		positionInSpriteUIList = 28;
 		safetyShield = true;
 	}
 }
@@ -716,7 +716,7 @@ public class BrotherBonds : GenericTraitsScript
 	public override void InitializeValues ()
 	{
 		name = "BrotherBonds";
-		positionInSpriteUIList = 28;
+		positionInSpriteUIList = 29;
 	}
 
 	public override float ModifyAttack ()
@@ -746,7 +746,7 @@ public class ImAWarHeroDammit : GenericTraitsScript
 	public override void InitializeValues ()
 	{
 		name = "ImAWarHeroDammit";
-		positionInSpriteUIList = 29;
+		positionInSpriteUIList = 30;
 		movementModifier = 0.75f;
 	}
 }
@@ -757,7 +757,7 @@ public class IveKilledSeveralBoysJustLikeYou : GenericTraitsScript
 	public override void InitializeValues ()
 	{
 		name = "IveKilledSeveralBoysJustLikeYou";
-		positionInSpriteUIList = 30;
+		positionInSpriteUIList = 31;
 	}
 
 	public override float ModifyAttack ()
@@ -770,5 +770,16 @@ public class IveKilledSeveralBoysJustLikeYou : GenericTraitsScript
 		}
 
 		return attackModifier;
+	}
+}
+
+public class MedicalProffesional : GenericTraitsScript
+{
+	//Higher defenese, heals for some damage taken
+	public override void InitializeValues ()
+	{
+		name = "MedicalProffesional";
+		positionInSpriteUIList = 32;
+		defenseModifier = 10f;
 	}
 }
