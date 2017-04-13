@@ -74,7 +74,7 @@ public class LevelControlScript : MonoBehaviour {
 			float tempX = 0;
 
 			List<GameObject> tiles = GameControlScript.control.GetTiles();
-			GameObject oneTile = tiles[mapData[tilePositionX][tilePositionY][0]];
+			GameObject oneTile = tiles[mapData[tilePositionY][tilePositionX][0]];
 
 			tileWidth = oneTile.GetComponent<Renderer>().bounds.size.x;
 			tileHeight = oneTile.GetComponent<Renderer>().bounds.size.y;

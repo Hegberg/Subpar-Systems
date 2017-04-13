@@ -10,8 +10,8 @@ public class Character5Script : GenericCharacterScript
     {
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(4);
         Name = "Geoff";
-        role = "Grenadier"; 
-        RefreshActions();
+        role = "Grenadier";
+        StartCoroutine(RefreshActions());
     }
 
     // Update is called once per frame

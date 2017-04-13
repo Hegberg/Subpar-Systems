@@ -11,7 +11,7 @@ public class Character8Script : GenericCharacterScript
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(7);
         Name = "Annie Winters";
         role = "Assault";
-        RefreshActions();
+        StartCoroutine(RefreshActions());
     }
 
     // Update is called once per frame

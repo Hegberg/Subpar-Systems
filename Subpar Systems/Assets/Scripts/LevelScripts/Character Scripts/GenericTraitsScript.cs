@@ -303,8 +303,23 @@ public class DistractingThoughts: GenericTraitsScript {
 	{
 		name = "Distracting Thoughts";
 		positionInSpriteUIList = 6;
-        numberOfAttacksModifier -= 1;
+        //numberOfAttacksModifier -= 1;
 
+    }
+
+    public override float ModifyNumOfAttacks()
+    {
+        numberOfAttacksModifier = 1;
+        for (int i = 0; i < GameControlScript.control.GetInGameCharacterList().Count; ++i)
+        {
+            if (GameControlScript.control.GetInGameCharacterList()[i].GetComponent<GenericCharacterScript>().GetName() == "Devi Devai")
+            {
+                numberOfAttacksModifier = 0.0f;
+                break;
+            }
+        }
+
+        return numberOfAttacksModifier;
     }
 
     public override float ModifyRange ()

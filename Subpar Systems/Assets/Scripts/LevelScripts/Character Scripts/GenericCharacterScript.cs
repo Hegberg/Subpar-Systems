@@ -199,9 +199,11 @@ public class GenericCharacterScript : MonoBehaviour {
 	}
 
 	//refresh actions and get rid of fade out
-    public void RefreshActions()
+    public IEnumerator RefreshActions()
     {
-		bool underControl = true;
+        yield return new WaitForSeconds(0.01f);
+
+        bool underControl = true;
 		for (int i = 0; i < currentTraits.Count; ++i) {
 			if (currentTraits [i].GetIfCrazy ()) {
 				underControl = false;
@@ -209,9 +211,9 @@ public class GenericCharacterScript : MonoBehaviour {
 			}
 		}
 
-		//make character not refresh if has gone mad
-
-		float attacks = 1;
+        //make character not refresh if has gone mad
+        //Debug.Log(GetName());
+        float attacks = 1;
 		for (int i = 0; i < currentTraits.Count; ++i) {
 			//add modifiers together so that the defense modifier such that the percetages are all added together, and the total percente over or under is the new attack modifier
 			attacks += currentTraits[i].ModifyNumOfAttacks() - 1;

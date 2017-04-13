@@ -9,7 +9,7 @@ public class Character1Script : GenericCharacterScript {
 		currentTraits = GameControlScript.control.GetTraitsOfACharacter (0);
 		Name = "Taliyah";
         role = "Riflewoman";
-        RefreshActions();
+        StartCoroutine(RefreshActions());
     }
 	
 	// Update is called once per frame

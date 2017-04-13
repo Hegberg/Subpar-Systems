@@ -145,6 +145,7 @@ public class Map3Script : MonoBehaviour
     private EnemySpawner enemySpawner11 = new EnemySpawner(new List<int> { 6, 18 }, 1, 2, 3, 2);
     private EnemySpawner enemySpawner12 = new EnemySpawner(new List<int> { 6, 19 }, 1, 2, 3, 2);
 
+
     // Use this for initialization
     void Start()
     {

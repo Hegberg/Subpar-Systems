@@ -17,8 +17,8 @@ public class TankScript : GenericCharacterScript {
 		if (GameControlScript.control.GetSideMission1Result () == 1) {
 			canAttack = true;
 		}
-		RefreshActions();
-	}
+        StartCoroutine(RefreshActions());
+    }
 
 	// Update is called once per frame
 	void Update() {
