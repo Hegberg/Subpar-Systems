@@ -22,7 +22,10 @@ public class GenericEnemyScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+		if (GameControlScript.control.GetLevel() == 3 )
+        {
+            DetectRadius = 100;
+        }
 	}
 	
 	// Update is called once per frame

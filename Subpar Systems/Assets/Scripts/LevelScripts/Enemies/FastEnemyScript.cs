@@ -11,7 +11,11 @@ public class FastEnemyScript : GenericEnemyScript {
 		attack = 25;
 		movement = 6;
 		range = 1;
-	}
+        if (GameControlScript.control.GetLevel() == 3)
+        {
+            DetectRadius = 100;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

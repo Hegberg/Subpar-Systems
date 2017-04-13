@@ -29,7 +29,7 @@ public class EnemySpawner {
 
 	public void SpawnEnemy() {
 		turnsToStartSpawning += 1;
-		Debug.Log (turnsToStartSpawning + " a " + startTurn + " b");
+		//Debug.Log (turnsToStartSpawning + " a " + startTurn + " b");
 		//if at start spawn turn, start trying to spawn
 		if (turnsToStartSpawning >= startTurn) {
 			turnsFromPreviousSpawn += 1;

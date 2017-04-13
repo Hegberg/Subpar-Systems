@@ -12,6 +12,10 @@ public class KiteEnemyScript : GenericEnemyScript {
         attack = 10;
         movement = 4;
         range = 4;
+        if (GameControlScript.control.GetLevel() == 3)
+        {
+            DetectRadius = 100;
+        }
     }
 
 	public override void ShowDamageOnEnemy() {

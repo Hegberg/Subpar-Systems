@@ -205,8 +205,12 @@ public class Map3Script : MonoBehaviour
         enemySpawners.Add(enemySpawner8);
         enemySpawners.Add(enemySpawner9);
         enemySpawners.Add(enemySpawner10);
-        enemySpawners.Add(enemySpawner11);
-        enemySpawners.Add(enemySpawner12);
+        //if side mission 2 failed, spawn these
+        if (GameControlScript.control.GetSideMission2Result() != 1)
+        {
+            enemySpawners.Add(enemySpawner11);
+            enemySpawners.Add(enemySpawner12);
+        }
 
         StartCoroutine(MapGenerateWait());
         //LevelControlScript.control.CreateMap (map, playerSpawnLocations, enemySpawnLocations);

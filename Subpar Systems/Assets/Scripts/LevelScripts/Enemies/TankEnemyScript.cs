@@ -11,7 +11,11 @@ public class TankEnemyScript : GenericEnemyScript {
         attack = 250;
 		movement = 2;
 		range = 1;
-	}
+        if (GameControlScript.control.GetLevel() == 3)
+        {
+            DetectRadius = 100;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
