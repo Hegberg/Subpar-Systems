@@ -17,6 +17,13 @@ public class HubButtonScript : MonoBehaviour
     // Update is called once per frame
     void clicked()
     {
-        SceneManager.LoadScene("HubArea");
+        //4 since updates to 3 after 2nd level beat
+        if (GameControlScript.control.GetLevel() >= 4)
+        {
+            SceneManager.LoadScene("Victory");
+        } else
+        {
+            SceneManager.LoadScene("HubArea");
+        }
     }
 }

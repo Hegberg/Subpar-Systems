@@ -31,3 +31,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Debriefing.unity
   - enabled: 1
     path: Assets/Scenes/MissionMenu2.0.unity
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity

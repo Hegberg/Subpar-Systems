@@ -211,7 +211,6 @@ GameObject:
   - component: {fileID: 164462154}
   - component: {fileID: 164462153}
   - component: {fileID: 164462155}
-  - component: {fileID: 164462156}
   m_Layer: 5
   m_Name: Trait5
   m_TagString: Untagged
@@ -234,7 +233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -40}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &164462153
@@ -284,17 +283,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13
---- !u!114 &164462156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 164462151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &259302805
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +471,6 @@ GameObject:
   - component: {fileID: 306788006}
   - component: {fileID: 306788005}
   - component: {fileID: 306788007}
-  - component: {fileID: 306788008}
   m_Layer: 5
   m_Name: Trait9
   m_TagString: Untagged
@@ -506,7 +493,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: -67.5}
+  m_AnchoredPosition: {x: 30, y: -30}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &306788005
@@ -556,17 +543,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13
---- !u!114 &306788008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 306788003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &338481873
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,8 +794,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -100}
-  m_SizeDelta: {x: 100, y: 200}
+  m_AnchoredPosition: {x: 50, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &614187912
 MonoBehaviour:
@@ -865,7 +841,6 @@ GameObject:
   - component: {fileID: 713899620}
   - component: {fileID: 713899619}
   - component: {fileID: 713899621}
-  - component: {fileID: 713899622}
   m_Layer: 5
   m_Name: Trait2
   m_TagString: Untagged
@@ -888,7 +863,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -12.5}
+  m_AnchoredPosition: {x: 0, y: 30}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &713899619
@@ -938,17 +913,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13
---- !u!114 &713899622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 713899617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &768900050
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,7 +924,6 @@ GameObject:
   - component: {fileID: 768900053}
   - component: {fileID: 768900052}
   - component: {fileID: 768900054}
-  - component: {fileID: 768900055}
   m_Layer: 5
   m_Name: Trait3
   m_TagString: Untagged
@@ -983,7 +946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: -12.5}
+  m_AnchoredPosition: {x: 30, y: 30}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &768900052
@@ -1033,17 +996,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13
---- !u!114 &768900055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 768900050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &903556994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,7 +1007,6 @@ GameObject:
   - component: {fileID: 903556997}
   - component: {fileID: 903556996}
   - component: {fileID: 903556998}
-  - component: {fileID: 903556999}
   m_Layer: 5
   m_Name: Trait4
   m_TagString: Untagged
@@ -1078,7 +1029,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -40}
+  m_AnchoredPosition: {x: -30, y: 0}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &903556996
@@ -1128,17 +1079,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13
---- !u!114 &903556999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 903556994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1051631060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,7 +1204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1378,7 +1318,6 @@ GameObject:
   - component: {fileID: 1213219380}
   - component: {fileID: 1213219379}
   - component: {fileID: 1213219381}
-  - component: {fileID: 1213219382}
   m_Layer: 5
   m_Name: Trait1
   m_TagString: Untagged
@@ -1401,7 +1340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -12.5}
+  m_AnchoredPosition: {x: -30, y: 30}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1213219379
@@ -1451,17 +1390,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13
---- !u!114 &1213219382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1213219377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1258216086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,7 +1401,6 @@ GameObject:
   - component: {fileID: 1258216089}
   - component: {fileID: 1258216088}
   - component: {fileID: 1258216090}
-  - component: {fileID: 1258216091}
   m_Layer: 5
   m_Name: Trait8
   m_TagString: Untagged
@@ -1496,7 +1423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -67.5}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1258216088
@@ -1546,17 +1473,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13
---- !u!114 &1258216091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1258216086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1295689150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,7 +1484,6 @@ GameObject:
   - component: {fileID: 1295689153}
   - component: {fileID: 1295689152}
   - component: {fileID: 1295689154}
-  - component: {fileID: 1295689155}
   m_Layer: 5
   m_Name: Trait7
   m_TagString: Untagged
@@ -1591,7 +1506,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -67.5}
+  m_AnchoredPosition: {x: -30, y: -30}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1295689152
@@ -1641,17 +1556,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13
---- !u!114 &1295689155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1295689150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1320369396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,7 +1677,6 @@ GameObject:
   - component: {fileID: 1382725258}
   - component: {fileID: 1382725257}
   - component: {fileID: 1382725259}
-  - component: {fileID: 1382725260}
   m_Layer: 5
   m_Name: Trait6
   m_TagString: Untagged
@@ -1796,7 +1699,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: -40}
+  m_AnchoredPosition: {x: 30, y: 0}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1382725257
@@ -1846,17 +1749,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13
---- !u!114 &1382725260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1382725255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1488665163
 GameObject:
   m_ObjectHideFlags: 0

@@ -300,6 +300,11 @@ public class LevelControlScript : MonoBehaviour {
 		//set enemy spawners for the map
 		enemySpawners = tempEnemySpawners;
 
+        if (GameControlScript.control.GetLevel() == 3)
+        {
+            TurnControlScript.control.SetUsingTurnCounter(true);
+        }
+
         //spawn sidemission character code
         Vector3 tempSideVector = new Vector3(0, 0, 0);
 

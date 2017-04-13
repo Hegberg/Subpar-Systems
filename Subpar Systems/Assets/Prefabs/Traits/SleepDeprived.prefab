@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224285277584462546}
-  - component: {fileID: 114494675968262698}
   - component: {fileID: 114485465015585078}
   - component: {fileID: 61409612972974728}
   - component: {fileID: 114153871575594616}
@@ -130,7 +129,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 114494675968262698}
+        - m_Target: {fileID: 0}
           m_MethodName: DisplayInfo
           m_Mode: 1
           m_Arguments:
@@ -144,17 +143,6 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
---- !u!114 &114494675968262698
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1841178940125098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3f4bfddc6f28a49b7f157eb06648d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &222434585035191452
 CanvasRenderer:
   m_ObjectHideFlags: 1

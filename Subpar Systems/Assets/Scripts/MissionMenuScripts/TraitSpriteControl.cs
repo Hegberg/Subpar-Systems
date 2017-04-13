@@ -137,7 +137,7 @@ public class TraitSpriteControl : MonoBehaviour {
                 //Debug.Log(traitList[i].GetName() + " " + traitList[i].GetPositionInSpriteControlList());
                 trait.GetComponent<Image>().sprite = TraitsInOrderOfCreatedClass[traitList[i].GetPositionInSpriteControlList()];
                 trait.GetComponent<Image>().enabled = true;
-				trait.GetComponent<IndividualTraitScipt> ().SetInfo (traitList [i].GetName ());
+				//trait.GetComponent<IndividualTraitScipt> ().SetInfo (traitList [i].GetName ());
                 //trait.SetActive(true);
                 //increase safetycheck
                 ++loopHeight;

@@ -7,8 +7,7 @@ public class ExitButtonScript : MonoBehaviour {
     Button exit;
     // Use this for initialization
     void Start () {
-        exit = GetComponent<Button>();
-        exit.onClick.AddListener(OnMouseOver);
+
     }
 	
 	// Update is called once per frame
@@ -18,8 +17,8 @@ public class ExitButtonScript : MonoBehaviour {
 
     private void OnMouseOver()
     {
-        
+        if (Input.GetMouseButtonDown(0)) { 
             Application.Quit();
-        
+        }
     }
 }
