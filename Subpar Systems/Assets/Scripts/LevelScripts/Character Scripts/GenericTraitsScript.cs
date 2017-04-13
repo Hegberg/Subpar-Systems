@@ -469,6 +469,7 @@ public class TankTrait : GenericTraitsScript
 		name = "Tank";
 		positionInSpriteUIList = 16;
 		movementModifier = 0;
+        hpModifier = 2.0f;
 		rangeModifier = 1;
 	}
 }
@@ -617,7 +618,7 @@ public class Comradery : GenericTraitsScript
 	//Taliyah, Annie
 	public override void InitializeValues ()
 	{
-		name = "HandsOffLeaderShip";
+		name = "Comradery";
 		positionInSpriteUIList = 24;
 		attackModifier = 0.8f;
 	}
@@ -705,5 +706,69 @@ public class SomethingToLiveFor : GenericTraitsScript
 		name = "SomethingToLiveFor";
 		positionInSpriteUIList = 27;
 		safetyShield = true;
+	}
+}
+
+public class BrotherBonds : GenericTraitsScript
+{
+	//m31, m29 work good together
+	//terry, Larry Winters
+	public override void InitializeValues ()
+	{
+		name = "BrotherBonds";
+		positionInSpriteUIList = 28;
+	}
+
+	public override float ModifyAttack ()
+	{
+		bool terry = false;
+		bool larry = false;
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Terry Winters") {
+				terry = true;
+			}
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Larry Winters") {
+				larry = true;
+			}
+		}
+
+		if (terry && larry) {
+			attackModifier = 1.5f;
+		}
+
+		return attackModifier;
+	}
+}
+
+public class ImAWarHeroDammit : GenericTraitsScript
+{
+	//movement debuff
+	public override void InitializeValues ()
+	{
+		name = "ImAWarHeroDammit";
+		positionInSpriteUIList = 29;
+		movementModifier = 0.75f;
+	}
+}
+
+public class IveKilledSeveralBoysJustLikeYou : GenericTraitsScript
+{
+	//debff if with sokolov
+	public override void InitializeValues ()
+	{
+		name = "IveKilledSeveralBoysJustLikeYou";
+		positionInSpriteUIList = 30;
+	}
+
+	public override float ModifyAttack ()
+	{
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Yuri Sokolov") {
+				attackModifier = 0.5f;
+				break;
+			}
+		}
+
+		return attackModifier;
 	}
 }

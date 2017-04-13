@@ -13,6 +13,8 @@ public class GenericEnemyScript : MonoBehaviour {
 	protected float DetectRadius = 5;
 	protected bool Detected = false;
 	protected bool isSelected = false;
+	private int shakeAmount = 10;
+	protected Color colour = Color.white;
 
 	public GUIStyle guiStyle;
 
@@ -26,6 +28,25 @@ public class GenericEnemyScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public void UpdateDamge() {
+		ShowDamageOnEnemy ();
+		StartCoroutine (Shake ());
+	}
+
+	public virtual void ShowDamageOnEnemy() {
+		// 2/3
+		if (hp >= (maxHP * 2) / 3) {
+			colour = Color.white;
+		// 1/3
+		} else if (hp >= maxHP / 3) {
+			colour = Color.yellow;
+		} else {
+			colour = Color.red;
+		}
+		this.gameObject.GetComponent<SpriteRenderer> ().material.color = colour;
+	}
+
     void OnGUI()
     {
         Vector2 targetPos;
@@ -80,7 +101,6 @@ public class GenericEnemyScript : MonoBehaviour {
 								break;
 							}
 						}
-
 						if (splash) {
 							List<List<int>> splashTiles = AStarScript.control.traitSplash (LevelControlScript.control.GetAStarMap(), 
 								LevelControlScript.control.GetAStarMapCost(),
@@ -101,7 +121,7 @@ public class GenericEnemyScript : MonoBehaviour {
 
 											GameControlScript.control.GetInGameEnemyList () [j].GetComponent<GenericEnemyScript> ().
 											SetHP (GameControlScript.control.GetInGameEnemyList () [j].GetComponent<GenericEnemyScript> ().GetHP() - TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ());
-											Debug.Log (TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ());
+											//Debug.Log (TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ());
 											attacked = true;
 											//Debug.Log ("Secondary hp" + hp);
 										} else {
@@ -135,6 +155,7 @@ public class GenericEnemyScript : MonoBehaviour {
 
 							Destroy (gameObject);
 						} else {
+							UpdateDamge ();
 							TurnControlScript.control.SetEnemySelected(null);
 						}
                     }
@@ -154,6 +175,18 @@ public class GenericEnemyScript : MonoBehaviour {
             }
         }
     }
+
+	IEnumerator Shake() {
+		Vector3 tempPosition = this.gameObject.transform.position;
+		for (int i = 0; i < shakeAmount; ++i) {
+			tempPosition.x += 0.2f;
+			this.gameObject.transform.position = tempPosition;
+			yield return new WaitForSeconds (0.01f);
+			tempPosition.x -= 0.2f;
+			this.gameObject.transform.position = tempPosition;
+			yield return new WaitForSeconds (0.01f);
+		}
+	}
 
 	public void HPLost(int hpLost) {
 		SetHP (hp - hpLost);
@@ -423,6 +456,8 @@ public class GenericEnemyScript : MonoBehaviour {
 
 			Destroy (gameObject);
 		}
+
+		UpdateDamge ();
 	}
 
 	public float GetHP() {

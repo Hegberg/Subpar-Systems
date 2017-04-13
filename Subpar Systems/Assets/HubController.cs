@@ -12,8 +12,6 @@ public class HubController : MonoBehaviour
     {
         missonlevel = GameControlScript.control.GetLevel();
         deadpeoples = GameControlScript.control.GetDeadCharacters();
-        Debug.Log(deadpeoples.Contains("Devi Devai"));
-        Debug.Log("HERE");
         {
             //Debug.Log(missonlevel);
             if (missonlevel == 1)

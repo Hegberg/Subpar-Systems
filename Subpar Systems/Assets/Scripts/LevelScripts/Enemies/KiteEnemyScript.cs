@@ -13,6 +13,20 @@ public class KiteEnemyScript : GenericEnemyScript {
         movement = 4;
         range = 4;
     }
+
+	public override void ShowDamageOnEnemy() {
+		// 2/3
+		if (hp >= (maxHP * 2) / 3) {
+			colour = Color.white;
+			// 1/3
+		} else if (hp >= maxHP / 3) {
+			colour = new Color (1,0.6f,0.0f,1);
+		} else {
+			colour = Color.red;
+		}
+		this.gameObject.GetComponent<SpriteRenderer> ().material.color = colour;
+	}
+
     public void checkAttack()
 	{
 		didKite = false;
@@ -20,7 +34,6 @@ public class KiteEnemyScript : GenericEnemyScript {
 		Attack();
 		//Debug.Log ("dk Post: " + didKite);
 	}
-
 
 	public override void Move()
     {

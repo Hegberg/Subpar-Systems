@@ -28,7 +28,9 @@ public class GenericCharacterScript : MonoBehaviour {
 	//range character can fire
 	protected float range = 4;
 
-	Color colour = Color.white;
+	private int shakeAmount = 10;
+
+	protected Color colour = Color.white;
 
 	protected List<GenericTraitsScript> currentTraits = new List<GenericTraitsScript>();
 
@@ -40,6 +42,18 @@ public class GenericCharacterScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	IEnumerator Shake() {
+		Vector3 tempPosition = this.gameObject.transform.position;
+		for (int i = 0; i < shakeAmount; ++i) {
+			tempPosition.x += 0.2f;
+			this.gameObject.transform.position = tempPosition;
+			yield return new WaitForSeconds (0.01f);
+			tempPosition.x -= 0.2f;
+			this.gameObject.transform.position = tempPosition;
+			yield return new WaitForSeconds (0.01f);
+		}
 	}
 
 	/*
@@ -73,6 +87,7 @@ public class GenericCharacterScript : MonoBehaviour {
 			colour = Color.red;
 		}
 		this.gameObject.GetComponent<SpriteRenderer> ().material.color = colour;
+		StartCoroutine (Shake ());
 	}
 
     public virtual void OnMouseOver()

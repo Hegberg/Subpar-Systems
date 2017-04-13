@@ -53,9 +53,9 @@ public class GameControlScript : MonoBehaviour {
     //level progression, auto increment on victory
     private int currentLevel = 1;
 
-	private int sideMissionResult1;
-	private int sideMissionResult2;
-	private int sideMissionResult3;
+	private int sideMissionResult1 = 0;
+	private int sideMissionResult2 = 0;
+	private int sideMissionResult3 = 0;
 
     private int testLevel = 0;
     private int firstLevel = 1;
@@ -83,36 +83,36 @@ public class GameControlScript : MonoBehaviour {
 
     //character F27, Taliyah
     private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new BacklineCommanderTrait() };
+    {new RiflemanTrait(), new BrutalEfficiencyTrait(), new PersonalGrudges(), new Comradery(), new RunningTally() };
 
     //character M31, Terry
     private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait() };
+    {new RiflemanTrait(), new MarriedLife() };
 
     //character F29, Sabrina
     private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new BacklineCommanderTrait(), new SleepDeprived()};
+    {new RiflemanTrait(), new SchoolBonds(), new BacklineCommanderTrait(), new SleepDeprived()};
 
     //Character Roy
     private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new FrontLineCommander(), new SSTraining(),  };
+    {new RiflemanTrait(), new FrontLineCommander(), new SSTraining()  };
 
     //character M40, Geoff
     private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript>
-    { new GrenedierTrait()};
+    { new GrenedierTrait(), new PersonalGrudges(), new LovedByTroops(), new DrugAddiction(), new SomethingToLiveFor()};
 
     //character F28, Ashe
     private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript>
-    {new GrenedierTrait(), new FrontLineCommander()};
+    {new GrenedierTrait(), new FrontLineCommander(), new SchoolBonds() };
 
     //Character Lt-Col George Murphy
     private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript>
-    { new GrenedierTrait() };
+    { new GrenedierTrait(), new Patriotism() };
 
 
     //character F32, Annie
     private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript>
-    {new AssaultTrait() };
+    {new AssaultTrait(), new MarriedLife(), new AdrenalineJunky()  };
 
     //character Jai Ono, the beserker.
 	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript>
@@ -126,9 +126,10 @@ public class GameControlScript : MonoBehaviour {
     private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript>
     { new MachineGunTrait(), new DistractingThoughts(), new Attachment(), new Hardworking()   };
 
-    //Character Devi Devai.
+    //Character Devi Devai 
+    //maybe give her running tally? Tali has too many traits.
     private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript>
-    { new MachineGunTrait() };
+    { new MachineGunTrait(), new HandsOffLeaderShip(),  };
 
 	//Character Tank.
 	private List<GenericTraitsScript> tankTraits = new List<GenericTraitsScript>
@@ -520,6 +521,8 @@ public class GameControlScript : MonoBehaviour {
         sideCharacterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
+		currentLevel = 1;
+		deadCharacterList.Clear ();
 		SceneManager.LoadScene ("Game Over");
     }
 
