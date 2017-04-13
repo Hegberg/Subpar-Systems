@@ -81,19 +81,19 @@ public class Map2Script : MonoBehaviour
 
 
     //x, y, enemy type
-    private int[] enemySpawn1 = { 1, 1, 0 };
+    private int[] enemySpawn1 = { 1, 1, 3 };
     private int[] enemySpawn2 = { 0, 3, 0 };
     private int[] enemySpawn3 = { 4, 7, 0 };
-    private int[] enemySpawn4 = { 4, 11, 0 };
-    private int[] enemySpawn5 = { 5, 9, 0 };
+    private int[] enemySpawn4 = { 4, 11, 2 };
+    private int[] enemySpawn5 = { 5, 9, 1 };
     private int[] enemySpawn6 = { 5, 4, 0 };
-    private int[] enemySpawn7 = { 6, 2, 0 };
+    private int[] enemySpawn7 = { 6, 2, 2 };
     private int[] enemySpawn8 = { 6, 19, 0 };
-    private int[] enemySpawn9 = { 7, 17, 0 };
-    private int[] enemySpawn10 = { 9, 5, 0 };
-    private int[] enemySpawn11 = { 9, 8, 0 }; //Broken
+    private int[] enemySpawn9 = { 7, 17, 1 };
+    private int[] enemySpawn10 = { 9, 5, 2 };
+    private int[] enemySpawn11 = { 9, 8, 2 }; //Broken
     private int[] enemySpawn12 = { 9, 11, 0 };
-    private int[] enemySpawn13 = { 9, 14, 0 };
+    private int[] enemySpawn13 = { 9, 14, 1 };
 
     //TANKS SPAWNS AT 10,6
     // private int[] enemySpawn14 = { 0, 4, 0 };
