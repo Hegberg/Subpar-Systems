@@ -10,7 +10,12 @@ public class HubConvo : MonoBehaviour
     Button go3;
     string sentence;
     protected FileInfo theSourceFile = null;
+    protected FileInfo theSourceFile0 = null;
+    protected FileInfo theSourceFile1 = null;
     protected StreamReader reader = null;
+    protected StreamReader reader1 = null;
+    protected StreamReader reader2 = null;
+    protected StreamReader reader3 = null;
     protected string text = " ";
     int missonlevel = 1;
     public string scene;
@@ -33,13 +38,13 @@ public class HubConvo : MonoBehaviour
     public void Setscene(string scenename)
     {
         scene = scenename;
-}
+    }
     public void StartScene()
     {
 
         var convo = GameObject.FindGameObjectsWithTag("Characters");
         convo[2].GetComponent<Image>().enabled = false;
-        go3 = convo[2].GetComponent<Button>();
+        
         if (scene == "Scene1")
         {
 
@@ -48,17 +53,21 @@ public class HubConvo : MonoBehaviour
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
             theSourceFile = new FileInfo("HubScene1level1.txt");
-            reader = theSourceFile.OpenText();
+            reader= theSourceFile.OpenText();
             go = convo[0].GetComponent<Button>();
             go1 = convo[1].GetComponent<Button>();
             Sprite sprite;
             sprite = GameObject.FindWithTag("Geoff").GetComponent<Image>().sprite;
             convo[0].GetComponent<Image>().sprite = sprite;
             sprite = GameObject.FindWithTag("Taliyah").GetComponent<Image>().sprite;
+            convo[0].GetComponentInChildren<Image>().enabled = true;
             convo[1].GetComponent<Image>().sprite = sprite;
             UI1.GetComponent<Image>().enabled = false;
             go2 = UI1.GetComponent<Button>();
             convo1.GetComponent<Text>().enabled = false;
+            convo[0].GetComponentInChildren<Image>().enabled = true;
+            convo[1].GetComponentInChildren<Image>().enabled = false;
+            convo[2].GetComponentInChildren<Image>().enabled = false;
         }
         if (scene == "Scene2")
         {
@@ -66,12 +75,15 @@ public class HubConvo : MonoBehaviour
             GameObject.FindWithTag("Level1B").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
-            theSourceFile = new FileInfo("JaiAndAsheChill.txt");
-            reader = theSourceFile.OpenText();
+            theSourceFile0 = new FileInfo("JaiAndAsheChill.txt");
+            reader = theSourceFile0.OpenText();
             go = convo[2].GetComponent<Button>();
             Sprite sprite;
             sprite = GameObject.FindWithTag("Ashe").GetComponent<Image>().sprite;
             convo[2].GetComponent<Image>().sprite = sprite;
+            convo[0].GetComponentInChildren<Image>().enabled = false;
+            convo[1].GetComponentInChildren<Image>().enabled = true;
+            convo[2].GetComponentInChildren<Image>().enabled = false;
             sprite = GameObject.FindWithTag("Jai").GetComponent<Image>().sprite;
             convo[1].GetComponent<Image>().sprite = sprite;
             go1 = convo[1].GetComponent<Button>();
@@ -87,8 +99,8 @@ public class HubConvo : MonoBehaviour
             GameObject.FindWithTag("Level1C").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
-            theSourceFile = new FileInfo("TerryLarryAnnie.txt");
-            reader = theSourceFile.OpenText();
+            theSourceFile1 = new FileInfo("TerryLarryAnnie.txt");
+            reader = theSourceFile1.OpenText();
             go = convo[0].GetComponent<Button>();
             Sprite sprite;
             sprite = GameObject.FindWithTag("Annie").GetComponent<Image>().sprite;
@@ -103,11 +115,14 @@ public class HubConvo : MonoBehaviour
             convo1.GetComponent<Text>().enabled = false;
             go2 = UI1.GetComponent<Button>();
             go3 = convo[2].GetComponent<Button>();
+            convo[0].GetComponentInChildren<Image>().enabled = true;
+            convo[1].GetComponentInChildren<Image>().enabled = false;
+            convo[2].GetComponentInChildren<Image>().enabled = false;
         }
-        if (scene == "Level2A")
+        if (scene == "Level3A")
         {
-            GameObject.FindWithTag("Level2A").GetComponent<Button>().enabled = false;
-            GameObject.FindWithTag("Level2A").GetComponent<Image>().enabled = false;
+            GameObject.FindWithTag("Level3A").GetComponent<Button>().enabled = false;
+            GameObject.FindWithTag("Level3A").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
             theSourceFile = new FileInfo("RoyVMurphy.txt");
@@ -122,12 +137,15 @@ public class HubConvo : MonoBehaviour
             UI1.GetComponent<Image>().enabled = false;
             convo1.GetComponent<Text>().enabled = false;
             go2 = UI1.GetComponent<Button>();
+            convo[0].GetComponentInChildren<Image>().enabled = true;
+            convo[1].GetComponentInChildren<Image>().enabled = false;
+            convo[2].GetComponentInChildren<Image>().enabled = false;
         }
-        if (scene == "Level2B")
+        if (scene == "Level3B")
         {
             Debug.Log("IAMHERE");
-            GameObject.FindWithTag("Level2B").GetComponent<Button>().enabled = false;
-            GameObject.FindWithTag("Level2B").GetComponent<Image>().enabled = false;
+            GameObject.FindWithTag("Level3B").GetComponent<Button>().enabled = false;
+            GameObject.FindWithTag("Level3B").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
             theSourceFile = new FileInfo("RoyVYuri.txt");
@@ -142,6 +160,9 @@ public class HubConvo : MonoBehaviour
             UI1.GetComponent<Image>().enabled = false;
             convo1.GetComponent<Text>().enabled = false;
             go2 = UI1.GetComponent<Button>();
+            convo[0].GetComponentInChildren<Image>().enabled = false;
+            convo[1].GetComponentInChildren<Image>().enabled = true;
+            convo[2].GetComponentInChildren<Image>().enabled = false;
         }
         if (scene == "Level2C")
         {
@@ -165,11 +186,14 @@ public class HubConvo : MonoBehaviour
             convo1.GetComponent<Text>().enabled = false;
             go2 = UI1.GetComponent<Button>();
             go3 = convo[2].GetComponent<Button>();
+            convo[0].GetComponentInChildren<Image>().enabled = true;
+            convo[1].GetComponentInChildren<Image>().enabled = false;
+            convo[2].GetComponentInChildren<Image>().enabled = false;
         }
-        if (scene == "Level2D")
+        if (scene == "Level3D")
         {
-            GameObject.FindWithTag("Level2D").GetComponent<Button>().enabled = false;
-            GameObject.FindWithTag("Level2D").GetComponent<Image>().enabled = false;
+            GameObject.FindWithTag("Level3D").GetComponent<Button>().enabled = false;
+            GameObject.FindWithTag("Level3D").GetComponent<Image>().enabled = false;
             var UI1 = GameObject.FindWithTag("MissionHubConvo2");
             var convo1 = GameObject.FindWithTag("Convo2");
             theSourceFile = new FileInfo("AsheSabrinaDevi.txt");
@@ -188,11 +212,13 @@ public class HubConvo : MonoBehaviour
             convo1.GetComponent<Text>().enabled = false;
             go2 = UI1.GetComponent<Button>();
             go3 = convo[2].GetComponent<Button>();
+            convo[0].GetComponentInChildren<Image>().enabled = false;
+            convo[1].GetComponentInChildren<Image>().enabled = true;
+            convo[2].GetComponentInChildren<Image>().enabled = false;
         }
         go.onClick.AddListener(clicked);
         go2.onClick.AddListener(clicked);
         go1.onClick.AddListener(clicked);
-        go3.onClick.AddListener(clicked);
     }
     private void clicked()
     {
@@ -201,25 +227,28 @@ public class HubConvo : MonoBehaviour
         var convo1 = GameObject.FindWithTag("Convo2");
         if (text != null)
         {
+            Debug.Log("TEST");
             if (reader != null)
             {
                 text = reader.ReadLine();
                 Debug.Log(text);
             }
-            else
-            {
-                StartScene();
-            }
         }
         if (text == null)
         {
+            Debug.Log("TESTING");
             var scene1 = GameObject.FindWithTag("level1a");
             scene1.GetComponent<Canvas>().enabled = false;
             var scene = GameObject.FindWithTag("ConvoHub");
             scene.GetComponent<Canvas>().enabled = true;
-            theSourceFile = null;
-            reader.Dispose();
             text = " ";
+            theSourceFile = null;
+            convo[0].GetComponentInChildren<Image>().enabled = false;
+            convo[1].GetComponentInChildren<Image>().enabled = false;
+            convo[2].GetComponentInChildren<Image>().enabled = false;
+            go.onClick.RemoveAllListeners();
+            go1.onClick.RemoveAllListeners();
+            go2.onClick.RemoveAllListeners();
             //error handle
         }
         else if (text.Substring(0, 1) == ("G"))
@@ -242,18 +271,6 @@ public class HubConvo : MonoBehaviour
             convo[0].GetComponentInChildren<Image>().enabled = false;
             convo[2].GetComponentInChildren<Image>().enabled = false;
             convo[1].GetComponentInChildren<Image>().enabled = true;
-        }
-        else if (text.Substring(0, 2) == ("A:"))
-        {
-            
-            UI1.GetComponent<Image>().enabled = true;
-            convo1.GetComponent<Text>().enabled = true;
-            sentence = text.Substring(2);
-            convo1.GetComponent<Text>().text = sentence;
-            //maybe change to spotlight?
-            convo[2].GetComponentInChildren<Image>().enabled = true;
-            convo[1].GetComponentInChildren<Image>().enabled = false;
-            convo[0].GetComponentInChildren<Image>().enabled = false;
         }
         else if (text.Substring(0, 1) == ("J"))
         {
@@ -279,23 +296,12 @@ public class HubConvo : MonoBehaviour
         }
         else if (text.Substring(0, 1) == ("R"))
         {
-
+            UI1.GetComponent<Image>().enabled = true;
             convo1.GetComponent<Text>().enabled = true;
             sentence = text.Substring(2);
             convo1.GetComponent<Text>().text = sentence;
             convo[0].GetComponentInChildren<Image>().enabled = false;
             convo[1].GetComponentInChildren<Image>().enabled = true;
-            convo[2].GetComponentInChildren<Image>().enabled = false;
-        }
-        else if (text.Substring(0, 2) == ("An"))
-        {
-            UI1.GetComponent<Image>().enabled = true;
-            convo1.GetComponent<Text>().enabled = true;
-            sentence = text.Substring(3);
-            convo1.GetComponent<Text>().text = sentence;
-            //maybe change to spotlight?
-            convo[0].GetComponentInChildren<Image>().enabled = true;
-            convo[1].GetComponentInChildren<Image>().enabled = false;
             convo[2].GetComponentInChildren<Image>().enabled = false;
         }
         else if (text.Substring(0, 1) == ("L"))
@@ -340,6 +346,29 @@ public class HubConvo : MonoBehaviour
             //maybe change to spotlight?
             convo[0].GetComponentInChildren<Image>().enabled = false;
             convo[1].GetComponentInChildren<Image>().enabled = true;
+            convo[2].GetComponentInChildren<Image>().enabled = false;
+        }
+        else if (text.Substring(0, 2) == ("A:"))
+        {
+
+            UI1.GetComponent<Image>().enabled = true;
+            convo1.GetComponent<Text>().enabled = true;
+            sentence = text.Substring(2);
+            convo1.GetComponent<Text>().text = sentence;
+            //maybe change to spotlight?
+            convo[2].GetComponentInChildren<Image>().enabled = true;
+            convo[1].GetComponentInChildren<Image>().enabled = false;
+            convo[0].GetComponentInChildren<Image>().enabled = false;
+        }
+        else if (text.Substring(0, 2) == ("An"))
+        {
+            UI1.GetComponent<Image>().enabled = true;
+            convo1.GetComponent<Text>().enabled = true;
+            sentence = text.Substring(3);
+            convo1.GetComponent<Text>().text = sentence;
+            //maybe change to spotlight?
+            convo[0].GetComponentInChildren<Image>().enabled = true;
+            convo[1].GetComponentInChildren<Image>().enabled = false;
             convo[2].GetComponentInChildren<Image>().enabled = false;
         }
     }
