@@ -219,6 +219,18 @@ public class Traits : MonoBehaviour {
                 {
                     text += "Medical Proffesional: While she may no longer be a medical professional, she still have enough knowledge that can save a soldier." + "\r\n" + "\r\n";
                 }
+                else if (trait == "MarriedLife")
+                {
+                    text += "Married Life: Just knowing that their significant other is somewhere else in the battlefield spurs on this officer to do a little bit better, so their spouse doesn’t have to." + "\r\n" + "\r\n";
+                }
+                else if (trait == "Flashbacks")
+                {
+                    text += "Flashbacks: A traumatic incident has scarred this officer, and the deafening sound of an explosion has a chance to send her back to her awful mistake." + "\r\n" + "\r\n";
+                }
+                else if (trait == "RecklessAbandon")
+                {
+                    text += "Reckless Abandon: Roy’s carefree attitude in the face of certain death is legendary among the other members of the SS. While some do it to learn it to learn about Roy, others because they feel they have to, and some even to acquire fame, everyone that Roy has brought with him follow his example." + "\r\n" + "\r\n";
+                }
                 else
                 {
                     text += skills[i] + "\r\n" + "\r\n";

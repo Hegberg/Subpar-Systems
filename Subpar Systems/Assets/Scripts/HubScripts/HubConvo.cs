@@ -38,6 +38,8 @@ public class HubConvo : MonoBehaviour
     }
     public void Garbage()
     {
+        theSourceFile = new FileInfo("HubScene1level1.txt");
+        reader = theSourceFile.OpenText();
         reader.Close();
     }
     public void StartScene()
