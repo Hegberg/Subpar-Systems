@@ -56,7 +56,7 @@ public class KiteEnemyScript : GenericEnemyScript {
 
 
             //Find the closest "player character"
-			GameObject nearestPlayer = new GameObject();
+			GameObject nearestPlayer = null;
 			nearestPlayer =	FindClosestPlayer();
 
             List<int> closest = new List<int>();

@@ -220,13 +220,14 @@ public class GenericEnemyScript : MonoBehaviour {
             //Debug.Log("what");
 
             //Find the closest "player character"
-			GameObject nearestPlayer = new GameObject();
+			GameObject nearestPlayer = null;
 			nearestPlayer =	FindClosestPlayer();
 
             List<int> closest = new List<int>();
 
             closest = nearestPlayer.GetComponent<GenericCharacterScript>().GetTileOccuping().
                     GetComponent<GenericEarthScript>().GetTilePosition();
+
 			//Debug.Log ("I am at row " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [0] + " ,  " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [1]);
             //Debug.Log("Closest Player position is row " + closest[0] + "," + closest[1]);
 
@@ -324,7 +325,7 @@ public class GenericEnemyScript : MonoBehaviour {
             //Find the closest "player character"
             GameObject nearestPlayer = FindClosestPlayer();
 
-            List<int> targetPos = new List<int>();
+            List<int> targetPos = null;
 
             targetPos = nearestPlayer.GetComponent<GenericCharacterScript>().GetTileOccuping().
                     GetComponent<GenericEarthScript>().GetTilePosition();
@@ -346,19 +347,21 @@ public class GenericEnemyScript : MonoBehaviour {
             {
                 nearestPlayer.GetComponent<GenericCharacterScript>().HPLost((int)attack);
             }
+
+
         }
     }
     
     public GameObject FindClosestPlayer()
     {
         int closestCharacterTileValue = int.MaxValue;
-        GameObject nearestPlayer = new GameObject();
+        GameObject nearestPlayer = null;
         //when no players alive do nothing
         if (GameControlScript.control.GetInGameCharacterList().Count > 0)
         {
 			
             nearestPlayer = GameControlScript.control.GetInGameCharacterList()[0];
-            List<int> closest = new List<int>();
+            List<int> closest = null;
             closest = GameControlScript.control.GetInGameCharacterList()[0].GetComponent<GenericCharacterScript>().
                 GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition();
 
