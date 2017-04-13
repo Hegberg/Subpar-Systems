@@ -501,10 +501,10 @@ public class Attachment : GenericTraitsScript
 		bool terry = false;
 		bool devi = false;
 		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Terry Winters") {
+			if (GameControlScript.control.GetDeadCharacters () [i] == "Terry Winters") {
 				terry = true;
 			}
-			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Devi Devai") {
+			if (GameControlScript.control.GetDeadCharacters () [i] == "Devi Devai") {
 				devi = true;
 			}
 		}
@@ -513,6 +513,7 @@ public class Attachment : GenericTraitsScript
 			hpModifier = 1.0f;
 		} else if (terry && !devi || !terry && devi) {
 			hpModifier = 0.5f;
+			
 		}
 
 		return hpModifier;

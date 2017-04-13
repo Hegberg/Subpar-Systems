@@ -130,9 +130,9 @@ public class HubConvo : MonoBehaviour
             go = convo[0].GetComponent<Button>();
             Sprite sprite;
             sprite = GameObject.FindWithTag("Roy").GetComponent<Image>().sprite;
-            convo[0].GetComponent<Image>().sprite = sprite;
-            sprite = GameObject.FindWithTag("Murphy").GetComponent<Image>().sprite;
             convo[1].GetComponent<Image>().sprite = sprite;
+            sprite = GameObject.FindWithTag("Murphy").GetComponent<Image>().sprite;
+            convo[0].GetComponent<Image>().sprite = sprite;
             go1 = convo[1].GetComponent<Button>();
             UI1.GetComponent<Image>().enabled = false;
             convo1.GetComponent<Text>().enabled = false;
