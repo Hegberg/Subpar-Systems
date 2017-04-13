@@ -10,7 +10,7 @@ public class GenericEnemyScript : MonoBehaviour {
     protected float attack = 15;
 	protected float movement = 3;
 	protected float range = 3;
-	protected float DetectRadius = 5;
+	protected float DetectRadius = 6;
 	protected bool Detected = false;
 	protected bool isSelected = false;
 	private int shakeAmount = 10;
@@ -97,9 +97,26 @@ public class GenericEnemyScript : MonoBehaviour {
 						List<GenericTraitsScript> playerTraits = TurnControlScript.control.GetPlayerSelected ().
 							GetComponent<GenericCharacterScript> ().GetTraits ();
 						bool splash = false;
+
 						for (int i = 0; i < playerTraits.Count; ++i) {
-							if (playerTraits [i].GetName () == "Grenedier") {
-								splash = true;
+                            if (playerTraits[i].GetName() == "Rifleman")
+                            {
+                                //play rifle noise
+                                break;
+                            }
+                            if (playerTraits[i].GetName() == "Machine Gun")
+                            {
+                                //Play machine gun noise.
+                                break;
+                            }
+                            if (playerTraits[i].GetName() == "Grenedier")
+                            {
+                                splash = true;
+                                //play boom noise.
+                                break;
+                            }
+                            if (playerTraits [i].GetName () == "Assault") {
+                                //play assault noise                               
 								break;
 							}
 						}

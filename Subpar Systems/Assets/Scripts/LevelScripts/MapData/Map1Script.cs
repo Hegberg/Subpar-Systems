@@ -103,7 +103,7 @@ public class Map1Script : MonoBehaviour
     private int[] enemySpawn16 = { 9, 11, 3 };
     private int[] enemySpawn17 = { 8, 13, 3 };
     private int[] enemySpawn18 = { 9, 15, 3 };
-    private int[] enemySpawn19 = { 8, 17, 3 };
+    private int[] enemySpawn19 = { 8, 17, 0 };
     // private int[] enemySpawn20 = { 0, 10, 0 };
 
     // //private int[] enemySpawn21 = { 0, 0, 0 };

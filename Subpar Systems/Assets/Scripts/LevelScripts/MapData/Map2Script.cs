@@ -131,6 +131,10 @@ public class Map2Script : MonoBehaviour
 
 	private List<EnemySpawner> enemySpawners = new List<EnemySpawner>();
 
+    //Parameters are - position of spawn, maxSpawnCount, spawnRate(turns between each spawn), enemyType, turns to first spawn
+
+    private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{8,0}, 2, 2 , 0, 2); 
+
     // Use this for initialization
     void Start()
     {
@@ -180,7 +184,11 @@ public class Map2Script : MonoBehaviour
         //enemySpawnLocations.Add(enemySpawn38);
         //enemySpawnLocations.Add(enemySpawn39);
         //enemySpawnLocations.Add(enemySpawn40);
+
+        enemySpawners.Add(enemySpawner1);
+
         StartCoroutine(MapGenerateWait());
+
         //LevelControlScript.control.CreateMap (map, playerSpawnLocations, enemySpawnLocations);
     }
 

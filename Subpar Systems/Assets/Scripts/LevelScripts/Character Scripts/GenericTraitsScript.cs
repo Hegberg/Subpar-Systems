@@ -378,7 +378,7 @@ public class GrenedierTrait : GenericTraitsScript
     public override void InitializeValues()
     {
         name = "Grenedier";
-        attackModifier = .75f; //lower
+        attackModifier = 1.0f; //lower
         defenseModifier = 1.0f; //not affected
         movementModifier = 0.75f; //3
         rangeModifier = 0.75f; //3
@@ -472,9 +472,12 @@ public class TankTrait : GenericTraitsScript
 		name = "Tank";
 		positionInSpriteUIList = 16;
 		movementModifier = 0;
-        hpModifier = 4.0f;
+        hpModifier = 10.0f;
+        defenseModifier = 10.0f;
 		rangeModifier = 1;
-	}
+        attackModifier = 4;
+
+    }
 }
 
 public class SSTraining : GenericTraitsScript
