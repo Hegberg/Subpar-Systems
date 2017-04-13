@@ -131,15 +131,15 @@ public class Map3Script : MonoBehaviour
 
     //Avaialbe y's, 7 8 9 10 11 12 13 14 15 16 17 18 19
     private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{6,8}, 10, 2 , 1, 1);
-    //private EnemySpawner enemySpawner2 = new EnemySpawner(new List<int> { 6, 9 }, 10, 2, 2, 2);
+    private EnemySpawner enemySpawner2 = new EnemySpawner(new List<int> { 6, 9 }, 10, 2, 2, 2);
     private EnemySpawner enemySpawner3 = new EnemySpawner(new List<int> { 6, 10 }, 10, 2, 1, 0);
-    //private EnemySpawner enemySpawner4 = new EnemySpawner(new List<int> { 6, 11 }, 10, 2, 2, 1);
+    private EnemySpawner enemySpawner4 = new EnemySpawner(new List<int> { 6, 11 }, 10, 2, 2, 1);
     private EnemySpawner enemySpawner5 = new EnemySpawner(new List<int> { 6, 12 }, 10, 2, 3, 0);
-    //private EnemySpawner enemySpawner6 = new EnemySpawner(new List<int> { 6, 13 }, 10, 2, 1, 1);
+    private EnemySpawner enemySpawner6 = new EnemySpawner(new List<int> { 6, 13 }, 10, 2, 1, 1);
     private EnemySpawner enemySpawner7 = new EnemySpawner(new List<int> { 6, 14 }, 10, 3, 2, 2);
-    //private EnemySpawner enemySpawner8 = new EnemySpawner(new List<int> { 6, 15 }, 10, 2, 1, 1);
+    private EnemySpawner enemySpawner8 = new EnemySpawner(new List<int> { 6, 15 }, 10, 2, 1, 1);
     private EnemySpawner enemySpawner9 = new EnemySpawner(new List<int> { 6, 16 }, 10, 3, 2, 0);
-    //private EnemySpawner enemySpawner10 = new EnemySpawner(new List<int> { 6, 17 }, 10, 2, 1, 2);
+    private EnemySpawner enemySpawner10 = new EnemySpawner(new List<int> { 6, 17 }, 10, 2, 1, 2);
 
     //ULTRA SPAWNS. DISABLE IF SIDE MISSION PASSED
     private EnemySpawner enemySpawner11 = new EnemySpawner(new List<int> { 6, 18 }, 1, 2, 3, 2);
@@ -195,17 +195,17 @@ public class Map3Script : MonoBehaviour
         //enemySpawnLocations.Add(enemySpawn40);
 
         enemySpawners.Add(enemySpawner1);
-        //enemySpawners.Add(enemySpawner2);
+        enemySpawners.Add(enemySpawner2);
         enemySpawners.Add(enemySpawner3);
-        //enemySpawners.Add(enemySpawner4);
+        enemySpawners.Add(enemySpawner4);
         enemySpawners.Add(enemySpawner5);
-        //enemySpawners.Add(enemySpawner6);
+        enemySpawners.Add(enemySpawner6);
         enemySpawners.Add(enemySpawner7);
-        //enemySpawners.Add(enemySpawner8);
+        enemySpawners.Add(enemySpawner8);
         enemySpawners.Add(enemySpawner9);
-        //enemySpawners.Add(enemySpawner10);
+        enemySpawners.Add(enemySpawner10);
         enemySpawners.Add(enemySpawner11);
-        //enemySpawners.Add(enemySpawner12);
+        enemySpawners.Add(enemySpawner12);
 
         StartCoroutine(MapGenerateWait());
         //LevelControlScript.control.CreateMap (map, playerSpawnLocations, enemySpawnLocations);
