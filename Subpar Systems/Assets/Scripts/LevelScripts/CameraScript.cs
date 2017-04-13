@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour {
 
     private float cameraMoveSpeed = 0.25f;
+	private float cameraZoomSpeed = 2;
 
 	private Vector3 level1Spawn = new Vector3(4,18,0);
 	private Vector3 level2Spawn = new Vector3(8,14,0);
@@ -41,13 +42,26 @@ public class CameraScript : MonoBehaviour {
 			Camera.main.transform.localPosition += level3Spawn;
 		}
 
+		GameControlScript.control.SetCameraZoom (Camera.main.orthographicSize);
+
     }
 
     void Update()
     {
         CameraMove();
         CameraDrag();
+		CameraZoom();
     }
+
+	private void CameraZoom() {
+		if (Input.GetAxis ("Mouse ScrollWheel") > 0 && Camera.main.orthographicSize > 3) {
+			Camera.main.orthographicSize--;
+			GameControlScript.control.SetCameraZoom (Camera.main.orthographicSize);
+		} else if (Input.GetAxis ("Mouse ScrollWheel") < 0 && Camera.main.orthographicSize < 10) {
+			Camera.main.orthographicSize++;
+			GameControlScript.control.SetCameraZoom (Camera.main.orthographicSize);
+		}
+	}
 
     private void CameraMove()
     {

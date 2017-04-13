@@ -40,6 +40,12 @@ TagManager:
   - Level1A
   - Level1B
   - Level1C
+  - Level2C
+  - Level3A
+  - Level3B
+  - Level3D
+  - Level 3
+  - Level3E
   layers:
   - Default
   - TransparentFX

@@ -5,14 +5,19 @@ using UnityEngine;
 public class GenericEnemyScript : MonoBehaviour {
 
 	protected GameObject tileOccuping;
-
 	protected float hp = 100;
-	protected float attack = 10;
+    protected float maxHP = 100;
+    protected float attack = 15;
 	protected float movement = 3;
 	protected float range = 3;
 	protected float DetectRadius = 5;
 	protected bool Detected = false;
 	protected bool isSelected = false;
+	private int shakeAmount = 10;
+	protected Color colour = Color.white;
+	protected int hpShown;
+
+	public GUIStyle guiStyle;
 
 
     // Use this for initialization
@@ -25,11 +30,32 @@ public class GenericEnemyScript : MonoBehaviour {
 		
 	}
 
+	public void UpdateDamge() {
+		ShowDamageOnEnemy ();
+		StartCoroutine (Shake ());
+	}
+
+	public virtual void ShowDamageOnEnemy() {
+		// 2/3
+		if (hp >= (maxHP * 2) / 3) {
+			colour = Color.white;
+		// 1/3
+		} else if (hp >= maxHP / 3) {
+			colour = Color.yellow;
+		} else {
+			colour = Color.red;
+		}
+		this.gameObject.GetComponent<SpriteRenderer> ().material.color = colour;
+	}
+
     void OnGUI()
     {
         Vector2 targetPos;
+		guiStyle.fontSize = (int)(250 / GameControlScript.control.GetCameraZoom ());
         targetPos = Camera.main.WorldToScreenPoint(transform.position);
-        GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20), hp + "/" + 100);
+		hpShown = (int)hp;
+		GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 600 / GameControlScript.control.GetCameraZoom(), 
+			200 / GameControlScript.control.GetCameraZoom()), hpShown + "/" + maxHP, guiStyle);
     }
 
 	void OnMouseOver()
@@ -77,7 +103,6 @@ public class GenericEnemyScript : MonoBehaviour {
 								break;
 							}
 						}
-
 						if (splash) {
 							List<List<int>> splashTiles = AStarScript.control.traitSplash (LevelControlScript.control.GetAStarMap(), 
 								LevelControlScript.control.GetAStarMapCost(),
@@ -98,7 +123,7 @@ public class GenericEnemyScript : MonoBehaviour {
 
 											GameControlScript.control.GetInGameEnemyList () [j].GetComponent<GenericEnemyScript> ().
 											SetHP (GameControlScript.control.GetInGameEnemyList () [j].GetComponent<GenericEnemyScript> ().GetHP() - TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ());
-											Debug.Log (TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ());
+											//Debug.Log (TurnControlScript.control.GetPlayerSelected ().GetComponent<GenericCharacterScript> ().GetAttack ());
 											attacked = true;
 											//Debug.Log ("Secondary hp" + hp);
 										} else {
@@ -132,6 +157,7 @@ public class GenericEnemyScript : MonoBehaviour {
 
 							Destroy (gameObject);
 						} else {
+							UpdateDamge ();
 							TurnControlScript.control.SetEnemySelected(null);
 						}
                     }
@@ -151,6 +177,18 @@ public class GenericEnemyScript : MonoBehaviour {
             }
         }
     }
+
+	IEnumerator Shake() {
+		Vector3 tempPosition = this.gameObject.transform.position;
+		for (int i = 0; i < shakeAmount; ++i) {
+			tempPosition.x += 0.2f;
+			this.gameObject.transform.position = tempPosition;
+			yield return new WaitForSeconds (0.01f);
+			tempPosition.x -= 0.2f;
+			this.gameObject.transform.position = tempPosition;
+			yield return new WaitForSeconds (0.01f);
+		}
+	}
 
 	public void HPLost(int hpLost) {
 		SetHP (hp - hpLost);
@@ -184,13 +222,14 @@ public class GenericEnemyScript : MonoBehaviour {
             //Debug.Log("what");
 
             //Find the closest "player character"
-			GameObject nearestPlayer = new GameObject();
+			GameObject nearestPlayer = null;
 			nearestPlayer =	FindClosestPlayer();
 
             List<int> closest = new List<int>();
 
             closest = nearestPlayer.GetComponent<GenericCharacterScript>().GetTileOccuping().
                     GetComponent<GenericEarthScript>().GetTilePosition();
+
 			//Debug.Log ("I am at row " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [0] + " ,  " + tileOccuping.GetComponent<GenericEarthScript> ().GetTilePosition () [1]);
             //Debug.Log("Closest Player position is row " + closest[0] + "," + closest[1]);
 
@@ -288,7 +327,7 @@ public class GenericEnemyScript : MonoBehaviour {
             //Find the closest "player character"
             GameObject nearestPlayer = FindClosestPlayer();
 
-            List<int> targetPos = new List<int>();
+            List<int> targetPos = null;
 
             targetPos = nearestPlayer.GetComponent<GenericCharacterScript>().GetTileOccuping().
                     GetComponent<GenericEarthScript>().GetTilePosition();
@@ -310,19 +349,21 @@ public class GenericEnemyScript : MonoBehaviour {
             {
                 nearestPlayer.GetComponent<GenericCharacterScript>().HPLost((int)attack);
             }
+
+
         }
     }
     
     public GameObject FindClosestPlayer()
     {
         int closestCharacterTileValue = int.MaxValue;
-        GameObject nearestPlayer = new GameObject();
+        GameObject nearestPlayer = null;
         //when no players alive do nothing
         if (GameControlScript.control.GetInGameCharacterList().Count > 0)
         {
 			
             nearestPlayer = GameControlScript.control.GetInGameCharacterList()[0];
-            List<int> closest = new List<int>();
+            List<int> closest = null;
             closest = GameControlScript.control.GetInGameCharacterList()[0].GetComponent<GenericCharacterScript>().
                 GetTileOccuping().GetComponent<GenericEarthScript>().GetTilePosition();
 
@@ -420,6 +461,8 @@ public class GenericEnemyScript : MonoBehaviour {
 
 			Destroy (gameObject);
 		}
+
+		UpdateDamge ();
 	}
 
 	public float GetHP() {

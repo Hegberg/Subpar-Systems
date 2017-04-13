@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TankScript : GenericCharacterScript {
 
-	private bool canAttack = true;
+	private bool canAttack = false;
 
 	// Use this for initialization
 	void Start () {
@@ -14,6 +14,9 @@ public class TankScript : GenericCharacterScript {
 		role = "Survive";
 		movement = 0;
 		range = 4;
+		if (GameControlScript.control.GetSideMission1Result () == 1) {
+			canAttack = true;
+		}
 		RefreshActions();
 	}
 

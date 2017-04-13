@@ -48,10 +48,14 @@ public class GameControlScript : MonoBehaviour {
     private int selectedCharacters = 0;
     private int selectedSideMissionCharacters = 0;
 
+	private float cameraZoom = 0;
+
     //level progression, auto increment on victory
     private int currentLevel = 1;
 
-	private int sideMissionResult;
+	private int sideMissionResult1 = 0;
+	private int sideMissionResult2 = 0;
+	private int sideMissionResult3 = 0;
 
     private int testLevel = 0;
     private int firstLevel = 1;
@@ -59,9 +63,9 @@ public class GameControlScript : MonoBehaviour {
 	private int surviveToThisTurn = 25;
 
 	private string level1Objective = "Defeat all the enemies";
-	private string level2Objective = "Survive ";
-	private string level2ObjectiveEnd = " turns";
-	private string level3Objective = "Defend the tank";
+	private string level3Objective = "Survive ";
+	private string level3ObjectiveEnd = " turns";
+	private string level2Objective = "Defend the tank";
 
     //public Transform characterParent;
 
@@ -79,52 +83,53 @@ public class GameControlScript : MonoBehaviour {
 
     //character F27, Taliyah
     private List<GenericTraitsScript> character1InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new BacklineCommanderTrait() };
+    {new RiflemanTrait(), new BrutalEfficiencyTrait(), new PersonalGrudges(), new Comradery(), new RunningTally() };
 
     //character M31, Terry
     private List<GenericTraitsScript> character2InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait() };
+    {new RiflemanTrait(), new MarriedLife() };
 
     //character F29, Sabrina
     private List<GenericTraitsScript> character3InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait(), new BacklineCommanderTrait(), new SleepDeprived()};
+    {new RiflemanTrait(), new SchoolBonds(), new BacklineCommanderTrait(), new SleepDeprived()};
 
     //Character Roy
     private List<GenericTraitsScript> character4InitialTraits = new List<GenericTraitsScript>
-    {new RiflemanTrait() };
+    {new RiflemanTrait(), new FrontLineCommander(), new SSTraining()  };
 
     //character M40, Geoff
     private List<GenericTraitsScript> character5InitialTraits = new List<GenericTraitsScript>
-    { new GrenedierTrait()};
+    { new GrenedierTrait(), new PersonalGrudges(), new LovedByTroops(), new DrugAddiction(), new SomethingToLiveFor()};
 
     //character F28, Ashe
     private List<GenericTraitsScript> character6InitialTraits = new List<GenericTraitsScript>
-    {new GrenedierTrait(), new FrontLineCommander()};
+    {new GrenedierTrait(), new FrontLineCommander(), new SchoolBonds() };
 
     //Character Lt-Col George Murphy
     private List<GenericTraitsScript> character7InitialTraits = new List<GenericTraitsScript>
-    { new GrenedierTrait() };
+    { new GrenedierTrait(), new Patriotism(), new IveKilledSeveralBoysJustLikeYou(), new ImAWarHeroDammit() };
 
 
     //character F32, Annie
     private List<GenericTraitsScript> character8InitialTraits = new List<GenericTraitsScript>
-    {new AssaultTrait() };
+    {new AssaultTrait(), new MarriedLife(), new AdrenalineJunky(), new MedicalProffesional()  };
 
     //character Jai Ono, the beserker.
 	private List<GenericTraitsScript> character9InitialTraits = new List<GenericTraitsScript>
-    {new AssaultTrait() };
+    {new AssaultTrait(), new BerserkRage(), new AngerIssues(), new TooAngryToFeelPain(),  };
 
     //character Yuri Sokolov
 	private List<GenericTraitsScript> character10InitialTraits = new List<GenericTraitsScript>
-    { new AssaultTrait() };
+    { new AssaultTrait(), new LackOfHumour(), new CanuckistanEquipment(), new Patriotism() };
 
     //Character Larry Winters
     private List<GenericTraitsScript> character11InitialTraits = new List<GenericTraitsScript>
-    { new MachineGunTrait() };
+    { new MachineGunTrait(), new DistractingThoughts(), new Attachment(), new Hardworking()   };
 
-    //Character Devi Devai.
+    //Character Devi Devai 
+    //maybe give her running tally? Tali has too many traits.
     private List<GenericTraitsScript> character12InitialTraits = new List<GenericTraitsScript>
-    { new MachineGunTrait() };
+    { new MachineGunTrait(), new HandsOffLeaderShip()  };
 
 	//Character Tank.
 	private List<GenericTraitsScript> tankTraits = new List<GenericTraitsScript>
@@ -162,7 +167,7 @@ public class GameControlScript : MonoBehaviour {
 			enemies.Add (fastMonster.gameObject);
 			enemies.Add (tankMonster.gameObject);
 
-			level2Objective = level2Objective + surviveToThisTurn.ToString () + level2ObjectiveEnd;
+			level3Objective = level3Objective + surviveToThisTurn.ToString () + level3ObjectiveEnd;
 
             //initialize chosen list
             for (int i = 0; i < characters.Count; ++i)
@@ -516,6 +521,8 @@ public class GameControlScript : MonoBehaviour {
         sideCharacterInGameList.Clear();
         enemyInGameList.Clear();
         ClearChosenCharacters();
+		currentLevel = 1;
+		deadCharacterList.Clear ();
 		SceneManager.LoadScene ("Game Over");
     }
 
@@ -625,11 +632,33 @@ public class GameControlScript : MonoBehaviour {
         }
     }
 
-	public int GetSideMissionResult() {
-		return sideMissionResult;
+	public int GetSideMission1Result() {
+		return sideMissionResult1;
 	}
 
-	public void SetSideMissionResult(int missionResult) {
-		sideMissionResult = missionResult;
+	public int GetSideMission2Result() {
+		return sideMissionResult1;
+	}
+
+	public int GetSideMission3Result() {
+		return sideMissionResult1;
+	}
+
+	public void SetSideMissionResult(int mission, int missionResult) {
+		if (mission == 1) {
+			sideMissionResult1 = missionResult;
+		} else if (mission == 2) {
+			sideMissionResult2 = missionResult;
+		} else if (mission == 3) {
+			sideMissionResult3 = missionResult;
+		}
+	}
+
+	public float GetCameraZoom() {
+		return cameraZoom;
+	}
+
+	public void SetCameraZoom(float newZoom) {
+		cameraZoom = newZoom;
 	}
 }

@@ -43,7 +43,6 @@ public class EnemyParentScript : MonoBehaviour {
 
 	public void StartAITurn(){
 		StartCoroutine (AIEnnumerate());
-		//BroadcastAttack ();
 	}
 
     private void BroadcastAttack()
@@ -62,23 +61,26 @@ public class EnemyParentScript : MonoBehaviour {
 		for (int i = 0; i < GameControlScript.control.GetInGameEnemyList ().Count; ++i) {
 			GameObject enemy = GameControlScript.control.GetInGameEnemyList () [i];
 
-			yield return new WaitForSeconds(0.01f);
+			yield return new WaitForSeconds(0.1f);
+
 			if (enemy != null) {
 				enemy.GetComponent<GenericEnemyScript> ().Move ();
 			}
-			yield return new WaitForSeconds(0.01f);
+			yield return new WaitForSeconds(0.1f);
+
 			if (enemy != null) {
 				enemy.GetComponent<GenericEnemyScript> ().Attack ();
 			}
+
 		}
 
 		foreach (var enemySpawner in LevelControlScript.control.GetEnemySpawners()) {
-			yield return new WaitForSeconds (0.01f);
+			yield return new WaitForSeconds (0.1f);
 			//Debug.Log ("Enemy Spawn Attempt");
 			enemySpawner.SpawnEnemy ();
 		}
 
-		yield return new WaitForSeconds(0.01f);
+		yield return new WaitForSeconds(0.1f);
 
 		TurnControlScript.control.AllEnemiesHaveAttacked ();
 	}

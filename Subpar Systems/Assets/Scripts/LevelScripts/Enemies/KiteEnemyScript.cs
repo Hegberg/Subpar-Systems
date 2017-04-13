@@ -5,8 +5,29 @@ using UnityEngine;
 public class KiteEnemyScript : GenericEnemyScript {
 
     private bool didKite = false;
+    void Start()
+    {
+        hp = 75;
+        maxHP = 75;
+        attack = 10;
+        movement = 4;
+        range = 4;
+    }
 
-	public void checkAttack()
+	public override void ShowDamageOnEnemy() {
+		// 2/3
+		if (hp >= (maxHP * 2) / 3) {
+			colour = Color.white;
+			// 1/3
+		} else if (hp >= maxHP / 3) {
+			colour = new Color (1,0.6f,0.0f,1);
+		} else {
+			colour = Color.red;
+		}
+		this.gameObject.GetComponent<SpriteRenderer> ().material.color = colour;
+	}
+
+    public void checkAttack()
 	{
 		didKite = false;
 		//Debug.Log ("dK: " + didKite);
@@ -35,7 +56,7 @@ public class KiteEnemyScript : GenericEnemyScript {
 
 
             //Find the closest "player character"
-			GameObject nearestPlayer = new GameObject();
+			GameObject nearestPlayer = null;
 			nearestPlayer =	FindClosestPlayer();
 
             List<int> closest = new List<int>();

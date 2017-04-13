@@ -6,8 +6,9 @@ public class FastEnemyScript : GenericEnemyScript {
 
 	// Use this for initialization
 	void Start () {
-		hp = 100;
-		attack = 10;
+		hp = 50;
+        maxHP = 50;
+		attack = 25;
 		movement = 6;
 		range = 1;
 	}
@@ -16,4 +17,5 @@ public class FastEnemyScript : GenericEnemyScript {
 	void Update () {
 		
 	}
+
 }
