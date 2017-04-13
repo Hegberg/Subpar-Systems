@@ -14,6 +14,7 @@ public class MissionBrief : MonoBehaviour {
 	
 	// Update is called once per frame
 	void clicked () {
+        HubConvo.control.Garbage();
         SceneManager.LoadScene("MissionMenu2.0");
     }
 }

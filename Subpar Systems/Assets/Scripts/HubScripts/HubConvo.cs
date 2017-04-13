@@ -13,9 +13,6 @@ public class HubConvo : MonoBehaviour
     protected FileInfo theSourceFile0 = null;
     protected FileInfo theSourceFile1 = null;
     protected StreamReader reader = null;
-    protected StreamReader reader1 = null;
-    protected StreamReader reader2 = null;
-    protected StreamReader reader3 = null;
     protected string text = " ";
     int missonlevel = 1;
     public string scene;
@@ -38,6 +35,10 @@ public class HubConvo : MonoBehaviour
     public void Setscene(string scenename)
     {
         scene = scenename;
+    }
+    public void Garbage()
+    {
+        reader.Close();
     }
     public void StartScene()
     {
