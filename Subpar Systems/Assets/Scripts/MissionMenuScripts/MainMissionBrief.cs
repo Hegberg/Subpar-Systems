@@ -14,7 +14,7 @@ public class MainMissionBrief : MonoBehaviour {
 //should be changed to getlevel
         if (missonlevel == 1)
         {
-            mission.text = "Sir, nests of Swarmers and Slimes have been spotted on the south-east corner of the Forest sector. It is imperative that we eliminate all hostile life in the location so we can begin the extraction of mineral resources from the area. ";
+            mission.text = "Sir, I understand you just arrived but we have an issue that requires your immediate attention. Nests of Swarmers and Slimes have been spotted on the south-east corner of the Forest sector.";
         }
         if (missonlevel == 2)
         {
