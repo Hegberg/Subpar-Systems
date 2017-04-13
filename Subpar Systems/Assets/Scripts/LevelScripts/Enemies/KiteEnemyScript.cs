@@ -11,7 +11,7 @@ public class KiteEnemyScript : GenericEnemyScript {
         maxHP = 75;
         attack = 10;
         movement = 4;
-        range = 4;
+        range = 3;
         if (GameControlScript.control.GetLevel() == 3)
         {
             DetectRadius = 100;

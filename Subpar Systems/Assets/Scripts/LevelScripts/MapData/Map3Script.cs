@@ -81,12 +81,12 @@ public class Map3Script : MonoBehaviour
 
     //x, y, enemy type
     private int[] enemySpawn1 = { 3, 10, 0 };
-    private int[] enemySpawn2 = { 3, 11, 1 };
-    private int[] enemySpawn3 = { 4, 7, 1 };
+    private int[] enemySpawn2 = { 3, 11, 2 };
+    private int[] enemySpawn3 = { 4, 7, 2 };
     private int[] enemySpawn4 = { 4, 6, 0 };
-    private int[] enemySpawn5 = { 5, 6, 1 };
-    private int[] enemySpawn6 = { 5, 12, 1 };
-    private int[] enemySpawn7 = { 4, 14, 1 };
+    private int[] enemySpawn5 = { 5, 6, 2 };
+    private int[] enemySpawn6 = { 5, 12, 2 };
+    private int[] enemySpawn7 = { 4, 14, 2 };
     private int[] enemySpawn8 = { 5, 8, 0 };
     // private int[] enemySpawn11 = { 0, 1, 0 }; //Broken
     // private int[] enemySpawn12 = { 0, 2, 0 };
@@ -130,20 +130,28 @@ public class Map3Script : MonoBehaviour
     //y's have a max x of 6, 
 
     //Avaialbe y's, 7 8 9 10 11 12 13 14 15 16 17 18 19
-    private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{6,8}, 10, 2 , 1, 1);
-    private EnemySpawner enemySpawner2 = new EnemySpawner(new List<int> { 6, 9 }, 10, 2, 2, 2);
-    private EnemySpawner enemySpawner3 = new EnemySpawner(new List<int> { 6, 10 }, 10, 2, 1, 0);
-    private EnemySpawner enemySpawner4 = new EnemySpawner(new List<int> { 6, 11 }, 10, 2, 2, 1);
-    private EnemySpawner enemySpawner5 = new EnemySpawner(new List<int> { 6, 12 }, 10, 2, 3, 0);
-    private EnemySpawner enemySpawner6 = new EnemySpawner(new List<int> { 6, 13 }, 10, 2, 1, 1);
-    private EnemySpawner enemySpawner7 = new EnemySpawner(new List<int> { 6, 14 }, 10, 3, 2, 2);
-    private EnemySpawner enemySpawner8 = new EnemySpawner(new List<int> { 6, 15 }, 10, 2, 1, 1);
-    private EnemySpawner enemySpawner9 = new EnemySpawner(new List<int> { 6, 16 }, 10, 3, 2, 0);
-    private EnemySpawner enemySpawner10 = new EnemySpawner(new List<int> { 6, 17 }, 10, 2, 1, 2);
+
+    // Wave 1, waits 3 turns.
+    // Spawns a mix of 0's and 2's. Uses even spawners.
+    //only spawns 2 each.
+
+    //wave 2: Spawns a mix of 2 and 1 and 0 starts on wave 6
+
+    //spawns a mix of everything rapidly, using spawners 
+    private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{6,8}, 2, 1, 1, 0);
+    private EnemySpawner enemySpawner2 = new EnemySpawner(new List<int> { 6, 9 }, 3, 1, 2, 6);
+    private EnemySpawner enemySpawner3 = new EnemySpawner(new List<int> { 6, 10 }, 2, 2, 1, 0);
+    private EnemySpawner enemySpawner4 = new EnemySpawner(new List<int> { 6, 11 }, 2, 2, 2, 6);
+    private EnemySpawner enemySpawner5 = new EnemySpawner(new List<int> { 6, 12 }, 1, 3, 1, 0);
+    private EnemySpawner enemySpawner6 = new EnemySpawner(new List<int> { 6, 13 }, 2, 1, 0, 6);
+    private EnemySpawner enemySpawner7 = new EnemySpawner(new List<int> { 6, 14 }, 2, 3, 2, 0);
+    private EnemySpawner enemySpawner8 = new EnemySpawner(new List<int> { 6, 15 }, 2, 2, 2, 6);
+    private EnemySpawner enemySpawner9 = new EnemySpawner(new List<int> { 6, 16 }, 3, 3, 2, 0);
+    private EnemySpawner enemySpawner10 = new EnemySpawner(new List<int> { 6, 17 }, 3, 2, 0, 6);
 
     //ULTRA SPAWNS. DISABLE IF SIDE MISSION PASSED
-    private EnemySpawner enemySpawner11 = new EnemySpawner(new List<int> { 6, 18 }, 1, 2, 3, 2);
-    private EnemySpawner enemySpawner12 = new EnemySpawner(new List<int> { 6, 19 }, 1, 2, 3, 2);
+    private EnemySpawner enemySpawner11 = new EnemySpawner(new List<int> { 6, 18 }, 1, 6, 3, 5);
+    private EnemySpawner enemySpawner12 = new EnemySpawner(new List<int> { 6, 19 }, 2, 4, 3, 8);
 
 
     // Use this for initialization
@@ -205,8 +213,8 @@ public class Map3Script : MonoBehaviour
         enemySpawners.Add(enemySpawner8);
         enemySpawners.Add(enemySpawner9);
         enemySpawners.Add(enemySpawner10);
-        //if side mission 2 failed, spawn these
-        if (GameControlScript.control.GetSideMission2Result() != 1)
+        //if side mission 3 failed, spawn these
+        if (GameControlScript.control.GetSideMission3Result() != 1)
         {
             enemySpawners.Add(enemySpawner11);
             enemySpawners.Add(enemySpawner12);

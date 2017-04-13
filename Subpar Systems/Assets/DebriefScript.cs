@@ -60,7 +60,7 @@ public class DebriefScript : MonoBehaviour {
         } 
         if (missonlevel == 3)
         {
-            mission.text = "Our forces have survived the attack. Mission Success";
+            mission.text = "Well done, Commander. We're moving some extra forces into the area to relieve the pressure from your base. We have no further assignments for you at this time. Mission Success.";
         }
     }
 	

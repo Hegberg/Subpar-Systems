@@ -6,9 +6,9 @@ public class TankEnemyScript : GenericEnemyScript {
 
 	// Use this for initialization
 	void Start () {
-		hp = 500;
-        maxHP = 500;
-        attack = 250;
+		hp = 350;
+        maxHP = 350;
+        attack = 75;
 		movement = 2;
 		range = 1;
         if (GameControlScript.control.GetLevel() == 3)

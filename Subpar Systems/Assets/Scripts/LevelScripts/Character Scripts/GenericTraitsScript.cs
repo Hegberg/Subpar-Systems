@@ -131,7 +131,7 @@ public class BrutalEfficiencyTrait : GenericTraitsScript {
 	{
 		name = "Brutal Efficiency";
 		defenseModifier = 0.5f;
-		attackModifier = 1.5f;
+		attackModifier = 1.25f;
 		positionInSpriteUIList = 1;
 	}
 }
@@ -175,7 +175,7 @@ public class SchoolBonds : GenericTraitsScript {
 		}
 
 		if (ashe && sabrina) {
-			attackModifier = 1.5f;
+			attackModifier = 1.25f;
             Debug.Log("SchoolBonds attack activated " + attackModifier);
 		}
 
@@ -230,7 +230,7 @@ public class PersonalGrudges: GenericTraitsScript {
 		}
 
 		if (taliyah && geoff) {
-			attackModifier = 0.5f;
+			attackModifier = 0.75f;
             Debug.Log("PersonalGrudges attack activated " + attackModifier);
         }
 
@@ -360,7 +360,7 @@ public class MarriedLife: GenericTraitsScript {
 		}
 
 		if (terry && annie) {
-			attackModifier = 1.5f;
+			attackModifier = 1.25f;
             Debug.Log("MarriedLife attack activated " + attackModifier);
         }
 
@@ -407,8 +407,8 @@ public class GrenedierTrait : GenericTraitsScript
     public override void InitializeValues()
     {
         name = "Grenedier";
-        attackModifier = 1.0f; //lower
-        defenseModifier = 1.0f; //not affected
+        attackModifier = 1.25f; //lower
+        defenseModifier = 1.50f; //not affected
         movementModifier = 0.75f; //3
         rangeModifier = 0.75f; //3
         //Need some sort of advantage against certain monsters to make it
@@ -457,7 +457,7 @@ public class SleepDeprived : GenericTraitsScript
 	{
         attackModifier = 1.0f;
         if (Random.Range (0, 1) < 0.5f) {
-			attackModifier = 0.5f;
+			attackModifier = 0.75f;
 		} else {
 			attackModifier = 1;
 		}
@@ -503,10 +503,9 @@ public class TankTrait : GenericTraitsScript
 		name = "Tank";
 		positionInSpriteUIList = 16;
 		movementModifier = 0;
-        hpModifier = 10.0f;
-        defenseModifier = 10.0f;
+        hpModifier = 2.0f;
 		rangeModifier = 1;
-        attackModifier = 4;
+        attackModifier = 2;
 
     }
 }
@@ -627,18 +626,18 @@ public class TooAngryToFeelPain : GenericTraitsScript
 
 	public override float ModifyDefense ()
 	{
-		defenseModifier = 1.5f;
+		hpModifier = 1.5f;
 		for (int i = 0; i < GameControlScript.control.GetDeadCharacters().Count; ++i)
 		{
 			if (GameControlScript.control.GetDeadCharacters()[i] == "Devi Devai")
 			{
-				defenseModifier = 2.0f;
-                Debug.Log("TooAngryToFeelPain defense activated " + defenseModifier);
+				hpModifier = 2.0f;
+                Debug.Log("TooAngryToFeelPain defense activated " + hpModifier);
                 break;
 			}
 		}
 
-		return defenseModifier;
+		return hpModifier;
 	}
 }
 	
@@ -679,7 +678,7 @@ public class Comradery : GenericTraitsScript
 		}
 
 		if (taliyah && annie) {
-			attackModifier = 1.5f;
+			attackModifier = 1.25f;
             Debug.Log("Comradery attack activated " + attackModifier);
         }
 
@@ -692,9 +691,11 @@ public class RunningTally : GenericTraitsScript
 	//more attack
 	public override void InitializeValues ()
 	{
-		name = "RunnungTally";
+        //As is, needs to be changed. Try making it each kill boosts damage?
+        //Alas, it is too late.
+		name = "RunningTally";
 		positionInSpriteUIList = 25;
-		attackModifier = 1.5f;
+		attackModifier = 1.0f;
 	}
 }
 
@@ -705,7 +706,7 @@ public class LovedByTroops : GenericTraitsScript
 	{
 		name = "LovedByTroops";
 		positionInSpriteUIList = 26;
-		attackModifier = 1.5f;
+		attackModifier = 1.25f;
 	}
 }
 
@@ -778,7 +779,7 @@ public class BrotherBonds : GenericTraitsScript
 		}
 
 		if (terry && larry) {
-			attackModifier = 1.5f;
+			attackModifier = 1.10f;
             Debug.Log("BrotherBonds attack activated " + attackModifier);
         }
 
@@ -811,7 +812,7 @@ public class IveKilledSeveralBoysJustLikeYou : GenericTraitsScript
         attackModifier = 1.0f;
         for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
 			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Yuri Sokolov") {
-				attackModifier = 0.5f;
+				attackModifier = 0.75f;
                 Debug.Log("IveKilledSeveralBoysJustLikeYou attack activated " + attackModifier);
                 break;
 			}
@@ -839,7 +840,8 @@ public class RecklessAbandon : GenericTraitsScript
 	{
 		name = "RecklessAbandon";
 		positionInSpriteUIList = 33;
-		attackModifier = 1.5f;
+		attackModifier = 1.25f;
+        //hpModifier = 0.75f;
 	}
 }
 
@@ -854,17 +856,17 @@ public class Flashbacks : GenericTraitsScript
 	public override float ModifyAttack ()
 	{
 		List<GameObject> listOfPeople = GameControlScript.control.GetInGameCharacterList ();
-        attackModifier = 1.0f;
+        rangeModifier = 1.0f;
         for (int i = 0; i < listOfPeople.Count; ++i) {
 			for (int j = 0; j < listOfPeople[i].GetComponent<GenericCharacterScript> ().GetTraits().Count; ++j) {
 				if (listOfPeople[i].GetComponent<GenericCharacterScript> ().GetTraits()[j].GetName() == "Grenedier") {
-					attackModifier = 0.5f;
+					rangeModifier = 0.75f;
                     Debug.Log("Flashbacks attack activated " + attackModifier);
-                    return attackModifier;
+                    return rangeModifier;
 				}
 			}
 		}
 
-		return attackModifier;
+		return rangeModifier;
 	}
 }

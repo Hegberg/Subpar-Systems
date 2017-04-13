@@ -63,10 +63,10 @@ public class SideMissionScript : MonoBehaviour {
 			sideMissionResult = runSideMission1Calculation ();
 			GameControlScript.control.SetSideMissionResult (1, sideMissionResult);
 		} else if (GameControlScript.control.GetLevel () == 2) {
-			sideMissionResult = runSideMission1Calculation ();
+			sideMissionResult = runSideMission2Calculation ();
 			GameControlScript.control.SetSideMissionResult (2, sideMissionResult);
 		} else if (GameControlScript.control.GetLevel () == 3) {
-			sideMissionResult = runSideMission1Calculation ();
+			sideMissionResult = runSideMission3Calculation ();
 			GameControlScript.control.SetSideMissionResult (3, sideMissionResult);
 		}
        
@@ -118,16 +118,16 @@ public class SideMissionScript : MonoBehaviour {
                 if (missionTraits[i].GetName() == "Rifleman")
                 {
                     rifleman = true;
-                    successProb += 12.5f;
+                    successProb += 14.0f;
                 }
                 if (missionTraits[i].GetName() == "Assault")
                 {
 
                     assault = true;
-                    successProb += 15.0f;
+                    successProb += 16.0f;
                 }
-                if (missionTraits[i].GetName() == "Grenedier") successProb -= 5.0f;
-                if (missionTraits[i].GetName() == "Machine Gun") successProb -= 10.0f;
+                if (missionTraits[i].GetName() == "Grenedier") successProb += 7.0f;
+                if (missionTraits[i].GetName() == "Machine Gun") successProb += 3.0f;
             }
             if (assault && rifleman) successProb = 100.0f;
             //Debug.Log("Success Prob");
@@ -145,6 +145,8 @@ public class SideMissionScript : MonoBehaviour {
     }
     public int runSideMission2Calculation()
     {
+        float success = 0.0f;
+        successProb = 60.0f;
         //A signal fire can be seen off in the distance. Send a team to investigate.
         if (sideCharacters.Count == 0)
         {
@@ -152,14 +154,36 @@ public class SideMissionScript : MonoBehaviour {
             return 0;
         }
         //if murphy sent, fail the mission with unique text.
+        for (int i = 0; i < missionTraits.Count; ++i)
+        {
+            if (missionTraits[i].GetName() == "Rifleman")
+            {
+                successProb += 10.0f;
+            }
+            if (missionTraits[i].GetName() == "Assault")
+            {
 
-        //
-        return 1;
-
+                successProb += 10.0f;
+            }
+            if (missionTraits[i].GetName() == "Grenedier") successProb += 10.0f;
+            if (missionTraits[i].GetName() == "Machine Gun") successProb += 10.0f;
+            if (missionTraits[i].GetName() == "IveKilledSeveralBoysJustLikeYou") return -1;
+        }
+        success = runProbability(successProb);
+        if (success >= 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
     public int runSideMission3Calculation()
     {
         //Lure away enemy Ultras
+        float success = 0.0f;
+
         if (sideCharacters.Count == 0)
         {
             //Run mission failed code since no one was sent.
@@ -168,8 +192,33 @@ public class SideMissionScript : MonoBehaviour {
             return 0;
         }
         //Patriotism trait gives bonuses.
+        successProb = 50.0f;
+        for (int i = 0; i < missionTraits.Count; ++i)
+        {
+            if (missionTraits[i].GetName() == "Rifleman")
+            {
+                successProb += 10.0f;
+            }
+            if (missionTraits[i].GetName() == "Assault")
+            {
 
-        return 1;
+                successProb += 5.0f;
+            }
+            if (missionTraits[i].GetName() == "Grenedier") successProb += 5.0f;
+            if (missionTraits[i].GetName() == "Machine Gun") successProb += 10.0f;
+            if (missionTraits[i].GetName() == "Patriotism") successProb += 12.5f;
+        }
+        //Debug.Log("Success Prob");
+        //Debug.Log(successProb);
+        success = runProbability(successProb);
+        if (success >= 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }
 

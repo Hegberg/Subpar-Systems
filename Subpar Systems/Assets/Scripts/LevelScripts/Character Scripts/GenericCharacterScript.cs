@@ -184,7 +184,7 @@ public class GenericCharacterScript : MonoBehaviour {
         //stop modifier from going below 0%
         if (rangeModifier < 0)
         {
-            rangeModifier = 0;
+            rangeModifier = 0.5f;
         }
 		/*
 		int temp = (int)(range * rangeModifier);

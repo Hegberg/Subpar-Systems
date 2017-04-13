@@ -133,7 +133,13 @@ public class Map2Script : MonoBehaviour
 
     //Parameters are - position of spawn, maxSpawnCount, spawnRate(turns between each spawn), enemyType, turns to first spawn
 
-    private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{8,0}, 2, 2 , 0, 2); 
+    private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{5,0}, 2, 2 , 0, 0);
+    private EnemySpawner enemySpawner2 = new EnemySpawner(new List<int> { 9, 4 }, 1, 1, 2, 3);
+    private EnemySpawner enemySpawner3 = new EnemySpawner(new List<int> { 9, 8 }, 2, 2, 1, 2);
+    private EnemySpawner enemySpawner4 = new EnemySpawner(new List<int> { 9, 12 }, 2, 1, 2, 2);
+    private EnemySpawner enemySpawner5 = new EnemySpawner(new List<int> { 5, 19 }, 1, 2, 0, 2);
+    private EnemySpawner enemySpawner6 = new EnemySpawner(new List<int> { 7, 19 }, 2, 2, 0, 3);
+    private EnemySpawner enemySpawner7 = new EnemySpawner(new List<int> { 9, 0 }, 1, 2, 3, 3);
 
     // Use this for initialization
     void Start()
@@ -186,6 +192,14 @@ public class Map2Script : MonoBehaviour
         //enemySpawnLocations.Add(enemySpawn40);
 
         enemySpawners.Add(enemySpawner1);
+        enemySpawners.Add(enemySpawner2);
+        enemySpawners.Add(enemySpawner3);
+        enemySpawners.Add(enemySpawner4);
+        enemySpawners.Add(enemySpawner5);
+        enemySpawners.Add(enemySpawner6);
+        enemySpawners.Add(enemySpawner7);
+
+
 
         StartCoroutine(MapGenerateWait());
 

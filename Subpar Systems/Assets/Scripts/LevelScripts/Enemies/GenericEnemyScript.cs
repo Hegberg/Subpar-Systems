@@ -9,8 +9,8 @@ public class GenericEnemyScript : MonoBehaviour {
     protected float maxHP = 100;
     protected float attack = 15;
 	protected float movement = 3;
-	protected float range = 3;
-	protected float DetectRadius = 6;
+	protected float range = 2;
+	protected float DetectRadius = 7;
 	protected bool Detected = false;
 	protected bool isSelected = false;
 	private int shakeAmount = 10;

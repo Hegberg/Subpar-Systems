@@ -637,11 +637,11 @@ public class GameControlScript : MonoBehaviour {
 	}
 
 	public int GetSideMission2Result() {
-		return sideMissionResult1;
+		return sideMissionResult2;
 	}
 
 	public int GetSideMission3Result() {
-		return sideMissionResult1;
+		return sideMissionResult3;
 	}
 
 	public void SetSideMissionResult(int mission, int missionResult) {
