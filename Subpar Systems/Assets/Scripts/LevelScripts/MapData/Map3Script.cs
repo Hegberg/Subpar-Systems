@@ -128,8 +128,6 @@ public class Map3Script : MonoBehaviour
 
 	private List<EnemySpawner> enemySpawners = new List<EnemySpawner>();
 
-    private EnemySpawner enemySpawner1 = new EnemySpawner(new List<int>{7,15}, 1, 2 , 3, 2); 
-
     // Use this for initialization
     void Start()
     {
@@ -179,8 +177,6 @@ public class Map3Script : MonoBehaviour
         //enemySpawnLocations.Add(enemySpawn38);
         //enemySpawnLocations.Add(enemySpawn39);
         //enemySpawnLocations.Add(enemySpawn40);
-
-        enemySpawners.Add(enemySpawner1);
 
         StartCoroutine(MapGenerateWait());
         //LevelControlScript.control.CreateMap (map, playerSpawnLocations, enemySpawnLocations);

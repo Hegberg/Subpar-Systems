@@ -75,7 +75,7 @@ public class EnemyParentScript : MonoBehaviour {
 		}
 
 		foreach (var enemySpawner in LevelControlScript.control.GetEnemySpawners()) {
-			yield return new WaitForSeconds (0.1f);
+			yield return new WaitForSeconds (0.01f);
 			//Debug.Log ("Enemy Spawn Attempt");
 			enemySpawner.SpawnEnemy ();
 		}

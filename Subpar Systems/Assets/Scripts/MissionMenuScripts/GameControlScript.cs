@@ -51,14 +51,14 @@ public class GameControlScript : MonoBehaviour {
 	private float cameraZoom = 0;
 
     //level progression, auto increment on victory
-    private int currentLevel = 1;
+    private int currentLevel = 3;
 
 	private int sideMissionResult1 = 0;
 	private int sideMissionResult2 = 0;
 	private int sideMissionResult3 = 0;
 
     private int testLevel = 0;
-    private int firstLevel = 1;
+    private int firstLevel = 3;
 
 	private int surviveToThisTurn = 25;
 
