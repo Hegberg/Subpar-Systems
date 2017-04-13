@@ -1124,6 +1124,8 @@ MonoBehaviour:
   lovedByTroops: {fileID: 21300000, guid: b0b609f9639b5f540be3d11e2d15d97a, type: 3}
   drugAddiction: {fileID: 21300000, guid: 474c46d41818e6e42bbae4e99c61b8e0, type: 3}
   somethingToLiveFor: {fileID: 21300000, guid: aba67fcd3b05d054b95109f9770525e7, type: 3}
+  brotherBonds: {fileID: 21300000, guid: 9f583f7ed462c874d88ac65ab072bb59, type: 3}
+  imAWarHeroDammit: {fileID: 21300000, guid: 9cbd539afb5c93742977099ed956e5f5, type: 3}
   TraitsInOrderOfCreatedClass: []
 --- !u!1 &221626930
 GameObject:

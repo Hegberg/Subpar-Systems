@@ -708,3 +708,45 @@ public class SomethingToLiveFor : GenericTraitsScript
 		safetyShield = true;
 	}
 }
+
+public class BrotherBonds : GenericTraitsScript
+{
+	//m31, m29 work good together
+	//terry, Larry Winters
+	public override void InitializeValues ()
+	{
+		name = "BrotherBonds";
+		positionInSpriteUIList = 28;
+	}
+
+	public override float ModifyAttack ()
+	{
+		bool terry = false;
+		bool larry = false;
+		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Terry Winters") {
+				terry = true;
+			}
+			if (GameControlScript.control.GetInGameCharacterList () [i].GetComponent<GenericCharacterScript> ().GetName () == "Larry Winters") {
+				larry = true;
+			}
+		}
+
+		if (terry && larry) {
+			attackModifier = 1.5f;
+		}
+
+		return attackModifier;
+	}
+}
+
+public class ImAWarHeroDammit : GenericTraitsScript
+{
+	//movement debuff
+	public override void InitializeValues ()
+	{
+		name = "ImAWarHeroDammit";
+		positionInSpriteUIList = 29;
+		movementModifier = 0.75f;
+	}
+}
