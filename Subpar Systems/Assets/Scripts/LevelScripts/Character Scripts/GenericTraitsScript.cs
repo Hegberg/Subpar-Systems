@@ -789,8 +789,32 @@ public class RecklessAbandon : GenericTraitsScript
 	//decrease health 25%, increase damage
 	public override void InitializeValues ()
 	{
-		name = "MedicalProffesional";
+		name = "RecklessAbandon";
 		positionInSpriteUIList = 33;
 		attackModifier = 1.5f;
+	}
+}
+
+public class Flashbacks : GenericTraitsScript
+{
+	public override void InitializeValues ()
+	{
+		name = "Flashbacks";
+		positionInSpriteUIList = 34;
+	}
+
+	public override float ModifyAttack ()
+	{
+		List<GameObject> listOfPeople = GameControlScript.control.GetInGameCharacterList ();
+		for (int i = 0; i < listOfPeople.Count; ++i) {
+			for (int j = 0; j < listOfPeople[i].GetComponent<GenericCharacterScript> ().GetTraits().Count; ++j) {
+				if (listOfPeople[i].GetComponent<GenericCharacterScript> ().GetTraits()[j].GetName() == "Grenedier") {
+					attackModifier = 0.5f;
+					return attackModifier;
+				}
+			}
+		}
+
+		return attackModifier;
 	}
 }

@@ -42,6 +42,8 @@ public class TraitSpriteControl : MonoBehaviour {
 	public Sprite imAWarHeroDammit;
 	public Sprite iveKilledSeveralBoysJustLikeYou;
 	public Sprite medicalProfessional;
+	public Sprite recklessAbandon;
+	public Sprite flashbacks;
 
     public List<Sprite> TraitsInOrderOfCreatedClass;
 
@@ -96,6 +98,8 @@ public class TraitSpriteControl : MonoBehaviour {
 			TraitsInOrderOfCreatedClass.Add (imAWarHeroDammit);
 			TraitsInOrderOfCreatedClass.Add (iveKilledSeveralBoysJustLikeYou);
 			TraitsInOrderOfCreatedClass.Add (medicalProfessional);
+			TraitsInOrderOfCreatedClass.Add (recklessAbandon);
+			TraitsInOrderOfCreatedClass.Add (flashbacks);
 
 			//Debug.Log (TraitsInOrderOfCreatedClass.Count);
 		}

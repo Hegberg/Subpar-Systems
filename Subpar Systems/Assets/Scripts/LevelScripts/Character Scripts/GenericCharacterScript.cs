@@ -233,7 +233,7 @@ public class GenericCharacterScript : MonoBehaviour {
 		for (int i = 0; i < currentTraits.Count; ++i)
 		{
 			if (currentTraits [i].GetName () == "RecklessAbandon") {
-				hp = hp * 0.75;
+				hp = hp * 0.75f;
 			}
 		}
     }
