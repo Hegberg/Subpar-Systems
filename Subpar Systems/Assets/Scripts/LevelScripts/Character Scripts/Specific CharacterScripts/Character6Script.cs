@@ -11,7 +11,7 @@ public class Character6Script : GenericCharacterScript
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(5);
         Name = "Ashe";
         role = "Grenadier";
-        RefreshActions();
+        StartCoroutine(RefreshActions());
     }
 
     // Update is called once per frame

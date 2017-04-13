@@ -9,7 +9,7 @@ public class Character4Script : GenericCharacterScript {
 		currentTraits = GameControlScript.control.GetTraitsOfACharacter (3);
         Name = "Roy LeGaul";
         role = "Rifleman";
-        RefreshActions();
+        StartCoroutine(RefreshActions());
     }
 	
 	// Update is called once per frame

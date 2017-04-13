@@ -11,7 +11,7 @@ public class Character7Script : GenericCharacterScript
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(6);
         Name = "Lt-Col George Murphy";
         role = "Grenadier";
-        RefreshActions();
+        StartCoroutine(RefreshActions());
     }
 
     // Update is called once per frame

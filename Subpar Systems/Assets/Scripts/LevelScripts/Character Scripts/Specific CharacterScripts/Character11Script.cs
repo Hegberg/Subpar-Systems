@@ -11,7 +11,7 @@ public class Character11Script : GenericCharacterScript
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(10);
         Name = "Larry Winters";
         role = "Machine Gunner";
-        RefreshActions();
+        StartCoroutine(RefreshActions());
     }
 
     // Update is called once per frame

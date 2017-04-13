@@ -11,7 +11,7 @@ public class Character9Script : GenericCharacterScript
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(8);
         Name = "Jai Ono";
         role = "Assault";
-        RefreshActions();
+        StartCoroutine(RefreshActions());
     }
 
     // Update is called once per frame

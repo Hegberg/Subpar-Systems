@@ -9,7 +9,7 @@ public class Character12Script : GenericCharacterScript {
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(11);
         Name = "Devi Devai";
         role = "Machine Gunner";
-        RefreshActions();
+        StartCoroutine( RefreshActions());
     }
 
     // Update is called once per frame

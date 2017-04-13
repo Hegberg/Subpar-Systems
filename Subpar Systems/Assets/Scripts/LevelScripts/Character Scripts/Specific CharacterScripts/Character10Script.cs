@@ -11,7 +11,7 @@ public class Character10Script : GenericCharacterScript
         currentTraits = GameControlScript.control.GetTraitsOfACharacter(9);
         Name = "Yuri Sokolov";
         role = "Assault";
-        RefreshActions();
+        StartCoroutine(RefreshActions());
     }
 
     // Update is called once per frame
