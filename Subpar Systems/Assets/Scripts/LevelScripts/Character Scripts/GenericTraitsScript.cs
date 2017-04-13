@@ -534,7 +534,7 @@ public class Attachment : GenericTraitsScript
 	{
 		bool terry = false;
 		bool devi = false;
-		for (int i = 0; i < GameControlScript.control.GetInGameCharacterList ().Count; ++i) {
+		for (int i = 0; i < GameControlScript.control.GetDeadCharacters ().Count; ++i) {
 			if (GameControlScript.control.GetDeadCharacters () [i] == "Terry Winters") {
 				terry = true;
 			}

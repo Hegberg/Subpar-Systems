@@ -14,7 +14,8 @@ public class TankScript : GenericCharacterScript {
 		role = "Survive";
 		movement = 0;
 		range = 4;
-		if (GameControlScript.control.GetSideMission1Result () == 1) {
+        hp = 1000;
+        if (GameControlScript.control.GetSideMission1Result () == 1) {
 			canAttack = true;
 		}
         StartCoroutine(RefreshActions());
@@ -25,7 +26,7 @@ public class TankScript : GenericCharacterScript {
 
 	}
 
-	public override void OnMouseOver ()
+    public override void OnMouseOver ()
 	{
 		if (canAttack) {
 			base.OnMouseOver ();

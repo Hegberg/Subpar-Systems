@@ -28,7 +28,11 @@ public class GenericCharacterScript : MonoBehaviour {
 	//range character can fire
 	protected float range = 4;
 
-	private int shakeAmount = 10;
+    protected int maxHp;
+
+    private int shakeAmount = 10;
+
+    bool initial = true;
 
 	protected Color colour = Color.white;
 
@@ -44,7 +48,7 @@ public class GenericCharacterScript : MonoBehaviour {
 		
 	}
 
-	IEnumerator Shake() {
+	public IEnumerator Shake() {
 		Vector3 tempPosition = this.gameObject.transform.position;
 		for (int i = 0; i < shakeAmount; ++i) {
 			tempPosition.x += 0.2f;
@@ -79,14 +83,19 @@ public class GenericCharacterScript : MonoBehaviour {
     */
 
 	public virtual void ShowHealthOnPlayer() {
-		if (hp >= 66) {
-			colour = Color.white;
-		} else if (hp >= 33) {
-			colour = Color.yellow;
-		} else {
-			colour = Color.red;
-		}
-		this.gameObject.GetComponent<SpriteRenderer> ().material.color = colour;
+        if (hp >= (maxHp * 2) / 3)
+        {
+            colour = Color.white;
+        }
+        else if (hp >= maxHp / 3)
+        {
+            colour = Color.yellow;
+        }
+        else
+        {
+            colour = Color.red;
+        }
+        this.gameObject.GetComponent<SpriteRenderer> ().material.color = colour;
 		StartCoroutine (Shake ());
 	}
 
@@ -232,13 +241,24 @@ public class GenericCharacterScript : MonoBehaviour {
 		//GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
 		colour.a = 1f;
 		GetComponent<SpriteRenderer> ().color = colour;
-
-		for (int i = 0; i < currentTraits.Count; ++i)
-		{
-			if (currentTraits [i].GetName () == "RecklessAbandon") {
-				hp = hp * 0.75f;
-			}
-		}
+        if (initial)
+        {
+            for (int i = 0; i < currentTraits.Count; ++i)
+            {
+                if (currentTraits[i].GetName() == "RecklessAbandon")
+                {
+                    hp = hp * 0.75f;
+                }
+            }
+            float hpModifier = 1;
+            for (int i = 0; i < currentTraits.Count; ++i)
+            {
+                hpModifier += currentTraits[i].ModifyHP() - 1;
+            }
+            hp = hp * hpModifier;
+            maxHp = (int)hp;
+            initial = false;
+        }
     }
 
     public void RemoveActions()
